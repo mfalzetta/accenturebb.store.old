@@ -75,3 +75,6 @@ static/~partytown
 
 # VTEX Webops
 .webops
+
+package-lock.json
+yarn.lock
