@@ -290,14 +290,6 @@ function Page(props: Props) {
           return null
         }}
       />
-      <img
-        src="/bannerBottom.svg"
-        alt="Accenture logo"
-        width="1368"
-        height="328"
-        loading="lazy"
-        className="image__temporary"
-      />
       <RenderCMS sections={cmsHome?.sections} />
     </>
   )
@@ -313,7 +305,7 @@ export const querySSG = graphql`
       }
     }
 
-    cmsHome {
+    cmsHome(name: {eq: "test after rebuild"}) {
       sections {
         data
         name

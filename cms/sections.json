@@ -47,6 +47,34 @@
     }
   },
   {
+    "name": "ImageBanner",
+    "schema": {
+      "title": "Image Banner",
+      "description": "a image fullscreen",
+      "type": "object",
+      "properties": {
+        "src": {
+          "title": "Image",
+          "description": "Image",
+          "type": "string",
+          "widget": {
+            "ui:widget": "image-uploader"
+          }
+        },
+        "alt": {
+          "title": "Image description",
+          "description": "Image description for accessibility",
+          "type": "string"
+        },
+        "fullWidth": {
+          "default": false,
+          "type": "boolean",
+          "title": "Full Width"
+        }
+      }
+    }
+  },
+  {
     "name": "Carousel",
     "schema": {
       "title": "Carousel",
