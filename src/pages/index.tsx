@@ -15,7 +15,7 @@ import InfoCard from 'src/components/custom-components/home/InfoCard'
 import SectionTitle from 'src/components/custom-components/home/SectionTitle'
 import BlogSection from 'src/components/custom-components/home/BlogSection'
 import Slider from 'src/components/custom-components/home/Slider'
-import PromotionBanner from 'src/components/banners/PromotionBanner'
+import PromotionBanner from 'src/components/sections/PromotionBanner'
 import RenderCMS from 'src/components/RenderCMS'
 
 import MiddleBanner from '../images/home/background-middle-banner.png'
@@ -263,7 +263,7 @@ function Page(props: Props) {
       />
       <Blog />
       <PromotionBanner
-        image={MiddleBanner}
+        src={MiddleBanner}
         title="Eletrônicos 20% OFF"
         href="/"
         linkText="compre agora"
