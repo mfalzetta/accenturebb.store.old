@@ -305,7 +305,7 @@ export const querySSG = graphql`
       }
     }
 
-    cmsHome(name: {eq: "test after rebuild"}) {
+    cmsHome(versionStatus: { eq: "published" }) {
       sections {
         data
         name
