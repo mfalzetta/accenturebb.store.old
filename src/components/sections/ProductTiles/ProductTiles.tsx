@@ -3,11 +3,10 @@ import ProductCard from 'src/components/product/ProductCard'
 import ProductTilesSkeleton from 'src/components/skeletons/ProductTilesSkeleton'
 import { useProductsQuery } from 'src/sdk/product/useProductsQuery'
 import type { ProductsQueryQueryVariables } from '@generated/graphql'
-import SectionTitle from 'src/components/custom-components/home/SectionTitle'
 
 import Section from '../Section'
 
-interface TilesProps extends Partial<ProductsQueryQueryVariables> {
+interface ProductTilesProps extends Partial<ProductsQueryQueryVariables> {
   title: string | JSX.Element
 }
 
@@ -28,7 +27,7 @@ const getRatio = (products: number, idx: number) => {
   return 3 / 4
 }
 
-const ProductTiles = ({ title, ...variables }: TilesProps) => {
+const ProductTiles = ({ title, ...variables }: ProductTilesProps) => {
   const products = useProductsQuery(variables)
 
   if (products?.edges.length === 0) {
@@ -36,14 +35,9 @@ const ProductTiles = ({ title, ...variables }: TilesProps) => {
   }
 
   return (
-    <Section className="layout__section">
-      {title && (
-        <SectionTitle
-          className="classSection__container"
-          title={title.toString()}
-        />
-      )}
-      <div className="layout__content">
+    <Section className="layout__section layout__content">
+      <h2 className="text__title-section">{title}</h2>
+      <div>
         <ProductTilesSkeleton variant="wide" loading={!products}>
           <Tiles>
             {products?.edges.map((product, idx) => (

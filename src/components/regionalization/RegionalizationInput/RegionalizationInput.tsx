@@ -1,63 +1,54 @@
 import { useSession } from '@faststore/sdk'
-import { Input as UIInput, Label as UILabel } from '@faststore/ui'
-import { gql } from '@vtex/graphql-utils'
-import { useRef } from 'react'
-import { request } from 'src/sdk/graphql/request'
-import type { KeyboardEvent } from 'react'
-import type {
-  UpdateSessionMutationMutation,
-  UpdateSessionMutationMutationVariables,
-} from '@generated/graphql'
+import { useRef, useState } from 'react'
+import InputText from 'src/components/ui/InputText'
+import { validateSession } from 'src/sdk/session/validate'
 
-const POSTAL_CODE_INPUT_ID = 'postal-code-input'
+interface Props {
+  closeModal: () => void
+}
 
-export const UpdateSessionMutation = gql`
-  mutation UpdateSessionMutation($session: IStoreSession!) {
-    updateSession(session: $session) {
-      channel
-    }
-  }
-`
+function RegionInput({ closeModal }: Props) {
+  const inputRef = useRef<HTMLInputElement>(null)
+  const { setSession, isValidating, ...session } = useSession()
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
-export default function RegionalizationInput() {
-  const ref = useRef<HTMLInputElement>(null)
-  const { country, setSession, ...partialSession } = useSession()
+  const handleSubmit = async () => {
+    const value = inputRef.current?.value
 
-  const handleSubmit = async (event: KeyboardEvent<HTMLInputElement>) => {
-    const value = ref.current?.value
-
-    if (!(event.key === 'Enter' && typeof value === 'string')) {
+    if (typeof value !== 'string') {
       return
     }
 
-    const {
-      updateSession: { channel },
-    } = await request<
-      UpdateSessionMutationMutation,
-      UpdateSessionMutationMutationVariables
-    >(UpdateSessionMutation, {
-      session: {
-        channel: partialSession.channel,
-        postalCode: value,
-        country,
-      },
-    })
+    setErrorMessage('')
 
-    setSession({
-      postalCode: value,
-      channel: channel ?? partialSession.channel,
-    })
+    try {
+      const newSession = await validateSession({
+        ...session,
+        postalCode: value,
+      })
+
+      if (newSession) {
+        setSession(newSession)
+      }
+
+      closeModal()
+    } catch (error) {
+      setErrorMessage('You entered an invalid Zip Code')
+    }
   }
 
   return (
     <div className="regionalization-input">
-      <UILabel htmlFor={POSTAL_CODE_INPUT_ID}>Postal Code: </UILabel>
-      <UIInput
-        id={POSTAL_CODE_INPUT_ID}
-        ref={ref}
-        onKeyDown={handleSubmit}
-        defaultValue={partialSession.postalCode ?? ''}
+      <InputText
+        inputRef={inputRef}
+        id="postal-code-input"
+        errorMessage={errorMessage}
+        label="Zip Code"
+        actionable
+        onSubmit={handleSubmit}
       />
     </div>
   )
 }
+
+export default RegionInput

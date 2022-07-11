@@ -19,10 +19,8 @@ main,
 }
 
 .layout__section {
-  // padding-bottom: var(--fs-spacing-4);
-  // margin-top: var(--fs-spacing-4);
-  padding-bottom: 0.25rem;
-  margin-top: 0.25rem;
+  padding-bottom: var(--fs-spacing-4);
+  margin-top: var(--fs-spacing-4);
 
   @include media(">=notebook") {
     padding-bottom: var(--fs-grid-padding);
@@ -44,15 +42,11 @@ main,
 .layout__content {
   box-sizing: border-box;
   width: 100%;
-  max-width: 1368px;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  max-width: var(--fs-grid-breakpoint-notebook);
+  padding-right: var(--fs-grid-padding);
+  padding-left: var(--fs-grid-padding);
   margin-right: auto;
   margin-left: auto;
-}
-
-.classSection__container section.section.layout__content {
-  padding-left: 0;
 }
 
 .no-scroll {
@@ -74,4 +68,11 @@ main,
     display: none;
     visibility: hidden;
   }
+}
+
+// Image
+[data-fs-image] {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

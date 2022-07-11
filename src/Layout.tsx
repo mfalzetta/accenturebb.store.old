@@ -1,42 +1,50 @@
 import { lazy, Suspense } from 'react'
+import Alert from 'src/components/common/Alert'
 import Footer from 'src/components/common/Footer'
 import Navbar from 'src/components/common/Navbar'
 import Toast from 'src/components/common/Toast'
-import RegionalizationModal from 'src/components/regionalization/RegionalizationModal'
-import { useUI } from 'src/sdk/ui'
+import RegionalizationBar from 'src/components/regionalization/RegionalizationBar'
+import { useUI } from 'src/sdk/ui/Provider'
 import type { PropsWithChildren } from 'react'
-import { useModal } from 'src/sdk/ui/modal/Provider'
 
 import 'src/styles/pages/layout.scss'
 
 const CartSidebar = lazy(() => import('src/components/cart/CartSidebar'))
+const RegionModal = lazy(
+  () => import('src/components/regionalization/RegionalizationModal')
+)
 
-function Layout({ children }: PropsWithChildren<unknown>) {
-  const { displayMinicart } = useUI()
-  const { isRegionalizationModalOpen, setIsRegionalizationModalOpen } =
-    useModal()
+function Layout({ children }: PropsWithChildren) {
+  const { cart: displayCart, modal: displayModal } = useUI()
 
   return (
     <>
-      <div id="layout">
-        <Navbar />
+      <Alert icon="Bell" link={{ text: 'Buy now', to: '/office' }} dismissible>
+        Get 10% off today:&nbsp;<span>NEW10</span>
+      </Alert>
 
-        <main>{children}</main>
+      <Navbar />
 
-        <Footer />
+      <Toast />
 
-        <Toast />
+      <main>
+        <RegionalizationBar classes="display-mobile" />
+        {children}
+      </main>
 
-        {displayMinicart && (
-          <Suspense fallback={null}>
-            <CartSidebar />
-          </Suspense>
-        )}
-      </div>
-      <RegionalizationModal
-        isOpen={isRegionalizationModalOpen}
-        onDismiss={() => setIsRegionalizationModalOpen(false)}
-      />
+      <Footer />
+
+      {displayCart && (
+        <Suspense fallback={null}>
+          <CartSidebar />
+        </Suspense>
+      )}
+
+      {displayModal && (
+        <Suspense fallback={null}>
+          <RegionModal />
+        </Suspense>
+      )}
     </>
   )
 }

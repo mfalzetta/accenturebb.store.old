@@ -1,18 +1,21 @@
 import {
-  Card as UICard,
-  CardActions as UICardActions,
-  CardContent as UICardContent,
-  CardImage as UICardImage,
+  ProductCard as UIProductCard,
+  ProductCardActions as UIProductCardActions,
+  ProductCardContent as UIProductCardContent,
+  ProductCardImage as UIProductCardImage,
 } from '@faststore/ui'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import { memo } from 'react'
 import { Badge, DiscountBadge } from 'src/components/ui/Badge'
 import { Image } from 'src/components/ui/Image'
 import Price from 'src/components/ui/Price'
+import Link from 'src/components/ui/Link'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { useProductLink } from 'src/sdk/product/useProductLink'
 import type { ReactNode } from 'react'
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
+
+import styles from './product-card.module.scss'
 
 type Variant = 'wide' | 'default'
 
@@ -22,7 +25,6 @@ export interface ProductCardProps {
   bordered?: boolean
   variant?: Variant
   aspectRatio?: number
-  rowLayout?: boolean
   ButtonBuy?: ReactNode
 }
 
@@ -32,13 +34,11 @@ function ProductCard({
   variant = 'default',
   bordered = false,
   aspectRatio = 1,
-  rowLayout,
   ButtonBuy,
   ...otherProps
 }: ProductCardProps) {
   const {
     sku,
-    brand: { brandName },
     isVariantOf: { name },
     image: [img],
     offers: {
@@ -51,73 +51,67 @@ function ProductCard({
   const outOfStock = availability !== 'https://schema.org/InStock'
 
   return (
-    <UICard
+    <UIProductCard
       data-fs-product-card
       data-fs-product-card-variant={variant}
       data-fs-product-card-bordered={bordered}
-      data-fs-product-card-actionabled={!!ButtonBuy}
+      data-fs-product-card-actionable={!!ButtonBuy}
       data-fs-product-card-sku={sku}
+      className={styles.fsProductCard}
       {...otherProps}
     >
-      <div className={rowLayout ? 'product-card__row-layout' : ''}>
-        <UICardImage>
-          <Image
-            src={img.url}
-            alt={img.alternateName}
-            width={360}
-            height={360 / aspectRatio}
-            sizes="(max-width: 768px) 25vw, 30vw"
-            loading="lazy"
-          />
+      <UIProductCardImage>
+        <Image
+          src={img.url}
+          alt={img.alternateName}
+          width={360}
+          height={360 / aspectRatio}
+          sizes="(max-width: 768px) 25vw, 30vw"
+          loading="lazy"
+        />
+      </UIProductCardImage>
 
-          {outOfStock ? (
-            <Badge>Out of stock</Badge>
-          ) : (
-            <DiscountBadge listPrice={listPrice} spotPrice={spotPrice} />
-          )}
-          {!!ButtonBuy && (
-            <UICardActions data-fs-product-card-actions>
-              {ButtonBuy}
-            </UICardActions>
-          )}
-        </UICardImage>
-
-        <UICardContent data-fs-product-card-content>
-          <div data-fs-product-card-heading>
-            <h3 data-fs-product-card-brand-title>{brandName}</h3>
-            <h3 data-fs-product-card-title>
-              <Link {...linkProps} title={name}>
-                {name}
-              </Link>
-            </h3>
-            <div data-fs-product-card-prices>
-              <Price
-                value={spotPrice}
-                formatter={useFormattedPrice}
-                testId="price"
-                data-value={spotPrice}
-                variant="spot"
-                classes="text__body"
-                SRText="Sale Price:"
-              />
-              {spotPrice !== listPrice ? (
-                <Price
-                  value={listPrice}
-                  formatter={useFormattedPrice}
-                  testId="list-price"
-                  data-value={listPrice}
-                  variant="listing"
-                  classes="text__legend"
-                  SRText="Original price:"
-                />
-              ) : (
-                <></>
-              )}
-            </div>
+      <UIProductCardContent data-fs-product-card-content>
+        <div data-fs-product-card-heading>
+          <h3 data-fs-product-card-title>
+            <Link {...linkProps} title={name}>
+              {name}
+            </Link>
+          </h3>
+          <div data-fs-product-card-prices>
+            <Price
+              value={listPrice}
+              formatter={useFormattedPrice}
+              testId="list-price"
+              data-value={listPrice}
+              variant="listing"
+              classes="text__legend"
+              SRText="Original price:"
+            />
+            <Price
+              value={spotPrice}
+              formatter={useFormattedPrice}
+              testId="price"
+              data-value={spotPrice}
+              variant="spot"
+              classes="text__body"
+              SRText="Sale Price:"
+            />
           </div>
-        </UICardContent>
-      </div>
-    </UICard>
+        </div>
+
+        {outOfStock ? (
+          <Badge>Out of stock</Badge>
+        ) : (
+          <DiscountBadge listPrice={listPrice} spotPrice={spotPrice} />
+        )}
+        {!!ButtonBuy && (
+          <UIProductCardActions data-fs-product-card-actions>
+            {ButtonBuy}
+          </UIProductCardActions>
+        )}
+      </UIProductCardContent>
+    </UIProductCard>
   )
 }
 

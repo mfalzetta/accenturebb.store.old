@@ -1,69 +1,97 @@
 import { Card, CardContent, CardImage } from '@faststore/ui'
 import { Image } from 'src/components/ui/Image'
+import Link from 'src/components/ui/Link'
 import Price from 'src/components/ui/Price'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
+import { useProductLink } from 'src/sdk/product/useProductLink'
+import useSearchInput from 'src/sdk/search/useSearchInput'
+import type { ProductSummary_ProductFragment } from '@generated/graphql'
 
-// TODO: Remove it when integration is complete
-const PRODUCTS = [
-  {
-    price: 46.26,
-    listPrice: 72.06,
-    name: 'Ergonomic Wooden Bacon',
-    image: [
-      {
-        alternateName: 'rerum',
-        url: 'http://storeframework.vtexassets.com/arquivos/ids/167285/ut.jpg?v=637753017045600000',
-      },
-    ],
-  },
-]
+import styles from './suggestion-product-card.module.scss'
 
-function SuggestionProductCard({
-  // TODO: Add Props interface and define `product` type
-  product = PRODUCTS[0],
-}) {
+type SuggestionProductCardProps = {
+  /**
+   * Product to be showed in `SuggestionProductCard`.
+   */
+  product: ProductSummary_ProductFragment
+  /**
+   * Index to generate product link.
+   */
+  index: number
+}
+
+function SuggestionProductCard({ product, index }: SuggestionProductCardProps) {
+  const { onSearchInputSelection } = useSearchInput()
+  const { onClick, href, ...linkProps } = useProductLink({
+    product,
+    selectedOffer: 0,
+    index,
+  })
+
   const {
-    name,
-    listPrice,
-    price,
+    isVariantOf: { name },
     image: [img],
+    offers: {
+      lowPrice: spotPrice,
+      offers: [{ listPrice }],
+    },
   } = product
 
   return (
     <Card
-      className="suggestion-product-card"
+      data-fs-suggestion-product-card
+      className={styles.fsSuggestionProductCard}
       data-testid="suggestion-product-card"
     >
-      <CardContent>
-        <CardImage>
-          <Image src={img.url} alt={img.alternateName} width={56} height={56} />
-        </CardImage>
-        <div data-suggestion-product-card-summary>
-          <p className="text__title-mini" data-suggestion-product-card-title>
-            {name}
-          </p>
-          <span data-suggestion-product-card-prices>
-            <Price
-              value={listPrice}
-              formatter={useFormattedPrice}
-              testId="list-price"
-              data-value={listPrice}
-              variant="listing"
-              classes="text__legend"
-              SRText="Original price:"
+      <Link
+        {...linkProps}
+        href={href}
+        title={name}
+        variant="display"
+        onClick={() => {
+          onClick()
+          onSearchInputSelection?.(name, href)
+        }}
+      >
+        <CardContent data-fs-suggestion-product-card-content>
+          <CardImage data-fs-suggestion-product-card-image>
+            <Image
+              src={img.url}
+              alt={img.alternateName}
+              width={56}
+              height={56}
             />
-            <Price
-              value={price}
-              formatter={useFormattedPrice}
-              testId="price"
-              data-value={price}
-              variant="spot"
-              classes="text__title-mini"
-              SRText="Price:"
-            />
-          </span>
-        </div>
-      </CardContent>
+          </CardImage>
+          <div data-fs-suggestion-product-card-summary>
+            <p
+              className="text__title-mini"
+              data-fs-suggestion-product-card-title
+            >
+              {name}
+            </p>
+            <span data-fs-suggestion-product-card-prices>
+              <Price
+                value={listPrice}
+                formatter={useFormattedPrice}
+                testId="list-price"
+                data-value={listPrice}
+                variant="listing"
+                classes="text__legend"
+                SRText="Original price:"
+              />
+              <Price
+                value={spotPrice}
+                formatter={useFormattedPrice}
+                testId="price"
+                data-value={spotPrice}
+                variant="spot"
+                classes="text__title-mini"
+                SRText="Price:"
+              />
+            </span>
+          </div>
+        </CardContent>
+      </Link>
     </Card>
   )
 }

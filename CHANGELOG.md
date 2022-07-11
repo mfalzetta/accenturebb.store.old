@@ -9,17 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Applies new local tokens to `Incentives` ([#49](https://github.com/vtex-sites/gatsby.store/pull/49))
-- Uses new WebOps Incremental Static Builds ([#47](https://github.com/vtex-sites/gatsby.store/pull/47))
-- `add_to_cart` and `remove_from_cart` analytics events to `CartItem` ([#43](https://github.com/vtex-sites/gatsby.store/pull/43))
+- Uses new cross selling API on PDP ([#159](https://github.com/vtex-sites/nextjs.store/pull/159))
+- Applies new local tokens to `SuggestionProductCard` ([#135](https://github.com/vtex-sites/gatsby.store/pull/135))
+- Applies new local tokens to `Navbar` ([#132](https://github.com/vtex-sites/gatsby.store/pull/132))
 
 ### Changed
-- Upgrade Gatsby and other dependencies ([#59](https://github.com/vtex-sites/gatsby.store/pull/59))
-- LCP images to be fetched with a higher priority and improve the score ([#51](https://github.com/vtex-sites/gatsby.store/pull/51)).
-- Applies styles to `Toast` ([#28](https://github.com/vtex-sites/gatsby.store/pull/28))
-- Added base files (`Getting Started`, `Theming`, `Colors`, `Typography` and `Icons`) to Storybook ([#26](https://github.com/vtex-sites/gatsby.store/pull/26))
-- Updated tokens' naming scheme ([#26](https://github.com/vtex-sites/gatsby.store/pull/26))
-- Uses CSS Modules to import CSS at `ImageGallery` component [#41](https://github.com/vtex-sites/gatsby.store/pull/41)
 
 ### Deprecated
 
@@ -27,11 +21,102 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- priceCurrency field on SEO meta data ([#139](https://github.com/vtex-sites/gatsby.store/pull/139))
+
+## [22.26.0.beta] - 2022-07-01
+
+### Added
+
+- Applies new local tokens to `Filter` ([#128](https://github.com/vtex-sites/gatsby.store/pull/128))
+- Applies new local tokens to `ProductGrid` ([#127](https://github.com/vtex-sites/gatsby.store/pull/127))
+- Applies new local tokens to `Tiles` ([#120](https://github.com/vtex-sites/gatsby.store/pull/120))
+- Applies new local tokens to `Accordion` ([#126](https://github.com/vtex-sites/gatsby.store/pull/126))
+- Applies new local tokens to `ImageGallery` ([#125](https://github.com/vtex-sites/gatsby.store/pull/125))
+- Creates Doc page for `Regionalization` Feature ([#124](https://github.com/vtex-sites/gatsby.store/pull/124))
+- Applies new local tokens to `RegionalizationBar` ([#124](https://github.com/vtex-sites/gatsby.store/pull/124))
+- Applies new local tokens to `Modal` and `RegionalizationModal` ([#123](https://github.com/vtex-sites/gatsby.store/pull/123))
+- Displays the `Sandbox` tab on the storybook along with `Viewport` toolbar and `Accessibility` checks ([#115](https://github.com/vtex-sites/gatsby.store/pull/115))
+- PriceRange component to PLP and StoryBook ([#112](https://github.com/vtex-sites/gatsby.store/pull/112))
+- Applies new local tokens to `EmptyState` ([#113](https://github.com/vtex-sites/gatsby.store/pull/113))
+- Applies new local tokens to `Dropdown` ([#111](https://github.com/vtex-sites/gatsby.store/pull/111))
+- Creates and styles `Dropdown` component ([#111](https://github.com/vtex-sites/gatsby.store/pull/111))
+- Creates new Storybook section `BestPractices` ([#110](https://github.com/vtex-sites/gatsby.store/pull/110))
+- 301 redirects when visiting old VTEX product routes ([#87](https://github.com/vtex-sites/gatsby.store/pull/87))
+
+### Changed
+
+- Move logo's svg code from JS into static asset ([#116](https://github.com/vtex-sites/gatsby.store/pull/116))
+- Upgrade dependencies ([#114](https://github.com/vtex-sites/gatsby.store/pull/114))
+- Storybook's version from 6.4.20 to 6.5.9 ([#109](https://github.com/vtex-sites/gatsby.store/pull/109))
+- Unifies `Link` component usage by adding support for both external and client-side links ([#103](https://github.com/vtex-sites/gatsby.store/pull/103))
+
+### Fixed
+
+- `ImageGallerySelector` scroll that isn't working on Safari ([##121](https://github.com/vtex-sites/gatsby.store/pull/121))
+- Some console errors when running the storybook ([#115](https://github.com/vtex-sites/gatsby.store/pull/115))
+- Status code when error occurs (404/500) ([#108](https://github.com/vtex-sites/gatsby.store/pull/108))
+
+## [22.23.0.beta] - 2022-06-10
+
+### Added
+
+- The search input now includes the last 4 previously searched terms (`SearchHistory`) ([#67](https://github.com/vtex-sites/gatsby.store/pull/67)).
+- The top 5 searches (`SuggestionsTopSearch`) are now integrated into the search input ([#67](https://github.com/vtex-sites/gatsby.store/pull/67)).
+- Applies new local tokens to `OutOfStock` ([#99](https://github.com/vtex-sites/gatsby.store/pull/99))
+- Applies new local tokens to `CartItem` ([#95](https://github.com/vtex-sites/gatsby.store/pull/95))
+- Applies new local tokens to `ProductTitle` ([#84](https://github.com/vtex-sites/gatsby.store/pull/84))
+- Creates `Radio` component ([#89](https://github.com/vtex-sites/gatsby.store/pull/89))
+- Applies new local tokens to `Price` ([#83](https://github.com/vtex-sites/gatsby.store/pull/83))
+- Applies new local tokens to `Alert` ([#77](https://github.com/vtex-sites/gatsby.store/pull/77))
+- Refactors `Button` component and adds Storybook doc ([#52](https://github.com/vtex-sites/gatsby.store/pull/52))
+- Add Storybook documentation for `QuantitySelector` component ([#85](https://github.com/vtex-sites/gatsby.store/pull/85))
+- Applies new local tokens to `Checkbox` ([#61](https://github.com/vtex-sites/gatsby.store/pull/61))
+- Attachments to CartItem id ([#53](https://github.com/vtex-sites/gatsby.store/pull/53))
+- Adds tests for analytics events on `CartItem` ([#66](https://github.com/vtex-sites/gatsby.store/pull/66))
+- Applies new local tokens to `Incentives` ([#49](https://github.com/vtex-sites/gatsby.store/pull/49))
+- Uses new WebOps Incremental Static Builds ([#47](https://github.com/vtex-sites/gatsby.store/pull/47))
+- `add_to_cart` and `remove_from_cart` analytics events to `CartItem` ([#43](https://github.com/vtex-sites/gatsby.store/pull/43))
+
+### Changed
+
+- Merges UIProvider and ModalProvider into a single context provider ([#93](https://github.com/vtex-sites/gatsby.store/pull/93))
+- Synchronizes the components' code of both starters ([#94](https://github.com/vtex-sites/gatsby.store/pull/94))
+- Uses `--docs` option on storybook script ([#97](https://github.com/vtex-sites/gatsby.store/pull/97))
+- Improves storybook doc's table rows ([#96](https://github.com/vtex-sites/gatsby.store/pull/96))
+- Updates `Checkbox` tokens ([#89](https://github.com/vtex-sites/gatsby.store/pull/89))
+- Uses `Hero` component from FSUI ([#92](https://github.com/vtex-sites/gatsby.store/pull/92))
+- Uses CSS Modules on `Checkbox` component ([#81](https://github.com/vtex-sites/gatsby.store/pull/81))
+- Uses CSS Modules on `QuantitySelector` component ([#75](https://github.com/vtex-sites/gatsby.store/pull/75))
+- `OutOfStock` component ([#70](https://github.com/vtex-sites/gatsby.store/pull/70))
+- Displays 5 products on product suggestion for better mobile experience ([#73](https://github.com/vtex-sites/gatsby.store/pull/73))
+- Uses CSS Modules on `ProductGallery` section ([#54](https://github.com/vtex-sites/gatsby.store/pull/54))
+- Uses CSS Modules on `ProductCard` component ([#54](https://github.com/vtex-sites/gatsby.store/pull/54))
+- Uses CSS Modules on `ProductGrid` component ([#54](https://github.com/vtex-sites/gatsby.store/pull/54))
+- Upgrade Gatsby and other dependencies ([#59](https://github.com/vtex-sites/gatsby.store/pull/59))
+- LCP images to be fetched with a higher priority and improve the score ([#51](https://github.com/vtex-sites/gatsby.store/pull/51))
+- Applies styles to `Toast` ([#28](https://github.com/vtex-sites/gatsby.store/pull/28))
+- Added base files (`Getting Started`, `Theming`, `Colors`, `Typography` and `Icons`) to Storybook ([#26](https://github.com/vtex-sites/gatsby.store/pull/26))
+- Updated tokens' naming scheme ([#26](https://github.com/vtex-sites/gatsby.store/pull/26))
+- Uses CSS Modules to import CSS at `ImageGallery` component ([#41](https://github.com/vtex-sites/gatsby.store/pull/41))
+
+### Removed
+
+- Fix Region Input's behavior when setting zipCode ([#98](https://github.com/vtex-sites/gatsby.store/pull/98))
+- Removes unnecessary logic in suspense hooks ([#91](https://github.com/vtex-sites/gatsby.store/pull/91))
+- `Hero` component from `components/ui`([#92](https://github.com/vtex-sites/gatsby.store/pull/92))
+- Unused `-default` at css variables ([#82](https://github.com/vtex-sites/gatsby.store/pull/82))
+
+### Fixed
+
+- Duplicated query at `useTopSearch` hook ([#105](https://github.com/vtex-sites/gatsby.store/pull/105))
+- Use `SpotPrice` for low/high price on `aggretateOffer` ([#102](https://github.com/vtex-sites/gatsby.store/pull/102))
+- The search input showing more than 5 suggested products ([#67](https://github.com/vtex-sites/gatsby.store/pull/67)).
+- The search input's dropdown not closing when a suggested product was selected ([#67](https://github.com/vtex-sites/gatsby.store/pull/67).
+- Region Input ([#98](https://github.com/vtex-sites/gatsby.store/pull/98))
+- Search suggestions missing locale info ([#69](https://github.com/vtex-sites/gatsby.store/pull/69))
 - Limit custom props only for `img` and `link` tags ([#60](https://github.com/vtex-sites/gatsby.store/pull/60))
 - `ArrowsClockwise` icon closing tag ([#57](https://github.com/vtex-sites/gatsby.store/pull/57))
 - Fix Storybook `@reach/router` issue ([#48](https://github.com/vtex-sites/gatsby.store/pull/48))
-
-### Security
 
 ## [22.19.0.beta] - 2022-05-06
 

@@ -3,186 +3,145 @@ import {
   List as UIList,
   PaymentMethods as UIPaymentMethods,
 } from '@faststore/ui'
-import Button from 'src/components/ui/Button'
+import IncentivesFooter from 'src/components/sections/Incentives/IncentivesFooter'
+import Icon from 'src/components/ui/Icon'
 import Link from 'src/components/ui/Link'
 import SROnly from 'src/components/ui/SROnly'
 import { mark } from 'src/sdk/tests/mark'
 
-import {
-  Visa,
-  Master,
-  Amex,
-  Dinners,
-  Ligar,
-  Enviar,
-} from '../../../images/footer/icons'
 import FooterLinks from './FooterLinks'
 
 function Footer() {
   return (
     <footer className="footer layout__content-full">
+      <IncentivesFooter />
+
       <div className="footer__section layout__content">
         <FooterLinks />
-        <section className="footer__contacts hidden-mobile">
-          <p className="text__title-mini footer__titles">Contatos</p>
-          <div className="contactContainer">
-            <Button
-              className="btn btnLigar"
-              iconPosition="left"
-              icon={<Ligar />}
-            >
-              {' '}
-              Ligar{' '}
-            </Button>
-            <Button
-              className="btn btnMsg"
-              iconPosition="left"
-              icon={<Enviar />}
-            >
-              {' '}
-              Envie uma Mensagem{' '}
-            </Button>
-            <p>
-              <a href="/">Clique Aqui</a> para ver as nossas horas de
-            </p>
-            <p> funcionamento</p>
-          </div>
-        </section>
-        <section className="footer__social">
-          <div className="footer__container--column">
-            <UIPaymentMethods>
-              <p className="text__title-mini footer__titles footer__titles--payment">
-                Pague com os cartões
-              </p>
-              <UIList className="footer__paymentMethod--ul">
-                <li>
-                  <UIIcon component={<Visa />} />
-                  <SROnly text="Visa" />
-                </li>
-                <li>
-                  <UIIcon component={<Dinners />} />
-                  <SROnly text="Diners Club" />
-                </li>
-                <li>
-                  <UIIcon component={<Master />} />
-                  <SROnly text="Mastercard" />
-                </li>
-                <li>
-                  <UIIcon component={<Amex />} />
-                  <SROnly text="Amex" />
-                </li>
-              </UIList>
-            </UIPaymentMethods>
-            <p className="text__title-mini footer__titles footer__titles--social">
-              Siga nas redes sociais
-            </p>
-            <UIList>
-              <li>
-                <Link
-                  as="a"
-                  href="https://www.facebook.com/"
-                  title="Facebook"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <UIIcon component={<Dinners />} />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  as="a"
-                  href="https://www.instagram.com/"
-                  title="Instagram"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <UIIcon component={<Dinners />} />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  as="a"
-                  href="https://www.pinterest.com/"
-                  title="Pinterest"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <UIIcon component={<Dinners />} />
-                </Link>
-              </li>
-            </UIList>
-          </div>
-        </section>
-      </div>
-      <div className="display-mobile">
-        <div className="layout__content footer__note--mob--content">
-          <FooterTitle />
-          <FooterText />
-          <FooterLogo />
-        </div>
-      </div>
-      <div className="hidden-mobile ">
-        <div className="layout__content footer__note--desk--content">
-          <FooterLogo /> <FooterTitle />
-        </div>
-        <div className="layout__content">
-          <FooterText />
-        </div>
-      </div>
-    </footer>
-  )
-}
 
-function FooterLogo() {
-  return (
-    <div className="">
-      <div className="">
+        <section className="footer__social">
+          <p className="text__title-mini">Follow us</p>
+          <UIList variant="unordered">
+            <li>
+              <Link
+                href="https://www.facebook.com/"
+                title="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <UIIcon
+                  component={
+                    <Icon width="24px" height="24px" name="Facebook" />
+                  }
+                />
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="https://www.instagram.com/"
+                title="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <UIIcon
+                  component={
+                    <Icon width="24px" height="24px" name="Instagram" />
+                  }
+                />
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="https://www.pinterest.com/"
+                title="Pinterest"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <UIIcon
+                  component={
+                    <Icon width="24px" height="24px" name="Pinterest" />
+                  }
+                />
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="https://twitter.com/"
+                title="Twitter"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <UIIcon
+                  component={<Icon width="24px" height="24px" name="Twitter" />}
+                />
+              </Link>
+            </li>
+          </UIList>
+        </section>
+      </div>
+
+      <div className="footer__note layout__content">
         <UIIcon
           component={
             <img
-              src="/accenture-logo.svg"
-              alt="Accenture logo"
-              width="94px"
-              height="24px"
+              src="/logo.svg"
+              alt="BaseStore logo"
+              width="124px"
+              height="32px"
               loading="lazy"
             />
           }
         />
-      </div>
-    </div>
-  )
-}
 
-function FooterTitle() {
-  return (
-    <div className="">
-      <span className="footer__note--text">
-        ACCENTURE 2021 @ All rights reserved
-      </span>
-    </div>
-  )
-}
+        <UIPaymentMethods>
+          <p className="text__title-mini">Payment Methods</p>
+          <UIList>
+            <li>
+              <Icon width="34px" height="24px" name="Visa" />
+              <SROnly text="Visa" />
+            </li>
+            <li>
+              <Icon width="34px" height="24px" name="Diners" />
+              <SROnly text="Diners Club" />
+            </li>
+            <li>
+              <Icon width="34px" height="24px" name="Mastercard" />
+              <SROnly text="Mastercard" />
+            </li>
+            <li>
+              <Icon width="34px" height="24px" name="EloCard" />
+              <SROnly text="Elo Card" />
+            </li>
+            <li>
+              <Icon width="34px" height="24px" name="PayPal" />
+              <SROnly text="PayPal" />
+            </li>
+            <li>
+              <Icon width="34px" height="24px" name="Stripe" />
+              <SROnly text="Stripe" />
+            </li>
+            <li>
+              <Icon width="34px" height="24px" name="GooglePay" />
+              <SROnly text="Google Pay" />
+            </li>
+            <li>
+              <Icon width="34px" height="24px" name="ApplePay" />
+              <SROnly text="Apple Pay" />
+            </li>
+          </UIList>
+        </UIPaymentMethods>
 
-function FooterText() {
-  return (
-    <div className="">
-      <div className="footer__copyright / text__legend">
-        <p className="footer__note--text">
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don&apos;t look even slightly
-          believable. If you are going to use a passage of Lorem Ipsum, you need
-          to be sure there isn&apos;t anything embarrassing hidden in the middle
-          of text. All the Lorem Ipsum generators on the Internet tend to repeat
-          predefined chunks as necessary, making this the first true generator
-          on the Internet. It uses a dictionary of over 200 Latin words,
-          combined with a handful of model sentence structures, to generate
-          Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is
-          therefore always free from repetition, injected humour, or
-          non-characteristic words etc
-        </p>
+        <div className="footer__copyright / text__legend">
+          <p>This website uses VTEX technology</p>
+          <p>
+            In-store price may vary. Prices and offers are subject to change.
+            2021 Store name. All rights reserved. Store is a trademark of Store
+            and its affiliated companies.
+          </p>
+          <address>Mount St, 000, New York / NY - 00000.</address>
+        </div>
       </div>
-    </div>
+    </footer>
   )
 }
 

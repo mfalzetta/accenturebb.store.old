@@ -2,17 +2,24 @@ import ProductGridSkeleton from 'src/components/skeletons/ProductGridSkeleton'
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
 
 import ProductCard from '../ProductCard'
+import styles from './product-grid.module.scss'
 
 interface Props {
+  /**
+   * Products listed on the grid.
+   */
   products: Array<{ node: ProductSummary_ProductFragment }>
   page: number
+  /**
+   * Quantity of products listed.
+   */
   pageSize: number
 }
 
 function ProductGrid({ products, page, pageSize }: Props) {
   return (
     <ProductGridSkeleton loading={products.length === 0}>
-      <ul className="product-grid">
+      <ul data-fs-product-grid className={styles.fsProductGrid}>
         {products.map(({ node: product }, idx) => (
           <li key={`${product.id}`}>
             <ProductCard

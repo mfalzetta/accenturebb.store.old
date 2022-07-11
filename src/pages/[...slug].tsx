@@ -1,13 +1,19 @@
-import { parseSearchState, SearchProvider, useSession } from '@faststore/sdk'
-import { gql } from '@vtex/graphql-utils'
+import {
+  parseSearchState,
+  SearchProvider,
+  useSession,
+  formatSearchState,
+} from '@faststore/sdk'
+import { gql } from '@faststore/graphql-utils'
 import { graphql } from 'gatsby'
 import { BreadcrumbJsonLd, GatsbySeo } from 'gatsby-plugin-next-seo'
 import { useMemo } from 'react'
 import Breadcrumb from 'src/components/sections/Breadcrumb'
+import Hero from 'src/components/sections/Hero'
 import ProductGallery from 'src/components/sections/ProductGallery'
 import ProductShelf from 'src/components/sections/ProductShelf'
 import ScrollToTopButton from 'src/components/sections/ScrollToTopButton'
-import SectionTitle from 'src/components/custom-components/home/SectionTitle'
+import Icon from 'src/components/ui/Icon'
 import { ITEMS_PER_PAGE, ITEMS_PER_SECTION } from 'src/constants'
 import { applySearchState } from 'src/sdk/search/state'
 import { mark } from 'src/sdk/tests/mark'
@@ -18,59 +24,60 @@ import type {
 } from '@generated/graphql'
 import type { PageProps } from 'gatsby'
 import type { SearchState } from '@faststore/sdk'
+
 import 'src/styles/pages/plp.scss'
-import Slider from 'src/components/custom-components/home/Slider'
-import CategoryButtons from 'src/components/custom-components/CategoryButtons'
 
 type Props = PageProps<
   CollectionPageQueryQuery,
   CollectionPageQueryQueryVariables,
   unknown,
-  ServerCollectionPageQueryQuery
+  ServerCollectionPageQueryQuery | null
 > & { slug: string }
 
 const useSearchParams = (props: Props): SearchState => {
   const {
     location: { href, pathname },
-    serverData: { collection },
+    serverData,
   } = props
 
-  const selectedFacets = collection?.meta.selectedFacets
+  const selectedFacets = serverData?.collection?.meta.selectedFacets
 
-  return useMemo(() => {
-    const maybeState = href ? parseSearchState(new URL(href)) : null
+  const hrefState = useMemo(() => {
+    const newState = parseSearchState(
+      new URL(href ?? pathname, 'http://localhost')
+    )
 
-    return {
-      page: maybeState?.page ?? 0,
-      base: maybeState?.base ?? pathname,
-      selectedFacets:
-        maybeState && maybeState.selectedFacets.length > 0
-          ? maybeState.selectedFacets
-          : selectedFacets ?? [],
-      term: maybeState?.term ?? null,
-      sort: maybeState?.sort ?? 'score_desc',
+    // In case we are in an incomplete url
+    if (newState.selectedFacets.length === 0) {
+      newState.selectedFacets = selectedFacets ?? []
     }
+
+    return formatSearchState(newState).href
   }, [href, pathname, selectedFacets])
+
+  return useMemo(() => parseSearchState(new URL(hrefState)), [hrefState])
 }
 
 function Page(props: Props) {
   const {
     data: { site },
-    serverData: { collection },
-    location: { host },
+    serverData,
     slug,
   } = props
 
   const { locale } = useSession()
   const searchParams = useSearchParams(props)
 
+  // No data was found
+  if (serverData === null) {
+    return null
+  }
+
+  const { collection } = serverData
   const { page } = searchParams
   const title = collection?.seo.title ?? site?.siteMetadata?.title ?? ''
   const pageQuery = page !== 0 ? `?page=${page}` : ''
-  const canonical =
-    host !== undefined
-      ? `https://${host}/${slug}/${pageQuery}`
-      : `/${slug}/${pageQuery}`
+  const canonical = `${site?.siteMetadata?.siteUrl}/${slug}${pageQuery}`
 
   return (
     <SearchProvider
@@ -78,6 +85,7 @@ function Page(props: Props) {
       itemsPerPage={ITEMS_PER_PAGE}
       {...searchParams}
     >
+      {/* SEO */}
       <GatsbySeo
         title={title}
         titleTemplate={site?.siteMetadata?.titleTemplate ?? ''}
@@ -94,35 +102,31 @@ function Page(props: Props) {
         itemListElements={collection?.breadcrumbList.itemListElement ?? []}
       />
 
-      <Slider arrows wfull height={328}>
-        <img
-          src="/home/BannerImage.svg"
-          alt="Accenture logo"
-          width="1368"
-          height="328"
-          loading="lazy"
-          className="image__temporary"
-        />
-        <img
-          src="/home/BannerImage.svg"
-          alt="Accenture logo"
-          width="1368"
-          height="328"
-          loading="lazy"
-          className="image__temporary"
-        />
-      </Slider>
+      {/*
+        WARNING: Do not import or render components from any
+        other folder than '../components/sections' in here.
+
+        This is necessary to keep the integration with the CMS
+        easy and consistent, enabling the change and reorder
+        of elements on this page.
+
+        If needed, wrap your component in a <Section /> component
+        (not the HTML tag) before rendering it here.
+      */}
       <Breadcrumb
         breadcrumbList={collection?.breadcrumbList.itemListElement}
         name={title}
       />
 
-      <SectionTitle
+      <Hero
+        variant="secondary"
         title={title}
-        description={collection?.seo.description}
-        className="category-page"
+        subtitle={`All the amazing ${title} from the brands we partner with.`}
+        imageSrc="https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg"
+        imageAlt="Quest 2 Controller on a table"
+        icon={<Icon name="Headphones" width={48} height={48} weight="thin" />}
       />
-      <CategoryButtons />
+
       <ProductGallery title={title} />
 
       <ProductShelf
@@ -144,6 +148,7 @@ export const querySSG = graphql`
         titleTemplate
         title
         description
+        siteUrl
       }
     }
   }
@@ -178,43 +183,41 @@ export const getServerData = async ({
 }: {
   params: Record<string, string>
 }) => {
-  try {
-    const { execute } = await import('src/server/index')
-    const { data } = await execute({
-      operationName: querySSR,
-      variables: { slug },
+  const ONE_YEAR_CACHE = `s-maxage=31536000, stale-while-revalidate`
+  const { isNotFoundError } = await import('@faststore/api')
+  const { execute } = await import('src/server/index')
+  const { data, errors = [] } = await execute({
+    operationName: querySSR,
+    variables: { slug },
+  })
+
+  const notFound = errors.find(isNotFoundError)
+
+  if (notFound) {
+    const params = new URLSearchParams({
+      from: encodeURIComponent(`/${slug}`),
     })
 
-    if (data === null) {
-      const originalUrl = `/${slug}`
-
-      return {
-        status: 301,
-        props: {},
-        headers: {
-          'cache-control': 'public, max-age=0, stale-while-revalidate=31536000',
-          location: `/404/?from=${encodeURIComponent(originalUrl)}`,
-        },
-      }
-    }
-
     return {
-      status: 200,
-      props: data ?? {},
+      status: 301,
+      props: null,
       headers: {
-        'cache-control': 'public, max-age=0, stale-while-revalidate=31536000',
+        'cache-control': ONE_YEAR_CACHE,
+        location: `/404/?${params.toString()}}`,
       },
     }
-  } catch (err) {
-    console.error(err)
+  }
 
-    return {
-      status: 500,
-      props: {},
-      headers: {
-        'cache-control': 'public, max-age=0, must-revalidate',
-      },
-    }
+  if (errors.length > 0) {
+    throw errors[0]
+  }
+
+  return {
+    status: 200,
+    props: data,
+    headers: {
+      'cache-control': ONE_YEAR_CACHE,
+    },
   }
 }
 

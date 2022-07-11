@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { DiscountBadge } from 'src/components/ui/Badge'
 import Breadcrumb from 'src/components/ui/Breadcrumb'
 import { ButtonBuy } from 'src/components/ui/Button'
-import { Image } from 'src/components/ui/Image'
+import { ImageGallery } from 'src/components/ui/ImageGallery'
 import Price from 'src/components/ui/Price'
 import ProductTitle from 'src/components/ui/ProductTitle'
 import QuantitySelector from 'src/components/ui/QuantitySelector'
@@ -51,6 +51,7 @@ function ProductDetails({ product: staleProduct }: Props) {
         lowPrice,
       },
       breadcrumbList: breadcrumbs,
+      additionalProperty,
     },
   } = data
 
@@ -69,6 +70,7 @@ function ProductDetails({ product: staleProduct }: Props) {
       image: productImages,
       brand,
       isVariantOf,
+      additionalProperty,
     },
   })
 
@@ -112,7 +114,7 @@ function ProductDetails({ product: staleProduct }: Props) {
       <section className="product-details__body">
         <header className="product-details__title">
           <ProductTitle
-            title={<h1 className="text__title-product">{name}</h1>}
+            title={<h1>{name}</h1>}
             label={
               <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} big />
             }
@@ -120,38 +122,20 @@ function ProductDetails({ product: staleProduct }: Props) {
           />
         </header>
 
-        <section className="product-details__image">
-          <Image
-            preload
-            loading="eager"
-            src={productImages[0].url}
-            alt={productImages[0].alternateName}
-            width={360}
-            height={270}
-            sizes="(max-width: 768px) 25vw, 50vw"
-          />
-        </section>
+        <ImageGallery images={productImages} />
 
         <section className="product-details__settings">
           <section className="product-details__values">
-            <div
-              className={`product-details__prices ${
-                listPrice !== lowPrice ? '' : 'priceNoDiscount'
-              }`}
-            >
-              {lowPrice !== listPrice ? (
-                <Price
-                  value={listPrice}
-                  formatter={useFormattedPrice}
-                  testId="list-price"
-                  data-value={listPrice}
-                  variant="listing"
-                  classes="text__legend"
-                  SRText="Original price:"
-                />
-              ) : (
-                <></>
-              )}
+            <div className="product-details__prices">
+              <Price
+                value={listPrice}
+                formatter={useFormattedPrice}
+                testId="list-price"
+                data-value={listPrice}
+                variant="listing"
+                classes="text__legend"
+                SRText="Original price:"
+              />
               <Price
                 value={lowPrice}
                 formatter={useFormattedPrice}
@@ -297,6 +281,13 @@ export const fragment = graphql`
         name
         position
       }
+    }
+
+    additionalProperty {
+      propertyID
+      name
+      value
+      valueReference
     }
   }
 `

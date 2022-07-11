@@ -1,17 +1,17 @@
 import { useSession } from '@faststore/sdk'
-import { Form } from '@faststore/ui'
+import {
+  OutOfStock as UIOutOfStock,
+  OutOfStockTitle as UIOutOfStockTitle,
+  OutOfStockMessage as UIOutOfStockMessage,
+} from '@faststore/ui'
 import { useState } from 'react'
+import type { ReactElement, FormEvent } from 'react'
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import InputText from 'src/components/ui/InputText'
-import type { ReactElement, FormEvent } from 'react'
+import styles from 'src/components/product/OutOfStock/out-of-stock.module.scss'
 
 export interface OutOfStockProps {
-  /**
-   * ID to find this component in testing tools (e.g.: cypress,
-   * testing-library, and jest).
-   */
-  testId?: string
   /**
    * The Out of Stock Section's title.
    */
@@ -21,21 +21,26 @@ export interface OutOfStockProps {
    */
   buttonText?: string
   /**
+   * Message describing when the user will be notified.
+   */
+  notificationMsg?: string
+  /**
    * Icon displayed inside the button.
    * @default <Icon name="BellRinging" />
    */
   buttonIcon?: ReactElement
   /**
-   * Message describing when the user will be notified.
-   */
-  notificationMsg?: string
-  /**
-   * Icon displayed inside the message.
+   * Icon displayed inside the notification message.
    * @default <Icon name="BellRinging" />
    */
   notificationMsgIcon?: ReactElement
   /**
-   *
+   * ID to find this component in testing tools (e.g.: cypress,
+   * testing-library, and jest).
+   */
+  testId?: string
+  /**
+   * Event emitted when form is submitted.
    */
   onSubmit: (value: string) => void
 }
@@ -60,7 +65,6 @@ function OutOfStock(props: OutOfStockProps) {
       <Icon name={defaultIconName} width={16} height={16} />
     ),
     onSubmit,
-    testId = 'store-out-of-stock',
   } = props
 
   const reset = () => {
@@ -91,33 +95,33 @@ function OutOfStock(props: OutOfStockProps) {
   }
 
   return (
-    <section data-store-out-of-stock data-testid={testId} aria-live="polite">
-      <Form data-out-of-stock-form onSubmit={handleSubmit}>
-        <p className="text__title-subsection">{title}</p>
-        <p data-store-out-of-stock-subtitle>
-          {notificationMsgIcon} {notificationMsg}
-        </p>
-        <div>
-          <InputText
-            id="out-of-stock-email"
-            value={email}
-            label="Email"
-            aria-label="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Button
-            data-store-out-of-stock-button
-            type="submit"
-            disabled={disabled}
-            variant="primary"
-            icon={buttonIcon}
-            iconPosition="left"
-          >
-            {buttonText}
-          </Button>
-        </div>
-      </Form>
-    </section>
+    <UIOutOfStock
+      data-fs-out-of-stock
+      className={styles.fsOutOfStock}
+      onSubmit={handleSubmit}
+    >
+      <UIOutOfStockTitle data-fs-out-of-stock-title>{title}</UIOutOfStockTitle>
+      <UIOutOfStockMessage data-fs-out-of-stock-message>
+        {notificationMsgIcon} {notificationMsg}
+      </UIOutOfStockMessage>
+      <InputText
+        id="out-of-stock-email"
+        value={email}
+        label="Email"
+        aria-label="Email"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <Button
+        data-store-out-of-stock-button
+        type="submit"
+        disabled={disabled}
+        variant="primary"
+        icon={buttonIcon}
+        iconPosition="left"
+      >
+        {buttonText}
+      </Button>
+    </UIOutOfStock>
   )
 }
 

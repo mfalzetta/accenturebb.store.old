@@ -21,7 +21,24 @@ const gatsbyConfig: GatsbyConfig = {
     PARALLEL_SOURCING: true,
   },
   plugins: [
-    `gatsby-plugin-sass`,
+    {
+      resolve: '@vtex/gatsby-source-cms',
+      options: {
+        workspace: 'jose',
+        tenant: config.api.storeId,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-sass',
+      options: {
+        cssLoaderOptions: {
+          esModule: true,
+          modules: {
+            namedExport: false,
+          },
+        },
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -33,13 +50,6 @@ const gatsbyConfig: GatsbyConfig = {
         theme_color: '#ffffff',
         display: 'standalone',
         cache_busting_mode: 'none',
-      },
-    },
-    {
-      resolve: '@vtex/gatsby-source-cms',
-      options: {
-        workspace: 'master',
-        tenant: config.api.storeId,
       },
     },
     {

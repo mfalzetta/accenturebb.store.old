@@ -1,34 +1,39 @@
+import { useSession } from '@faststore/sdk'
 import type { HTMLAttributes } from 'react'
-import { useModal } from 'src/sdk/ui/modal/Provider'
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
+import { useUI } from 'src/sdk/ui/Provider'
 
-interface RegionalizationBarProps extends HTMLAttributes<HTMLDivElement> {
-  content?: string
+import styles from './regionalization-bar.module.scss'
+
+interface Props extends HTMLAttributes<HTMLDivElement> {
   classes: string
 }
 
-export default function RegionalizationBar({
-  content,
-  classes,
-  ...otherProps
-}: RegionalizationBarProps) {
-  const { setIsRegionalizationModalOpen } = useModal()
+function RegionBar({ classes, ...otherProps }: Props) {
+  const { openModal } = useUI()
+  const { postalCode } = useSession()
 
   return (
-    <div data-fs-regionalization-bar className={classes} {...otherProps}>
-      <Button onClick={() => setIsRegionalizationModalOpen(true)}>
+    <div
+      data-fs-regionalization-bar
+      className={`${classes} ${styles.fsRegionalizationBar}`}
+      {...otherProps}
+    >
+      <Button onClick={openModal}>
         <Icon name="MapPin" width={24} height={24} />
-        {content ? (
+        {postalCode ? (
           <>
-            <span>{content}</span>
-            <span>Edit</span>
+            <span data-fs-regionalization-bar-postal-code>{postalCode}</span>
+            <span data-fs-regionalization-bar-cta>Edit</span>
           </>
         ) : (
-          <span>Set your location</span>
+          <span data-fs-regionalization-bar-message>Set your location</span>
         )}
         <Icon name="CaretRight" width={24} height={24} />
       </Button>
     </div>
   )
 }
+
+export default RegionBar

@@ -1,93 +1,82 @@
+import { useState } from 'react'
 import { List as UIList } from '@faststore/ui'
 import Link from 'src/components/ui/Link'
-
-const mobileLinks = [
-  {
-    items: [
-      {
-        href: '/',
-        name: 'Sobre nós',
-      },
-      {
-        href: '/',
-        name: 'Seus pedidos',
-      },
-      {
-        href: '/',
-        name: 'Informações de envio',
-      },
-    ],
-  },
-  {
-    items: [
-      {
-        href: '/',
-        name: 'Politica de Devolução',
-      },
-      {
-        href: '/',
-        name: 'Serviço ao cliente',
-      },
-      {
-        href: '/',
-        name: 'Contato e Suporte',
-      },
-    ],
-  },
-]
+import Accordion, { AccordionItem } from 'src/components/ui/Accordion'
 
 const links = [
   {
-    title: 'Sobre nós',
+    title: 'Our company',
     items: [
       {
         href: '/',
-        name: 'Nossa empresa',
+        name: 'About Us',
       },
       {
         href: '/',
-        name: 'Carreiras',
+        name: 'Our Blog',
       },
       {
         href: '/',
-        name: 'Venda com a Accenture',
+        name: 'Stores',
       },
       {
         href: '/',
-        name: 'Relações com Investidores',
-      },
-      {
-        href: '/',
-        name: 'Anuncie conosco',
-      },
-      {
-        href: '/',
-        name: 'Localizações',
+        name: 'Work With Us',
       },
     ],
   },
   {
-    title: 'Serviço ao cliente',
+    title: 'Orders & Purchases',
     items: [
       {
         href: '/',
-        name: 'Centro de ajuda',
+        name: 'Check Order Status',
       },
       {
         href: '/',
-        name: 'Devoluções',
+        name: 'Returns and Exchanges',
       },
       {
         href: '/',
-        name: 'Recolhimentos de produtos',
+        name: 'Product Recall',
       },
       {
         href: '/',
-        name: 'Opções de entrega',
+        name: 'Gift Cards',
+      },
+    ],
+  },
+  {
+    title: 'Support & Services',
+    items: [
+      {
+        href: '/',
+        name: 'Support Center',
       },
       {
         href: '/',
-        name: 'Opções de pagamento',
+        name: 'Schedule a Service',
+      },
+      {
+        href: '/',
+        name: 'Contact Us',
+      },
+    ],
+  },
+  {
+    title: 'Partnerships',
+    items: [
+      {
+        href: '/',
+        name: 'Affiliate Program',
+      },
+      {
+        href: '/',
+        name: 'Advertise with US',
+      },
+      {
+        href: '/',
+        name: 'Market Place',
       },
     ],
   },
@@ -107,7 +96,7 @@ function LinksList({ items }: LinksListProps) {
     <UIList>
       {items.map((item) => (
         <li key={item.name}>
-          <Link className="footer__links--link" variant="footer" to={item.href}>
+          <Link variant="footer" href={item.href}>
             {item.name}
           </Link>
         </li>
@@ -117,23 +106,40 @@ function LinksList({ items }: LinksListProps) {
 }
 
 function FooterLinks() {
+  const [indicesExpanded, setIndicesExpanded] = useState<Set<number>>(
+    new Set([])
+  )
+
+  const onChange = (index: number) => {
+    if (indicesExpanded.has(index)) {
+      indicesExpanded.delete(index)
+      setIndicesExpanded(new Set(indicesExpanded))
+    } else {
+      setIndicesExpanded(new Set(indicesExpanded.add(index)))
+    }
+  }
+
   return (
     <section className="footer__links">
       <div className="display-mobile">
-        <div className="footer__links--container">
-          {mobileLinks.map((section, index) => (
-            <nav key={index}>
+        <Accordion expandedIndices={indicesExpanded} onChange={onChange}>
+          {links.map((section, index) => (
+            <AccordionItem
+              key={section.title}
+              isExpanded={indicesExpanded.has(index)}
+              buttonLabel={section.title}
+            >
               <LinksList items={section.items} />
-            </nav>
+            </AccordionItem>
           ))}
-        </div>
+        </Accordion>
       </div>
 
       <div className="hidden-mobile">
         <div className="footer__links-columns">
           {links.map((section) => (
             <nav key={section.title}>
-              <p className="text__title-mini footer__titles">{section.title}</p>
+              <p className="text__title-mini">{section.title}</p>
               <LinksList items={section.items} />
             </nav>
           ))}
