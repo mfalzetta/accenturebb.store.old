@@ -13,6 +13,7 @@ import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { useProductLink } from 'src/sdk/product/useProductLink'
 import type { ReactNode } from 'react'
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
+import DiscountBadgePercent from 'src/components/ui/Badge/DiscountBadgePercent'
 
 type Variant = 'wide' | 'default'
 
@@ -91,6 +92,25 @@ function ProductCard({
               </Link>
             </h3>
             <div data-fs-product-card-prices>
+              {spotPrice !== listPrice ? (
+                <div style={{ display: 'flex' }}>
+                  <Price
+                    value={listPrice}
+                    formatter={useFormattedPrice}
+                    testId="list-price"
+                    data-value={listPrice}
+                    variant="listing"
+                    classes="text__legend"
+                    SRText="Original price:"
+                  />
+                  <DiscountBadgePercent
+                    listPrice={listPrice}
+                    spotPrice={spotPrice}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
               <Price
                 value={spotPrice}
                 formatter={useFormattedPrice}
@@ -100,19 +120,6 @@ function ProductCard({
                 classes="text__body"
                 SRText="Sale Price:"
               />
-              {spotPrice !== listPrice ? (
-                <Price
-                  value={listPrice}
-                  formatter={useFormattedPrice}
-                  testId="list-price"
-                  data-value={listPrice}
-                  variant="listing"
-                  classes="text__legend"
-                  SRText="Original price:"
-                />
-              ) : (
-                <></>
-              )}
             </div>
           </div>
         </UICardContent>
@@ -131,21 +138,17 @@ export const fragment = graphql`
     }
     name
     gtin
-
     isVariantOf {
       productGroupID
       name
     }
-
     image {
       url
       alternateName
     }
-
     brand {
       name
     }
-
     offers {
       lowPrice
       offers {

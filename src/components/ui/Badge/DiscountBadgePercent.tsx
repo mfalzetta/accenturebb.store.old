@@ -1,8 +1,5 @@
 import { memo } from 'react'
-import {
-  useDiscountPercent,
-  useDiscountValue,
-} from 'src/sdk/product/useDiscountPercent'
+import { useDiscountPercent } from 'src/sdk/product/useDiscountPercent'
 
 import Badge from './Badge'
 
@@ -24,7 +21,6 @@ const DiscountBadge = ({
   thresholdHigh = 40,
 }: DiscountBadgeProps) => {
   const discountPercent = useDiscountPercent(listPrice, spotPrice)
-  const discountValue = useDiscountValue(listPrice, spotPrice)
 
   if (discountPercent === 0) {
     return <></>
@@ -38,8 +34,8 @@ const DiscountBadge = ({
       : 'high'
 
   return (
-    <Badge big={big} data-fs-discount-badge-variant={discountVariant}>
-      POUPE R${discountValue}
+    <Badge big={big} data-fs-discount-badge-percent-variant={discountVariant}>
+      -{discountPercent}%
     </Badge>
   )
 }

@@ -2822,12 +2822,14 @@ export type StoreSort =
 /** Status used to indicate type of message. For instance, in shopping cart messages. */
 export type StoreStatus = 'ERROR' | 'INFO' | 'WARNING'
 
-/** Suggestions information. */
+export type StoreSuggestionTerm = {
+  count: Scalars['Int']
+  value: Scalars['String']
+}
+
 export type StoreSuggestions = {
-  /** Array with suggestion products' information. */
-  products: Maybe<Array<StoreProduct>>
-  /** Array with suggestion terms. */
-  terms: Maybe<Array<Scalars['String']>>
+  products: Array<StoreProduct>
+  terms: Array<StoreSuggestionTerm>
 }
 
 export type StringQueryOperatorInput = {
@@ -2878,6 +2880,39 @@ export type Filter_FacetsFragment = {
     selected: boolean
     quantity: number
   }>
+}
+
+export type SearchSuggestionsQueryQueryVariables = Exact<{
+  term: Scalars['String']
+  selectedFacets: InputMaybe<Array<IStoreSelectedFacet> | IStoreSelectedFacet>
+}>
+
+export type SearchSuggestionsQueryQuery = {
+  search: {
+    suggestions: {
+      terms: Array<{ value: string }>
+      products: Array<{
+        slug: string
+        sku: string
+        name: string
+        gtin: string
+        id: string
+        brand: { name: string; brandName: string }
+        isVariantOf: { productGroupID: string; name: string }
+        image: Array<{ url: string; alternateName: string }>
+        offers: {
+          lowPrice: number
+          offers: Array<{
+            availability: string
+            price: number
+            listPrice: number
+            quantity: number
+            seller: { identifier: string }
+          }>
+        }
+      }>
+    }
+  }
 }
 
 export type ProductDetailsFragment_ProductFragment = {
@@ -3172,4 +3207,34 @@ export type ProductsQueryQuery = {
       }>
     }
   }
+}
+
+export type TopSearchSuggestionsQueryQueryVariables = Exact<{
+  term: Scalars['String']
+  selectedFacets: InputMaybe<Array<IStoreSelectedFacet> | IStoreSelectedFacet>
+}>
+
+export type TopSearchSuggestionsQueryQuery = {
+  search: { suggestions: { terms: Array<{ value: string }> } }
+}
+
+export type ValidateSessionMutationVariables = Exact<{
+  session: IStoreSession
+  search: Scalars['String']
+}>
+
+export type ValidateSessionMutation = {
+  validateSession: {
+    locale: string
+    channel: string | null
+    country: string
+    postalCode: string | null
+    currency: { code: string; symbol: string }
+    person: {
+      id: string
+      email: string
+      givenName: string
+      familyName: string
+    } | null
+  } | null
 }

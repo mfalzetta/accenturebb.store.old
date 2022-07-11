@@ -19,10 +19,7 @@ const CategoryButtons = ({
 }: CategoryButtonsProps) => {
   return (
     <div className="categoryButtons">
-      <div
-        className={`classSection__container ${className ?? ''}`}
-        border={border}
-      >
+      <div className={`classSection__container ${className ?? ''}`}>
         <span className={`classSection__title ${className ?? ''}`}>
           {title}
         </span>

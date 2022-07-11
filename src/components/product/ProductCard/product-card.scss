@@ -171,6 +171,12 @@
     line-height: 16px;
     color: #837f89;
   }
+
+  [data-store-badge] {
+    position: relative;
+    margin-top: 0;
+    margin-left: 5px;
+  }
 }
 
 [data-fs-product-card-footer] {

@@ -8,3 +8,11 @@ export const useDiscountPercent = (listPrice: number, spotPrice: number) => {
     return Math.round(discount)
   }, [spotPrice, listPrice])
 }
+
+export const useDiscountValue = (listPrice: number, spotPrice: number) => {
+  return useMemo(() => {
+    const diff = listPrice - spotPrice
+
+    return Math.round(diff)
+  }, [spotPrice, listPrice])
+}

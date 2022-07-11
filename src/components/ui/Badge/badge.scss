@@ -222,11 +222,12 @@
 }
 
 [data-fs-discount-badge-variant="medium"] {
+  font-weight: 500;
   color: #fff;
 
   [data-fs-badge-wrapper] {
-    background-color: var(--fs-color-theme-3);
-    border-color: var(--fs-color-theme-3);
+    background-color: var(--fs-color-theme-0);
+    border-color: var(--fs-color-theme-0);
 
     &::after {
       background-color: var(--fs-color-theme-3);
@@ -235,6 +236,46 @@
 }
 
 [data-fs-discount-badge-variant="high"] {
+  color: var(--fs-badge-discount-high-text-color);
+
+  [data-fs-badge-wrapper] {
+    background-color: var(--fs-badge-discount-high-bkg-color);
+    border-color: var(--fs-badge-discount-high-border-color);
+
+    &::after {
+      background-color: var(--fs-badge-discount-high-bkg-color);
+    }
+  }
+}
+
+[data-fs-discount-badge-percent-variant="low"] {
+  color: var(--fs-badge-discount-low-text-color);
+
+  [data-fs-badge-wrapper] {
+    background-color: var(--fs-badge-discount-low-bkg-color);
+    border-color: var(--fs-badge-discount-low-border-color);
+
+    &::after {
+      background-color: var(--fs-badge-discount-low-bkg-color);
+    }
+  }
+}
+
+[data-fs-discount-badge-percent-variant="medium"] {
+  font-weight: 500;
+  color: #fff;
+
+  [data-fs-badge-wrapper] {
+    background-color: #3e8629;
+    border-color: #3e8629;
+
+    &::after {
+      background-color: var(--fs-color-theme-3);
+    }
+  }
+}
+
+[data-fs-discount-badge-percent-variant="high"] {
   color: var(--fs-badge-discount-high-text-color);
 
   [data-fs-badge-wrapper] {
