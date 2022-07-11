@@ -33,9 +33,7 @@ const CarouselShelf = ({
     setCarouselIndex(1)
     setMovePosition(0)
     setMoveCarousel(false)
-    const parentComponent = document.querySelector(
-      'ul.layout__content'
-    ) as HTMLElement | null
+    const parentComponent = document.querySelector('ul.layout__content') as HTMLElement
 
     if (document.documentElement.offsetWidth <= 920) {
       const screenWidth = document.documentElement.offsetWidth - 32
@@ -144,20 +142,19 @@ const CarouselShelf = ({
     const screenWidth = document.documentElement.offsetWidth - 32
     let itens = itemsPage
 
-    if (screenWidth < 920) itens -= 1
+    if (screenWidth < 920) { itens -= 1 }
     const position = itens * (index - 1) * (parseFloat(widthCard) + marginCards)
-
     setCarouselPosition(-position)
   }
 
   const nextSlide = () => {
-    if (carouselIndex < carouselDots) moveDot(carouselIndex + 1)
-    else moveDot(1)
+    if (carouselIndex < carouselDots) { moveDot(carouselIndex + 1) }
+    else { moveDot(1) }
   }
 
   const prevSlide = () => {
-    if (carouselIndex > 1) moveDot(carouselIndex - 1)
-    else moveDot(carouselDots)
+    if (carouselIndex > 1) { moveDot(carouselIndex - 1) }
+    else { moveDot(carouselDots) }
   }
 
   return (
@@ -180,11 +177,10 @@ const CarouselShelf = ({
           onTouchMove={(e) => carouselSlide(e, 'move')}
           onTouchEnd={(e) => carouselSlide(e, 'end')}
           style={{
-            minWidth: `${
-              widthCard === '100%'
-                ? '100%'
-                : `${(parseFloat(widthCard) + marginCards) * children.length}px`
-            }`,
+            minWidth: `${widthCard === '100%'
+              ? '100%'
+              : `${(parseFloat(widthCard) + marginCards) * children.length}px`
+              }`,
             transform: `translateX(${carouselPosition}px)`,
           }}
         >
