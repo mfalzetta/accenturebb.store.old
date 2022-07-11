@@ -74,7 +74,7 @@ export const querySSG = graphql`
       }
     }
 
-    cmsHome(versionStatus: { eq: "published" }) {
+    cmsHome(name: { eq: "HomeTestS" }) {
       sections {
         data
         name
