@@ -34,7 +34,7 @@ const CarouselShelf = ({
     setMovePosition(0)
     setMoveCarousel(false)
     const parentComponent = document.querySelector(
-      '.classSection__container.layout__content'
+      'ul.layout__content'
     ) as HTMLElement | null
 
     if (document.documentElement.offsetWidth <= 920) {
