@@ -325,10 +325,6 @@
       "description": "Change your shelf",
       "type": "object",
       "properties": {
-        "title": {
-          "type": "string",
-          "title": "Shelf Title"
-        },
         "productClusterIds": {
           "type": "string",
           "title": "Collection ID"
@@ -346,20 +342,6 @@
         "itens": {
           "type": "number",
           "title": "Number of products that will be display per page"
-        },
-        "shelfLink": {
-          "type": "object",
-          "title": "Shelf link",
-          "properties": {
-            "name": {
-              "type": "string",
-              "title": "Name"
-            },
-            "link": {
-              "type": "string",
-              "title": "URL"
-            }
-          }
         },
         "isSimpleCard": {
           "default": false,

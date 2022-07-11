@@ -47,14 +47,6 @@ function ProductShelf({
         noMargins ? 'section__no-margins' : ''
       } ${shelfType === 'isRowLayout' ? 'section__other-background' : ''}`}
     >
-      {title && (
-        <SectionTitle
-          className="classSection__container"
-          title={title.toString()}
-          linkText={shelfLink.name}
-          href={shelfLink.link}
-        />
-      )}
       <div
         data-fs-product-shelf
         className={`${shelfType === 'isRowLayout' ? 'shelf--row' : ''}`}
