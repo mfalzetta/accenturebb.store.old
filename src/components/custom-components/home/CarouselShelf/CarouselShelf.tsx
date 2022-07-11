@@ -93,45 +93,37 @@ const CarouselShelf = ({
     const maxMove = itemW * (children.length - 1)
 
     if (type === 'move') {
-      if (!moveCarousel) return
+      if (!moveCarousel) {
+        return
+      }
+
+      if (getPosition < 0 || getPosition > screen) {
+        setMoveCarousel(false)
+      } else {
+        const x = getPosition - moveStart
+
+        if (carouselPosition === 0) {
+          setCarouselPosition(x > 0 ? 0 : movePosition + x * 1.5)
+        } else if (Math.abs(movePosition + x) > maxMove) {
+          setCarouselPosition(-maxMove)
+        } else {
+          setCarouselPosition(movePosition + x > 0 ? 0 : movePosition + x * 1.5)
+        }
+      }
     }
 
-    if (getPosition < 0) {
-      if (type === 'start') {
-        setMoveCarousel(true)
-        setMoveStart(0)
-      } else if (type === 'move') {
-        setMoveCarousel(false)
-      }
-    } else if (getPosition > screen) {
-      if (type === 'start') {
-        setMoveCarousel(true)
-        setMoveStart(screen)
-      } else if (type === 'move') {
-        setMoveCarousel(false)
-      }
-    } else if (type === 'move') {
-      const x = getPosition - moveStart
-
-      if (carouselPosition === 0) {
-        setCarouselPosition(x > 0 ? 0 : movePosition + x * 1.5)
-      } else if (Math.abs(movePosition + x) > maxMove) {
-        setCarouselPosition(-maxMove)
-      } else {
-        setCarouselPosition(movePosition + x > 0 ? 0 : movePosition + x * 1.5)
-      }
-    } else if (type === 'start') {
+    if (type === 'start') {
       setMoveCarousel(true)
-      setMoveStart(getPosition)
+      setMoveStart(
+        getPosition < 0 ? 0 : getPosition > screen ? screen : getPosition
+      )
     }
 
     if (type === 'end') {
       if (carouselPosition > maxMove) {
         setMovePosition(maxMove)
         setCarouselPosition(-maxMove)
-      }
-
-      if (carouselPosition > 0) {
+      } else if (carouselPosition > 0) {
         setMovePosition(0)
         setCarouselPosition(0)
       } else {

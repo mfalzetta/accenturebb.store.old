@@ -10,19 +10,29 @@ import Carousel from '../../custom-components/home/CarouselShelf'
 interface ProductShelfProps extends Partial<ProductsQueryQueryVariables> {
   title?: string | JSX.Element
   withDivisor?: boolean
-  isRowLayout?: boolean
   noMargins?: boolean
   otherBackground?: boolean
-  isCarousel?: boolean
+  shelfType: string
+  shelfLink?: {
+    name: string
+    link: string
+  }
+  isSimpleCard?: boolean
+  itens: number
 }
 
 function ProductShelf({
   title,
   withDivisor = false,
-  isRowLayout = false,
   noMargins = false,
   otherBackground = false,
-  isCarousel,
+  shelfLink = {
+    name: '',
+    link: '',
+  },
+  isSimpleCard,
+  shelfType,
+  itens,
   ...variables
 }: ProductShelfProps) {
   const products = useProductsQuery(variables)
@@ -31,72 +41,57 @@ function ProductShelf({
     return null
   }
 
-  if (isCarousel) {
-    return (
-      <Section
-        className={`layout__section ${withDivisor ? 'section__divisor' : ''} ${
-          noMargins ? 'section__no-margins' : ''
-        } ${otherBackground ? 'section__other-background' : ''}`}
-      >
-        {title && (
-          <SectionTitle
-            className="classSection__container"
-            title={title.toString()}
-          />
-        )}
-        <ProductShelfSkeleton loading={products === undefined}>
-          <ul
-            className="shelf--carousel layout__content"
-            data-fs-product-shelf-items
-          >
-            <Carousel itemsPerPage={6} arrows>
-              {products?.edges.map((product, idx) => (
-                <li key={`${product.node.id}`}>
-                  <ProductCard
-                    product={product.node}
-                    index={idx + 1}
-                    rowLayout={isRowLayout}
-                  />
-                </li>
-              ))}
-            </Carousel>
-          </ul>
-        </ProductShelfSkeleton>
-        <div data-fs-product-shelf />
-      </Section>
-    )
-  }
-
   return (
     <Section
       className={`layout__section ${withDivisor ? 'section__divisor' : ''} ${
         noMargins ? 'section__no-margins' : ''
-      } ${otherBackground ? 'section__other-background' : ''}`}
+      } ${shelfType === 'isRowLayout' ? 'section__other-background' : ''}`}
     >
       {title && (
         <SectionTitle
           className="classSection__container"
           title={title.toString()}
+          linkText={shelfLink.name}
+          href={shelfLink.link}
         />
       )}
       <div
         data-fs-product-shelf
-        className={`${isRowLayout ? 'shelf--row' : ''}`}
+        className={`${shelfType === 'isRowLayout' ? 'shelf--row' : ''}`}
       >
         <ProductShelfSkeleton loading={products === undefined}>
           <ul
             data-fs-product-shelf-items
-            className={`layout__content ${isRowLayout ? 'shelf--row' : ''}`}
+            className={`layout__content ${
+              shelfType === 'isRowLayout' ? 'shelf--row' : ''
+            }`}
           >
-            {products?.edges.map((product, idx) => (
-              <li key={`${product.node.id}`}>
-                <ProductCard
-                  product={product.node}
-                  index={idx + 1}
-                  rowLayout={isRowLayout}
-                />
-              </li>
-            ))}
+            {shelfType === 'isCarousel' ? (
+              <Carousel itemsPerPage={itens} arrows>
+                {products?.edges.map((product, idx) => (
+                  <li key={`${product.node.id}`}>
+                    <ProductCard
+                      product={product.node}
+                      index={idx + 1}
+                      isSimpleCard={isSimpleCard}
+                    />
+                  </li>
+                ))}
+              </Carousel>
+            ) : (
+              <>
+                {products?.edges.map((product, idx) => (
+                  <li key={`${product.node.id}`}>
+                    <ProductCard
+                      product={product.node}
+                      index={idx + 1}
+                      rowLayout={shelfType === 'isRowLayout'}
+                      isSimpleCard={isSimpleCard}
+                    />
+                  </li>
+                ))}
+              </>
+            )}
           </ul>
         </ProductShelfSkeleton>
       </div>

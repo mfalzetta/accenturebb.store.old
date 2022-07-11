@@ -292,3 +292,11 @@
     gap: 5px;
   }
 }
+
+.simplecard {
+  .price.text__legend,
+  [data-store-badge],
+  [data-fs-product-card-brand-title] {
+    display: none;
+  }
+}
