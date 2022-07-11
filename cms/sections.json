@@ -47,6 +47,67 @@
     }
   },
   {
+    "name": "ImageBanner",
+    "schema": {
+      "title": "Image Banner",
+      "description": "a image fullscreen",
+      "type": "object",
+      "properties": {
+        "src": {
+          "title": "Image",
+          "description": "Image",
+          "type": "string",
+          "widget": {
+            "ui:widget": "image-uploader"
+          }
+        },
+        "alt": {
+          "title": "Image description",
+          "description": "Image description for accessibility",
+          "type": "string"
+        },
+        "fullWidth": {
+          "default": false,
+          "type": "boolean",
+          "title": "Full Width"
+        }
+      }
+    }
+  },
+  {
+    "name": "PromotionBanner",
+    "schema": {
+      "title": "PromotionBanner",
+      "description": "Banner with background image and text and link",
+      "type": "object",
+      "properties": {
+        "src": {
+          "title": "Image",
+          "description": "Image",
+          "type": "string",
+          "widget": {
+            "ui:widget": "image-uploader"
+          }
+        },
+        "title": {
+          "title": "Banner Text",
+          "description": "set a title text",
+          "type": "string"
+        },
+        "linkText": {
+          "title": "Button Text",
+          "description": "set a button text",
+          "type": "string"
+        },
+        "href": {
+          "title": "URL",
+          "description": "set a URL href",
+          "type": "string"
+        }
+      }
+    }
+  },
+  {
     "name": "Carousel",
     "schema": {
       "title": "Carousel",
