@@ -94,24 +94,6 @@ function Page(props: Props) {
         itemListElements={collection?.breadcrumbList.itemListElement ?? []}
       />
 
-      <Slider arrows wfull height={328}>
-        <img
-          src="/home/BannerImage.svg"
-          alt="Accenture logo"
-          width="1368"
-          height="328"
-          loading="lazy"
-          className="image__temporary"
-        />
-        <img
-          src="/home/BannerImage.svg"
-          alt="Accenture logo"
-          width="1368"
-          height="328"
-          loading="lazy"
-          className="image__temporary"
-        />
-      </Slider>
       <Breadcrumb
         breadcrumbList={collection?.breadcrumbList.itemListElement}
         name={title}
@@ -124,13 +106,6 @@ function Page(props: Props) {
       />
       <CategoryButtons />
       <ProductGallery title={title} />
-
-      <ProductShelf
-        first={ITEMS_PER_SECTION}
-        sort="score_desc"
-        title="You might also like"
-        withDivisor
-      />
 
       <ScrollToTopButton />
     </SearchProvider>
