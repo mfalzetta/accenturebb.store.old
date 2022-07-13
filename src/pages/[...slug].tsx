@@ -5,10 +5,9 @@ import { BreadcrumbJsonLd, GatsbySeo } from 'gatsby-plugin-next-seo'
 import { useMemo } from 'react'
 import Breadcrumb from 'src/components/sections/Breadcrumb'
 import ProductGallery from 'src/components/sections/ProductGallery'
-import ProductShelf from 'src/components/sections/ProductShelf'
 import ScrollToTopButton from 'src/components/sections/ScrollToTopButton'
 import SectionTitle from 'src/components/custom-components/home/SectionTitle'
-import { ITEMS_PER_PAGE, ITEMS_PER_SECTION } from 'src/constants'
+import { ITEMS_PER_PAGE } from 'src/constants'
 import { applySearchState } from 'src/sdk/search/state'
 import { mark } from 'src/sdk/tests/mark'
 import type {
@@ -19,7 +18,6 @@ import type {
 import type { PageProps } from 'gatsby'
 import type { SearchState } from '@faststore/sdk'
 import 'src/styles/pages/plp.scss'
-import Slider from 'src/components/custom-components/home/Slider'
 import CategoryButtons from 'src/components/custom-components/CategoryButtons'
 
 type Props = PageProps<
