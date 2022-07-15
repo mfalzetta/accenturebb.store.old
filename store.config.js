@@ -25,8 +25,8 @@ module.exports = {
     server: process.env.BASE_SITE_URL || 'http://localhost:9000',
     pages: {
       home: '/',
-      pdp: '/apple-magic-mouse/p',
-      collection: '/office',
+      pdp: '/iphone-13-apple--128gb--meia-noite-tela-de-61--5g-e-camera-dupla-de-12-mp-202-1500/p',
+      collection: '/eletronicos',
     },
   },
 
@@ -34,11 +34,11 @@ module.exports = {
   cypress: {
     pages: {
       home: '/',
-      pdp: '/apple-magic-mouse/p',
-      collection: '/office',
+      pdp: '/iphone-13-apple--128gb--meia-noite-tela-de-61--5g-e-camera-dupla-de-12-mp-202-1500/p',
+      collection: '/eletronicos',
       collection_filtered:
-        '/office/?category-1=office&marca=acer&facets=category-1%2Cmarca',
-      search: '/s?q=orange',
+        'eletronicos/?category-1=eletronicos&brand=apple&facets=category-1%2Cbrand&sort=score_desc&page=0',
+      search: '/s?q=iphone',
     },
   },
 
