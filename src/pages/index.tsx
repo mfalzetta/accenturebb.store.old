@@ -4,20 +4,196 @@ import { useSession } from '@faststore/sdk'
 import { graphql } from 'gatsby'
 import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
 import { Suspense } from 'react'
-import BannerText from 'src/components/sections/BannerText'
-import Hero from 'src/components/sections/Hero'
 import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
 import IncentivesMock from 'src/components/sections/Incentives/incentivesMock'
 import ProductShelf from 'src/components/sections/ProductShelf'
-import ProductTiles from 'src/components/sections/ProductTiles'
 import ProductShelfSkeleton from 'src/components/skeletons/ProductShelfSkeleton'
 import ProductTilesSkeleton from 'src/components/skeletons/ProductTilesSkeleton'
 import { ITEMS_PER_SECTION } from 'src/constants'
 import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
+import Newsletter from 'src/components/sections/Newsletter'
+import CategorySection from 'src/components/custom-components/home/CategorySection'
+import InfoCard from 'src/components/custom-components/home/InfoCard'
+import Slider from 'src/components/custom-components/home/Slider'
+import SectionTitle from 'src/components/custom-components/home/SectionTitle'
+import BlogSection from 'src/components/custom-components/home/BlogSection'
+import PromotionBanner from 'src/components/sections/PromotionBanner'
+
+import MiddleBanner from '../images/home/background-middle-banner.png'
 
 export type Props = PageProps<HomePageQueryQuery>
+
+function MainBanner() {
+  return (
+    <Slider arrows wfull height={328}>
+      <img
+        src="/home/BannerImage.svg"
+        alt="Accenture logo"
+        width="1368"
+        height="328"
+        loading="lazy"
+        className="image__temporary"
+      />
+      <img
+        src="/home/BannerImage.svg"
+        alt="Accenture logo"
+        width="1368"
+        height="328"
+        loading="lazy"
+        className="image__temporary"
+      />
+    </Slider>
+  )
+}
+
+function Category() {
+  return (
+    <CategorySection title="Categorias" className="category-session">
+      <InfoCard
+        href="/"
+        src="/home/Image-1.svg"
+        alt="imagee"
+        width="204"
+        height="192"
+        text="Moda"
+      />
+      <InfoCard
+        href="/"
+        src="/home/Image-2.svg"
+        alt="imagee"
+        width="204"
+        height="192"
+        text="Costméticos"
+      />
+      <InfoCard
+        href="/"
+        src="/home/Image-3.svg"
+        alt="imagee"
+        width="204"
+        height="192"
+        text="Mercado"
+      />
+      <InfoCard
+        href="/"
+        src="/home/Image-4.svg"
+        alt="imagee"
+        width="204"
+        height="192"
+        text="Livros"
+      />
+      <InfoCard
+        href="/"
+        src="/home/Image-5.svg"
+        alt="imagee"
+        width="204"
+        height="192"
+        text="Decoração"
+      />
+      <InfoCard
+        href="/"
+        src="/home/Image.svg"
+        alt="imagee"
+        width="204"
+        height="192"
+        text="Eletronicos"
+      />
+    </CategorySection>
+  )
+}
+
+function Brand() {
+  return (
+    <Slider itemsPerPage={6} height={200}>
+      <InfoCard
+        href="/"
+        src="/home/acc-vetor.svg"
+        alt="imagee"
+        width="36"
+        height="40"
+        className="classSection__brand"
+      />
+      <InfoCard
+        href="/"
+        src="/home/acc-vetor.svg"
+        alt="imagee"
+        width="36"
+        height="40"
+        className="classSection__brand"
+      />
+      <InfoCard
+        href="/"
+        src="/home/acc-vetor.svg"
+        alt="imagee"
+        width="36"
+        height="40"
+        className="classSection__brand"
+      />
+      <InfoCard
+        href="/"
+        src="/home/acc-vetor.svg"
+        alt="imagee"
+        width="36"
+        height="40"
+        className="classSection__brand"
+      />
+      <InfoCard
+        href="/"
+        src="/home/acc-vetor.svg"
+        alt="imagee"
+        width="36"
+        height="40"
+        className="classSection__brand"
+      />
+      <InfoCard
+        href="/"
+        src="/home/acc-vetor.svg"
+        alt="imagee"
+        width="36"
+        height="40"
+        className="classSection__brand"
+      />
+    </Slider>
+  )
+}
+
+function Blog() {
+  return (
+    <Slider height={425} minWidth={424} itemsPerPage={3}>
+      <BlogSection
+        src="/home/blog/Image.svg"
+        alt="imagee"
+        width="100%"
+        height="auto"
+        primaryText="Decoração refrescante"
+        SecondaryText="Tudo para deixar sua casa mais estilosa e fresca para o verão."
+        btnText="comprar coleção de temporada"
+        btnHref="/"
+      />
+      <BlogSection
+        src="/home/blog/Image-1.svg"
+        alt="imagee"
+        width="100%"
+        height="auto"
+        primaryText="Livros inspiradores"
+        SecondaryText="Explore títulos incríveis e inspiradores para viajar no espaço e no tempo nesta próxima temporada."
+        btnText="comprar LIVROS DE TEMPORADA"
+        btnHref="/"
+      />
+      <BlogSection
+        src="/home/blog/Image-2.svg"
+        alt="imagee"
+        width="100%"
+        height="auto"
+        primaryText="Comida orgânica"
+        SecondaryText="Manter hábitos saudáveis com produtos naturais e orgânicos seleccionados para o mercado."
+        btnText="comprar ALIMENTOS ORGÂNICOS"
+        btnHref="/"
+      />
+    </Slider>
+  )
+}
 
 function Page(props: Props) {
   const {
@@ -69,46 +245,59 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-      <Hero
-        title="New Products Available"
-        subtitle="At BaseStore you can shop the best tech of 2022. Enjoy and get 10% off on your first purchase."
-        linkText="See all"
-        link="/technology"
-        imageSrc="https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg"
-        imageAlt="Quest 2 Controller on a table"
+      <MainBanner />
+      <Category />
+      <SectionTitle
+        className="classSection__container"
+        border
+        title="Comprar por marca"
       />
-
-      <IncentivesHeader incentives={IncentivesMock} />
-
+      <Brand />
       <Suspense fallback={<ProductShelfSkeleton loading />}>
         <ProductShelf
-          first={ITEMS_PER_SECTION}
-          selectedFacets={[{ key: 'productClusterIds', value: '140' }]}
+          first={20}
+          selectedFacets={[{ key: 'productClusterIds', value: '139' }]}
           title="Most Wanted"
+          isCarousel
         />
       </Suspense>
-
-      <Suspense fallback={<ProductTilesSkeleton loading />}>
-        <ProductTiles
-          first={3}
-          selectedFacets={[{ key: 'productClusterIds', value: '141' }]}
-          title="Just Arrived"
-        />
-      </Suspense>
-
-      <BannerText
-        title="Receive our news and promotions in advance. Enjoy and get 10% off on your first purchase."
-        actionPath="/"
-        actionLabel="Call to action"
+      <SectionTitle
+        className="classSection__container"
+        title="O essencial do Verão"
       />
-
-      <Suspense fallback={<ProductShelfSkeleton loading />}>
+      <Blog />
+      <PromotionBanner
+        src={MiddleBanner}
+        title="Eletrônicos 20% OFF"
+        href="/"
+        linkText="compre agora"
+      />
+      <Suspense fallback={<ProductTilesSkeleton loading />}>
         <ProductShelf
           first={ITEMS_PER_SECTION}
-          selectedFacets={[{ key: 'productClusterIds', value: '142' }]}
-          title="Deals & Promotions"
+          selectedFacets={[{ key: 'productClusterIds', value: '139' }]}
+          title="Popular picks"
+          isCarousel
         />
       </Suspense>
+      <Suspense fallback={<ProductTilesSkeleton loading />}>
+        <ProductShelf
+          first={ITEMS_PER_SECTION}
+          selectedFacets={[{ key: 'productClusterIds', value: '141' }]}
+          title="What's trending"
+          withDivisor
+          isRowLayout
+          otherBackground
+        />
+      </Suspense>
+      <SectionTitle border title="Por que comprar com a Accenture" />
+      <IncentivesHeader incentives={IncentivesMock} />
+      <Newsletter
+        title="Receba notícias e ofertas especiais!"
+        onSubmit={() => {
+          return null
+        }}
+      />
     </>
   )
 }

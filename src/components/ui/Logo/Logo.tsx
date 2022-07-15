@@ -1,11 +1,6 @@
 function Logo() {
   return (
-    <img
-      src="/logo.svg"
-      alt="The store logo with with a stylized letter B in a dark blue gradient background"
-      width="176px"
-      height="30px"
-    />
+    <img src="/logo.svg" alt="The Accenture Logo" width="176px" height="30px" />
   )
 }
 

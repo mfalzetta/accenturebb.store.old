@@ -26,6 +26,8 @@ import type { PageProps } from 'gatsby'
 import type { SearchState } from '@faststore/sdk'
 
 import 'src/styles/pages/plp.scss'
+import SectionTitle from 'src/components/custom-components/home/SectionTitle'
+import CategoryButtons from 'src/components/custom-components/CategoryButtons'
 
 type Props = PageProps<
   CollectionPageQueryQuery,
@@ -101,7 +103,7 @@ function Page(props: Props) {
       <BreadcrumbJsonLd
         itemListElements={collection?.breadcrumbList.itemListElement ?? []}
       />
-
+      {/* TODO: ATENDEDR O WARNING ABAIXO */}
       {/*
         WARNING: Do not import or render components from any
         other folder than '../components/sections' in here.
@@ -117,16 +119,12 @@ function Page(props: Props) {
         breadcrumbList={collection?.breadcrumbList.itemListElement}
         name={title}
       />
-
-      <Hero
-        variant="secondary"
+      <SectionTitle
         title={title}
-        subtitle={`All the amazing ${title} from the brands we partner with.`}
-        imageSrc="https://storeframework.vtexassets.com/arquivos/ids/190897/Photo.jpg"
-        imageAlt="Quest 2 Controller on a table"
-        icon={<Icon name="Headphones" width={48} height={48} weight="thin" />}
+        description={collection?.seo.description}
+        className="category-page"
       />
-
+      <CategoryButtons />
       <ProductGallery title={title} />
 
       <ProductShelf

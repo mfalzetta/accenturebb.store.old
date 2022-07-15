@@ -37,8 +37,8 @@
   --fs-navbar-header-padding-bottom-notebook             : var(--fs-navbar-header-padding-top-notebook);
 
   // Logo
-  --fs-navbar-logo-width                                 : 11rem;
-  --fs-navbar-logo-height                                : 2.375rem;
+  --fs-navbar-logo-width                                 : 6rem;
+  --fs-navbar-logo-height                                : 1.5rem;
   --fs-navbar-logo-min-height                            : var(--fs-navbar-logo-height);
   --fs-navbar-logo-margin-right-mobile                   : var(--fs-spacing-5);
 
@@ -49,6 +49,10 @@
   padding: var(--fs-navbar-padding);
   border-bottom: var(--fs-navbar-border-bottom-width) solid var(--fs-navbar-border-bottom-color);
   box-shadow: var(--fs-navbar-box-shadow);
+
+  [data-fs-navbar-button-menu]{
+    border: 1px solid var(--fs-color-theme-3) !important;
+  }
 
   [data-store-search-input-wrapper] {
     flex: 1 0 100%;
@@ -65,14 +69,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-
     @include media(">=notebook") {
       display: grid;
-      grid-template-columns: 1fr minmax(auto, 37.5rem) 1fr;
-    }
-
-    [data-fs-navbar-button-menu] {
-      @include media(">=notebook") { display: none; }
+      height: 52px;
+      grid-template-columns: auto auto minmax(auto, 37.5rem) 1fr;
     }
   }
 
@@ -100,6 +100,7 @@
 
       [data-fs-button-signin-link] {
         display: inline-flex;
+        border: 1px solid var(--fs-color-theme-3);
       }
     }
 
@@ -165,11 +166,7 @@
     padding-top: var(--fs-spacing-1);
     padding-bottom: var(--fs-spacing-2);
     overflow-x: clip;
-
-    @include media(">=notebook") {
-      padding-top: var(--fs-spacing-1);
-      padding-bottom: var(--fs-spacing-1);
-    }
+    max-width: 100%;
   }
 
   [data-fs-navbar-logo] {
@@ -177,6 +174,7 @@
     height: var(--fs-navbar-logo-height);
     min-height: var(--fs-navbar-logo-min-height);
     padding: 0;
+    margin: 0 3rem;
 
     @include media("<tablet") {
       margin-right: var(--fs-navbar-logo-margin-right-mobile);

@@ -11,14 +11,15 @@
   [data-store-input] {
     width: 100%;
     padding: var(--fs-spacing-1) var(--fs-spacing-7) var(--fs-spacing-1) var(--fs-spacing-2);
-    border: var(--fs-border-width) solid var(--fs-border-color);
+    border: var(--fs-border-width) solid var(--fs-color-theme-2);
     border-radius: var(--fs-border-radius);
     transition: box-shadow .2s ease, border .2s ease;
 
     &:hover {
-      border-color: var(--fs-border-color-active);
-      box-shadow: 0 0 0 var(--fs-border-width) var(--fs-border-color-active);
+      border-color: var(--fs-color-theme-3);
+      box-shadow: 0 0 0 var(--fs-border-width) var(--fs-color-theme-3);
     }
+
 
     @include input-focus-ring;
 
@@ -50,7 +51,7 @@
   [data-store-button] svg {
     width: var(--fs-spacing-4);
     height: var(--fs-spacing-4);
-    color: var(--fs-color-neutral-7);
+    color: var(--fs-color-theme-3);
   }
 }
 

@@ -13,20 +13,24 @@ interface NavLinksProps {
 
 const collections = [
   {
-    name: 'Office',
-    href: '/office',
+    name: "Today's Deals",
+    href: '/deals',
   },
   {
-    name: 'Home Appliances',
-    href: '/kitchen---home-appliances',
+    name: 'New Releases',
+    href: '/new-releases',
   },
   {
-    name: 'Computer and Software',
-    href: '/computer---software',
+    name: 'Top Sale',
+    href: '/top-sale',
   },
   {
-    name: 'Technology',
-    href: '/technology',
+    name: 'Customer Service',
+    href: '/customer-service',
+  },
+  {
+    name: 'Gift Cards',
+    href: '/gift-cards',
   },
 ]
 

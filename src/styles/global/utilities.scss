@@ -17,7 +17,7 @@ $base: 16px !default;
   @return #{$rem}rem;
 }
 
-@mixin input-focus-ring($outline: #{var(--fs-color-focus-ring)}, $border: #{var(--fs-border-color-active)}) {
+@mixin input-focus-ring($outline: #{var(--fs-color-theme-0)}, $border: #{var(--fs-color-theme-3)}) {
   @media not all and (min-resolution: .001dpcm) { // Target only Safari browsers
     @supports (-webkit-appearance:none) {         // Use `focus` instead of `focus-visible`
       &:hover:focus,                              // due to Safari's lack of support

@@ -5,7 +5,7 @@
   // Design Tokens for Product Shelf
   // --------------------------------------------------------
 
-  --fs-product-shelf-min-height             : 21.06rem;
+  --fs-product-shelf-min-height             : fit-content;
 
   --fs-product-shelf-items-gap              : var(--fs-grid-gap-1);
   --fs-product-shelf-items-padding-top      : 0;
@@ -35,5 +35,88 @@
     padding-top: var(--fs-product-shelf-items-padding-top);
     padding-bottom: var(--fs-product-shelf-items-padding-bottom);
     overflow-x: auto;
+  }
+  
+  &.shelf--row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: fit-content;
+    overflow: hidden;
+
+    li {
+      flex: 0 1 32%;
+      width: fit-content;
+      margin-right: 6px;
+      margin-bottom: 16px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      [data-store-product-card] {
+        box-sizing: border-box;
+        height: 240px;
+        padding: 24px 16px;
+        border-radius: 4px;
+
+        [data-product-card-image] {
+          width: 114.53px;
+          margin: 14.74px 24.74px 0 14.74px;
+        }
+
+        [data-fs-product-card-brand-title] {
+          color: var(--fs-color-theme-0);
+        }
+      }
+    }
+
+    @media (max-width: 1080px) {
+      justify-content: center;
+
+      li {
+        flex: 1 0 100%;
+
+        [data-store-product-card] {
+          max-width: 328px;
+          margin: auto;
+        }
+      }
+    }
+  }
+}
+
+.shelf--carousel {
+  padding: 0 16px;
+
+  .slide {
+    justify-content: flex-start;
+    margin-left: 32px;
+
+    li {
+      max-width: 193.33px;
+      margin-right: 16px;
+    }
+  }
+
+  .btn-slide {
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    &.prev {
+      top: calc(50% - 16px);
+      left: 0;
+    }
+
+    &.next {
+      top: calc(50% - 16px);
+      right: 0;
+    }
+
+    path {
+      stroke: #dcafff;
+    }
   }
 }

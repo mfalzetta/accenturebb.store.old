@@ -21,7 +21,7 @@
   }
 
   &[data-variant="spot"] {
-    margin-left: var(--fs-price-spot-margin-left);
+    // margin-left: var(--fs-price-spot-margin-left);
     font-weight: var(--fs-price-spot-font-weight);
   }
 }

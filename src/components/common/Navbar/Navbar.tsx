@@ -2,6 +2,7 @@ import type { SearchInputRef } from '@faststore/ui'
 import { Suspense, useRef, useState } from 'react'
 import CartToggle from 'src/components/cart/CartToggle'
 import SearchInput from 'src/components/common/SearchInput'
+import Menu from 'src/components/menu'
 import {
   ButtonIcon,
   ButtonSignIn,
@@ -11,15 +12,12 @@ import Icon from 'src/components/ui/Icon'
 import Link from 'src/components/ui/Link'
 import Logo from 'src/components/ui/Logo'
 import { mark } from 'src/sdk/tests/mark'
-import { useUI } from 'src/sdk/ui/Provider'
 
 import styles from './navbar.module.scss'
-import NavbarSlider from './NavbarSlider'
-import NavLinks from './NavLinks'
 
 function Navbar() {
-  const { navbar: displayNavbar, openNavbar } = useUI()
   const searchMobileRef = useRef<SearchInputRef>(null)
+  const [showMenu, setShowMenu] = useState(false)
 
   const [searchExpanded, setSearchExpanded] = useState(false)
 
@@ -38,7 +36,7 @@ function Navbar() {
                 data-fs-navbar-button-menu
                 aria-label="Open Menu"
                 icon={<Icon name="List" width={32} height={32} />}
-                onClick={openNavbar}
+                onClick={() => setShowMenu(!showMenu)}
               />
               <Link
                 href="/"
@@ -76,10 +74,10 @@ function Navbar() {
             <CartToggle />
           </div>
         </section>
-        <NavLinks classes="hidden-mobile" />
       </div>
-
-      {displayNavbar && <NavbarSlider />}
+      <div>
+        <Menu isOpen={showMenu} />
+      </div>
     </header>
   )
 }

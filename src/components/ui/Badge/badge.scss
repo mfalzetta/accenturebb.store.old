@@ -42,7 +42,7 @@
 
   // Warning
   --fs-badge-warning-bkg-color            : var(--fs-color-warning-bkg);
-  --fs-badge-warning-text-color           : var(--fs-color-warning-text);
+  --fs-badge-warning-text-color           : var(--fs-color-text-inverse);
   --fs-badge-warning-border-color         : var(--fs-color-warning-bkg);
 
   // Danger
@@ -67,6 +67,10 @@
   --fs-badge-big-text-size              : var(--fs-text-size-legend);
   --fs-badge-big-padding                : var(--fs-spacing-1) var(--fs-spacing-2);
 
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  
   // --------------------------------------------------------
   // Template Styles
   // --------------------------------------------------------
@@ -214,9 +218,9 @@
   color: var(--fs-badge-discount-medium-text-color);
 
   [data-fs-badge-wrapper] {
-    background-color: var(--fs-badge-discount-medium-bkg-color);
-    border-color: var(--fs-badge-discount-medium-border-color);
-    &::after { background-color: var(--fs-badge-discount-medium-bkg-color); }
+    background-color: var(--fs-color-theme-3);
+    border-color: var(--fs-color-theme-3);
+    &::after { background-color: var(--fs-color-theme-3); }
   }
 }
 
