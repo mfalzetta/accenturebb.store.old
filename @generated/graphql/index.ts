@@ -3802,6 +3802,7 @@ export type HomePageQueryQuery = {
       siteUrl: string | null
     } | null
   } | null
+  cmsHome: { sections: Array<{ data: any; name: string }> } | null
 }
 
 export type SearchPageQueryQueryVariables = Exact<{ [key: string]: never }>

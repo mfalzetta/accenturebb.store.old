@@ -4,7 +4,7 @@ import './ImageBanner.scss'
 export interface ImageBannerProps {
   src: string
   alt?: string
-  fullWidth?: string
+  fullWidth?: boolean
 }
 
 const ImageBanner = ({ src, alt, fullWidth }: ImageBannerProps) => {
