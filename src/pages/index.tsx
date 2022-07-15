@@ -312,6 +312,12 @@ export const querySSG = graphql`
         siteUrl
       }
     }
+    cmsHome(versionStatus: { eq: "published" }) {
+      sections {
+        data
+        name
+      }
+    }
   }
 `
 
