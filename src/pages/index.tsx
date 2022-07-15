@@ -22,6 +22,7 @@ import BlogSection from 'src/components/custom-components/home/BlogSection'
 import PromotionBanner from 'src/components/sections/PromotionBanner'
 
 import MiddleBanner from '../images/home/background-middle-banner.png'
+import RenderCMS from 'src/components/RenderCMS'
 
 export type Props = PageProps<HomePageQueryQuery>
 
@@ -197,7 +198,7 @@ function Blog() {
 
 function Page(props: Props) {
   const {
-    data: { site },
+    data: { site, cmsHome },
   } = props
 
   const { locale } = useSession()
@@ -298,6 +299,7 @@ function Page(props: Props) {
           return null
         }}
       />
+      <RenderCMS sections={cmsHome?.sections} />
     </>
   )
 }
