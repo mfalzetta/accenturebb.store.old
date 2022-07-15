@@ -30,9 +30,9 @@ const apiOptions: APIOptions = {
   channel: storeConfig.channel,
   hideUnavailableItems: storeConfig.api.hideUnavailableItems,
   locale: storeConfig.locale,
-  flags: {
-    enableOrderFormSync: true,
-  },
+  // flags: {
+  //   enableOrderFormSync: true,
+  // },
 }
 
 export const apiSchema = getSchema(apiOptions)
