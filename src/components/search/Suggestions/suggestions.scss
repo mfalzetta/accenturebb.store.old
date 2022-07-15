@@ -31,7 +31,10 @@
   }
 
   li {
-    max-width: 20vw;
+    @include media(">=notebook") {
+      max-width: 20vw;
+
+    }
   }
 
   .text__title-mini {

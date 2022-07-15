@@ -59,10 +59,14 @@
 
 [data-store-search-input-wrapper] {
   position: relative;
-  width: 60%;
+  width: auto;
 
   [data-fs-search-suggestion-section] + [data-fs-search-input-loading-text] {
     padding-top: var(--fs-spacing-3);
+  }
+
+  @include media(">=tablet") {
+    width: 60%;
   }
 }
 
@@ -79,13 +83,14 @@
       1px
     );
   /* stylelint-enable scss/operator-no-newline-after */
-  --left: calc(-1 * var(--collapse-search-bar-width));
+  // --left: calc(-1 * var(--collapse-search-bar-width));
 
   position: absolute;
   top: var(--top);
   left: var(--left);
   z-index: 1;
-  width: 100vw;
+  min-width: 92vw;
+  // width: 100vw;
   padding: var(--fs-spacing-3);
   background-color: var(--fs-color-neutral-0);
 
@@ -96,12 +101,13 @@
   @include media(">=tablet") {
     top: calc(var(--top) - 1px);
     left: calc(var(--left) - var(--fs-spacing-1));
+    width: 100%;
+    min-width: unset;
   }
 
   @include media(">=notebook") {
     top: 40px;
     left: 0;
-    width: 100%;
     overflow: hidden;
     border: var(--fs-border-width) solid var(--fs-border-color);
     border-top: none;
