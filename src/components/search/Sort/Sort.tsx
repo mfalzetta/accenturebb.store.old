@@ -2,32 +2,37 @@ import { useSearch } from '@faststore/sdk'
 import Select from 'src/components/ui/Select'
 
 const OptionsMap = {
-  price_desc: 'Preço, decrescente',
-  price_asc: 'Preço, crescente',
-  orders_desc: 'Mais vendidos',
-  name_asc: 'Nome, A-Z',
-  name_desc: 'Nome, Z-A',
-  release_desc: 'Data de lançamento',
-  discount_desc: 'Desconto',
-  score_desc: 'Relevância',
+  price_desc: 'Price, descending',
+  price_asc: 'Price, ascending',
+  orders_desc: 'Top sales',
+  name_asc: 'Name, A-Z',
+  name_desc: 'Name, Z-A',
+  release_desc: 'Release date',
+  discount_desc: 'Discount',
+  score_desc: 'Relevance',
 }
 
 const keys = Object.keys(OptionsMap) as Array<keyof typeof OptionsMap>
 
 function Sort() {
-  const {
-    setSort,
-    state: { sort },
-  } = useSearch()
+  const { state, setState } = useSearch()
 
   return (
     <Select
       id="sort-select"
       className="sort / text__title-mini-alt"
-      labelText="Ordernar por:"
+      label="Sort by"
       options={OptionsMap}
-      onChange={(e) => setSort(keys[e.target.selectedIndex])}
-      value={sort}
+      onChange={(e) => {
+        const sort = keys[e.target.selectedIndex]
+
+        setState({
+          ...state,
+          sort,
+          page: 0,
+        })
+      }}
+      value={state.sort}
       testId="search-sort"
     />
   )

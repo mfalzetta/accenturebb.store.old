@@ -1,4 +1,4 @@
-@import "src/styles/scaffold";
+@import 'src/styles/scaffold';
 
 .menu {
   position: absolute;
@@ -6,7 +6,7 @@
   z-index: 1;
   margin: 0 var(--fs-grid-padding);
 
-  @include media("<notebook") {
+  @include media('<notebook') {
     margin: 0;
   }
 
@@ -28,7 +28,7 @@
     border-bottom: 10px solid black;
     border-left: 10px solid transparent;
 
-    @include media("<notebook") {
+    @include media('<notebook') {
       left: 30px;
     }
   }
@@ -51,8 +51,8 @@
         &::after {
           width: 6px;
           height: 10px;
-          content: "";
-          background-image: url("../../images/menu/arrow-menu.png");
+          content: '';
+          background-image: url('../../images/menu/arrow-menu.png');
         }
       }
     }
@@ -88,8 +88,8 @@
       &::after {
         width: 6px;
         height: 10px;
-        content: "";
-        background-image: url("../../images/menu/arrow-menu.png");
+        content: '';
+        background-image: url('../../images/menu/arrow-menu.png');
       }
     }
 

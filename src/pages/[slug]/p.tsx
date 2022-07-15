@@ -1,5 +1,5 @@
 import { useSession } from '@faststore/sdk'
-import { gql } from '@vtex/graphql-utils'
+import { gql } from '@faststore/graphql-utils'
 import { graphql } from 'gatsby'
 import {
   BreadcrumbJsonLd,
@@ -23,24 +23,29 @@ export type Props = PageProps<
   ProductPageQueryQuery,
   ProductPageQueryQueryVariables,
   unknown,
-  ServerProductPageQueryQuery
+  ServerProductPageQueryQuery | null
 > & { slug: string }
 
 function Page(props: Props) {
   const { locale, currency } = useSession()
   const {
     data: { site },
-    serverData: { product },
-    location: { host },
-    slug,
+    serverData,
   } = props
 
-  const title = product?.seo.title ?? site?.siteMetadata?.title ?? ''
-  const description =
-    product?.seo.description ?? site?.siteMetadata?.description ?? ''
+  // No data was found
+  if (serverData === null) {
+    return null
+  }
 
-  const canonical =
-    host !== undefined ? `https://${host}/${slug}/p` : `/${slug}/p`
+  const {
+    product,
+    product: { seo },
+  } = serverData
+
+  const title = seo.title || site?.siteMetadata?.title || ''
+  const description = seo.description || site?.siteMetadata?.description || ''
+  const canonical = `${site?.siteMetadata?.siteUrl}${seo.canonical}`
 
   return (
     <>
@@ -52,7 +57,7 @@ function Page(props: Props) {
         language={locale}
         openGraph={{
           type: 'og:product',
-          url: `${site?.siteMetadata?.siteUrl}${slug}`,
+          url: canonical,
           title,
           description,
           images: product.image.map((img) => ({
@@ -99,14 +104,23 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-
       <ProductDetails product={product} />
 
       <ProductShelf
         first={ITEMS_PER_SECTION}
-        term={product.brand.name}
-        title="You might also like"
+        selectedFacets={[
+          { key: 'buy', value: product.isVariantOf.productGroupID },
+        ]}
+        title="People also bought"
         withDivisor
+      />
+
+      <ProductShelf
+        first={ITEMS_PER_SECTION}
+        selectedFacets={[
+          { key: 'view', value: product.isVariantOf.productGroupID },
+        ]}
+        title="People also view"
       />
     </>
   )
@@ -126,21 +140,20 @@ export const querySSG = graphql`
 `
 
 export const querySSR = gql`
-  query ServerProductPageQuery($id: String!) {
-    product(locator: [{ key: "id", value: $id }]) {
+  query ServerProductPageQuery($slug: String!) {
+    product(locator: [{ key: "slug", value: $slug }]) {
       id: productID
-      slug
 
       seo {
         title
         description
+        canonical
       }
 
       brand {
         name
       }
 
-      slug
       sku
       gtin
       name
@@ -175,6 +188,10 @@ export const querySSR = gql`
         }
       }
 
+      isVariantOf {
+        productGroupID
+      }
+
       ...ProductDetailsFragment_product
     }
   }
@@ -185,45 +202,41 @@ export const getServerData = async ({
 }: {
   params: Record<string, string>
 }) => {
-  try {
-    const id = slug.split('-').pop()
+  const ONE_YEAR_CACHE = `s-maxage=31536000, stale-while-revalidate`
+  const { isNotFoundError } = await import('@faststore/api')
+  const { execute } = await import('src/server/index')
+  const { data, errors = [] } = await execute({
+    operationName: querySSR,
+    variables: { slug },
+  })
 
-    const { execute } = await import('src/server/index')
-    const { data } = await execute({
-      operationName: querySSR,
-      variables: { id },
+  const notFound = errors.find(isNotFoundError)
+
+  if (notFound) {
+    const params = new URLSearchParams({
+      from: encodeURIComponent(`/${slug}/p`),
     })
 
-    if (data === null) {
-      const originalUrl = `/${slug}/p`
-
-      return {
-        status: 301,
-        props: {},
-        headers: {
-          'cache-control': 'public, max-age=0, stale-while-revalidate=31536000',
-          location: `/404/?from=${encodeURIComponent(originalUrl)}`,
-        },
-      }
-    }
-
     return {
-      status: 200,
-      props: data ?? {},
+      status: 301,
+      props: null,
       headers: {
-        'cache-control': 'public, max-age=0, stale-while-revalidate=31536000',
+        'cache-control': ONE_YEAR_CACHE,
+        location: `/404/?${params.toString()}}`,
       },
     }
-  } catch (err) {
-    console.error(err)
+  }
 
-    return {
-      status: 500,
-      props: {},
-      headers: {
-        'cache-control': 'public, max-age=0, must-revalidate',
-      },
-    }
+  if (errors.length > 0) {
+    throw errors[0]
+  }
+
+  return {
+    status: 200,
+    props: data,
+    headers: {
+      'cache-control': ONE_YEAR_CACHE,
+    },
   }
 }
 

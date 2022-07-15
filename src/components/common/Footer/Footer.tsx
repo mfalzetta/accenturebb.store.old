@@ -140,10 +140,10 @@ function FooterLogo() {
         <UIIcon
           component={
             <img
-              src="/accenture-logo.svg"
-              alt="Accenture logo"
-              width="94px"
-              height="24px"
+              src="/logo-footer.svg"
+              alt="BaseStore logo"
+              width="124px"
+              height="32px"
               loading="lazy"
             />
           }

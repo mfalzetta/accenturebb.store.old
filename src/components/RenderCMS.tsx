@@ -5,8 +5,8 @@ import Hero from './sections/Hero'
 import IncentivesHeader from './sections/Incentives/IncentivesHeader'
 import ProductShelf from './sections/ProductShelf'
 import ProductTiles from './sections/ProductTiles'
-import ImageBanner from './sections/ImageBanner'
 import PromotionBanner from './sections/PromotionBanner'
+import ImageBanner from './sections/ImageBanner'
 
 /**
  * Sections: Components imported from '../components/sections' only.
@@ -18,8 +18,8 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   IncentivesHeader,
   ProductShelf,
   ProductTiles,
-  ImageBanner,
   PromotionBanner,
+  ImageBanner,
 }
 
 interface Props {

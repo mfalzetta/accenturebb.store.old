@@ -1,69 +1,12 @@
-import { Modal as UIModal } from '@faststore/ui'
-import Link from 'src/components/ui/Link'
-import Icon from 'src/components/ui/Icon'
-import { useEffect } from 'react'
-import { ButtonIcon } from 'src/components/ui/Button'
-import { useModal } from 'src/sdk/ui/modal/Provider'
-import RegionalizationInput from 'src/components/regionalization/RegionalizationInput'
+import Modal from 'src/components/ui/Modal'
 
-interface RegionalizationModalProps {
-  isOpen: boolean
-  /**
-   * This function is called whenever the user clicks outside
-   * the modal content
-   */
-  onDismiss: () => void
-}
+import { RegionalizationModalContent } from '.'
 
-function RegionalizationModal({
-  isOpen,
-  onDismiss,
-}: RegionalizationModalProps) {
-  const { fade, onModalOpen, onModalClose } = useModal()
-
-  useEffect(() => {
-    isOpen && onModalOpen()
-  }, [isOpen, onModalOpen])
-
+function RegionalizationModal() {
   return (
-    <UIModal
-      data-regionalization-modal
-      data-regionalization-modal-state={fade}
-      isOpen={isOpen}
-      onDismiss={(e) => {
-        e.preventDefault()
-        onModalClose()
-      }}
-      onTransitionEnd={() => fade === 'out' && onDismiss()}
-    >
-      <header className="regionalization-modal__header">
-        <ButtonIcon
-          onClick={onModalClose}
-          data-fs-regionalization-modal-button
-          aria-label="Close Regionalization Modal"
-          data-testid="regionalization-modal-button-close"
-          icon={<Icon name="X" width={30} height={30} />}
-        />
-        <p className="text__title-subsection" data-regionalization-modal-title>
-          Set your location
-        </p>
-        <p className="text__body" data-regionalization-modal-description>
-          Prices, offers and availability may vary according to your location.
-        </p>
-      </header>
-      <div className="regionalization-modal__body">
-        {/* TODO: Remove this div when PostalCodeInput be styled */}
-        <div data-regionalization-modal-input>
-          <RegionalizationInput />
-        </div>
-        <Link to="/">
-          <span data-regionalization-modal-link>
-            {"Don't know my Postal Code"}
-          </span>
-          <Icon name="ArrowSquareOut" width={18} height={18} />
-        </Link>
-      </div>
-    </UIModal>
+    <Modal>
+      {({ fadeOut }) => <RegionalizationModalContent onClose={fadeOut} />}
+    </Modal>
   )
 }
 

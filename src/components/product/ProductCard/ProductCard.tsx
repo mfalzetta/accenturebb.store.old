@@ -1,18 +1,21 @@
 import {
-  Card as UICard,
-  CardActions as UICardActions,
-  CardContent as UICardContent,
-  CardImage as UICardImage,
+  ProductCard as UIProductCard,
+  ProductCardActions as UIProductCardActions,
+  ProductCardContent as UIProductCardContent,
+  ProductCardImage as UIProductCardImage,
 } from '@faststore/ui'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import { memo } from 'react'
 import { Badge, DiscountBadge } from 'src/components/ui/Badge'
 import { Image } from 'src/components/ui/Image'
 import Price from 'src/components/ui/Price'
+import Link from 'src/components/ui/Link'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { useProductLink } from 'src/sdk/product/useProductLink'
 import type { ReactNode } from 'react'
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
+
+import styles from './product-card.module.scss'
 
 type Variant = 'wide' | 'default'
 
@@ -51,16 +54,17 @@ function ProductCard({
   const outOfStock = availability !== 'https://schema.org/InStock'
 
   return (
-    <UICard
+    <UIProductCard
       data-fs-product-card
       data-fs-product-card-variant={variant}
       data-fs-product-card-bordered={bordered}
-      data-fs-product-card-actionabled={!!ButtonBuy}
+      data-fs-product-card-actionable={!!ButtonBuy}
       data-fs-product-card-sku={sku}
+      className={styles.fsProductCard}
       {...otherProps}
     >
-      <div className={rowLayout ? 'product-card__row-layout' : ''}>
-        <UICardImage>
+      <div data-fs-product-card-row-variant={rowLayout}>
+        <UIProductCardImage>
           <Image
             src={img.url}
             alt={img.alternateName}
@@ -76,13 +80,13 @@ function ProductCard({
             <DiscountBadge listPrice={listPrice} spotPrice={spotPrice} />
           )}
           {!!ButtonBuy && (
-            <UICardActions data-fs-product-card-actions>
+            <UIProductCardActions data-fs-product-card-actions>
               {ButtonBuy}
-            </UICardActions>
+            </UIProductCardActions>
           )}
-        </UICardImage>
+        </UIProductCardImage>
 
-        <UICardContent data-fs-product-card-content>
+        <UIProductCardContent data-fs-product-card-content>
           <div data-fs-product-card-heading>
             <h3 data-fs-product-card-brand-title>{brandName}</h3>
             <h3 data-fs-product-card-title>
@@ -115,9 +119,9 @@ function ProductCard({
               )}
             </div>
           </div>
-        </UICardContent>
+        </UIProductCardContent>
       </div>
-    </UICard>
+    </UIProductCard>
   )
 }
 

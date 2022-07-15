@@ -36,9 +36,6 @@ build/Release
 node_modules/
 jspm_packages/
 
-# Typescript v1 declaration files
-src/typings/
-
 # Optional npm cache directory
 .npm
 
@@ -76,5 +73,4 @@ static/~partytown
 # VTEX Webops
 .webops
 
-package-lock.json
-yarn.lock
+storybook-static/

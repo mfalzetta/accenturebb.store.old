@@ -2,6 +2,7 @@ import { parseSearchState, SearchProvider, useSession } from '@faststore/sdk'
 import { graphql } from 'gatsby'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { useEffect, useState } from 'react'
+import Breadcrumb from 'src/components/sections/Breadcrumb'
 import ProductGallery from 'src/components/sections/ProductGallery'
 import SROnly from 'src/components/ui/SROnly'
 import { ITEMS_PER_PAGE } from 'src/constants'
@@ -79,11 +80,11 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
+      <Breadcrumb name="All Products" />
 
       <ProductGallery
         title="Search Results"
         searchTerm={searchParams.term ?? undefined}
-        showBreadCrumb
       />
     </SearchProvider>
   )

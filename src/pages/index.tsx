@@ -1,24 +1,28 @@
+import 'src/styles/pages/homepage.scss'
+
 import { useSession } from '@faststore/sdk'
 import { graphql } from 'gatsby'
 import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
+import { Suspense } from 'react'
 import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
+import IncentivesMock from 'src/components/sections/Incentives/incentivesMock'
 import ProductShelf from 'src/components/sections/ProductShelf'
-import Newsletter from 'src/components/sections/Newsletter'
-import { mark } from 'src/sdk/tests/mark'
+import ProductShelfSkeleton from 'src/components/skeletons/ProductShelfSkeleton'
+import ProductTilesSkeleton from 'src/components/skeletons/ProductTilesSkeleton'
 import { ITEMS_PER_SECTION } from 'src/constants'
+import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
-import IncentivesMock from 'src/components/sections/Incentives/incentivesMock'
-import 'src/styles/pages/homepage.scss'
+import Newsletter from 'src/components/sections/Newsletter'
 import CategorySection from 'src/components/custom-components/home/CategorySection'
 import InfoCard from 'src/components/custom-components/home/InfoCard'
+import Slider from 'src/components/custom-components/home/Slider'
 import SectionTitle from 'src/components/custom-components/home/SectionTitle'
 import BlogSection from 'src/components/custom-components/home/BlogSection'
-import Slider from 'src/components/custom-components/home/Slider'
 import PromotionBanner from 'src/components/sections/PromotionBanner'
-import RenderCMS from 'src/components/RenderCMS'
 
 import MiddleBanner from '../images/home/background-middle-banner.png'
+import RenderCMS from 'src/components/RenderCMS'
 
 export type Props = PageProps<HomePageQueryQuery>
 
@@ -195,13 +199,12 @@ function Blog() {
 function Page(props: Props) {
   const {
     data: { site, cmsHome },
-    location: { pathname, host },
   } = props
 
   const { locale } = useSession()
 
   const title = site?.siteMetadata?.title ?? ''
-  const siteUrl = `https://${host}${pathname}`
+  const siteUrl = `${site?.siteMetadata?.siteUrl}`
 
   return (
     <>
@@ -231,6 +234,7 @@ function Page(props: Props) {
           },
         }}
       />
+
       {/*
         WARNING: Do not import or render components from any
         other folder than '../components/sections' in here.
@@ -242,7 +246,6 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-      {/* <Carousel> */}
       <MainBanner />
       <Category />
       <SectionTitle
@@ -251,12 +254,14 @@ function Page(props: Props) {
         title="Comprar por marca"
       />
       <Brand />
-      <ProductShelf
-        first={20}
-        selectedFacets={[{ key: 'productClusterIds', value: '139' }]}
-        title="Most Wanted"
-        isCarousel
-      />
+      <Suspense fallback={<ProductShelfSkeleton loading />}>
+        <ProductShelf
+          first={20}
+          selectedFacets={[{ key: 'productClusterIds', value: '139' }]}
+          title="Most Wanted"
+          isCarousel
+        />
+      </Suspense>
       <SectionTitle
         className="classSection__container"
         title="O essencial do Verão"
@@ -268,20 +273,24 @@ function Page(props: Props) {
         href="/"
         linkText="compre agora"
       />
-      <ProductShelf
-        first={ITEMS_PER_SECTION}
-        selectedFacets={[{ key: 'productClusterIds', value: '139' }]}
-        title="Popular picks"
-        isCarousel
-      />
-      <ProductShelf
-        first={ITEMS_PER_SECTION}
-        selectedFacets={[{ key: 'productClusterIds', value: '141' }]}
-        title="What's trending"
-        withDivisor
-        isRowLayout
-        otherBackground
-      />
+      <Suspense fallback={<ProductTilesSkeleton loading />}>
+        <ProductShelf
+          first={ITEMS_PER_SECTION}
+          selectedFacets={[{ key: 'productClusterIds', value: '139' }]}
+          title="Popular picks"
+          isCarousel
+        />
+      </Suspense>
+      <Suspense fallback={<ProductTilesSkeleton loading />}>
+        <ProductShelf
+          first={ITEMS_PER_SECTION}
+          selectedFacets={[{ key: 'productClusterIds', value: '141' }]}
+          title="What's trending"
+          withDivisor
+          isRowLayout
+          otherBackground
+        />
+      </Suspense>
       <SectionTitle border title="Por que comprar com a Accenture" />
       <IncentivesHeader incentives={IncentivesMock} />
       <Newsletter
@@ -302,9 +311,9 @@ export const querySSG = graphql`
         title
         description
         titleTemplate
+        siteUrl
       }
     }
-
     cmsHome(versionStatus: { eq: "published" }) {
       sections {
         data

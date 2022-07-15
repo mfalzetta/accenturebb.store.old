@@ -107,7 +107,11 @@ function LinksList({ items }: LinksListProps) {
     <UIList>
       {items.map((item) => (
         <li key={item.name}>
-          <Link className="footer__links--link" variant="footer" to={item.href}>
+          <Link
+            // className="footer__links--link"
+            variant="footer"
+            href={item.href}
+          >
             {item.name}
           </Link>
         </li>

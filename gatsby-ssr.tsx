@@ -1,5 +1,6 @@
-import { CartProvider, SessionProvider, UIProvider } from '@faststore/sdk'
-import type { ReactNode } from 'react'
+import { CartProvider, SessionProvider } from '@faststore/sdk'
+import { validateSession } from 'src/sdk/session/validate'
+import UIProvider from 'src/sdk/ui/Provider'
 import type { GatsbySSR } from 'gatsby'
 
 import ThirdPartyScripts from './src/components/ThirdPartyScripts'
@@ -8,22 +9,22 @@ import AnalyticsHandler from './src/sdk/analytics'
 import { validateCart } from './src/sdk/cart/validate'
 import ErrorBoundary from './src/sdk/error/ErrorBoundary'
 import TestProvider from './src/sdk/tests'
-import { uiActions, uiEffects, uiInitialState } from './src/sdk/ui'
-import { ModalProvider } from './src/sdk/ui/modal'
 import storeConfig from './store.config'
 
 export const wrapRootElement: GatsbySSR['wrapRootElement'] = ({ element }) => (
   <ErrorBoundary>
     <AnalyticsHandler />
     <TestProvider>
-      <UIProvider
-        initialState={uiInitialState}
-        actions={uiActions}
-        effects={uiEffects}
-      >
-        <SessionProvider initialState={{ channel: storeConfig.channel }}>
+      <UIProvider>
+        <SessionProvider
+          initialState={{
+            channel: storeConfig.channel,
+            locale: storeConfig.locale,
+          }}
+          onValidateSession={validateSession}
+        >
           <CartProvider mode="optimistic" onValidateCart={validateCart}>
-            <ModalProvider>{element}</ModalProvider>
+            {element}
           </CartProvider>
         </SessionProvider>
       </UIProvider>
@@ -52,7 +53,7 @@ type StyleComponent = {
   }
 }
 
-const isStyleComponent = (node: ReactNode): node is StyleComponent =>
+const isStyleComponent = (node: any): node is StyleComponent =>
   typeof node === 'object' && node != null && (node as any).type === 'style'
 
 /**

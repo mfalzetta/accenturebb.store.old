@@ -16,13 +16,10 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
-  /** A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: any
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any
-  /** A string or the string representation of an object (a stringified object). */
-  ObjectOrString: any
   JSONPropsCmsObject: any
+  ObjectOrString: any
 }
 
 export type BooleanQueryOperatorInput = {
@@ -32,27 +29,10 @@ export type BooleanQueryOperatorInput = {
   nin: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>
 }
 
-export type DateQueryOperatorInput = {
-  eq: InputMaybe<Scalars['Date']>
-  gt: InputMaybe<Scalars['Date']>
-  gte: InputMaybe<Scalars['Date']>
-  in: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
-  lt: InputMaybe<Scalars['Date']>
-  lte: InputMaybe<Scalars['Date']>
-  ne: InputMaybe<Scalars['Date']>
-  nin: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
-}
 export type CmsBlock = {
   data: Scalars['JSONPropsCmsObject']
   id: Maybe<Scalars['String']>
   name: Scalars['String']
-}
-
-export type JsonPropsCmsObjectQueryOperatorInput = {
-  eq: InputMaybe<Scalars['JSONPropsCmsObject']>
-  in: InputMaybe<Array<InputMaybe<Scalars['JSONPropsCmsObject']>>>
-  ne: InputMaybe<Scalars['JSONPropsCmsObject']>
-  nin: InputMaybe<Array<InputMaybe<Scalars['JSONPropsCmsObject']>>>
 }
 
 export type CmsBlockFilterInput = {
@@ -258,6 +238,638 @@ export type CmsHomeGroupConnectionSumArgs = {
 export type CmsHomeSortInput = {
   fields: InputMaybe<Array<InputMaybe<CmsHomeFieldsEnum>>>
   order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
+}
+
+export type CmsInstitutionalPage = Node & {
+  children: Array<Node>
+  id: Scalars['ID']
+  internal: Internal
+  name: Scalars['String']
+  parent: Maybe<Node>
+  sections: Array<CmsBlock>
+}
+
+export type CmsInstitutionalPageConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsInstitutionalPageEdge>
+  group: Array<CmsInstitutionalPageGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsInstitutionalPage>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsInstitutionalPageConnectionDistinctArgs = {
+  field: CmsInstitutionalPageFieldsEnum
+}
+
+export type CmsInstitutionalPageConnectionGroupArgs = {
+  field: CmsInstitutionalPageFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsInstitutionalPageConnectionMaxArgs = {
+  field: CmsInstitutionalPageFieldsEnum
+}
+
+export type CmsInstitutionalPageConnectionMinArgs = {
+  field: CmsInstitutionalPageFieldsEnum
+}
+
+export type CmsInstitutionalPageConnectionSumArgs = {
+  field: CmsInstitutionalPageFieldsEnum
+}
+
+export type CmsInstitutionalPageEdge = {
+  next: Maybe<CmsInstitutionalPage>
+  node: CmsInstitutionalPage
+  previous: Maybe<CmsInstitutionalPage>
+}
+
+export type CmsInstitutionalPageFieldsEnum =
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'name'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'sections'
+  | 'sections___data'
+  | 'sections___id'
+  | 'sections___name'
+
+export type CmsInstitutionalPageFilterInput = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+}
+
+export type CmsInstitutionalPageGroupConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsInstitutionalPageEdge>
+  field: Scalars['String']
+  fieldValue: Maybe<Scalars['String']>
+  group: Array<CmsInstitutionalPageGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsInstitutionalPage>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsInstitutionalPageGroupConnectionDistinctArgs = {
+  field: CmsInstitutionalPageFieldsEnum
+}
+
+export type CmsInstitutionalPageGroupConnectionGroupArgs = {
+  field: CmsInstitutionalPageFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsInstitutionalPageGroupConnectionMaxArgs = {
+  field: CmsInstitutionalPageFieldsEnum
+}
+
+export type CmsInstitutionalPageGroupConnectionMinArgs = {
+  field: CmsInstitutionalPageFieldsEnum
+}
+
+export type CmsInstitutionalPageGroupConnectionSumArgs = {
+  field: CmsInstitutionalPageFieldsEnum
+}
+
+export type CmsInstitutionalPageSortInput = {
+  fields: InputMaybe<Array<InputMaybe<CmsInstitutionalPageFieldsEnum>>>
+  order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
+}
+
+export type CmsPlp = Node & {
+  children: Array<Node>
+  id: Scalars['ID']
+  internal: Internal
+  name: Scalars['String']
+  parent: Maybe<Node>
+  sections: Array<CmsBlock>
+}
+
+export type CmsPlpConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsPlpEdge>
+  group: Array<CmsPlpGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsPlp>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsPlpConnectionDistinctArgs = {
+  field: CmsPlpFieldsEnum
+}
+
+export type CmsPlpConnectionGroupArgs = {
+  field: CmsPlpFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsPlpConnectionMaxArgs = {
+  field: CmsPlpFieldsEnum
+}
+
+export type CmsPlpConnectionMinArgs = {
+  field: CmsPlpFieldsEnum
+}
+
+export type CmsPlpConnectionSumArgs = {
+  field: CmsPlpFieldsEnum
+}
+
+export type CmsPlpEdge = {
+  next: Maybe<CmsPlp>
+  node: CmsPlp
+  previous: Maybe<CmsPlp>
+}
+
+export type CmsPlpFieldsEnum =
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'name'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'sections'
+  | 'sections___data'
+  | 'sections___id'
+  | 'sections___name'
+
+export type CmsPlpFilterInput = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+}
+
+export type CmsPlpGroupConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsPlpEdge>
+  field: Scalars['String']
+  fieldValue: Maybe<Scalars['String']>
+  group: Array<CmsPlpGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsPlp>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsPlpGroupConnectionDistinctArgs = {
+  field: CmsPlpFieldsEnum
+}
+
+export type CmsPlpGroupConnectionGroupArgs = {
+  field: CmsPlpFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsPlpGroupConnectionMaxArgs = {
+  field: CmsPlpFieldsEnum
+}
+
+export type CmsPlpGroupConnectionMinArgs = {
+  field: CmsPlpFieldsEnum
+}
+
+export type CmsPlpGroupConnectionSumArgs = {
+  field: CmsPlpFieldsEnum
+}
+
+export type CmsPlpSortInput = {
+  fields: InputMaybe<Array<InputMaybe<CmsPlpFieldsEnum>>>
+  order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
+}
+
+export type CmsSeo = Node & {
+  children: Array<Node>
+  id: Scalars['ID']
+  internal: Internal
+  name: Scalars['String']
+  parent: Maybe<Node>
+  sections: Array<CmsBlock>
+  seo: Maybe<CmsSeoSeo>
+  versionStatus: Maybe<Scalars['String']>
+}
+
+export type CmsSeoConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsSeoEdge>
+  group: Array<CmsSeoGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsSeo>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsSeoConnectionDistinctArgs = {
+  field: CmsSeoFieldsEnum
+}
+
+export type CmsSeoConnectionGroupArgs = {
+  field: CmsSeoFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsSeoConnectionMaxArgs = {
+  field: CmsSeoFieldsEnum
+}
+
+export type CmsSeoConnectionMinArgs = {
+  field: CmsSeoFieldsEnum
+}
+
+export type CmsSeoConnectionSumArgs = {
+  field: CmsSeoFieldsEnum
+}
+
+export type CmsSeoEdge = {
+  next: Maybe<CmsSeo>
+  node: CmsSeo
+  previous: Maybe<CmsSeo>
+}
+
+export type CmsSeoFieldsEnum =
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'name'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'sections'
+  | 'sections___data'
+  | 'sections___id'
+  | 'sections___name'
+  | 'seo___facebook___description'
+  | 'seo___facebook___thumbnail'
+  | 'seo___facebook___title'
+  | 'seo___siteMetadata___description'
+  | 'seo___siteMetadata___title'
+  | 'seo___siteMetadata___titleTemplate'
+  | 'versionStatus'
+
+export type CmsSeoFilterInput = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+  seo: InputMaybe<CmsSeoSeoFilterInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
+}
+
+export type CmsSeoGroupConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsSeoEdge>
+  field: Scalars['String']
+  fieldValue: Maybe<Scalars['String']>
+  group: Array<CmsSeoGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsSeo>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsSeoGroupConnectionDistinctArgs = {
+  field: CmsSeoFieldsEnum
+}
+
+export type CmsSeoGroupConnectionGroupArgs = {
+  field: CmsSeoFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsSeoGroupConnectionMaxArgs = {
+  field: CmsSeoFieldsEnum
+}
+
+export type CmsSeoGroupConnectionMinArgs = {
+  field: CmsSeoFieldsEnum
+}
+
+export type CmsSeoGroupConnectionSumArgs = {
+  field: CmsSeoFieldsEnum
+}
+
+export type CmsSeoSeo = {
+  facebook: Maybe<CmsSeoSeoFacebook>
+  siteMetadata: Maybe<CmsSeoSeoSiteMetadata>
+}
+
+export type CmsSeoSeoFacebook = {
+  description: Maybe<Scalars['String']>
+  thumbnail: Maybe<Scalars['String']>
+  title: Maybe<Scalars['String']>
+}
+
+export type CmsSeoSeoFacebookFilterInput = {
+  description: InputMaybe<StringQueryOperatorInput>
+  thumbnail: InputMaybe<StringQueryOperatorInput>
+  title: InputMaybe<StringQueryOperatorInput>
+}
+
+export type CmsSeoSeoFilterInput = {
+  facebook: InputMaybe<CmsSeoSeoFacebookFilterInput>
+  siteMetadata: InputMaybe<CmsSeoSeoSiteMetadataFilterInput>
+}
+
+export type CmsSeoSeoSiteMetadata = {
+  description: Maybe<Scalars['String']>
+  title: Maybe<Scalars['String']>
+  titleTemplate: Maybe<Scalars['String']>
+}
+
+export type CmsSeoSeoSiteMetadataFilterInput = {
+  description: InputMaybe<StringQueryOperatorInput>
+  title: InputMaybe<StringQueryOperatorInput>
+  titleTemplate: InputMaybe<StringQueryOperatorInput>
+}
+
+export type CmsSeoSortInput = {
+  fields: InputMaybe<Array<InputMaybe<CmsSeoFieldsEnum>>>
+  order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
+}
+
+export type DateQueryOperatorInput = {
+  eq: InputMaybe<Scalars['Date']>
+  gt: InputMaybe<Scalars['Date']>
+  gte: InputMaybe<Scalars['Date']>
+  in: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+  lt: InputMaybe<Scalars['Date']>
+  lte: InputMaybe<Scalars['Date']>
+  ne: InputMaybe<Scalars['Date']>
+  nin: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
 }
 
 export type Directory = Node & {
@@ -931,6 +1543,13 @@ export type IStoreCart = {
   order: IStoreOrder
 }
 
+export type IStoreCurrency = {
+  /** Currency code (e.g: USD). */
+  code: Scalars['String']
+  /** Currency symbol (e.g: $). */
+  symbol: Scalars['String']
+}
+
 /** Image input. */
 export type IStoreImage = {
   /** Alias for the input image. */
@@ -953,10 +1572,10 @@ export type IStoreOffer = {
   seller: IStoreOrganization
 }
 
-/** Offer input. */
+/** Order input. */
 export type IStoreOrder = {
   /** Array with information on each accepted offer. */
-  acceptedOffer?: any
+  acceptedOffer: Array<IStoreOffer>
   /** ID of the order in [VTEX order management](https://help.vtex.com/en/tutorial/license-manager-resources-oms--60QcBsvWeum02cFi3GjBzg#). */
   orderNumber: Scalars['String']
 }
@@ -965,6 +1584,18 @@ export type IStoreOrder = {
 export type IStoreOrganization = {
   /** Organization ID. */
   identifier: Scalars['String']
+}
+
+/** Client profile data. */
+export type IStorePerson = {
+  /** Client email. */
+  email: Scalars['String']
+  /** Client last name. */
+  familyName: Scalars['String']
+  /** Client first name. */
+  givenName: Scalars['String']
+  /** Client ID. */
+  id: Scalars['String']
 }
 
 /** Product input. Products are variants within product groups, equivalent to VTEX [SKUs](https://help.vtex.com/en/tutorial/what-is-an-sku--1K75s4RXAQyOuGUYKMM68u#). For example, you may have a **Shirt** product group with associated products such as **Blue shirt size L**, **Green shirt size XL** and so on. */
@@ -982,15 +1613,19 @@ export type IStoreProduct = {
 export type IStorePropertyValue = {
   /** Property name. */
   name: Scalars['String']
+  /** Property id. This propert changes according to the content of the object. */
+  propertyID: InputMaybe<Scalars['String']>
   /** Property value. May hold a string or the string representation of an object. */
   value: Scalars['ObjectOrString']
   /** Specifies the nature of the value */
   valueReference: Scalars['String']
 }
 
-/** Selected facet input. */
+/** Selected search facet input. */
 export type IStoreSelectedFacet = {
+  /** Selected search facet key. */
   key: Scalars['String']
+  /** Selected search facet value. */
   value: Scalars['String']
 }
 
@@ -999,7 +1634,13 @@ export type IStoreSession = {
   /** Session input channel. */
   channel: InputMaybe<Scalars['String']>
   /** Session input country. */
-  country: InputMaybe<Scalars['String']>
+  country: Scalars['String']
+  /** Session input currency. */
+  currency: IStoreCurrency
+  /** Session input locale. */
+  locale: Scalars['String']
+  /** Session input postal code. */
+  person: InputMaybe<IStorePerson>
   /** Session input postal code. */
   postalCode: InputMaybe<Scalars['String']>
 }
@@ -1037,6 +1678,13 @@ export type InternalFilterInput = {
   type: InputMaybe<StringQueryOperatorInput>
 }
 
+export type JsonPropsCmsObjectQueryOperatorInput = {
+  eq: InputMaybe<Scalars['JSONPropsCmsObject']>
+  in: InputMaybe<Array<InputMaybe<Scalars['JSONPropsCmsObject']>>>
+  ne: InputMaybe<Scalars['JSONPropsCmsObject']>
+  nin: InputMaybe<Array<InputMaybe<Scalars['JSONPropsCmsObject']>>>
+}
+
 export type JsonQueryOperatorInput = {
   eq: InputMaybe<Scalars['JSON']>
   glob: InputMaybe<Scalars['JSON']>
@@ -1047,18 +1695,19 @@ export type JsonQueryOperatorInput = {
 }
 
 export type Mutation = {
-  /** Update session information. */
-  updateSession: StoreSession
-  /** Returns the order if anything has changed in it, or `null` if the order is valid. */
+  /** Checks for changes between the cart presented in the UI and the cart stored in the ecommerce platform. If changes are detected, it returns the cart stored on the platform. Otherwise, it returns `null`. */
   validateCart: Maybe<StoreCart>
-}
-
-export type MutationUpdateSessionArgs = {
-  session: IStoreSession
+  /** Updates a web session with the specified values. */
+  validateSession: Maybe<StoreSession>
 }
 
 export type MutationValidateCartArgs = {
   cart: IStoreCart
+}
+
+export type MutationValidateSessionArgs = {
+  search: Scalars['String']
+  session: IStoreSession
 }
 
 /** Node Interface */
@@ -1091,28 +1740,32 @@ export type PageInfo = {
 }
 
 export type Query = {
-  /** All collections query. */
   allCmsHome: CmsHomeConnection
+  allCmsInstitutionalPage: CmsInstitutionalPageConnection
+  allCmsPlp: CmsPlpConnection
+  allCmsSeo: CmsSeoConnection
+  /** Returns information about all collections. */
   allCollections: StoreCollectionConnection
   allDirectory: DirectoryConnection
   allFile: FileConnection
-  /** All products query. */
+  /** Returns information about all products. */
   allProducts: StoreProductConnection
   allSite: SiteConnection
   allSiteBuildMetadata: SiteBuildMetadataConnection
   allSiteFunction: SiteFunctionConnection
   allSitePage: SitePageConnection
   allSitePlugin: SitePluginConnection
-  /** Collection query. */
   cmsHome: Maybe<CmsHome>
+  cmsInstitutionalPage: Maybe<CmsInstitutionalPage>
+  cmsPlp: Maybe<CmsPlp>
+  cmsSeo: Maybe<CmsSeo>
+  /** Returns the details of a collection based on the collection slug. */
   collection: StoreCollection
   directory: Maybe<Directory>
   file: Maybe<File>
-  /** Person query. */
-  person: Maybe<StorePerson>
-  /** Product query. */
+  /** Returns the details of a product based on the specified locator. */
   product: StoreProduct
-  /** Search query. */
+  /** Returns the result of a product, facet, or suggestion search. */
   search: StoreSearchResult
   site: Maybe<Site>
   siteBuildMetadata: Maybe<SiteBuildMetadata>
@@ -1126,6 +1779,27 @@ export type QueryAllCmsHomeArgs = {
   limit: InputMaybe<Scalars['Int']>
   skip: InputMaybe<Scalars['Int']>
   sort: InputMaybe<CmsHomeSortInput>
+}
+
+export type QueryAllCmsInstitutionalPageArgs = {
+  filter: InputMaybe<CmsInstitutionalPageFilterInput>
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+  sort: InputMaybe<CmsInstitutionalPageSortInput>
+}
+
+export type QueryAllCmsPlpArgs = {
+  filter: InputMaybe<CmsPlpFilterInput>
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+  sort: InputMaybe<CmsPlpSortInput>
+}
+
+export type QueryAllCmsSeoArgs = {
+  filter: InputMaybe<CmsSeoFilterInput>
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+  sort: InputMaybe<CmsSeoSortInput>
 }
 
 export type QueryAllCollectionsArgs = {
@@ -1194,6 +1868,35 @@ export type QueryCmsHomeArgs = {
   name: InputMaybe<StringQueryOperatorInput>
   parent: InputMaybe<NodeFilterInput>
   sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
+}
+
+export type QueryCmsInstitutionalPageArgs = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+}
+
+export type QueryCmsPlpArgs = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+}
+
+export type QueryCmsSeoArgs = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+  seo: InputMaybe<CmsSeoSeoFilterInput>
   versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
@@ -2520,7 +3223,7 @@ export type StoreCart = {
 
 /** Shopping cart message. */
 export type StoreCartMessage = {
-  /** Shopping cart message status, which can be `INFO`, `WARNING` OR `ERROR`. */
+  /** Shopping cart message status, which can be `INFO`, `WARNING` or `ERROR`. */
   status: StoreStatus
   /** Shopping cart message text. */
   text: Scalars['String']
@@ -2542,19 +3245,19 @@ export type StoreCollection = {
   type: StoreCollectionType
 }
 
-/** Collection connection pagination information. */
+/** Collection connections, including pagination information and collections returned by the query. */
 export type StoreCollectionConnection = {
-  /** Array with collection connection page edges. */
+  /** Array with collection connection page edges, each containing a collection and a corresponding cursor.. */
   edges: Array<StoreCollectionEdge>
-  /** Collection connection page information. */
+  /** Collection pagination information. */
   pageInfo: StorePageInfo
 }
 
-/** Collection pagination edge. */
+/** Each collection edge contains a `node`, with product collection information, and a `cursor`, that can be used as a reference for pagination. */
 export type StoreCollectionEdge = {
-  /** Collection pagination cursor. */
+  /** Collection cursor. Used as pagination reference. */
   cursor: Scalars['String']
-  /** Collection pagination node. */
+  /** Each collection node contains the information of a product collection returned by the query. */
   node: StoreCollection
 }
 
@@ -2574,28 +3277,56 @@ export type StoreCollectionMeta = {
 
 /** Product collection type. Possible values are `Department`, `Category`, `Brand` or `Cluster`. */
 export type StoreCollectionType =
+  /** Product brand. */
   | 'Brand'
+  /** Second level of product categorization. */
   | 'Category'
+  /** Product cluster. */
   | 'Cluster'
+  /** First level of product categorization. */
   | 'Department'
 
-/** Search facet information. */
-export type StoreFacet = {
+/** Currency information. */
+export type StoreCurrency = {
+  /** Currency code (e.g: USD). */
+  code: Scalars['String']
+  /** Currency symbol (e.g: $). */
+  symbol: Scalars['String']
+}
+
+export type StoreFacet = StoreFacetBoolean | StoreFacetRange
+
+/** Search facet boolean information. */
+export type StoreFacetBoolean = {
   /** Facet key. */
   key: Scalars['String']
   /** Facet label. */
   label: Scalars['String']
-  /** Facet type. Possible values are `BOOLEAN` and `RANGE`. */
-  type: StoreFacetType
   /** Array with information on each facet value. */
-  values: Array<StoreFacetValue>
+  values: Array<StoreFacetValueBoolean>
+}
+
+/** Search facet range information. */
+export type StoreFacetRange = {
+  /** Facet key. */
+  key: Scalars['String']
+  /** Facet label. */
+  label: Scalars['String']
+  /** Maximum facet range value. */
+  max: StoreFacetValueRange
+  /** Minimum facet range value. */
+  min: StoreFacetValueRange
 }
 
 /** Search facet type. */
-export type StoreFacetType = 'BOOLEAN' | 'RANGE'
+export type StoreFacetType =
+  /** Indicates boolean search facet. */
+  | 'BOOLEAN'
+  /** Indicates range type search facet. */
+  | 'RANGE'
 
 /** Information of a specific facet value. */
-export type StoreFacetValue = {
+export type StoreFacetValueBoolean = {
   /** Facet value label. */
   label: Scalars['String']
   /** Number of items with this facet. */
@@ -2604,6 +3335,14 @@ export type StoreFacetValue = {
   selected: Scalars['Boolean']
   /** Facet value. */
   value: Scalars['String']
+}
+
+/** Search facet range value information. Used for minimum and maximum range values. */
+export type StoreFacetValueRange = {
+  /** Search facet range absolute value. */
+  absolute: Scalars['Float']
+  /** Search facet range selected value. */
+  selected: Scalars['Float']
 }
 
 /** Image. */
@@ -2662,15 +3401,15 @@ export type StoreOrganization = {
   identifier: Scalars['String']
 }
 
-/** Page information. */
+/** Whenever you make a query that allows for pagination, such as `allProducts` or `allCollections`, you can check `StorePageInfo` to learn more about the complete set of items and use it to paginate your queries. */
 export type StorePageInfo = {
-  /** Page cursor end. */
+  /** Cursor corresponding to the last possible item. */
   endCursor: Scalars['String']
-  /** Indicates whether next page exists. */
+  /** Indicates whether there is at least one more page with items after the ones returned in the current query. */
   hasNextPage: Scalars['Boolean']
-  /** Indicates whether previous page exists. */
+  /** Indicates whether there is at least one more page with items before the ones returned in the current query. */
   hasPreviousPage: Scalars['Boolean']
-  /** Page cursor start. */
+  /** Cursor corresponding to the first possible item. */
   startCursor: Scalars['String']
   /** Total number of items (products or collections), not pages. */
   totalCount: Scalars['Int']
@@ -2722,19 +3461,19 @@ export type StoreProduct = {
   slug: Scalars['String']
 }
 
-/** Product connection pagination information. */
+/** Product connections, including pagination information and products returned by the query. */
 export type StoreProductConnection = {
-  /** Array with product connection page edges. */
+  /** Array with product connection edges, each containing a product and a corresponding cursor. */
   edges: Array<StoreProductEdge>
-  /** Product connection page information. */
+  /** Product pagination information. */
   pageInfo: StorePageInfo
 }
 
-/** Product pagination edge. */
+/** Each product edge contains a `node`, with product information, and a `cursor`, that can be used as a reference for pagination. */
 export type StoreProductEdge = {
-  /** Product pagination cursor. */
+  /** Product cursor. Used as pagination reference. */
   cursor: Scalars['String']
-  /** Product pagination node. */
+  /** Each product node contains the information of a product returned by the query. */
   node: StoreProduct
 }
 
@@ -2754,6 +3493,8 @@ export type StoreProductGroup = {
 export type StorePropertyValue = {
   /** Property name. */
   name: Scalars['String']
+  /** Property id. This propert changes according to the content of the object. */
+  propertyID: Scalars['String']
   /** Property value. May hold a string or the string representation of an object. */
   value: Scalars['ObjectOrString']
   /** Specifies the nature of the value */
@@ -2803,31 +3544,53 @@ export type StoreSession = {
   /** Session channel. */
   channel: Maybe<Scalars['String']>
   /** Session country. */
-  country: Maybe<Scalars['String']>
+  country: Scalars['String']
+  /** Session currency. */
+  currency: StoreCurrency
+  /** Session locale. */
+  locale: Scalars['String']
+  /** Session postal code. */
+  person: Maybe<StorePerson>
   /** Session postal code. */
   postalCode: Maybe<Scalars['String']>
 }
 
-/** Product sorting options used in search. */
+/** Product search results sorting options. */
 export type StoreSort =
+  /** Sort by discount value, from highest to lowest. */
   | 'discount_desc'
+  /** Sort by name, in alphabetical order. */
   | 'name_asc'
+  /** Sort by name, in reverse alphabetical order. */
   | 'name_desc'
+  /** Sort by orders, from highest to lowest. */
   | 'orders_desc'
+  /** Sort by price, from lowest to highest. */
   | 'price_asc'
+  /** Sort by price, from highest to lowest. */
   | 'price_desc'
+  /** Sort by release date, from  highest to lowest. */
   | 'release_desc'
+  /** Sort by product score, from highest to lowest. */
   | 'score_desc'
 
-/** Status used to indicate type of message. For instance, in shopping cart messages. */
+/** Status used to indicate a message type. For instance, a shopping cart informative or error message. */
 export type StoreStatus = 'ERROR' | 'INFO' | 'WARNING'
+
+/** Suggestion term. */
+export type StoreSuggestionTerm = {
+  /** Its occurrences count. */
+  count: Scalars['Int']
+  /** The term. */
+  value: Scalars['String']
+}
 
 /** Suggestions information. */
 export type StoreSuggestions = {
   /** Array with suggestion products' information. */
-  products: Maybe<Array<StoreProduct>>
+  products: Array<StoreProduct>
   /** Array with suggestion terms. */
-  terms: Maybe<Array<Scalars['String']>>
+  terms: Array<StoreSuggestionTerm>
 }
 
 export type StringQueryOperatorInput = {
@@ -2860,18 +3623,10 @@ export type ProductSummary_ProductFragment = {
   }
 }
 
-export type UpdateSessionMutationMutationVariables = Exact<{
-  session: IStoreSession
-}>
-
-export type UpdateSessionMutationMutation = {
-  updateSession: { channel: string | null }
-}
-
-export type Filter_FacetsFragment = {
+export type Filter_Facets_StoreFacetBoolean_Fragment = {
+  __typename: 'StoreFacetBoolean'
   key: string
   label: string
-  type: StoreFacetType
   values: Array<{
     label: string
     value: string
@@ -2879,6 +3634,18 @@ export type Filter_FacetsFragment = {
     quantity: number
   }>
 }
+
+export type Filter_Facets_StoreFacetRange_Fragment = {
+  __typename: 'StoreFacetRange'
+  key: string
+  label: string
+  min: { selected: number; absolute: number }
+  max: { selected: number; absolute: number }
+}
+
+export type Filter_FacetsFragment =
+  | Filter_Facets_StoreFacetBoolean_Fragment
+  | Filter_Facets_StoreFacetRange_Fragment
 
 export type ProductDetailsFragment_ProductFragment = {
   sku: string
@@ -2901,6 +3668,12 @@ export type ProductDetailsFragment_ProductFragment = {
   breadcrumbList: {
     itemListElement: Array<{ item: string; name: string; position: number }>
   }
+  additionalProperty: Array<{
+    propertyID: string
+    name: string
+    value: any
+    valueReference: string
+  }>
 }
 
 export type ProductGalleryQueryQueryVariables = Exact<{
@@ -2913,42 +3686,27 @@ export type ProductGalleryQueryQueryVariables = Exact<{
 
 export type ProductGalleryQueryQuery = {
   search: {
-    products: {
-      pageInfo: { totalCount: number }
-      edges: Array<{
-        node: {
-          slug: string
-          sku: string
-          name: string
-          gtin: string
-          id: string
-          brand: { name: string; brandName: string }
-          isVariantOf: { productGroupID: string; name: string }
-          image: Array<{ url: string; alternateName: string }>
-          offers: {
-            lowPrice: number
-            offers: Array<{
-              availability: string
-              price: number
-              listPrice: number
-              quantity: number
-              seller: { identifier: string }
-            }>
-          }
+    products: { pageInfo: { totalCount: number } }
+    facets: Array<
+      | {
+          __typename: 'StoreFacetBoolean'
+          key: string
+          label: string
+          values: Array<{
+            label: string
+            value: string
+            selected: boolean
+            quantity: number
+          }>
         }
-      }>
-    }
-    facets: Array<{
-      key: string
-      label: string
-      type: StoreFacetType
-      values: Array<{
-        label: string
-        value: string
-        selected: boolean
-        quantity: number
-      }>
-    }>
+      | {
+          __typename: 'StoreFacetRange'
+          key: string
+          label: string
+          min: { selected: number; absolute: number }
+          max: { selected: number; absolute: number }
+        }
+    >
   }
 }
 
@@ -2960,6 +3718,7 @@ export type CollectionPageQueryQuery = {
       titleTemplate: string | null
       title: string | null
       description: string | null
+      siteUrl: string | null
     } | null
   } | null
 }
@@ -2992,18 +3751,17 @@ export type ProductPageQueryQuery = {
 }
 
 export type ServerProductPageQueryQueryVariables = Exact<{
-  id: Scalars['String']
+  slug: Scalars['String']
 }>
 
 export type ServerProductPageQueryQuery = {
   product: {
-    slug: string
     sku: string
     gtin: string
     name: string
     description: string
     id: string
-    seo: { title: string; description: string }
+    seo: { title: string; description: string; canonical: string }
     brand: { name: string }
     breadcrumbList: {
       itemListElement: Array<{ item: string; name: string; position: number }>
@@ -3024,6 +3782,12 @@ export type ServerProductPageQueryQuery = {
       }>
     }
     isVariantOf: { productGroupID: string; name: string }
+    additionalProperty: Array<{
+      propertyID: string
+      name: string
+      value: any
+      valueReference: string
+    }>
   }
 }
 
@@ -3035,6 +3799,7 @@ export type HomePageQueryQuery = {
       title: string | null
       description: string | null
       titleTemplate: string | null
+      siteUrl: string | null
     } | null
   } | null
   cmsHome: { sections: Array<{ data: any; name: string }> } | null
@@ -3072,6 +3837,12 @@ export type ValidateCartMutationMutation = {
           image: Array<{ url: string; alternateName: string }>
           brand: { name: string }
           isVariantOf: { productGroupID: string; name: string }
+          additionalProperty: Array<{
+            propertyID: string
+            name: string
+            value: any
+            valueReference: string
+          }>
         }
       }>
     }
@@ -3093,18 +3864,13 @@ export type CartItemFragment = {
     image: Array<{ url: string; alternateName: string }>
     brand: { name: string }
     isVariantOf: { productGroupID: string; name: string }
+    additionalProperty: Array<{
+      propertyID: string
+      name: string
+      value: any
+      valueReference: string
+    }>
   }
-}
-
-export type PersonQueryQueryVariables = Exact<{ [key: string]: never }>
-
-export type PersonQueryQuery = {
-  person: {
-    id: string
-    email: string
-    givenName: string
-    familyName: string
-  } | null
 }
 
 export type BrowserProductQueryQueryVariables = Exact<{
@@ -3133,6 +3899,12 @@ export type BrowserProductQueryQuery = {
     breadcrumbList: {
       itemListElement: Array<{ item: string; name: string; position: number }>
     }
+    additionalProperty: Array<{
+      propertyID: string
+      name: string
+      value: any
+      valueReference: string
+    }>
   }
 }
 
@@ -3172,4 +3944,67 @@ export type ProductsQueryQuery = {
       }>
     }
   }
+}
+
+export type SearchSuggestionsQueryQueryVariables = Exact<{
+  term: Scalars['String']
+  selectedFacets: InputMaybe<Array<IStoreSelectedFacet> | IStoreSelectedFacet>
+}>
+
+export type SearchSuggestionsQueryQuery = {
+  search: {
+    suggestions: {
+      terms: Array<{ value: string }>
+      products: Array<{
+        slug: string
+        sku: string
+        name: string
+        gtin: string
+        id: string
+        brand: { name: string; brandName: string }
+        isVariantOf: { productGroupID: string; name: string }
+        image: Array<{ url: string; alternateName: string }>
+        offers: {
+          lowPrice: number
+          offers: Array<{
+            availability: string
+            price: number
+            listPrice: number
+            quantity: number
+            seller: { identifier: string }
+          }>
+        }
+      }>
+    }
+  }
+}
+
+export type TopSearchSuggestionsQueryQueryVariables = Exact<{
+  term: Scalars['String']
+  selectedFacets: InputMaybe<Array<IStoreSelectedFacet> | IStoreSelectedFacet>
+}>
+
+export type TopSearchSuggestionsQueryQuery = {
+  search: { suggestions: { terms: Array<{ value: string }> } }
+}
+
+export type ValidateSessionMutationVariables = Exact<{
+  session: IStoreSession
+  search: Scalars['String']
+}>
+
+export type ValidateSessionMutation = {
+  validateSession: {
+    locale: string
+    channel: string | null
+    country: string
+    postalCode: string | null
+    currency: { code: string; symbol: string }
+    person: {
+      id: string
+      email: string
+      givenName: string
+      familyName: string
+    } | null
+  } | null
 }

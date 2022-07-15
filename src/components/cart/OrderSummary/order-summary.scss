@@ -4,7 +4,6 @@
   li {
     display: flex;
     justify-content: space-between;
-    font-family: var(--fs-text-face-body);
     line-height: 1.5;
 
     &[data-order-summary-discount] { color: var(--fs-color-success-text); }

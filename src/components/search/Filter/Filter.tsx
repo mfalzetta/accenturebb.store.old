@@ -1,25 +1,17 @@
-import { useSearch } from '@faststore/sdk'
-import { graphql } from 'gatsby'
-import Button, { ButtonIcon } from 'src/components/ui/Button'
-import Icon from 'src/components/ui/Icon'
-import SlideOver from 'src/components/ui/SlideOver'
+import { setFacet, toggleFacet, useSearch } from '@faststore/sdk'
 import type { Filter_FacetsFragment } from '@generated/graphql'
-import { useModal } from 'src/sdk/ui/modal/Provider'
+import { graphql } from 'gatsby'
+import { useUI } from 'src/sdk/ui/Provider'
 
 import Facets from './Facets'
+import FilterSlider from './FilterSlider'
 import { useFilter } from './useFilter'
 
 interface Props {
-  facets: Filter_FacetsFragment[]
-  /*
-   * Control whether the filter modal is open. (mobile only)
-   */
-  isOpen?: boolean
   /**
-   * This function is called whenever the user hits "Escape", clicks outside
-   * the filter modal or clicks in close button. (mobile only)
+   * The array that represents the details of every facet.
    */
-  onDismiss?: () => void
+  facets: Filter_FacetsFragment[]
   /**
    * ID to find this component in testing tools (e.g.: cypress,
    * testing-library, and jest).
@@ -27,20 +19,11 @@ interface Props {
   testId?: string
 }
 
-function Filter({
-  facets: allFacets,
-  onDismiss,
-  isOpen = false,
-  testId = 'store-filter',
-}: Props) {
-  const {
-    setFacets,
-    toggleFacet,
-    state: { selectedFacets },
-  } = useSearch()
-
-  const { onModalClose } = useModal()
-  const { facets, selected, expanded, dispatch } = useFilter(allFacets)
+function Filter({ facets: allFacets, testId = 'store-filter' }: Props) {
+  const filter = useFilter(allFacets)
+  const { resetInfiniteScroll, state, setState } = useSearch()
+  const { filter: displayFilter } = useUI()
+  const { facets, expanded, dispatch } = filter
 
   return (
     <>
@@ -49,82 +32,57 @@ function Filter({
           facets={facets}
           testId={`desktop-${testId}`}
           indicesExpanded={expanded}
-          onFacetChange={toggleFacet}
+          onFacetChange={(facet, type) => {
+            setState({
+              ...state,
+              selectedFacets:
+                type === 'BOOLEAN'
+                  ? toggleFacet(state.selectedFacets, facet)
+                  : setFacet(state.selectedFacets, facet, true),
+              page: 0,
+            })
+            resetInfiniteScroll(0)
+          }}
           onAccordionChange={(index) =>
             dispatch({ type: 'toggleExpanded', payload: index })
           }
         />
       </div>
 
-      <SlideOver
-        isOpen={isOpen}
-        onDismiss={onDismiss}
-        size="partial"
-        direction="rightSide"
-        className="filter-modal__content"
-      >
-        <div className="filter-modal__body">
-          <header className="filter-modal__header">
-            <h2 className="text__lead">Filters</h2>
-            <ButtonIcon
-              data-testid="filter-modal-button-close"
-              aria-label="Close Filters"
-              icon={<Icon name="X" width={32} height={32} />}
-              onClick={() => {
-                dispatch({
-                  type: 'selectFacets',
-                  payload: selectedFacets,
-                })
-
-                onModalClose()
-              }}
-            />
-          </header>
-          <Facets
-            facets={facets}
-            testId={`mobile-${testId}`}
-            indicesExpanded={expanded}
-            onFacetChange={(facet) =>
-              dispatch({ type: 'toggleFacet', payload: facet })
-            }
-            onAccordionChange={(index) =>
-              dispatch({ type: 'toggleExpanded', payload: index })
-            }
-          />
-        </div>
-        <footer className="filter-modal__footer">
-          <Button
-            variant="secondary"
-            onClick={() => dispatch({ type: 'selectFacets', payload: [] })}
-          >
-            Clear All
-          </Button>
-          <Button
-            variant="primary"
-            data-testid="filter-modal-button-apply"
-            onClick={() => {
-              setFacets(selected)
-              onModalClose()
-            }}
-          >
-            Apply
-          </Button>
-        </footer>
-      </SlideOver>
+      {displayFilter && <FilterSlider {...filter} testId={testId} />}
     </>
   )
 }
 
 export const fragment = graphql`
   fragment Filter_facets on StoreFacet {
-    key
-    label
-    type
-    values {
+    ... on StoreFacetRange {
+      key
       label
-      value
-      selected
-      quantity
+
+      min {
+        selected
+        absolute
+      }
+
+      max {
+        selected
+        absolute
+      }
+
+      __typename
+    }
+    ... on StoreFacetBoolean {
+      key
+      label
+      values {
+        label
+        value
+        selected
+        quantity
+      }
+
+      __typename
     }
   }
 `

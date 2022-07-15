@@ -32,7 +32,7 @@ const Newsletter = forwardRef<HTMLFormElement, NewsletterProps>(
     }
 
     return (
-      <section data-store-newsletter className="layout__content">
+      <section data-store-newsletter>
         <Form
           data-newsletter-form
           ref={ref}
@@ -52,9 +52,7 @@ const Newsletter = forwardRef<HTMLFormElement, NewsletterProps>(
               placeholder="Email"
               ref={emailInputRef}
             />
-            <Button data-fs-button type="submit">
-              Enviar
-            </Button>
+            <Button type="submit">Enviar</Button>
           </div>
         </Form>
       </section>

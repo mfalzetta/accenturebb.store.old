@@ -5,18 +5,6 @@
   overflow: auto;
   background-color: var(--fs-color-neutral-bkg);
 
-  @media (max-width: 1280px) {
-    max-width: 40%;
-  }
-
-  @media (max-width: 900px) {
-    max-width: 70%;
-  }
-
-  @media (max-width: 600px) {
-    max-width: 80%;
-  }
-
   > header {
     display: flex;
     align-items: center;
@@ -37,10 +25,7 @@
 
     p {
       margin-right: var(--fs-spacing-2);
-      font-family: var(--fs-text-face-body);
-      font-size: 24px;
       line-height: 1.35;
-      color: var(--fs-color-theme-4);
     }
   }
 
@@ -60,9 +45,5 @@
     [data-store-button] {
       width: 100%;
     }
-  }
-
-  [data-fs-button][data-fs-button-variant="primary"] {
-    font-family: var(--fs-text-face-body);
   }
 }

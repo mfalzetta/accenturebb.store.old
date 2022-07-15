@@ -8,6 +8,57 @@ import { useCart } from 'src/sdk/cart/useCart'
 import { useRemoveButton } from 'src/sdk/cart/useRemoveButton'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import type { CartItem as ICartItem } from 'src/sdk/cart/validate'
+import { useCallback, useMemo } from 'react'
+import type {
+  AddToCartEvent,
+  CurrencyCode,
+  RemoveFromCartEvent,
+} from '@faststore/sdk'
+import { useSession, sendAnalyticsEvent } from '@faststore/sdk'
+import type { AnalyticsItem } from 'src/sdk/analytics/types'
+
+import styles from './cart-item.module.scss'
+
+function useCartItemEvent() {
+  const {
+    currency: { code },
+  } = useSession()
+
+  const sendCartItemEvent = useCallback(
+    (item: Props['item'], quantity: number) => {
+      const quantityDelta = quantity - item.quantity
+
+      return sendAnalyticsEvent<
+        AddToCartEvent<AnalyticsItem> | RemoveFromCartEvent<AnalyticsItem>
+      >({
+        name: quantityDelta > 0 ? 'add_to_cart' : 'remove_from_cart',
+        params: {
+          currency: code as CurrencyCode,
+          // TODO: In the future, we can explore more robust ways of
+          // calculating the value (gift items, discounts, etc.).
+          value: item.price * Math.abs(quantityDelta),
+          items: [
+            {
+              item_id: item.itemOffered.isVariantOf.productGroupID,
+              item_name: item.itemOffered.isVariantOf.name,
+              item_brand: item.itemOffered.brand.name,
+              item_variant: item.itemOffered.sku,
+              quantity: Math.abs(quantityDelta),
+              price: item.price,
+              discount: item.listPrice - item.price,
+              currency: code as CurrencyCode,
+              item_variant_name: item.itemOffered.name,
+              product_reference_id: item.itemOffered.gtin,
+            },
+          ],
+        },
+      })
+    },
+    [code]
+  )
+
+  return useMemo(() => ({ sendCartItemEvent }), [sendCartItemEvent])
+}
 
 interface Props {
   item: ICartItem
@@ -16,15 +67,25 @@ interface Props {
 function CartItem({ item }: Props) {
   const btnProps = useRemoveButton(item)
   const { updateItemQuantity } = useCart()
+  const { sendCartItemEvent } = useCartItemEvent()
+
+  const onQuantityChange = useCallback(
+    (quantity: number) => {
+      sendCartItemEvent(item, quantity)
+
+      updateItemQuantity(item.id, quantity)
+    },
+    [item, sendCartItemEvent, updateItemQuantity]
+  )
 
   return (
     <Card
-      className="cart-item"
+      className={styles.fsCartItem}
       data-testid="cart-item"
       data-sku={item.itemOffered.sku}
       data-seller={item.seller.identifier}
     >
-      <CardContent>
+      <CardContent data-fs-cart-item-content>
         <CardImage>
           <Image
             src={item.itemOffered.image[0].url}
@@ -33,11 +94,11 @@ function CartItem({ item }: Props) {
             height={72}
           />
         </CardImage>
-        <div data-cart-item-summary>
-          <p className="text__body" data-cart-item-title>
+        <div data-fs-cart-item-summary>
+          <p className="text__body" data-fs-cart-item-title>
             {item.itemOffered.isVariantOf.name}
           </p>
-          <span data-cart-item-prices>
+          <span data-fs-cart-item-prices>
             <Price
               value={item.listPrice}
               formatter={useFormattedPrice}
@@ -60,9 +121,9 @@ function CartItem({ item }: Props) {
         </div>
       </CardContent>
 
-      <CardActions>
+      <CardActions data-fs-cart-item-actions>
         <Button
-          className="remove__button"
+          variant="tertiary"
           icon={<Icon name="XCircle" width={18} height={18} />}
           iconPosition="left"
           {...btnProps}
@@ -72,7 +133,7 @@ function CartItem({ item }: Props) {
         <QuantitySelector
           min={1}
           initial={item.quantity}
-          onChange={(quantity) => updateItemQuantity(item.id, quantity)}
+          onChange={onQuantityChange}
         />
       </CardActions>
     </Card>
