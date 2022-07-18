@@ -7,11 +7,14 @@ import ProductShelf from './sections/ProductShelf'
 import ProductTiles from './sections/ProductTiles'
 import PromotionBanner from './sections/PromotionBanner'
 import ImageBanner from './sections/ImageBanner'
-
+import HeaderLink from './sections/HeaderLink/HeaderLink'
+import Title from './sections/Title/Title'
 /**
  * Sections: Components imported from '../components/sections' only.
  * Do not import or render components from any other folder in here.
  */
+
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 const COMPONENTS: Record<string, ComponentType<any>> = {
   Hero,
   BannerText,
@@ -20,6 +23,8 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   ProductTiles,
   PromotionBanner,
   ImageBanner,
+  HeaderLink,
+  Title,
 }
 
 interface Props {

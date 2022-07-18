@@ -1,5 +1,10 @@
 [
   {
+    "id": "headerLink",
+    "name": "Header Link",
+    "configurationSchemaSets": []
+  },
+  {
     "id": "home",
     "name": "Home Page",
     "configurationSchemaSets": []

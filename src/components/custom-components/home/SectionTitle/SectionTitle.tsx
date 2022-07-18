@@ -26,9 +26,7 @@ const SectionTitle = ({
           border ? 'border--active' : ''
         } ${className ?? ''}`}
       >
-        <span
-          className={` layout__content classSection__title ${className ?? ''}`}
-        >
+        <span className={`classSection__title ${className ?? ''}`}>
           {title}
         </span>
         {href && linkText && (
@@ -36,7 +34,9 @@ const SectionTitle = ({
             <span className="classSection__link ">{linkText}</span>
           </Link>
         )}
-        <span className="classSection__description">{description}</span>
+        {description && (
+          <span className="classSection__description">{description}</span>
+        )}
       </div>
     </Section>
   )
