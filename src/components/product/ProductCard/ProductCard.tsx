@@ -27,6 +27,7 @@ export interface ProductCardProps {
   aspectRatio?: number
   rowLayout?: boolean
   ButtonBuy?: ReactNode
+  isSimpleCard?: boolean
 }
 
 function ProductCard({
@@ -37,6 +38,7 @@ function ProductCard({
   aspectRatio = 1,
   rowLayout,
   ButtonBuy,
+  isSimpleCard,
   ...otherProps
 }: ProductCardProps) {
   const {
@@ -63,7 +65,10 @@ function ProductCard({
       className={styles.fsProductCard}
       {...otherProps}
     >
-      <div data-fs-product-card-row-variant={rowLayout}>
+      <div
+        data-fs-product-card-row-variant={rowLayout}
+        data-fs-product-card-simple={isSimpleCard}
+      >
         <UIProductCardImage>
           <Image
             src={img.url}

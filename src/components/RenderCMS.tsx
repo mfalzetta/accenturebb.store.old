@@ -8,11 +8,14 @@ import ProductTiles from './sections/ProductTiles'
 import PromotionBanner from './sections/PromotionBanner'
 import ImageBanner from './sections/ImageBanner'
 import BlogSection from './sections/BlogSection'
-
+import HeaderLink from './sections/HeaderLink/HeaderLink'
+import Title from './sections/Title/Title'
 /**
  * Sections: Components imported from '../components/sections' only.
  * Do not import or render components from any other folder in here.
  */
+
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 const COMPONENTS: Record<string, ComponentType<any>> = {
   Hero,
   BannerText,
@@ -22,6 +25,8 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   PromotionBanner,
   ImageBanner,
   BlogSection,
+  HeaderLink,
+  Title,
 }
 
 interface Props {

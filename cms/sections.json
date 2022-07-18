@@ -380,5 +380,93 @@
         }
       }
     }
+  },
+  {
+    "name": "ProductShelf",
+    "schema": {
+      "title": "Shelf",
+      "description": "Collection shelf",
+      "type": "object",
+      "properties": {
+        "productClusterIds": {
+          "type": "string",
+          "title": "Collection ID"
+        },
+        "shelfType": {
+          "type": "string",
+          "title": "Display as",
+          "enum": ["isCarousel", "isRowLayout"],
+          "enumNames": ["Carousel", "Row"]
+        },
+        "first": {
+          "type": "number",
+          "title": "Total of products that will be display"
+        },
+        "itens": {
+          "type": "number",
+          "title": "Number of products that will be display per page"
+        },
+        "isSimpleCard": {
+          "default": false,
+          "type": "boolean",
+          "title": "Display as simple card",
+          "description": "Show only product name, image and price"
+        },
+        "otherBackground": {
+          "default": false,
+          "type": "boolean",
+          "title": "other background"
+        }
+      }
+    }
+  },
+  {
+    "name": "Title",
+    "schema": {
+      "title": "Section title",
+      "type": "object",
+      "properties": {
+        "titleSection": {
+          "type": "string",
+          "title": "Title"
+        },
+        "linkText": {
+          "type": "string",
+          "title": "Link name"
+        },
+        "link": {
+          "type": "string",
+          "title": "URL"
+        },
+        "border": {
+          "default": false,
+          "type": "boolean",
+          "title": "border"
+        },
+        "otherBackground": {
+          "default": false,
+          "type": "boolean",
+          "title": "other background"
+        }
+      }
+    }
+  },
+  {
+    "name": "HeaderLink",
+    "schema": {
+      "title": "Header Link",
+      "description": "Define links",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Link name"
+        },
+        "link": {
+          "type": "string",
+          "title": "URL"
+        }
+      }
+    }
   }
 ]

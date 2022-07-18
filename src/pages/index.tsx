@@ -3,13 +3,8 @@ import 'src/styles/pages/homepage.scss'
 import { useSession } from '@faststore/sdk'
 import { graphql } from 'gatsby'
 import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
-import { Suspense } from 'react'
 import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
 import IncentivesMock from 'src/components/sections/Incentives/incentivesMock'
-import ProductShelf from 'src/components/sections/ProductShelf'
-import ProductShelfSkeleton from 'src/components/skeletons/ProductShelfSkeleton'
-import ProductTilesSkeleton from 'src/components/skeletons/ProductTilesSkeleton'
-import { ITEMS_PER_SECTION } from 'src/constants'
 import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
@@ -216,14 +211,6 @@ function Page(props: Props) {
         title="Comprar por marca"
       />
       <Brand />
-      <Suspense fallback={<ProductShelfSkeleton loading />}>
-        <ProductShelf
-          first={20}
-          selectedFacets={[{ key: 'productClusterIds', value: '139' }]}
-          title="Most Wanted"
-          isCarousel
-        />
-      </Suspense>
       <SectionTitle
         className="classSection__container"
         title="O essencial do Verão"
@@ -234,24 +221,6 @@ function Page(props: Props) {
         href="/"
         linkText="compre agora"
       />
-      <Suspense fallback={<ProductTilesSkeleton loading />}>
-        <ProductShelf
-          first={ITEMS_PER_SECTION}
-          selectedFacets={[{ key: 'productClusterIds', value: '139' }]}
-          title="Popular picks"
-          isCarousel
-        />
-      </Suspense>
-      <Suspense fallback={<ProductTilesSkeleton loading />}>
-        <ProductShelf
-          first={ITEMS_PER_SECTION}
-          selectedFacets={[{ key: 'productClusterIds', value: '141' }]}
-          title="What's trending"
-          withDivisor
-          isRowLayout
-          otherBackground
-        />
-      </Suspense>
       <SectionTitle border title="Por que comprar com a Accenture" />
       <IncentivesHeader incentives={IncentivesMock} />
       <Newsletter

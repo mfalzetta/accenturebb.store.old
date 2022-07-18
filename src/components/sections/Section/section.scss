@@ -16,3 +16,8 @@
 
   @include media(">=notebook") { padding-top: var(--fs-spacing-9); }
 }
+
+.section__other-background {
+  margin-top: 0;
+  background-color: #fafafa;
+}
