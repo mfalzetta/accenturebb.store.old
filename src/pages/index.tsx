@@ -283,7 +283,7 @@ export const querySSG = graphql`
         siteUrl
       }
     }
-    cmsHome(name: { eq: "HomeTestS" }) {
+    cmsHome(name: { eq: "HomePage" }) {
       sections {
         data
         name
