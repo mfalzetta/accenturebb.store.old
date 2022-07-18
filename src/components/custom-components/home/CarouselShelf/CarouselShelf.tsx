@@ -35,7 +35,7 @@ const CarouselShelf = ({
     setMoveCarousel(false)
     const parentComponent = document.querySelector(
       '.classSection__container.layout__content'
-    ) as HTMLElement | null
+    ) as HTMLElement
 
     if (document.documentElement.offsetWidth <= 920) {
       const screenWidth = document.documentElement.offsetWidth - 32
