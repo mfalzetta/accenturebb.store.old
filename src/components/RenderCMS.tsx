@@ -7,6 +7,7 @@ import ProductShelf from './sections/ProductShelf'
 import ProductTiles from './sections/ProductTiles'
 import PromotionBanner from './sections/PromotionBanner'
 import ImageBanner from './sections/ImageBanner'
+import BlogSection from './sections/BlogSection'
 
 /**
  * Sections: Components imported from '../components/sections' only.
@@ -20,6 +21,7 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   ProductTiles,
   PromotionBanner,
   ImageBanner,
+  BlogSection,
 }
 
 interface Props {
