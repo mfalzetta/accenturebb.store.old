@@ -17,7 +17,7 @@ const RegionModal = lazy(
 
 export const querySSG = graphql`
   query HeaderLinkQuery {
-    cmsHeaderLink {
+    cmsHeaderLink(name: { eq: "Header Links S" }) {
       sections {
         data
         name
