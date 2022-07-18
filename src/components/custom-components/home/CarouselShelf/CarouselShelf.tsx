@@ -35,7 +35,7 @@ const CarouselShelf = ({
     setMoveCarousel(false)
     const parentComponent = document.querySelector(
       '.classSection__container.layout__content'
-    ) as HTMLElement | null
+    ) as HTMLElement
 
     if (document.documentElement.offsetWidth <= 920) {
       const screenWidth = document.documentElement.offsetWidth - 32
@@ -93,45 +93,38 @@ const CarouselShelf = ({
     const maxMove = itemW * (children.length - 1)
 
     if (type === 'move') {
-      if (!moveCarousel) return
-    }
+      if (!moveCarousel) {
+        return
+      }
 
-    if (getPosition < 0) {
-      if (type === 'start') {
-        setMoveCarousel(true)
-        setMoveStart(0)
-      } else if (type === 'move') {
-        setMoveCarousel(false)
-      }
-    } else if (getPosition > screen) {
-      if (type === 'start') {
-        setMoveCarousel(true)
-        setMoveStart(screen)
-      } else if (type === 'move') {
-        setMoveCarousel(false)
-      }
-    } else if (type === 'move') {
       const x = getPosition - moveStart
 
-      if (carouselPosition === 0) {
+      if (getPosition < 0 || getPosition > screen) {
+        setMoveCarousel(false)
+      } else if (carouselPosition === 0) {
         setCarouselPosition(x > 0 ? 0 : movePosition + x * 1.5)
       } else if (Math.abs(movePosition + x) > maxMove) {
         setCarouselPosition(-maxMove)
       } else {
         setCarouselPosition(movePosition + x > 0 ? 0 : movePosition + x * 1.5)
       }
-    } else if (type === 'start') {
+    }
+
+    if (type === 'start') {
       setMoveCarousel(true)
       setMoveStart(getPosition)
+      if (getPosition < 0) {
+        setMoveStart(0)
+      } else if (getPosition > screen) {
+        setMoveStart(screen)
+      }
     }
 
     if (type === 'end') {
       if (carouselPosition > maxMove) {
         setMovePosition(maxMove)
         setCarouselPosition(-maxMove)
-      }
-
-      if (carouselPosition > 0) {
+      } else if (carouselPosition > 0) {
         setMovePosition(0)
         setCarouselPosition(0)
       } else {
@@ -152,20 +145,29 @@ const CarouselShelf = ({
     const screenWidth = document.documentElement.offsetWidth - 32
     let itens = itemsPage
 
-    if (screenWidth < 920) itens -= 1
+    if (screenWidth < 920) {
+      itens -= 1
+    }
+
     const position = itens * (index - 1) * (parseFloat(widthCard) + marginCards)
 
     setCarouselPosition(-position)
   }
 
   const nextSlide = () => {
-    if (carouselIndex < carouselDots) moveDot(carouselIndex + 1)
-    else moveDot(1)
+    if (carouselIndex < carouselDots) {
+      moveDot(carouselIndex + 1)
+    } else {
+      moveDot(1)
+    }
   }
 
   const prevSlide = () => {
-    if (carouselIndex > 1) moveDot(carouselIndex - 1)
-    else moveDot(carouselDots)
+    if (carouselIndex > 1) {
+      moveDot(carouselIndex - 1)
+    } else {
+      moveDot(carouselDots)
+    }
   }
 
   return (
