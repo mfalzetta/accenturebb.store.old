@@ -3,8 +3,6 @@ import 'src/styles/pages/homepage.scss'
 import { useSession } from '@faststore/sdk'
 import { graphql } from 'gatsby'
 import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
-import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
-import IncentivesMock from 'src/components/sections/Incentives/incentivesMock'
 import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
@@ -209,8 +207,6 @@ function Page(props: Props) {
       />
       <Brand />
       <RenderCMS sections={cmsHome?.sections} />
-      <SectionTitle border title="Por que comprar com a Accenture" />
-      <IncentivesHeader incentives={IncentivesMock} />
       <Newsletter
         title="Receba notícias e ofertas especiais!"
         onSubmit={() => {
