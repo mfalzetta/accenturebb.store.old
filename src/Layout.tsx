@@ -5,16 +5,30 @@ import Toast from 'src/components/common/Toast'
 import RegionalizationBar from 'src/components/regionalization/RegionalizationBar'
 import { useUI } from 'src/sdk/ui/Provider'
 import type { PropsWithChildren } from 'react'
-
 import 'src/styles/pages/layout.scss'
+import { graphql, useStaticQuery } from 'gatsby'
+
+import RenderCMS from './components/RenderCMS'
 
 const CartSidebar = lazy(() => import('src/components/cart/CartSidebar'))
 const RegionModal = lazy(
   () => import('src/components/regionalization/RegionalizationModal')
 )
 
+export const querySSG = graphql`
+  query HeaderLinkQuery {
+    cmsHeaderLink(name: { eq: "Header Links S" }) {
+      sections {
+        data
+        name
+      }
+    }
+  }
+`
+
 function Layout({ children }: PropsWithChildren) {
   const { cart: displayCart, modal: displayModal } = useUI()
+  const { cmsHeaderLink } = useStaticQuery(querySSG)
 
   return (
     <>
@@ -27,7 +41,12 @@ function Layout({ children }: PropsWithChildren) {
       <Toast />
 
       <main>
-        <RegionalizationBar classes="display-mobile" />
+        <div className="headerLink">
+          <div className="headerLink--content">
+            <RegionalizationBar classes="hidden-mobile" />
+            <RenderCMS sections={cmsHeaderLink?.sections} />
+          </div>
+        </div>
         {children}
       </main>
 

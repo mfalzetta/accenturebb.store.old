@@ -317,5 +317,146 @@
         }
       }
     }
+  },
+  {
+    "name": "BlogSection",
+    "schema": {
+      "title": "BlogSection",
+      "description": "A BlogSection with image,text and link button",
+      "type": "object",
+      "properties": {
+        "allItems": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "title": "Card",
+            "type": "object",
+            "properties": {
+              "src": {
+                "title": "Image",
+                "description": "Image",
+                "type": "string",
+                "widget": {
+                  "ui:widget": "image-uploader"
+                }
+              },
+              "alt": {
+                "title": "Image alt Text",
+                "description": "Set a alt text for the image",
+                "type": "string"
+              },
+              "primaryText": {
+                "title": "Primary Text",
+                "description": "Set a Primary text",
+                "type": "string"
+              },
+              "secondaryText": {
+                "title": "Image secondaryText",
+                "description": "Set a secondary text",
+                "type": "string"
+              },
+              "btnText": {
+                "title": "Image Button Text",
+                "description": "Set a Button Text",
+                "type": "string"
+              },
+              "btnHref": {
+                "title": "Image Button Href",
+                "description": "Set a Button Href",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "ProductShelf",
+    "schema": {
+      "title": "Shelf",
+      "description": "Collection shelf",
+      "type": "object",
+      "properties": {
+        "productClusterIds": {
+          "type": "string",
+          "title": "Collection ID"
+        },
+        "shelfType": {
+          "type": "string",
+          "title": "Display as",
+          "enum": ["isCarousel", "isRowLayout"],
+          "enumNames": ["Carousel", "Row"]
+        },
+        "first": {
+          "type": "number",
+          "title": "Total of products that will be display"
+        },
+        "itens": {
+          "type": "number",
+          "title": "Number of products that will be display per page"
+        },
+        "isSimpleCard": {
+          "default": false,
+          "type": "boolean",
+          "title": "Display as simple card",
+          "description": "Show only product name, image and price"
+        },
+        "otherBackground": {
+          "default": false,
+          "type": "boolean",
+          "title": "other background"
+        }
+      }
+    }
+  },
+  {
+    "name": "Title",
+    "schema": {
+      "title": "Section title",
+      "type": "object",
+      "properties": {
+        "titleSection": {
+          "type": "string",
+          "title": "Title"
+        },
+        "linkText": {
+          "type": "string",
+          "title": "Link name"
+        },
+        "link": {
+          "type": "string",
+          "title": "URL"
+        },
+        "border": {
+          "default": false,
+          "type": "boolean",
+          "title": "border"
+        },
+        "otherBackground": {
+          "default": false,
+          "type": "boolean",
+          "title": "other background"
+        }
+      }
+    }
+  },
+  {
+    "name": "HeaderLink",
+    "schema": {
+      "title": "Header Link",
+      "description": "Define links",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Link name"
+        },
+        "link": {
+          "type": "string",
+          "title": "URL"
+        }
+      }
+    }
   }
 ]

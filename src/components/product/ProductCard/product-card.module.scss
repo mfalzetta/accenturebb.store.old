@@ -351,4 +351,13 @@
       }
     }
   }
+
+  [data-fs-product-card-simple="true"] {
+    .price.text__legend,
+    [data-store-badge],
+    [data-fs-product-card-brand-title],
+    [data-testid="list-price"] {
+      display: none;
+    }
+  }
 }

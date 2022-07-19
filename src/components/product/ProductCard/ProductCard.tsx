@@ -28,6 +28,7 @@ export interface ProductCardProps {
   rowLayout?: boolean
   ButtonBuy?: ReactNode
   galleryList?: boolean
+  isSimpleCard?: boolean
 }
 
 function ProductCard({
@@ -39,6 +40,7 @@ function ProductCard({
   rowLayout,
   ButtonBuy,
   galleryList = false,
+  isSimpleCard,
   ...otherProps
 }: ProductCardProps) {
   const {
@@ -68,6 +70,7 @@ function ProductCard({
       <div
         data-fs-product-card-row-variant={rowLayout}
         data-fs-product-card-gallery-list={galleryList}
+        data-fs-product-card-simple={isSimpleCard}
       >
         <UIProductCardImage>
           <Image
