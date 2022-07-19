@@ -2,10 +2,11 @@ import Incentives from './Incentives'
 import Section from '../Section'
 
 interface Incentive {
-  icon: string
+  src: string
+  alt?: string
   title?: string
-  firstLineText: string
-  secondLineText?: string
+  primaryText: string
+  secondaryText?: string
 }
 
 interface Props {
