@@ -9,8 +9,6 @@ export interface BlogSectionAllItems {
 export interface BlogSectionProps {
   src: string
   alt: string
-  width: string
-  height: string
   btnHref?: string
   primaryText?: string
   secondaryText?: string
@@ -26,8 +24,8 @@ const BlogSection = ({ allItems }: BlogSectionAllItems) => {
             src={card.src}
             alt={card.alt}
             loading="lazy"
-            width={card.width}
-            height={card.height}
+            width="100%"
+            height="auto"
           />
           {card.primaryText && (
             <p className="blogSection__primaryText">{card.primaryText}</p>

@@ -345,16 +345,6 @@
                 "description": "Set a alt text for the image",
                 "type": "string"
               },
-              "width": {
-                "title": "Image Width",
-                "description": "Set a Image width",
-                "type": "string"
-              },
-              "heigth": {
-                "title": "Image Heigth",
-                "description": "Set a Image heigth",
-                "type": "string"
-              },
               "primaryText": {
                 "title": "Primary Text",
                 "description": "Set a Primary text",
