@@ -13,11 +13,7 @@ import CategorySection from 'src/components/custom-components/home/CategorySecti
 import InfoCard from 'src/components/custom-components/home/InfoCard'
 import Slider from 'src/components/custom-components/home/Slider'
 import SectionTitle from 'src/components/custom-components/home/SectionTitle'
-import BlogSection from 'src/components/custom-components/home/BlogSection'
-import PromotionBanner from 'src/components/sections/PromotionBanner'
 import RenderCMS from 'src/components/RenderCMS'
-
-import MiddleBanner from '../images/home/background-middle-banner.png'
 
 export type Props = PageProps<HomePageQueryQuery>
 
@@ -154,43 +150,6 @@ function Brand() {
   )
 }
 
-function Blog() {
-  return (
-    <Slider height={425} minWidth={424} itemsPerPage={3}>
-      <BlogSection
-        src="/home/blog/Image.svg"
-        alt="imagee"
-        width="100%"
-        height="auto"
-        primaryText="Decoração refrescante"
-        SecondaryText="Tudo para deixar sua casa mais estilosa e fresca para o verão."
-        btnText="comprar coleção de temporada"
-        btnHref="/"
-      />
-      <BlogSection
-        src="/home/blog/Image-1.svg"
-        alt="imagee"
-        width="100%"
-        height="auto"
-        primaryText="Livros inspiradores"
-        SecondaryText="Explore títulos incríveis e inspiradores para viajar no espaço e no tempo nesta próxima temporada."
-        btnText="comprar LIVROS DE TEMPORADA"
-        btnHref="/"
-      />
-      <BlogSection
-        src="/home/blog/Image-2.svg"
-        alt="imagee"
-        width="100%"
-        height="auto"
-        primaryText="Comida orgânica"
-        SecondaryText="Manter hábitos saudáveis com produtos naturais e orgânicos seleccionados para o mercado."
-        btnText="comprar ALIMENTOS ORGÂNICOS"
-        btnHref="/"
-      />
-    </Slider>
-  )
-}
-
 function Page(props: Props) {
   const {
     data: { site, cmsHome },
@@ -249,17 +208,7 @@ function Page(props: Props) {
         title="Comprar por marca"
       />
       <Brand />
-      <SectionTitle
-        className="classSection__container"
-        title="O essencial do Verão"
-      />
-      <Blog />
-      <PromotionBanner
-        src={MiddleBanner}
-        title="Eletrônicos 20% OFF"
-        href="/"
-        linkText="compre agora"
-      />
+      <RenderCMS sections={cmsHome?.sections} />
       <SectionTitle border title="Por que comprar com a Accenture" />
       <IncentivesHeader incentives={IncentivesMock} />
       <Newsletter
@@ -268,7 +217,6 @@ function Page(props: Props) {
           return null
         }}
       />
-      <RenderCMS sections={cmsHome?.sections} />
     </>
   )
 }
@@ -283,7 +231,7 @@ export const querySSG = graphql`
         siteUrl
       }
     }
-    cmsHome(name: { eq: "HomePage" }) {
+    cmsHome(versionStatus: { eq: "published" }) {
       sections {
         data
         name

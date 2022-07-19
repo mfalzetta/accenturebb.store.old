@@ -7,6 +7,7 @@ import ProductShelf from './sections/ProductShelf'
 import ProductTiles from './sections/ProductTiles'
 import PromotionBanner from './sections/PromotionBanner'
 import ImageBanner from './sections/ImageBanner'
+import BlogSection from './sections/BlogSection'
 import HeaderLink from './sections/HeaderLink/HeaderLink'
 import Title from './sections/Title/Title'
 /**
@@ -23,6 +24,7 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   ProductTiles,
   PromotionBanner,
   ImageBanner,
+  BlogSection,
   HeaderLink,
   Title,
 }
