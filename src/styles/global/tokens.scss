@@ -47,9 +47,9 @@ body {
   --fs-color-primary-bkg-light         : var(--fs-color-main-0);
   --fs-color-primary-bkg-light-active  : var(--fs-color-main-1);
 
-  --fs-color-secondary-text            : var(--fs-color-main-4);
+  --fs-color-secondary-text            : var(--fs-color-theme-0);
   --fs-color-secondary-bkg             : transparent;
-  --fs-color-secondary-bkg-hover       : var(--fs-color-main-4);
+  --fs-color-secondary-bkg-hover       : var(--fs-color-theme-0);
   --fs-color-secondary-bkg-active      : var(--fs-color-main-3);
   --fs-color-secondary-bkg-light       : var(--fs-color-main-0);
   --fs-color-secondary-bkg-light-active: var(--fs-color-secondary-bkg-light);
@@ -71,8 +71,8 @@ body {
   --fs-color-action-bkg-light          : var(--fs-color-neutral-0);
   --fs-color-action-bkg-light-active   : var(--fs-color-tertiary-bkg-light);
 
-  --fs-color-link                      : var(--fs-color-main-2);
-  --fs-color-link-hover                : var(--fs-color-main-2);
+  --fs-color-link                      : var(--fs-color-theme-0);
+  --fs-color-link-hover                : var(--fs-color-theme-1);
   --fs-color-link-active               : var(--fs-color-main-4);
   --fs-color-link-visited              : #6058ba;
   --fs-color-link-inverse              : var(--fs-color-neutral-0);
