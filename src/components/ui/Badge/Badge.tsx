@@ -21,6 +21,7 @@ type Props = {
   children: ReactNode
   onClose?: () => void
   actionable?: boolean
+  galleryList?: boolean
 } & ActionableBadge
 
 const Badge = ({
@@ -29,6 +30,7 @@ const Badge = ({
   onClose,
   big = false,
   actionable = false,
+  galleryList = false,
   ...otherProps
 }: Props) => {
   return (
@@ -36,6 +38,7 @@ const Badge = ({
       data-fs-badge={big ? 'big' : ''}
       data-fs-badge-variant={variant}
       data-fs-badge-actionable={actionable}
+      data-fs-badge-gallery-list={galleryList}
       {...otherProps}
     >
       {actionable && (

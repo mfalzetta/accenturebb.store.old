@@ -10,9 +10,15 @@ interface Props {
   page: number
   title: string
   showSponsoredProducts?: boolean
+  isGallery?: boolean
 }
 
-function GalleryPage({ page, title, showSponsoredProducts = true }: Props) {
+function GalleryPage({
+  page,
+  title,
+  showSponsoredProducts = true,
+  isGallery = true,
+}: Props) {
   const products = useProducts(page) ?? []
   const { itemsPerPage } = useSearch()
 
@@ -57,10 +63,16 @@ function GalleryPage({ page, title, showSponsoredProducts = true }: Props) {
             products={products.slice(middleItemIndex, itemsPerPage)}
             page={page}
             pageSize={middleItemIndex}
+            isGallery={isGallery}
           />
         </>
       ) : (
-        <ProductGrid products={products} page={page} pageSize={itemsPerPage} />
+        <ProductGrid
+          products={products}
+          page={page}
+          pageSize={itemsPerPage}
+          isGallery={isGallery}
+        />
       )}
     </>
   )

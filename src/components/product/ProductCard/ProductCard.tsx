@@ -27,6 +27,7 @@ export interface ProductCardProps {
   aspectRatio?: number
   rowLayout?: boolean
   ButtonBuy?: ReactNode
+  galleryList?: boolean
   isSimpleCard?: boolean
 }
 
@@ -38,6 +39,7 @@ function ProductCard({
   aspectRatio = 1,
   rowLayout,
   ButtonBuy,
+  galleryList = false,
   isSimpleCard,
   ...otherProps
 }: ProductCardProps) {
@@ -67,6 +69,7 @@ function ProductCard({
     >
       <div
         data-fs-product-card-row-variant={rowLayout}
+        data-fs-product-card-gallery-list={galleryList}
         data-fs-product-card-simple={isSimpleCard}
       >
         <UIProductCardImage>
@@ -80,9 +83,13 @@ function ProductCard({
           />
 
           {outOfStock ? (
-            <Badge>Out of stock</Badge>
+            <Badge galleryList={galleryList}>Out of stock</Badge>
           ) : (
-            <DiscountBadge listPrice={listPrice} spotPrice={spotPrice} />
+            <DiscountBadge
+              listPrice={listPrice}
+              spotPrice={spotPrice}
+              galleryList={galleryList}
+            />
           )}
           {!!ButtonBuy && (
             <UIProductCardActions data-fs-product-card-actions>
@@ -100,6 +107,15 @@ function ProductCard({
               </Link>
             </h3>
             <div data-fs-product-card-prices>
+              {outOfStock ? (
+                <Badge galleryList={!galleryList}>Out of stock</Badge>
+              ) : (
+                <DiscountBadge
+                  listPrice={listPrice}
+                  spotPrice={spotPrice}
+                  galleryList={!galleryList}
+                />
+              )}
               <Price
                 value={spotPrice}
                 formatter={useFormattedPrice}
