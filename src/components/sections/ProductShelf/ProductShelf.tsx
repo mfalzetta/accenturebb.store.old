@@ -14,6 +14,7 @@ interface ProductShelfProps extends Partial<ProductsQueryQueryVariables> {
   isSimpleCard?: boolean
   itens?: number
   otherBackground?: boolean
+  productClusterIds?: string
 }
 
 function ProductShelf({
@@ -24,8 +25,16 @@ function ProductShelf({
   shelfType = 'isCarousel',
   itens,
   otherBackground,
+  productClusterIds,
   ...variables
 }: ProductShelfProps) {
+  if (productClusterIds) {
+    variables.selectedFacets = {
+      key: 'productClusterIds',
+      value: productClusterIds,
+    }
+  }
+
   const products = useProductsQuery(variables)
 
   if (products?.edges.length === 0) {
