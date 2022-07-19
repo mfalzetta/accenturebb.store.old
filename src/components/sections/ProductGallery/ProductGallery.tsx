@@ -1,6 +1,6 @@
 import { useSearch } from '@faststore/sdk'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import type { MouseEvent } from 'react'
 import Filter from 'src/components/search/Filter'
 import Sort from 'src/components/search/Sort'
@@ -11,6 +11,7 @@ import Button, { ButtonLink } from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import { mark } from 'src/sdk/tests/mark'
 import { useUI } from 'src/sdk/ui/Provider'
+import { GalleryIcon, ListIcon } from 'src/images/categoryType/categoryType'
 
 import Section from '../Section'
 import EmptyGallery from './EmptyGallery'
@@ -36,6 +37,7 @@ function ProductGallery({ title, searchTerm }: Props) {
   const facets = useDelayedFacets(data)
   const totalCount = data?.search.products.pageInfo.totalCount ?? 0
   const { next, prev } = useDelayedPagination(totalCount)
+  const [isGallery, setIsGallery] = useState(true)
 
   useProductsPrefetch(prev ? prev.cursor : null)
   useProductsPrefetch(next ? next.cursor : null)
@@ -97,6 +99,29 @@ function ProductGallery({ title, searchTerm }: Props) {
           </SkeletonElement>
         </div>
 
+        <div data-fs-product-listing-type>
+          <Button
+            variant="secondary"
+            icon={<GalleryIcon />}
+            iconPosition="left"
+            data-testid="type-gallery"
+            aria-label={`gallery${isGallery ? ' active' : ''}`}
+            onClick={() => setIsGallery(true)}
+          >
+            Galeria
+          </Button>
+          <Button
+            variant="secondary"
+            icon={<ListIcon />}
+            iconPosition="left"
+            data-testid="type-list"
+            aria-label={`list${isGallery ? '' : ' active'}`}
+            onClick={() => setIsGallery(false)}
+          >
+            Lista
+          </Button>
+        </div>
+
         <div data-fs-product-listing-results>
           {/* Add link to previous page. This helps on SEO */}
           {prev !== false && (
@@ -130,6 +155,7 @@ function ProductGallery({ title, searchTerm }: Props) {
                   showSponsoredProducts={false}
                   page={page}
                   title={title}
+                  isGallery={isGallery}
                 />
               ))}
             </Suspense>

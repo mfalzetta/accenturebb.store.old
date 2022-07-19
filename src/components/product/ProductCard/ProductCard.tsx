@@ -27,6 +27,7 @@ export interface ProductCardProps {
   aspectRatio?: number
   rowLayout?: boolean
   ButtonBuy?: ReactNode
+  galleryList?: boolean
 }
 
 function ProductCard({
@@ -37,6 +38,7 @@ function ProductCard({
   aspectRatio = 1,
   rowLayout,
   ButtonBuy,
+  galleryList = false,
   ...otherProps
 }: ProductCardProps) {
   const {
@@ -63,7 +65,10 @@ function ProductCard({
       className={styles.fsProductCard}
       {...otherProps}
     >
-      <div data-fs-product-card-row-variant={rowLayout}>
+      <div
+        data-fs-product-card-row-variant={rowLayout}
+        data-fs-product-card-gallery-list={galleryList}
+      >
         <UIProductCardImage>
           <Image
             src={img.url}
@@ -75,9 +80,13 @@ function ProductCard({
           />
 
           {outOfStock ? (
-            <Badge>Out of stock</Badge>
+            <Badge galleryList={galleryList}>Out of stock</Badge>
           ) : (
-            <DiscountBadge listPrice={listPrice} spotPrice={spotPrice} />
+            <DiscountBadge
+              listPrice={listPrice}
+              spotPrice={spotPrice}
+              galleryList={galleryList}
+            />
           )}
           {!!ButtonBuy && (
             <UIProductCardActions data-fs-product-card-actions>
@@ -95,6 +104,15 @@ function ProductCard({
               </Link>
             </h3>
             <div data-fs-product-card-prices>
+              {outOfStock ? (
+                <Badge galleryList={!galleryList}>Out of stock</Badge>
+              ) : (
+                <DiscountBadge
+                  listPrice={listPrice}
+                  spotPrice={spotPrice}
+                  galleryList={!galleryList}
+                />
+              )}
               <Price
                 value={spotPrice}
                 formatter={useFormattedPrice}

@@ -14,18 +14,25 @@ interface Props {
    * Quantity of products listed.
    */
   pageSize: number
+  isGallery?: boolean
 }
 
-function ProductGrid({ products, page, pageSize }: Props) {
+function ProductGrid({ products, page, pageSize, isGallery = false }: Props) {
   return (
     <ProductGridSkeleton loading={products.length === 0}>
-      <ul data-fs-product-grid className={styles.fsProductGrid}>
+      <ul
+        data-fs-product-grid
+        className={styles.fsProductGrid}
+        data-gallery-list-layout={!isGallery}
+      >
         {products.map(({ node: product }, idx) => (
           <li key={`${product.id}`}>
             <ProductCard
               product={product}
               index={pageSize * page + idx + 1}
               bordered
+              rowLayout={!isGallery}
+              galleryList={!isGallery}
             />
           </li>
         ))}
