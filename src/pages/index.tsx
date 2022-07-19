@@ -13,10 +13,7 @@ import CategorySection from 'src/components/custom-components/home/CategorySecti
 import InfoCard from 'src/components/custom-components/home/InfoCard'
 import Slider from 'src/components/custom-components/home/Slider'
 import SectionTitle from 'src/components/custom-components/home/SectionTitle'
-import PromotionBanner from 'src/components/sections/PromotionBanner'
 import RenderCMS from 'src/components/RenderCMS'
-
-import MiddleBanner from '../images/home/background-middle-banner.png'
 
 export type Props = PageProps<HomePageQueryQuery>
 
@@ -211,16 +208,7 @@ function Page(props: Props) {
         title="Comprar por marca"
       />
       <Brand />
-      <SectionTitle
-        className="classSection__container"
-        title="O essencial do Verão"
-      />
-      <PromotionBanner
-        src={MiddleBanner}
-        title="Eletrônicos 20% OFF"
-        href="/"
-        linkText="compre agora"
-      />
+      <RenderCMS sections={cmsHome?.sections} />
       <SectionTitle border title="Por que comprar com a Accenture" />
       <IncentivesHeader incentives={IncentivesMock} />
       <Newsletter
@@ -229,7 +217,6 @@ function Page(props: Props) {
           return null
         }}
       />
-      <RenderCMS sections={cmsHome?.sections} />
     </>
   )
 }
@@ -244,7 +231,7 @@ export const querySSG = graphql`
         siteUrl
       }
     }
-    cmsHome(name: { eq: "HomePage" }) {
+    cmsHome(versionStatus: { eq: "published" }) {
       sections {
         data
         name
