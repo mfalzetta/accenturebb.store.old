@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import './CarouselShelf.scss'
 import BtnCarouselShelf from './BtnCarouselShelf'
-import buildCarouselShelf from './BuildCarousel'
+import BuildCarousel from './BuildCarousel'
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 /* eslint-disable  react-hooks/exhaustive-deps */
@@ -38,7 +38,7 @@ const CarouselShelf = ({
 
     setMovePosition(0)
     setCarouselPosition(0)
-    setCard(buildCarouselShelf(itemsPerPage, arrows, items))
+    setCard(BuildCarousel(itemsPerPage, arrows, items))
   }
 
   useEffect(() => {
