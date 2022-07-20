@@ -18,6 +18,7 @@ export interface CarouselfProps {
   cardWidth: number
   itemPerPage: number
   maxWidth: number
+  dots: number
 }
 
 const CarouselShelf = ({
@@ -25,38 +26,31 @@ const CarouselShelf = ({
   itemsPerPage = 1,
   arrows = false,
 }: CarouselShelfProps) => {
-  const [itemsPage, setItemsPage] = useState(0)
   const [card, setCard] = useState<CarouselfProps>()
-  const [carouselDots, setCarouselDots] = useState(3)
   const [carouselIndex, setCarouselIndex] = useState(1)
   const [carouselPosition, setCarouselPosition] = useState(0)
   const [moveCarousel, setMoveCarousel] = useState(false)
   const [movePosition, setMovePosition] = useState(0)
   const [moveStart, setMoveStart] = useState(0)
 
+  const build = () => {
+    const items = children.length
+
+    setMovePosition(0)
+    setCarouselPosition(0)
+    setCard(buildCarouselShelf(itemsPerPage, arrows, items))
+  }
+
   useEffect(() => {
     if (children) {
-      setCard(buildCarouselShelf(itemsPerPage, arrows))
-      setCarouselDots(
-        card?.itemPerPage
-          ? Math.ceil(children.length / card.itemPerPage)
-          : children.length / itemsPerPage
-      )
-      setItemsPage(itemsPerPage)
+      build()
       window.addEventListener('resize', () => {
-        setCard(buildCarouselShelf(itemsPerPage, arrows))
-        setCarouselDots(
-          card?.itemPerPage
-            ? Math.ceil(children.length / card.itemPerPage)
-            : children.length
-        )
-        setMovePosition(0)
-        setCarouselPosition(0)
+        build()
       })
     }
   }, [children, itemsPerPage, arrows])
 
-  if (!itemsPage) {
+  if (!card?.itemPerPage) {
     return <></>
   }
 
@@ -105,13 +99,13 @@ const CarouselShelf = ({
           setCarouselPosition(carouselPosition > 0 ? 0 : -maxMove)
         } else {
           const itemPP = Math.round(carouselPosition / itemW)
+          const finalPosition =
+            itemW * itemPP === carouselPosition
+              ? carouselPosition
+              : itemW * itemPP
 
-          if (itemW * itemPP === carouselPosition) {
-            setMovePosition(carouselPosition)
-          } else {
-            setMovePosition(itemW * itemPP)
-            setCarouselPosition(itemW * itemPP)
-          }
+          setMovePosition(finalPosition)
+          setCarouselPosition(finalPosition)
         }
       }
     }
@@ -122,7 +116,7 @@ const CarouselShelf = ({
     if (card) {
       let position = (index - 1) * card?.maxWidth
 
-      if (index === carouselDots) {
+      if (index === card.dots) {
         const lastItem = children.length % card.itemPerPage
 
         if (lastItem > 0) {
@@ -135,7 +129,7 @@ const CarouselShelf = ({
   }
 
   const nextSlide = () => {
-    if (carouselIndex < carouselDots) {
+    if (carouselIndex < card.dots) {
       moveDot(carouselIndex + 1)
     } else {
       moveDot(1)
@@ -146,7 +140,7 @@ const CarouselShelf = ({
     if (carouselIndex > 1) {
       moveDot(carouselIndex - 1)
     } else {
-      moveDot(carouselDots)
+      moveDot(card.dots)
     }
   }
 
@@ -189,7 +183,7 @@ const CarouselShelf = ({
         </>
       )}
       <div className="container-dots">
-        {Array.from({ length: carouselDots }).map((_, index: number) => (
+        {Array.from({ length: card.dots }).map((_, index: number) => (
           <div
             aria-hidden="true"
             key={index}

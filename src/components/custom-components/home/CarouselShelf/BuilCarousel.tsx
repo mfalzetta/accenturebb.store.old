@@ -1,4 +1,8 @@
-const buildCarouselShelfs = (itemPerPage: number, arrows: boolean) => {
+const buildCarouselShelfs = (
+  itemPerPage: number,
+  arrows: boolean,
+  items: number
+) => {
   const parent = document.querySelector('ul[data-fs-product-shelf-items]')
   const widthP = parent ? parent.clientWidth : 0
   const width = arrows && widthP > 920 ? widthP - 64 : widthP
@@ -17,8 +21,9 @@ const buildCarouselShelfs = (itemPerPage: number, arrows: boolean) => {
 
   const cardWidth = itemsW
   const maxWidth = width
+  const dots = Math.ceil(items / itemPerPage)
 
-  return { cardWidth, itemPerPage, maxWidth }
+  return { cardWidth, itemPerPage, maxWidth, dots }
 }
 
 export default buildCarouselShelfs
