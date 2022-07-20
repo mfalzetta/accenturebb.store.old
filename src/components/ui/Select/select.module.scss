@@ -37,7 +37,7 @@
   align-items: center;
 
   select {
-    padding: 0;
+    padding: var(--fs-select-padding);
     font-size: 14px;
     font-weight: var(--fs-text-weight-regular);
     color: #000000;
@@ -51,6 +51,7 @@
     appearance: none;
 
     @include media("<notebook") {
+      padding: var(--fs-spacing-1);
       color: var(--fs-select-text-color);
       text-align: center;
       background-color: var(--fs-color-theme-2);

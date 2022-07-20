@@ -33,7 +33,7 @@ function RegionInput({ closeModal }: Props) {
 
       closeModal()
     } catch (error) {
-      setErrorMessage('You entered an invalid Zip Code')
+      setErrorMessage('CEP inválido')
     }
   }
 
@@ -43,9 +43,10 @@ function RegionInput({ closeModal }: Props) {
         inputRef={inputRef}
         id="postal-code-input"
         errorMessage={errorMessage}
-        label="Zip Code"
+        label="CEP"
         actionable
         onSubmit={handleSubmit}
+        buttonActionText="Aplicar"
       />
     </div>
   )

@@ -63,7 +63,7 @@ function ProductGallery({ title, searchTerm }: Props) {
       {searchTerm && (
         <header data-fs-product-listing-search-term className="layout__content">
           <h1>
-            Showing results for: <span>{searchTerm}</span>
+            Resultados para: <span>{searchTerm}</span>
           </h1>
         </header>
       )}
@@ -76,7 +76,9 @@ function ProductGallery({ title, searchTerm }: Props) {
 
         <div data-fs-product-listing-results-count data-count={totalCount}>
           <SkeletonElement shimmer type="text" loading={!data}>
-            <h2 data-testid="total-product-count">{totalCount} Results</h2>
+            <h2 data-testid="total-product-count">
+              {totalCount} {totalCount > 1 ? 'produtos' : 'produto'}
+            </h2>
           </SkeletonElement>
         </div>
 
@@ -94,7 +96,7 @@ function ProductGallery({ title, searchTerm }: Props) {
               aria-label="Open Filters"
               onClick={openFilter}
             >
-              Filters
+              Filtros
             </Button>
           </SkeletonElement>
         </div>
@@ -141,7 +143,7 @@ function ProductGallery({ title, searchTerm }: Props) {
                   <Icon name="ArrowLeft" width={16} height={16} weight="bold" />
                 }
               >
-                Previous Page
+                Página anterior
               </ButtonLink>
             </div>
           )}
@@ -178,7 +180,7 @@ function ProductGallery({ title, searchTerm }: Props) {
                 rel="next"
                 variant="secondary"
               >
-                Load more products
+                Carregar mais produtos
               </ButtonLink>
             </div>
           )}

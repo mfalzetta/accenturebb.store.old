@@ -37,6 +37,10 @@
     overflow: auto;
   }
 
+  [data-testid="price"] {
+    margin-left: 8px;
+  }
+
   > footer {
     margin-top: auto;
     background-color: var(--fs-color-neutral-0);

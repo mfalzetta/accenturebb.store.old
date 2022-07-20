@@ -50,9 +50,9 @@ const Badge = ({
           iconPosition="left"
         />
       )}
-      <div data-fs-badge-wrapper>
+      {/* <div data-fs-badge-wrapper>
         <span>{children}</span>
-      </div>
+      </div> */}
     </UIBadge>
   )
 }
