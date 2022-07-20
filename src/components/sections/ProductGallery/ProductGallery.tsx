@@ -96,7 +96,7 @@ function ProductGallery({ title, searchTerm }: Props) {
               aria-label="Open Filters"
               onClick={openFilter}
             >
-              Filtros
+              Filtrar
             </Button>
           </SkeletonElement>
         </div>
