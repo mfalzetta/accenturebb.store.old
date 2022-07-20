@@ -9,13 +9,16 @@
   justify-content: center;
   padding: 1rem 0;
 
+  .infocard__img {
+    max-width: 216px;
+  }
+
   a {
     width: fit-content;
 
     @media (max-width: 650px) {
       .infocard__img {
         max-width: 170px;
-        max-height: 150px;
       }
     }
   }

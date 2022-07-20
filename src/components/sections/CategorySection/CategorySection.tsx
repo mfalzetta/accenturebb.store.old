@@ -24,8 +24,8 @@ const CategorySection = ({ allItems }: CategorySectionAllItems) => {
               href={card.href}
               src={card.src}
               alt={card.alt}
-              width="204"
-              height="192"
+              width="100%"
+              height="auto"
               text={card.text}
             />
           ))}
