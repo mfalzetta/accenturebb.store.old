@@ -99,7 +99,7 @@ function ProductCard({
             </h3>
             <div data-fs-product-card-prices>
               {spotPrice !== listPrice ? (
-                <div data-fs-product-card-listPrice>
+                <div data-fs-product-card-list-price>
                   <Price
                     value={listPrice}
                     formatter={useFormattedPrice}
