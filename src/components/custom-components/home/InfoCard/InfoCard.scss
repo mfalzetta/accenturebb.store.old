@@ -10,6 +10,11 @@
 
   &:hover {
     border-color: var(--fs-color-theme-4);
+
+    .infocard__text {
+      color: var(--fs-color-neutral-0);
+      background-color: var(--fs-color-theme-4);
+    }
   }
 }
 
@@ -23,6 +28,10 @@
   pointer-events: none;
   background-color: var(--fs-color-neutral-0);
   border-radius: 0.5rem;
+
+  @media (max-width: 448px) {
+    padding: 10px;
+  }
 }
 
 .infocard__img {

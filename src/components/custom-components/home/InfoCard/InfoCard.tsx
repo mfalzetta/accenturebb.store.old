@@ -11,7 +11,15 @@ export interface InfoCardProps {
   className?: string
 }
 
-const InfoCard = ({ src, alt, text, width, height, href, className }: InfoCardProps) => {
+const InfoCard = ({
+  src,
+  alt,
+  text,
+  width,
+  height,
+  href,
+  className,
+}: InfoCardProps) => {
   return (
     <Link to={href}>
       <div className={`infocard__container ${className ?? ''}`}>

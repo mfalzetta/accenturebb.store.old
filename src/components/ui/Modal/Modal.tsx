@@ -13,7 +13,7 @@ export type ModalChildrenProps = {
 }
 
 export type ModalProps = Omit<UIModalProps, 'isOpen' | 'children'> & {
-  children: (props: ModalChildrenProps) => ReactNode | ReactNode
+  children: (props: ModalChildrenProps) => ReactNode
 }
 
 function Modal({ className, children, ...props }: ModalProps) {

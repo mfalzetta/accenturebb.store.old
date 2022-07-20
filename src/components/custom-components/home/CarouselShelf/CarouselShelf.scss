@@ -21,7 +21,11 @@
     }
 
     li {
-      min-width: 148px;
+      max-width: 194px;
+
+      @media (max-width: 920px) {
+        max-width: 144px;
+      }
     }
   }
 

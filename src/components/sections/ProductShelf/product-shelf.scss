@@ -18,6 +18,8 @@
   // --------------------------------------------------------
 
   min-height: var(--fs-product-shelf-min-height);
+  padding-right: var(--fs-grid-padding);
+  padding-left: var(--fs-grid-padding);
 }
 
 [data-fs-product-shelf-items] {
