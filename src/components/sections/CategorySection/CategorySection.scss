@@ -6,7 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 1rem 0;
 
   .infocard__img {
@@ -23,22 +23,7 @@
     }
   }
 
-  @media (max-width: 1070px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr auto;
+  @media (max-width: 350px) {
+    justify-content: center;
   }
-
-  @media (max-width: 850px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-  }
-
-  @media (max-width: 540px) {
-    display: grid;
-    grid-template-columns: 1fr auto;
-  }
-}
-
-.classSection__container.category-session .classSection__content {
-  justify-content: space-between;
 }
