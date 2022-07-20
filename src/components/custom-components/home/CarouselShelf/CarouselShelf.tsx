@@ -69,7 +69,8 @@ const CarouselShelf = ({
 
       const screen = document.documentElement.clientWidth
       const itemW = card.cardWidth
-      const maxMove = itemW * (children.length - card.itemPerPage)
+      const maxMove =
+        itemW * (children.length - card.itemPerPage) - Math.abs(64 - itemW)
 
       if (type === 'move') {
         if (!moveCarousel) {
@@ -80,12 +81,14 @@ const CarouselShelf = ({
 
         if (getPosition < 0 || getPosition > screen) {
           setMoveCarousel(false)
-        } else if (carouselPosition === 0) {
-          setCarouselPosition(x > 0 ? 0 : movePosition + x * 1.5)
-        } else if (Math.abs(movePosition + x) > maxMove) {
+        } else if (Math.abs(carouselPosition) >= maxMove && x < 0) {
           setCarouselPosition(-maxMove)
         } else {
-          setCarouselPosition(movePosition + x > 0 ? 0 : movePosition + x * 1.5)
+          setCarouselPosition(
+            movePosition + x > 0 || (x > 0 && carouselPosition === 0)
+              ? 0
+              : movePosition + x * 1.25
+          )
         }
       }
 
@@ -97,12 +100,9 @@ const CarouselShelf = ({
       }
 
       if (type === 'end') {
-        if (carouselPosition > maxMove) {
-          setMovePosition(maxMove)
-          setCarouselPosition(-maxMove)
-        } else if (carouselPosition > 0) {
-          setMovePosition(0)
-          setCarouselPosition(0)
+        if (carouselPosition > 0 || Math.abs(carouselPosition) >= maxMove) {
+          setMovePosition(carouselPosition > 0 ? 0 : -maxMove)
+          setCarouselPosition(carouselPosition > 0 ? 0 : -maxMove)
         } else {
           const itemPP = Math.round(carouselPosition / itemW)
 
