@@ -89,12 +89,9 @@ const CarouselShelf = ({
 
       if (type === 'start') {
         setMoveCarousel(true)
-        setMoveStart(getPosition)
-        if (getPosition < 0) {
-          setMoveStart(0)
-        } else if (getPosition > screen) {
-          setMoveStart(screen)
-        }
+        const startPosition = getPosition > screen ? screen : getPosition
+
+        setMoveStart(getPosition < 0 ? 0 : startPosition)
       }
 
       if (type === 'end') {

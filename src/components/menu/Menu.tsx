@@ -12,9 +12,11 @@ const Menu = ({ isOpen }: MenuProps) => {
   const modalOpen = isOpen
 
   useEffect(() => {
-    modalOpen
-      ? (document.getElementsByTagName('body')[0].style.overflowY = 'hidden')
-      : (document.getElementsByTagName('body')[0].style.overflowY = 'auto')
+    if (modalOpen) {
+      document.getElementsByTagName('body')[0].style.overflowY = 'hidden'
+    } else {
+      document.getElementsByTagName('body')[0].style.overflowY = 'auto'
+    }
   }, [modalOpen])
 
   if (isMobile) {
