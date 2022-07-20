@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import './CarouselShelf.scss'
 import BtnCarouselShelf from './BtnCarouselShelf'
-import buildCarouselShelf from './BuilCarousel'
+import buildCarouselShelf from './BuildCarousel'
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 /* eslint-disable  react-hooks/exhaustive-deps */
