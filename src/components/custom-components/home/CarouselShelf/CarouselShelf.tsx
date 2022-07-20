@@ -40,7 +40,7 @@ const CarouselShelf = ({
       setCarouselDots(
         card?.itemPerPage
           ? Math.ceil(children.length / card.itemPerPage)
-          : children.length
+          : children.length / itemsPerPage
       )
       setItemsPage(itemsPerPage)
       window.addEventListener('resize', () => {
@@ -69,7 +69,7 @@ const CarouselShelf = ({
 
       const screen = document.documentElement.clientWidth
       const itemW = card.cardWidth
-      const maxMove = itemW * (children.length - 1)
+      const maxMove = itemW * (children.length - card.itemPerPage)
 
       if (type === 'move') {
         if (!moveCarousel) {
