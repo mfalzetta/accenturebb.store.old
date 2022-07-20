@@ -1,4 +1,4 @@
-@import 'src/styles/scaffold';
+@import "src/styles/scaffold";
 
 [data-fs-incentives] {
   // --------------------------------------------------------
@@ -42,11 +42,10 @@
   [data-store-list] {
     display: flex;
     width: fit-content;
-    overflow-x: auto;
     max-width: 100%;
+    overflow-x: auto;
 
-
-    @include media('>=notebook') {
+    @include media(">=notebook") {
       justify-content: center;
     }
   }
@@ -57,11 +56,11 @@
     align-items: center;
     justify-content: center;
 
-    @include media('<notebook') {
+    @include media("<notebook") {
       row-gap: var(--fs-spacing-0);
     }
 
-    @include media('>=notebook') {
+    @include media(">=notebook") {
       [data-fs-incentive-content] {
         margin-left: var(--fs-spacing-2);
         text-align: left;
@@ -82,14 +81,15 @@
   font-size: var(--fs-incentives-description-size);
   line-height: var(--fs-incentives-description-line-height);
   color: var(--fs-incentives-description-color);
-  white-space: nowrap;
+  white-space: pre-wrap;
 }
 
 [data-fs-incentive-content] {
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
   align-items: center;
   justify-content: center;
+
   p,
   span {
     font-size: var(--fs-text-size-1);
@@ -123,11 +123,11 @@
 // Variants Styles
 // --------------------------------------------------------
 
-[data-fs-incentives-colored='true'] {
+[data-fs-incentives-colored="true"] {
   background-color: var(--fs-incentives-bkg-color);
 }
 
-[data-fs-incentives-variant='vertical'] {
+[data-fs-incentives-variant="vertical"] {
   ul {
     flex-direction: column;
   }
@@ -135,12 +135,13 @@
   li:not(:last-child) {
     padding-bottom: var(--fs-incentives-gap);
     margin-bottom: var(--fs-incentives-gap);
-    border-bottom: var(--fs-incentives-border-width) solid
+    border-bottom:
+      var(--fs-incentives-border-width) solid
       var(--fs-incentives-border-color);
   }
 }
 
-[data-fs-incentives-variant='horizontal'] {
+[data-fs-incentives-variant="horizontal"] {
   li:not(:last-child) {
     margin-right: var(--fs-incentives-gap);
   }

@@ -7,6 +7,7 @@ export type DiscountBadgeProps = {
   listPrice: number
   spotPrice: number
   big?: boolean
+  galleryList?: boolean
   // Set limit percentage value to consider a low discount.
   thresholdLow?: number
   // Set limit percentage value to consider a high discount
@@ -19,6 +20,7 @@ const DiscountBadge = ({
   big = false,
   thresholdLow = 15,
   thresholdHigh = 40,
+  galleryList,
 }: DiscountBadgeProps) => {
   const discountPercent = useDiscountPercent(listPrice, spotPrice)
 
@@ -34,7 +36,11 @@ const DiscountBadge = ({
       : 'high'
 
   return (
-    <Badge big={big} data-fs-discount-badge-variant={discountVariant}>
+    <Badge
+      big={big}
+      data-fs-discount-badge-variant={discountVariant}
+      galleryList={galleryList}
+    >
       {discountPercent}% off
     </Badge>
   )

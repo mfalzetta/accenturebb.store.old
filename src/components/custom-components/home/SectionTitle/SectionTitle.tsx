@@ -35,7 +35,9 @@ const SectionTitle = ({
           </Link>
         )}
         {description && (
-          <span className="classSection__description">{description}</span>
+          <span className="layout__content classSection__description">
+            {description}
+          </span>
         )}
       </div>
     </Section>

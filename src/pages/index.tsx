@@ -3,13 +3,10 @@ import 'src/styles/pages/homepage.scss'
 import { useSession } from '@faststore/sdk'
 import { graphql } from 'gatsby'
 import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
-import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
-import IncentivesMock from 'src/components/sections/Incentives/incentivesMock'
 import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
 import Newsletter from 'src/components/sections/Newsletter'
-import CategorySection from 'src/components/custom-components/home/CategorySection'
 import InfoCard from 'src/components/custom-components/home/InfoCard'
 import Slider from 'src/components/custom-components/home/Slider'
 import SectionTitle from 'src/components/custom-components/home/SectionTitle'
@@ -37,61 +34,6 @@ function MainBanner() {
         className="image__temporary"
       />
     </Slider>
-  )
-}
-
-function Category() {
-  return (
-    <CategorySection title="Categorias" className="category-session">
-      <InfoCard
-        href="/"
-        src="/home/Image-1.svg"
-        alt="imagee"
-        width="204"
-        height="192"
-        text="Moda"
-      />
-      <InfoCard
-        href="/"
-        src="/home/Image-2.svg"
-        alt="imagee"
-        width="204"
-        height="192"
-        text="Costméticos"
-      />
-      <InfoCard
-        href="/"
-        src="/home/Image-3.svg"
-        alt="imagee"
-        width="204"
-        height="192"
-        text="Mercado"
-      />
-      <InfoCard
-        href="/"
-        src="/home/Image-4.svg"
-        alt="imagee"
-        width="204"
-        height="192"
-        text="Livros"
-      />
-      <InfoCard
-        href="/"
-        src="/home/Image-5.svg"
-        alt="imagee"
-        width="204"
-        height="192"
-        text="Decoração"
-      />
-      <InfoCard
-        href="/"
-        src="/home/Image.svg"
-        alt="imagee"
-        width="204"
-        height="192"
-        text="Eletronicos"
-      />
-    </CategorySection>
   )
 }
 
@@ -201,7 +143,6 @@ function Page(props: Props) {
         (not the HTML tag) before rendering it here.
       */}
       <MainBanner />
-      <Category />
       <SectionTitle
         className="classSection__container"
         border
@@ -209,8 +150,6 @@ function Page(props: Props) {
       />
       <Brand />
       <RenderCMS sections={cmsHome?.sections} />
-      <SectionTitle border title="Por que comprar com a Accenture" />
-      <IncentivesHeader incentives={IncentivesMock} />
       <Newsletter
         title="Receba notícias e ofertas especiais!"
         onSubmit={() => {

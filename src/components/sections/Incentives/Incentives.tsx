@@ -1,11 +1,12 @@
-import { Incentive as UIIncentive, List as UIList } from '@faststore/ui'
-import Icon from 'src/components/ui/Icon'
+import { Incentive as UIIncentive } from '@faststore/ui'
+import Slider from 'src/components/custom-components/home/Slider'
 
 interface Incentive {
-  icon: string
+  src: string
+  alt?: string
   title?: string
-  firstLineText: string
-  secondLineText?: string
+  primaryText: string
+  secondaryText?: string
 }
 
 export interface IncentivesProps {
@@ -31,13 +32,15 @@ function Incentives({
       data-fs-incentives-colored={colored}
       data-fs-incentives-variant={variant}
     >
-      <UIList variant="unordered" className="layout__content">
+      <Slider height={150} minWidth={150} itemsPerPage={4}>
         {incentives.map((incentive, index) => (
-          <li key={String(index)}>
-            <UIIncentive>
-              <Icon
+          <>
+            <UIIncentive key={index}>
+              <img
+                src={incentive.src}
+                alt={incentive.alt}
+                loading="lazy"
                 data-fs-incentive-icon
-                name={incentive.icon}
                 width={32}
                 height={32}
               />
@@ -46,18 +49,18 @@ function Incentives({
                   <p data-fs-incentive-title>{incentive.title}</p>
                 )}
                 <span data-fs-incentive-description>
-                  {incentive.firstLineText}
+                  {incentive.primaryText}
                 </span>
-                {incentive.secondLineText && (
+                {incentive.secondaryText && (
                   <span data-fs-incentive-description>
-                    {incentive.secondLineText}
+                    {incentive.secondaryText}
                   </span>
                 )}
               </div>
             </UIIncentive>
-          </li>
+          </>
         ))}
-      </UIList>
+      </Slider>
     </div>
   )
 }

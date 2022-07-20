@@ -35,7 +35,7 @@ const Slider = ({
   arrows,
   height,
   wfull,
-  minWidth = 168,
+  minWidth,
 }: SliderProps) => {
   const [itemsPage, setItemsPage] = useState<any>(null)
   const [slideIndex, setSlideIndex] = useState(1)
@@ -46,7 +46,7 @@ const Slider = ({
         const screenW = document.documentElement.clientWidth
         const length = wfull
           ? screenW
-          : minWidth * Number(itemsPerPage) > screenW - 32
+          : minWidth ?? 168 * Number(itemsPerPage) > screenW - 32
           ? minWidth
           : itemsPerPage
 
