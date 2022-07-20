@@ -50,6 +50,8 @@ const CarouselShelf = ({
             ? Math.ceil(children.length / card.itemPerPage)
             : children.length
         )
+        setMovePosition(0)
+        setCarouselPosition(0)
       })
     }
   }, [children, itemsPerPage, arrows])
