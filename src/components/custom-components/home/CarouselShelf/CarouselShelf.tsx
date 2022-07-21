@@ -7,6 +7,7 @@ import BuildCarousel from './BuildCarousel'
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 /* eslint-disable  react-hooks/exhaustive-deps */
 /* eslint-disable  vtex/prefer-early-return */
+/* eslint-disable  react/self-closing-comp */
 
 export interface CarouselShelfProps {
   children: any
@@ -189,9 +190,7 @@ const CarouselShelf = ({
             key={index}
             onClick={() => moveDot(index + 1)}
             className={carouselIndex === index + 1 ? 'dot active' : 'dot'}
-          >
-            {' '}
-          </div>
+          ></div>
         ))}
       </div>
     </div>
