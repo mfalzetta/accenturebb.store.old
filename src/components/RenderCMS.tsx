@@ -11,6 +11,7 @@ import BlogSection from './sections/BlogSection'
 import HeaderLink from './sections/HeaderLink/HeaderLink'
 import Title from './sections/Title/Title'
 import CategorySection from './sections/CategorySection/CategorySection'
+import BrandSection from './sections/BrandSection/BrandSection'
 /**
  * Sections: Components imported from '../components/sections' only.
  * Do not import or render components from any other folder in here.
@@ -29,6 +30,7 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   HeaderLink,
   Title,
   CategorySection,
+  BrandSection,
 }
 
 interface Props {

@@ -45,8 +45,21 @@
 
 .classSection__brand {
   align-items: center;
-  padding: 2.75rem 4rem;
+  width: 204px;
+  height: 128px;
   background-color: #fafafa;
+
+  .infocard__img {
+    border-radius: 0;
+  }
+
+  [data-brand-size="big"] {
+    max-width: 50%;
+  }
+
+  [data-brand-size="small"] {
+    max-width: 22%;
+  }
 
   &:hover {
     background-color: #ffffff;
