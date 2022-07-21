@@ -13,6 +13,7 @@
   min-height: 256px;
   padding-right: 10px;
   padding-left: 100px;
+  text-decoration: none;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 8px;
@@ -25,6 +26,7 @@
   }
 
   .title {
+    padding-left: 0;
     font-size: 32px;
     font-weight: 700;
     color: var(--fs-color-theme-3);

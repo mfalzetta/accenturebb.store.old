@@ -4,7 +4,7 @@ import './PromotionBanner.scss'
 export interface PromotionBannerProps {
   src: string
   title?: string
-  href?: string
+  href: string
   linkText?: string
 }
 
@@ -16,12 +16,14 @@ const PromotionBanner = ({
 }: PromotionBannerProps) => {
   return (
     <Section className="layout__content container__margin">
-      <div className="background" style={{ backgroundImage: `url(${src})` }}>
-        <h2 className="title">{title}</h2>
-        <a className="button-link" href={href}>
-          {linkText}
-        </a>
-      </div>
+      <a
+        className="background"
+        style={{ backgroundImage: `url(${src})` }}
+        href={href}
+      >
+        {title && <h2 className="title">{title}</h2>}
+        {linkText && <div className="button-link">{linkText}</div>}
+      </a>
     </Section>
   )
 }
