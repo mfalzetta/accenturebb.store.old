@@ -60,6 +60,10 @@
   [data-fs-search-suggestion-item-icon] {
     color: var(--fs-color-neutral-4);
   }
+
+  [data-fs-badge-wrapper] {
+    display: none;
+  }
 }
 
 [data-fs-search-suggestions] {

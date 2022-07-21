@@ -23,7 +23,7 @@ interface ScrollToTopButtonProps {
 }
 
 function ScrollToTopButton({
-  text = 'Scroll to top',
+  text = 'Voltar para o topo',
   icon = <Icon name="CaretUp" width={16} height={16} weight="bold" />,
   iconPosition = 'left',
 }: ScrollToTopButtonProps) {

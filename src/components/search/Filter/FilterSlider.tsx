@@ -81,7 +81,7 @@ function FilterSlider({
           variant="secondary"
           onClick={() => dispatch({ type: 'selectFacets', payload: [] })}
         >
-          Clear All
+          Limpar tudo
         </Button>
         <Button
           data-fs-filter-slider-footer-button-apply
@@ -98,7 +98,7 @@ function FilterSlider({
             fadeOut()
           }}
         >
-          Apply
+          Aplicar
         </Button>
       </footer>
     </SlideOver>

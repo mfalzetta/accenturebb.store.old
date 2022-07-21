@@ -160,7 +160,7 @@ function ProductDetails({ product: staleProduct }: Props) {
             <AddToCartLoadingSkeleton />
           ) : (
             <ButtonBuy disabled={buyDisabled} {...buyProps}>
-              Add to Cart
+              Adicionar ao carrinho
             </ButtonBuy>
           )}
           {!availability && (

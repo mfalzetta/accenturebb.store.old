@@ -52,7 +52,7 @@ function Facets({
   return (
     <div className={styles.fsFacets} data-store-filter data-testid={testId}>
       <h2 className="text__title-mini-alt" data-fs-facets-title>
-        Filters
+        Filtrar
       </h2>
       <Accordion
         expandedIndices={indicesExpanded}

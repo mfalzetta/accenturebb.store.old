@@ -413,7 +413,8 @@
   {
     "name": "Title",
     "schema": {
-      "title": "Section title",
+      "title": "Section Title",
+      "description": "Section title",
       "type": "object",
       "properties": {
         "titleSection": {
@@ -456,7 +457,8 @@
           "type": "string",
           "title": "URL"
         }
-      }
+      },
+      "required": ["link"]
     }
   },
   {
@@ -544,7 +546,8 @@
                 "description": "Set a URL",
                 "type": "string"
               }
-            }
+            },
+            "required": ["href"]
           }
         }
       }
@@ -589,7 +592,7 @@
                 "enumNames": ["Big", "Small"]
               }
             },
-            "required": ["size"]
+            "required": ["size", "href"]
           }
         }
       }

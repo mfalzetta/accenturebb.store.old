@@ -296,6 +296,29 @@
     }
   }
 
+  [data-fs-product-card-list-price] {
+    display: flex;
+
+    [data-store-badge] {
+      position: static;
+      display: inline-block;
+      padding: 0.25rem 0;
+      margin-top: 0;
+
+      [data-fs-badge-wrapper="true"] {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-left: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 16px;
+        color: #ffffff;
+        background-color: #3e8629;
+        border-radius: 12px;
+      }
+    }
+  }
+
   [data-fs-badge-gallery-list="true"] {
     display: none;
   }
@@ -333,13 +356,6 @@
             font-weight: 400;
             line-height: 20px;
           }
-        }
-
-        [data-store-badge] {
-          position: static;
-          display: inline-block;
-          margin-top: 0;
-          margin-bottom: 16px;
         }
       }
     }

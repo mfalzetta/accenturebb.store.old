@@ -27,9 +27,10 @@ function RegionalizationModalContent({
             icon={<Icon name="X" width={30} height={30} />}
           />
         )}
-        <p data-fs-regionalization-modal-title>Set your location</p>
+        <p data-fs-regionalization-modal-title>Informe seu CEP</p>
         <p data-fs-regionalization-modal-description>
-          Prices, offers and availability may vary according to your location.
+          Preços, ofertas e disponibilidade podem variar de acordo com sua
+          localização.
         </p>
       </header>
       <div data-fs-regionalization-modal-body>
@@ -37,7 +38,7 @@ function RegionalizationModalContent({
           <RegionalizationInput closeModal={() => onClose?.()} />
         </div>
         <Link href="/" data-fs-regionalization-modal-link>
-          {"Don't know my Postal Code"}
+          {'Não sei meu CEP'}
           <Icon name="ArrowSquareOut" width={18} height={18} />
         </Link>
       </div>

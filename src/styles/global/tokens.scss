@@ -42,15 +42,15 @@ body {
   // HIERARCHY
   --fs-color-primary-text              : var(--fs-color-text-inverse);
   --fs-color-primary-bkg               : var(--fs-color-theme-3);
-  --fs-color-primary-bkg-hover         : var(--fs-color-main-3);
+  --fs-color-primary-bkg-hover         : var(--fs-color-accent-4);
   --fs-color-primary-bkg-active        : var(--fs-color-main-2);
-  --fs-color-primary-bkg-light         : var(--fs-color-main-0);
+  --fs-color-primary-bkg-light         : var(--fs-color-theme-2);
   --fs-color-primary-bkg-light-active  : var(--fs-color-main-1);
 
   --fs-color-secondary-text            : var(--fs-color-theme-0);
   --fs-color-secondary-bkg             : transparent;
   --fs-color-secondary-bkg-hover       : var(--fs-color-theme-0);
-  --fs-color-secondary-bkg-active      : var(--fs-color-main-3);
+  --fs-color-secondary-bkg-active      : var(--fs-color-accent-4);
   --fs-color-secondary-bkg-light       : var(--fs-color-main-0);
   --fs-color-secondary-bkg-light-active: var(--fs-color-secondary-bkg-light);
 
@@ -257,9 +257,9 @@ body {
   --fs-border-radius-pill              : 100px;
   --fs-border-radius-circle            : 100%;
 
-  --fs-border-color                    : var(--fs-color-neutral-4);
-  --fs-border-color-hover              : var(--fs-color-main-3);
-  --fs-border-color-active             : var(--fs-color-main-2);
+  --fs-border-color                    : var(--fs-color-theme-0);
+  --fs-border-color-hover              : var(--fs-color-theme-3);
+  --fs-border-color-active             : var(--fs-color-theme-3);
   --fs-border-color-disabled           : var(--fs-color-neutral-6);
 
   --fs-border-color-light              : var(--fs-color-neutral-2);

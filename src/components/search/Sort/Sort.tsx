@@ -3,25 +3,25 @@ import { useEffect, useState } from 'react'
 import Select from 'src/components/ui/Select'
 
 const OptionsMapM = {
-  price_desc: 'Price, descending',
-  price_asc: 'Price, ascending',
-  orders_desc: 'Top sales',
-  name_asc: 'Name, A-Z',
-  name_desc: 'Name, Z-A',
-  release_desc: 'Release date',
-  discount_desc: 'Discount',
+  price_desc: 'Maior preço',
+  price_asc: 'Menor preço',
+  orders_desc: 'Mais vendidos',
+  name_asc: 'A-Z',
+  name_desc: 'Z-A',
+  release_desc: 'Data de lançamento',
+  discount_desc: 'Desconto',
   score_desc: 'Ordernar',
 }
 
 const OptionsMapD = {
-  price_desc: 'Price, descending',
-  price_asc: 'Price, ascending',
-  orders_desc: 'Top sales',
-  name_asc: 'Name, A-Z',
-  name_desc: 'Name, Z-A',
-  release_desc: 'Release date',
-  discount_desc: 'Discount',
-  score_desc: 'Relevance',
+  price_desc: 'Maior preço',
+  price_asc: 'Menor preço',
+  orders_desc: 'Mais vendidos',
+  name_asc: 'A-Z',
+  name_desc: 'Z-A',
+  release_desc: 'Data de lançamento',
+  discount_desc: 'Desconto',
+  score_desc: 'Relevância',
 }
 
 let keys = Object.keys(OptionsMapD) as Array<keyof typeof OptionsMapD>
