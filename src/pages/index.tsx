@@ -7,9 +7,7 @@ import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
 import Newsletter from 'src/components/sections/Newsletter'
-import InfoCard from 'src/components/custom-components/home/InfoCard'
 import Slider from 'src/components/custom-components/home/Slider'
-import SectionTitle from 'src/components/custom-components/home/SectionTitle'
 import RenderCMS from 'src/components/RenderCMS'
 
 export type Props = PageProps<HomePageQueryQuery>
@@ -32,61 +30,6 @@ function MainBanner() {
         height="328"
         loading="lazy"
         className="image__temporary"
-      />
-    </Slider>
-  )
-}
-
-function Brand() {
-  return (
-    <Slider itemsPerPage={6} height={200}>
-      <InfoCard
-        href="/"
-        src="/home/acc-vetor.svg"
-        alt="imagee"
-        width="36"
-        height="40"
-        className="classSection__brand"
-      />
-      <InfoCard
-        href="/"
-        src="/home/acc-vetor.svg"
-        alt="imagee"
-        width="36"
-        height="40"
-        className="classSection__brand"
-      />
-      <InfoCard
-        href="/"
-        src="/home/acc-vetor.svg"
-        alt="imagee"
-        width="36"
-        height="40"
-        className="classSection__brand"
-      />
-      <InfoCard
-        href="/"
-        src="/home/acc-vetor.svg"
-        alt="imagee"
-        width="36"
-        height="40"
-        className="classSection__brand"
-      />
-      <InfoCard
-        href="/"
-        src="/home/acc-vetor.svg"
-        alt="imagee"
-        width="36"
-        height="40"
-        className="classSection__brand"
-      />
-      <InfoCard
-        href="/"
-        src="/home/acc-vetor.svg"
-        alt="imagee"
-        width="36"
-        height="40"
-        className="classSection__brand"
       />
     </Slider>
   )
@@ -143,12 +86,6 @@ function Page(props: Props) {
         (not the HTML tag) before rendering it here.
       */}
       <MainBanner />
-      <SectionTitle
-        className="classSection__container"
-        border
-        title="Comprar por marca"
-      />
-      <Brand />
       <RenderCMS sections={cmsHome?.sections} />
       <Newsletter
         title="Receba notícias e ofertas especiais!"

@@ -45,8 +45,13 @@
 
 .classSection__brand {
   align-items: center;
-  padding: 2.75rem 4rem;
+  width: 204px;
+  height: 128px;
   background-color: #fafafa;
+
+  img {
+    max-width: 22%;
+  }
 
   &:hover {
     background-color: #ffffff;
