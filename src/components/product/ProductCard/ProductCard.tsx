@@ -82,15 +82,6 @@ function ProductCard({
             loading="lazy"
           />
 
-          {outOfStock ? (
-            <Badge galleryList={galleryList}>Out of stock</Badge>
-          ) : (
-            <DiscountBadge
-              listPrice={listPrice}
-              spotPrice={spotPrice}
-              galleryList={galleryList}
-            />
-          )}
           {!!ButtonBuy && (
             <UIProductCardActions data-fs-product-card-actions>
               {ButtonBuy}
@@ -107,14 +98,28 @@ function ProductCard({
               </Link>
             </h3>
             <div data-fs-product-card-prices>
-              {outOfStock ? (
-                <Badge galleryList={!galleryList}>Out of stock</Badge>
+              {spotPrice !== listPrice ? (
+                <div data-fs-product-card-list-price>
+                  <Price
+                    value={listPrice}
+                    formatter={useFormattedPrice}
+                    testId="list-price"
+                    data-value={listPrice}
+                    variant="listing"
+                    classes="text__legend"
+                    SRText="Original price:"
+                  />
+                  {outOfStock ? (
+                    <Badge>Out of stock</Badge>
+                  ) : (
+                    <DiscountBadge
+                      listPrice={listPrice}
+                      spotPrice={spotPrice}
+                    />
+                  )}
+                </div>
               ) : (
-                <DiscountBadge
-                  listPrice={listPrice}
-                  spotPrice={spotPrice}
-                  galleryList={!galleryList}
-                />
+                <></>
               )}
               <Price
                 value={spotPrice}
@@ -125,19 +130,6 @@ function ProductCard({
                 classes="text__body"
                 SRText="Sale Price:"
               />
-              {spotPrice !== listPrice ? (
-                <Price
-                  value={listPrice}
-                  formatter={useFormattedPrice}
-                  testId="list-price"
-                  data-value={listPrice}
-                  variant="listing"
-                  classes="text__legend"
-                  SRText="Original price:"
-                />
-              ) : (
-                <></>
-              )}
             </div>
           </div>
         </UIProductCardContent>

@@ -37,6 +37,10 @@
     overflow: auto;
   }
 
+  [data-testid="price"] {
+    margin-left: 8px;
+  }
+
   > footer {
     margin-top: auto;
     background-color: var(--fs-color-neutral-0);
@@ -45,5 +49,9 @@
     [data-store-button] {
       width: 100%;
     }
+  }
+
+  [data-fs-badge-wrapper] {
+    display: none;
   }
 }

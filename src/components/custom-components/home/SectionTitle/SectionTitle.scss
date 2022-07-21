@@ -33,6 +33,8 @@
   padding: 0 0 1rem 21rem;
 
   .classSection__title.category-page {
+    padding-right: var(--fs-grid-padding);
+    padding-left: var(--fs-grid-padding);
     margin: 10px 0;
     font-size: 32px;
     font-weight: 400;

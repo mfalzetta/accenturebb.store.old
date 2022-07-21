@@ -35,7 +35,7 @@ function CartSidebar() {
     >
       <header data-testid="cart-sidebar">
         <div className="cart-sidebar__title">
-          <p className="text__lead">Your Cart</p>
+          <p className="text__lead">Carrinho</p>
           <Badge variant="info">{totalItems}</Badge>
         </div>
         <ButtonIcon
