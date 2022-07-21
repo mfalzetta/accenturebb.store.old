@@ -147,6 +147,36 @@
     [data-fs-product-card] {
       min-width: 100%;
     }
+
+    [data-fs-product-grid][data-gallery-list-layout="false"] {
+      @media (min-width: 600px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media (min-width: 950px) {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      @media (max-width: 355px) {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      li {
+        width: 191px;
+        min-width: 191px;
+        min-height: 331px;
+        margin: auto;
+
+        @media (max-width: 450px) {
+          width: 168px;
+          min-width: 168px;
+        }
+
+        [data-store-product-card] {
+          min-height: 331px;
+        }
+      }
+    }
   }
 
   [data-fs-product-listing-sponsored] {
