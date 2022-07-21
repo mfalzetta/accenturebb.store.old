@@ -189,7 +189,9 @@ const CarouselShelf = ({
             key={index}
             onClick={() => moveDot(index + 1)}
             className={carouselIndex === index + 1 ? 'dot active' : 'dot'}
-          />
+          >
+            {' '}
+          </div>
         ))}
       </div>
     </div>
