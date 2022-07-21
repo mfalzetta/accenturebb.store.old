@@ -9,6 +9,7 @@ export interface InfoCardProps {
   href: string
   text?: string
   className?: string
+  brandSize?: 'small' | 'big'
 }
 
 const InfoCard = ({
@@ -19,6 +20,7 @@ const InfoCard = ({
   height,
   href,
   className,
+  brandSize,
 }: InfoCardProps) => {
   return (
     <Link to={href}>
@@ -30,6 +32,7 @@ const InfoCard = ({
           loading="lazy"
           width={width}
           height={height}
+          data-brand-size={brandSize}
         />
         {text && <span className="infocard__text">{text}</span>}
       </div>

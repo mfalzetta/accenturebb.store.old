@@ -581,8 +581,15 @@
                 "title": "Href Link",
                 "description": "Set a URL",
                 "type": "string"
+              },
+              "size": {
+                "type": "string",
+                "title": "Size",
+                "enum": ["big", "small"],
+                "enumNames": ["Big", "Small"]
               }
-            }
+            },
+            "required": ["size"]
           }
         }
       }

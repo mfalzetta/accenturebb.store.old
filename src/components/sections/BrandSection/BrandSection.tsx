@@ -2,13 +2,15 @@ import InfoCard from 'src/components/custom-components/home/InfoCard'
 import Slider from 'src/components/custom-components/home/Slider'
 import Section from 'src/components/sections/Section'
 
-export interface BrandSectionAllItems {
-  allItems: BrandSectionProps[]
-}
 export interface BrandSectionProps {
   src: string
   alt: string
   href: string
+  size: 'small' | 'big'
+}
+
+export interface BrandSectionAllItems {
+  allItems: BrandSectionProps[]
 }
 
 const BrandSection = ({ allItems }: BrandSectionAllItems) => {
@@ -24,6 +26,7 @@ const BrandSection = ({ allItems }: BrandSectionAllItems) => {
             width="100%"
             height="auto"
             className="classSection__brand"
+            brandSize={card.size}
           />
         ))}
       </Slider>
