@@ -7,33 +7,9 @@ import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
 import Newsletter from 'src/components/sections/Newsletter'
-import Slider from 'src/components/custom-components/home/Slider'
 import RenderCMS from 'src/components/RenderCMS'
 
 export type Props = PageProps<HomePageQueryQuery>
-
-function MainBanner() {
-  return (
-    <Slider arrows wfull height={328}>
-      <img
-        src="/home/BannerImage.svg"
-        alt="Accenture logo"
-        width="1368"
-        height="328"
-        loading="lazy"
-        className="image__temporary"
-      />
-      <img
-        src="/home/BannerImage.svg"
-        alt="Accenture logo"
-        width="1368"
-        height="328"
-        loading="lazy"
-        className="image__temporary"
-      />
-    </Slider>
-  )
-}
 
 function Page(props: Props) {
   const {
@@ -85,7 +61,6 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-      <MainBanner />
       <RenderCMS sections={cmsHome?.sections} />
       <Newsletter
         title="Receba notícias e ofertas especiais!"
@@ -107,6 +82,7 @@ export const querySSG = graphql`
         siteUrl
       }
     }
+
     cmsHome(versionStatus: { eq: "published" }) {
       sections {
         data
