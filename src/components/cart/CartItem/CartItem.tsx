@@ -99,15 +99,19 @@ function CartItem({ item }: Props) {
             {item.itemOffered.isVariantOf.name}
           </p>
           <span data-fs-cart-item-prices>
-            <Price
-              value={item.listPrice}
-              formatter={useFormattedPrice}
-              testId="list-price"
-              data-value={item.listPrice}
-              variant="listing"
-              classes="text__legend"
-              SRText="Original price:"
-            />
+            {item.listPrice !== item.price ? (
+              <Price
+                value={item.listPrice}
+                formatter={useFormattedPrice}
+                testId="list-price"
+                data-value={item.listPrice}
+                variant="listing"
+                classes="text__legend"
+                SRText="Original price:"
+              />
+            ) : (
+              <></>
+            )}
             <Price
               value={item.price}
               formatter={useFormattedPrice}
@@ -128,7 +132,7 @@ function CartItem({ item }: Props) {
           iconPosition="left"
           {...btnProps}
         >
-          Remove
+          Remover
         </Button>
         <QuantitySelector
           min={1}

@@ -17,11 +17,13 @@ function OrderSummary({
 }: OrderSummaryProps) {
   const discount = subTotal - total
   const formattedDiscount = useFormattedPrice(discount)
+  const items =
+    numberOfItems > 1 ? `${numberOfItems} produtos` : `${numberOfItems} produto`
 
   return (
     <List className="order-summary" data-order-summary>
       <li>
-        <span>Subtotal ({numberOfItems} products)</span>
+        <span>Subtotal ({items})</span>
         <span>{useFormattedPrice(subTotal)}</span>
       </li>
       {discount > 0 && (
