@@ -33,10 +33,11 @@
     margin-bottom: var(--fs-spacing-0);
   }
 
-  [data-store-radio-option] {
+  [data-store-radio-option],a  {
     position: relative;
     width: var(--fs-spacing-7);
     height: var(--fs-spacing-7);
+    text-decoration: none;
 
     span {
       position: relative;
