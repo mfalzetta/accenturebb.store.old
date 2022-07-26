@@ -4039,7 +4039,7 @@ export type Filter_Facets_StoreFacetRange_Fragment = { __typename: 'StoreFacetRa
 
 export type Filter_FacetsFragment = Filter_Facets_StoreFacetBoolean_Fragment | Filter_Facets_StoreFacetRange_Fragment;
 
-export type ProductDetailsFragment_ProductFragment = { sku: string, name: string, gtin: string, description: string, id: string, isVariantOf: { productGroupID: string, name: string, hasVariant: Array<{ additionalProperty: Array<{ name: string, propertyID: string, value: any, valueReference: string }> }> }, image: Array<{ url: string, alternateName: string }>, brand: { name: string }, offers: { lowPrice: number, offers: Array<{ availability: string, price: number, listPrice: number, seller: { identifier: string } }> }, breadcrumbList: { itemListElement: Array<{ item: string, name: string, position: number }> }, additionalProperty: Array<{ propertyID: string, name: string, value: any, valueReference: string }> };
+export type ProductDetailsFragment_ProductFragment = { sku: string, name: string, gtin: string, description: string, id: string, isVariantOf: { productGroupID: string, name: string, hasVariant: Array<{ slug: string, additionalProperty: Array<{ name: string, propertyID: string, value: any, valueReference: string }> }> }, image: Array<{ url: string, alternateName: string }>, brand: { name: string }, offers: { lowPrice: number, offers: Array<{ availability: string, price: number, listPrice: number, seller: { identifier: string } }> }, breadcrumbList: { itemListElement: Array<{ item: string, name: string, position: number }> }, additionalProperty: Array<{ propertyID: string, name: string, value: any, valueReference: string }> };
 
 export type ProductGalleryQueryQueryVariables = Exact<{
   first: Scalars['Int'];
@@ -4074,7 +4074,7 @@ export type ServerProductPageQueryQueryVariables = Exact<{
 }>;
 
 
-export type ServerProductPageQueryQuery = { product: { sku: string, gtin: string, name: string, description: string, id: string, seo: { title: string, description: string, canonical: string }, brand: { name: string }, breadcrumbList: { itemListElement: Array<{ item: string, name: string, position: number }> }, image: Array<{ url: string, alternateName: string }>, offers: { lowPrice: number, highPrice: number, priceCurrency: string, offers: Array<{ availability: string, price: number, priceValidUntil: string, priceCurrency: string, itemCondition: string, listPrice: number, seller: { identifier: string } }> }, isVariantOf: { productGroupID: string, name: string, hasVariant: Array<{ additionalProperty: Array<{ name: string, propertyID: string, value: any, valueReference: string }> }> }, additionalProperty: Array<{ propertyID: string, name: string, value: any, valueReference: string }> } };
+export type ServerProductPageQueryQuery = { product: { sku: string, gtin: string, name: string, description: string, id: string, seo: { title: string, description: string, canonical: string }, brand: { name: string }, breadcrumbList: { itemListElement: Array<{ item: string, name: string, position: number }> }, image: Array<{ url: string, alternateName: string }>, offers: { lowPrice: number, highPrice: number, priceCurrency: string, offers: Array<{ availability: string, price: number, priceValidUntil: string, priceCurrency: string, itemCondition: string, listPrice: number, seller: { identifier: string } }> }, isVariantOf: { productGroupID: string, name: string, hasVariant: Array<{ slug: string, additionalProperty: Array<{ name: string, propertyID: string, value: any, valueReference: string }> }> }, additionalProperty: Array<{ propertyID: string, name: string, value: any, valueReference: string }> } };
 
 export type HomePageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4102,7 +4102,7 @@ export type BrowserProductQueryQueryVariables = Exact<{
 }>;
 
 
-export type BrowserProductQueryQuery = { product: { sku: string, name: string, gtin: string, description: string, id: string, isVariantOf: { productGroupID: string, name: string, hasVariant: Array<{ additionalProperty: Array<{ name: string, propertyID: string, value: any, valueReference: string }> }> }, image: Array<{ url: string, alternateName: string }>, brand: { name: string }, offers: { lowPrice: number, offers: Array<{ availability: string, price: number, listPrice: number, seller: { identifier: string } }> }, breadcrumbList: { itemListElement: Array<{ item: string, name: string, position: number }> }, additionalProperty: Array<{ propertyID: string, name: string, value: any, valueReference: string }> } };
+export type BrowserProductQueryQuery = { product: { sku: string, name: string, gtin: string, description: string, id: string, isVariantOf: { productGroupID: string, name: string, hasVariant: Array<{ slug: string, additionalProperty: Array<{ name: string, propertyID: string, value: any, valueReference: string }> }> }, image: Array<{ url: string, alternateName: string }>, brand: { name: string }, offers: { lowPrice: number, offers: Array<{ availability: string, price: number, listPrice: number, seller: { identifier: string } }> }, breadcrumbList: { itemListElement: Array<{ item: string, name: string, position: number }> }, additionalProperty: Array<{ propertyID: string, name: string, value: any, valueReference: string }> } };
 
 export type ProductsQueryQueryVariables = Exact<{
   first: Scalars['Int'];

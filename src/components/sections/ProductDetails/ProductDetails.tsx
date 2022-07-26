@@ -123,49 +123,11 @@ function ProductDetails({ product: staleProduct }: Props) {
     })
     .flat()
 
-  // const result = options.reduce((acc, element) => {
-  //   console.log('element', element)
-  //   console.log('acc', acc)
-
-  //   return
-
-  //   // if (Array.isArray(label)) {
-  //   //   // if it's array type then concat
-  //   //   acc[names].label = acc[names].label.concat(label)
-  //   // } else {
-  //   //   acc[names].label.push(label)
-  //   // }
-
-  //   return acc
-  // }, {})
-
-  // const result = options.reduce((acc, { names, value, label }) => {
-  //   acc[names] ??= { value: [], label: [] }
-  //   if (Array.isArray(value)) {
-  //     // if it's array type then concat
-  //     acc[names].value = acc[names].value.concat(value)
-  //   } else {
-  //     acc[names].value.push(value)
-  //   }
-
-  //   if (Array.isArray(label)) {
-  //     // if it's array type then concat
-  //     acc[names].label = acc[names].label.concat(label)
-  //   } else {
-  //     acc[names].label.push(label)
-  //   }
-
-  //   return acc
-  // }, {})
-
   const slugs: any = data?.product?.isVariantOf?.hasVariant
     .map((specification: any) => {
       return [specification?.slug]
     })
     .flat()
-
-  console.log(options)
-  // // console.log(result)
 
   return (
     <Section className="product-details layout__content layout__section">
@@ -327,6 +289,7 @@ export const fragment = graphql`
           value
           valueReference
         }
+        slug
       }
     }
 
