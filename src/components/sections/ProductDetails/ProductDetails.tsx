@@ -45,7 +45,7 @@ function ProductDetails({ product: staleProduct }: Props) {
       name: variantName,
       brand,
       isVariantOf,
-      isVariantOf: { name, productGroupID: productId },
+      isVariantOf: { productGroupID: productId },
       image: productImages,
       offers: {
         offers: [{ availability, price, listPrice, seller }],
@@ -108,14 +108,14 @@ function ProductDetails({ product: staleProduct }: Props) {
     gtin,
   ])
 
-  const options: any = data?.product?.isVariantOf?.hasVariant
-    .map((specification: any) => {
-      return specification?.additionalProperty
-        ?.map((variations: any) => {
+  const options = data?.product?.isVariantOf?.hasVariant
+    .map((option) => {
+      return option?.additionalProperty
+        ?.map((item) => {
           return [
             {
-              label: variations?.value,
-              value: variations?.value,
+              label: item?.value.toString(),
+              value: item?.value.toString(),
             },
           ]
         })
@@ -123,8 +123,8 @@ function ProductDetails({ product: staleProduct }: Props) {
     })
     .flat()
 
-  const slugs: any = data?.product?.isVariantOf?.hasVariant
-    .map((specification: any) => {
+  const slugs = data?.product?.isVariantOf?.hasVariant
+    .map((specification) => {
       return [specification?.slug]
     })
     .flat()
