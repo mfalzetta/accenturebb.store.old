@@ -14,6 +14,7 @@ import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { useProductLink } from 'src/sdk/product/useProductLink'
 import type { ReactNode } from 'react'
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
+import Installment from 'src/components/custom-components/Price/Installment'
 
 import styles from './product-card.module.scss'
 
@@ -52,8 +53,11 @@ function ProductCard({
       lowPrice: spotPrice,
       offers: [{ listPrice, availability }],
     },
+    Sellers: sellers,
   } = product
 
+  const sellerD = sellers?.filter((element) => element?.sellerDefault === true)
+  const installments = sellerD?.map((el) => el?.commertialOffer?.Installments)
   const linkProps = useProductLink({ product, selectedOffer: 0, index })
   const outOfStock = availability !== 'https://schema.org/InStock'
 
@@ -88,7 +92,6 @@ function ProductCard({
             </UIProductCardActions>
           )}
         </UIProductCardImage>
-
         <UIProductCardContent data-fs-product-card-content>
           <div data-fs-product-card-heading>
             <h3 data-fs-product-card-brand-title>{brandName}</h3>
@@ -131,6 +134,7 @@ function ProductCard({
                 SRText="Sale Price:"
               />
             </div>
+            {installments && <Installment Installments={installments} />}
           </div>
         </UIProductCardContent>
       </div>
@@ -172,6 +176,19 @@ export const fragment = graphql`
         quantity
         seller {
           identifier
+        }
+      }
+    }
+    Sellers {
+      sellerDefault
+      commertialOffer {
+        Installments {
+          Value
+          InterestRate
+          TotalValuePlusInterestRate
+          NumberOfInstallments
+          Name
+          PaymentSystemName
         }
       }
     }

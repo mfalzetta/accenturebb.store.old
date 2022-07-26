@@ -1098,6 +1098,12 @@ export type CmsSeoSortInput = {
   order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
 }
 
+export type CommertialOffer = {
+  Installments: Maybe<Array<Installment>>
+  ListPrice: Maybe<Scalars['Float']>
+  Price: Maybe<Scalars['Float']>
+}
+
 export type DateQueryOperatorInput = {
   eq: InputMaybe<Scalars['Date']>
   gt: InputMaybe<Scalars['Date']>
@@ -1882,6 +1888,16 @@ export type IStoreSession = {
   postalCode: InputMaybe<Scalars['String']>
 }
 
+export type Installment = {
+  InterestRate: Scalars['Float']
+  Name: Scalars['String']
+  NumberOfInstallments: Scalars['Float']
+  PaymentSystemGroupName: Scalars['String']
+  PaymentSystemName: Scalars['String']
+  TotalValuePlusInterestRate: Scalars['Float']
+  Value: Scalars['Float']
+}
+
 export type IntQueryOperatorInput = {
   eq: InputMaybe<Scalars['Int']>
   gt: InputMaybe<Scalars['Int']>
@@ -2317,6 +2333,14 @@ export type QuerySitePluginArgs = {
   resolve: InputMaybe<StringQueryOperatorInput>
   ssrAPIs: InputMaybe<StringQueryOperatorInput>
   version: InputMaybe<StringQueryOperatorInput>
+}
+
+export type Seller = {
+  addToCartLink: Maybe<Scalars['String']>
+  commertialOffer: Maybe<CommertialOffer>
+  sellerDefault: Scalars['Boolean']
+  sellerId: Maybe<Scalars['String']>
+  sellerName: Maybe<Scalars['String']>
 }
 
 export type Site = Node & {
@@ -3687,6 +3711,7 @@ export type StorePerson = {
 
 /** Product information. Products are variants within product groups, equivalent to VTEX [SKUs](https://help.vtex.com/en/tutorial/what-is-an-sku--1K75s4RXAQyOuGUYKMM68u#). For example, you may have a **Shirt** product group with associated products such as **Blue shirt size L**, **Green shirt size XL** and so on. */
 export type StoreProduct = {
+  Sellers: Maybe<Array<Seller>>
   /** Array of additional properties. */
   additionalProperty: Array<StorePropertyValue>
   /** Aggregate ratings data. */
@@ -3885,6 +3910,19 @@ export type ProductSummary_ProductFragment = {
       seller: { identifier: string }
     }>
   }
+  Sellers: Array<{
+    sellerDefault: boolean
+    commertialOffer: {
+      Installments: Array<{
+        Value: number
+        InterestRate: number
+        TotalValuePlusInterestRate: number
+        NumberOfInstallments: number
+        Name: string
+        PaymentSystemName: string
+      }> | null
+    } | null
+  }> | null
 }
 
 export type Filter_Facets_StoreFacetBoolean_Fragment = {
@@ -4204,6 +4242,19 @@ export type ProductsQueryQuery = {
               seller: { identifier: string }
             }>
           }
+          Sellers: Array<{
+            sellerDefault: boolean
+            commertialOffer: {
+              Installments: Array<{
+                Value: number
+                InterestRate: number
+                TotalValuePlusInterestRate: number
+                NumberOfInstallments: number
+                Name: string
+                PaymentSystemName: string
+              }> | null
+            } | null
+          }> | null
         }
       }>
     }
@@ -4238,6 +4289,19 @@ export type SearchSuggestionsQueryQuery = {
             seller: { identifier: string }
           }>
         }
+        Sellers: Array<{
+          sellerDefault: boolean
+          commertialOffer: {
+            Installments: Array<{
+              Value: number
+              InterestRate: number
+              TotalValuePlusInterestRate: number
+              NumberOfInstallments: number
+              Name: string
+              PaymentSystemName: string
+            }> | null
+          } | null
+        }> | null
       }>
     }
   }
