@@ -10,16 +10,21 @@
 
   [data-store-input] {
     width: 100%;
+    min-height: 39px;
     padding: var(--fs-spacing-1) var(--fs-spacing-7) var(--fs-spacing-1) var(--fs-spacing-2);
+    padding: 0 25px 0 45px;
+    font-size: 16px;
+    background-color: #f4f4f4;
     border: var(--fs-border-width) solid var(--fs-color-theme-2);
+    border: none;
     border-radius: var(--fs-border-radius);
+    border-radius: 20px;
     transition: box-shadow .2s ease, border .2s ease;
 
     &:hover {
       border-color: var(--fs-color-theme-3);
       box-shadow: 0 0 0 var(--fs-border-width) var(--fs-color-theme-3);
     }
-
 
     @include input-focus-ring;
 

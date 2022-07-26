@@ -1,6 +1,8 @@
 .headerLink {
   width: 100%;
-  background-color: var(--fs-color-theme-4);
+
+  // background-color: var(--fs-color-theme-4);
+  background-color: #ffffff;
 
   &--content {
     display: flex;
@@ -18,7 +20,7 @@
       font-size: 14px;
       font-weight: var(--fs-text-weight-regular);
       line-height: 24px;
-      color: #ffffff;
+      color: #242424;
     }
   }
 
@@ -27,7 +29,7 @@
     font-size: 14px;
     font-weight: var(--fs-text-weight-regular);
     line-height: 20px;
-    color: #ffffff;
+    color: #242424;
     background-color: transparent;
   }
 }
