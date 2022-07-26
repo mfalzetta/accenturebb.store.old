@@ -10,14 +10,13 @@
   {
     "name": "Banners",
     "schema": {
-      "title": "6 banners group",
-      "description": "Home banners below carrousel",
+      "title": "Main banner",
+      "description": "Main banner slider",
       "type": "object",
       "properties": {
         "banners": {
           "type": "array",
-          "maxItems": 6,
-          "minItems": 6,
+          "minItems": 1,
           "items": {
             "type": "object",
             "title": "Image",
@@ -32,15 +31,32 @@
               },
               "href": {
                 "title": "URL address",
-                "description": "",
                 "type": "string"
               },
               "alt": {
                 "title": "Image description",
                 "description": "Image description for accessibility",
                 "type": "string"
+              },
+              "title": {
+                "type": "string",
+                "title": "Banner Title"
+              },
+              "subTitle": {
+                "type": "string",
+                "title": "Banner subtitle"
+              },
+              "buttonText": {
+                "type": "string",
+                "title": "Banner button"
+              },
+              "color": {
+                "type": "string",
+                "title": "Color Text",
+                "description": "Hexadecimal color"
               }
-            }
+            },
+            "required": ["src"]
           }
         }
       }

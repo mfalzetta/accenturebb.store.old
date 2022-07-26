@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- `CMS Query` remove version status filter ([#27](https://github.com/vtex-sites/accenturebb.store/pull/27)
+- `Main Banner` component to CMS ([#25](https://github.com/vtex-sites/accenturebb.store/pull/25))
+- `Category gallery` fix layout product card ([#24](https://github.com/vtex-sites/accenturebb.store/pull/24))
 - `Promotion Banner` component changes, full clickable and optional text and button ([#23](https://github.com/vtex-sites/accenturebb.store/pull/23))
 - `Brand Section` component to CMS ([#22](https://github.com/vtex-sites/accenturebb.store/pull/22))
 ### Added
