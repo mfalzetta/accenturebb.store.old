@@ -114,7 +114,7 @@ const Slider = ({
           })}
         </div>
       ))}
-      {arrows && (
+      {arrows && itemsPage.length > 1 && (
         <>
           <BtnSlider moveSlide={nextSlide} direction="next" />
           <BtnSlider moveSlide={prevSlide} direction="prev" />
