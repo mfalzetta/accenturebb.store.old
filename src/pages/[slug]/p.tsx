@@ -15,7 +15,6 @@ import type {
   ServerProductPageQueryQuery,
   ProductPageQueryQueryVariables,
 } from '@generated/graphql'
-import { ITEMS_PER_SECTION } from 'src/constants'
 
 import 'src/styles/pages/pdp.scss'
 
@@ -105,22 +104,11 @@ function Page(props: Props) {
         (not the HTML tag) before rendering it here.
       */}
       <ProductDetails product={product} />
-
       <ProductShelf
-        first={ITEMS_PER_SECTION}
-        selectedFacets={[
-          { key: 'buy', value: product.isVariantOf.productGroupID },
-        ]}
-        title="People also bought"
-        withDivisor
-      />
-
-      <ProductShelf
-        first={ITEMS_PER_SECTION}
-        selectedFacets={[
-          { key: 'view', value: product.isVariantOf.productGroupID },
-        ]}
-        title="People also view"
+        productClusterIds="142"
+        shelfType="isCarousel"
+        first={18}
+        itens={6}
       />
     </>
   )
