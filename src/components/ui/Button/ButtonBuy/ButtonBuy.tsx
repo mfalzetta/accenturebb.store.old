@@ -1,5 +1,3 @@
-import Icon from 'src/components/ui/Icon'
-
 import Button from '../Button'
 import type { ButtonProps } from '../Button'
 import styles from '../button.module.scss'
@@ -15,7 +13,6 @@ function ButtonBuy({ children, ...otherProps }: Props) {
       data-fs-button-variant="buy"
       {...otherProps}
     >
-      <Icon name="ShoppingCart" width={18} height={18} weight="bold" />
       {children}
     </Button>
   )

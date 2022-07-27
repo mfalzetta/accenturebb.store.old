@@ -94,11 +94,11 @@
   --fs-button-tertiary-inverse-shadow-hover         : var(--fs-button-shadow-hover);
 
   // Buy (Main CTA)
-  --fs-button-buy-text-color                        : var(--fs-color-action-text);
-  --fs-button-buy-text-color-hover                  : var(--fs-color-action-text);
+  --fs-button-buy-text-color                        : var(--fs-color-theme-4);
+  --fs-button-buy-text-color-hover                  : var(--fs-color-theme-4);
   --fs-button-buy-text-color-active                 : var(--fs-color-action-text);
-  --fs-button-buy-bkg-color                         : var(--fs-color-action-bkg);
-  --fs-button-buy-bkg-color-hover                   : var(--fs-color-action-bkg-hover);
+  --fs-button-buy-bkg-color                         : var(--fs-color-theme-2);
+  --fs-button-buy-bkg-color-hover                   : var(--fs-color-theme-2);
   --fs-button-buy-bkg-color-active                  : var(--fs-color-action-bkg-active);
   --fs-button-buy-border-color                      : var(--fs-button-action-text-color);
   --fs-button-buy-border-color-hover                : var(--fs-button-action-border-color);
@@ -319,7 +319,7 @@
   &[data-fs-button-variant="buy"] {
     color: var(--fs-button-buy-text-color);
     background-color: var(--fs-button-buy-bkg-color);
-    border: var(--fs-button-border-width) solid var(--fs-button-buy-border-color);
+    border: none;
 
     &:hover {
       color: var(--fs-button-buy-text-color-hover);
