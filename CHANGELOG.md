@@ -6,7 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed 
+- `Home Components Fixes` slider arrows for 1 banner and category section button size ([#33](https://github.com/vtex-sites/accenturebb.store/pull/33)
+
 ### Added
+- `Home Components Fixes` add category from graphQL ([#31](https://github.com/vtex-sites/accenturebb.store/pull/31)
 - `Menu Category` add category from graphQL ([#31](https://github.com/vtex-sites/accenturebb.store/pull/31)
 - `CMS Query` remove version status filter ([#27](https://github.com/vtex-sites/accenturebb.store/pull/27)
 - `Main Banner` component to CMS ([#25](https://github.com/vtex-sites/accenturebb.store/pull/25))
