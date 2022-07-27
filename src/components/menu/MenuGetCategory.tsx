@@ -147,7 +147,8 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
                               </h3>
                               {subChildren[index] &&
                                 subChildren[
-                                  index + id * children[0].length
+                                  index +
+                                    id * children[id > 0 ? id - 1 : 0].length
                                 ].map(
                                   (
                                     {
