@@ -70,6 +70,14 @@ function Footer() {
                 </Link>
               </li>
             </UIList>
+            <section className="footer__find--store hidden-mobile">
+              <p className="text__title-mini footer__titles">
+                65 LOJAS NO BRASIL
+              </p>
+              <a href="/">
+                <span>Encontrar um loja</span>
+              </a>
+            </section>
           </section>
           <FooterLinks />
           <section className="footer__contacts hidden-mobile">

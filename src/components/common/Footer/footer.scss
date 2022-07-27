@@ -403,3 +403,28 @@
     }
   }
 }
+
+.footer__find--store {
+  padding-left: 2rem;
+  margin-top: 40px;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 305px;
+    height: 44px;
+    padding: 0 30px;
+    color: #292929;
+    text-decoration: none;
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 27px;
+
+    &:hover {
+      color: #ffffff;
+      background-color: #292929;
+      border-color: #545454;
+    }
+  }
+}
