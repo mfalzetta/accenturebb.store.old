@@ -147,8 +147,8 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
                               <h3>
                                 <a href={`${linkSubI}`}>{nameSubI}</a>
                               </h3>
-                              {subChildren[id] &&
-                                subChildren[id].map(
+                              {subChildren[index] &&
+                                subChildren[index].map(
                                   (
                                     {
                                       name: nameSubII,
