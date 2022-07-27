@@ -27,13 +27,14 @@
   font-weight: 400;
   color: var(--fs-color-theme-4);
   text-align: center;
-  word-break: break-word;
   pointer-events: none;
   background-color: var(--fs-color-neutral-0);
   border-radius: 0.5rem;
 
   @media (max-width: 448px) {
+    max-width: 75px;
     padding: 10px;
+    font-size: 10px;
   }
 }
 
