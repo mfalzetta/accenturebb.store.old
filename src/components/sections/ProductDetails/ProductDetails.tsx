@@ -153,18 +153,20 @@ function ProductDetails({ product: staleProduct }: Props) {
         <section className="product-details__settings">
           <section className="product-details__values">
             <div className="product-details__prices">
-              <div className="product-details__prices--badge">
-                <Price
-                  value={listPrice}
-                  formatter={useFormattedPrice}
-                  testId="list-price"
-                  data-value={listPrice}
-                  variant="listing"
-                  classes="text__legend"
-                  SRText="Original price:"
-                />
-                <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />
-              </div>
+              {listPrice !== lowPrice && (
+                <div className="product-details__prices--badge">
+                  <Price
+                    value={listPrice}
+                    formatter={useFormattedPrice}
+                    testId="list-price"
+                    data-value={listPrice}
+                    variant="listing"
+                    classes="text__legend"
+                    SRText="Original price:"
+                  />
+                  <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />
+                </div>
+              )}
 
               <Price
                 value={lowPrice}
