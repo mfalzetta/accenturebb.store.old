@@ -6,7 +6,7 @@
   // --------------------------------------------------------
 
   // Default properties
-  --fs-qty-selector-width                     : calc(var(--fs-control-tap-size) * 2.7);
+  --fs-qty-selector-width                     : 100%;
   --fs-qty-selector-height                    : calc(var(--fs-control-tap-size) + (var(--fs-qty-selector-border-width) * 2));
 
   --fs-qty-selector-shadow                    : none;

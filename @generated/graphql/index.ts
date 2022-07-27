@@ -3938,7 +3938,20 @@ export type ProductDetailsFragment_ProductFragment = {
   gtin: string
   description: string
   id: string
-  isVariantOf: { productGroupID: string; name: string }
+  isVariantOf: {
+    productGroupID: string
+    name: string
+    hasVariant: Array<{
+      slug: string
+      additionalProperty: Array<{
+        name: string
+        propertyID: string
+        value: any
+        valueReference: string
+      }>
+      image: Array<{ url: string; alternateName: string }>
+    }>
+  }
   image: Array<{ url: string; alternateName: string }>
   brand: { name: string }
   offers: {
@@ -4066,7 +4079,20 @@ export type ServerProductPageQueryQuery = {
         seller: { identifier: string }
       }>
     }
-    isVariantOf: { productGroupID: string; name: string }
+    isVariantOf: {
+      productGroupID: string
+      name: string
+      hasVariant: Array<{
+        slug: string
+        additionalProperty: Array<{
+          name: string
+          propertyID: string
+          value: any
+          valueReference: string
+        }>
+        image: Array<{ url: string; alternateName: string }>
+      }>
+    }
     additionalProperty: Array<{
       propertyID: string
       name: string
@@ -4169,7 +4195,20 @@ export type BrowserProductQueryQuery = {
     gtin: string
     description: string
     id: string
-    isVariantOf: { productGroupID: string; name: string }
+    isVariantOf: {
+      productGroupID: string
+      name: string
+      hasVariant: Array<{
+        slug: string
+        additionalProperty: Array<{
+          name: string
+          propertyID: string
+          value: any
+          valueReference: string
+        }>
+        image: Array<{ url: string; alternateName: string }>
+      }>
+    }
     image: Array<{ url: string; alternateName: string }>
     brand: { name: string }
     offers: {

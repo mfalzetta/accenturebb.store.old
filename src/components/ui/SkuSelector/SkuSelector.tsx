@@ -2,6 +2,8 @@ import { Label, RadioGroup, RadioOption } from '@faststore/ui'
 import { useState } from 'react'
 import { Image } from 'src/components/ui/Image'
 import type { ChangeEventHandler } from 'react'
+import './sku-selector.scss'
+import { Link } from 'gatsby'
 
 interface DefaultSkuProps {
   /**
@@ -69,6 +71,7 @@ export interface SkuSelectorProps {
    * Function to be triggered when SKU option change.
    */
   onChange?: ChangeEventHandler<HTMLInputElement>
+  slugs: string[]
 }
 
 function SkuSelector({
@@ -78,6 +81,7 @@ function SkuSelector({
   onChange,
   defaultSku,
   testId = 'store-sku-selector',
+  slugs,
 }: SkuSelectorProps) {
   const [selectedSku, setSelectedSku] = useState<string>(defaultSku ?? '')
 
@@ -98,34 +102,44 @@ function SkuSelector({
       >
         {options.map((option, index) => {
           return (
-            <RadioOption
-              key={String(index)}
-              label={option.label}
-              value={option.label}
-              disabled={option.disabled}
-              checked={option.label === selectedSku}
-            >
-              {variant === 'label' && <span>{option.label}</span>}
-              {variant === 'color' && 'value' in option && (
-                <span>
-                  <div
-                    data-sku-selector-color
-                    style={{
-                      backgroundColor: option.value,
-                    }}
-                  />
-                </span>
-              )}
-              {variant === 'image' && 'src' in option && (
-                <Image
-                  src={option.src}
-                  alt={option.alt}
-                  width={20}
-                  height={20}
-                  loading="lazy"
-                />
-              )}
-            </RadioOption>
+            <Link key={String(index)} to={`/${slugs[index]}/p`}>
+              <RadioOption
+                label={option.label}
+                value={option.label}
+                disabled={option.disabled}
+                checked={option.label === selectedSku}
+              >
+                {variant === 'label' && <span>{option.label}</span>}
+                {variant === 'color' && 'value' in option && (
+                  <span>
+                    <div
+                      data-sku-selector-color
+                      style={{
+                        backgroundColor: option.value,
+                      }}
+                    />
+                  </span>
+                )}
+                {variant === 'image' && 'src' in option && (
+                  <span>
+                    <div
+                      data-sku-selector-color
+                      style={{
+                        backgroundColor: option.label,
+                      }}
+                    >
+                      <Image
+                        src={option.src}
+                        alt={option.alt}
+                        width={20}
+                        height={20}
+                        loading="lazy"
+                      />
+                    </div>
+                  </span>
+                )}
+              </RadioOption>
+            </Link>
           )
         })}
       </RadioGroup>

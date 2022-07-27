@@ -30,8 +30,7 @@ main,
 
 .layout__content-full {
   width: 100%;
-  padding-top: var(--fs-spacing-4);
-  padding-bottom: var(--fs-spacing-4);
+  padding: var(--fs-spacing-4) var(--fs-grid-padding);
 
   @include media(">=notebook") {
     padding-top: var(--fs-grid-padding);

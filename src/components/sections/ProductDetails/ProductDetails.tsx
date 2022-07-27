@@ -15,6 +15,7 @@ import type { ProductDetailsFragment_ProductFragment } from '@generated/graphql'
 import type { CurrencyCode, ViewItemEvent } from '@faststore/sdk'
 import type { AnalyticsItem } from 'src/sdk/analytics/types'
 import OutOfStock from 'src/components/product/OutOfStock'
+import SkuSelector from 'src/components/ui/SkuSelector'
 
 import Section from '../Section'
 
@@ -44,7 +45,7 @@ function ProductDetails({ product: staleProduct }: Props) {
       name: variantName,
       brand,
       isVariantOf,
-      isVariantOf: { name, productGroupID: productId },
+      isVariantOf: { productGroupID: productId },
       image: productImages,
       offers: {
         offers: [{ availability, price, listPrice, seller }],
@@ -107,35 +108,66 @@ function ProductDetails({ product: staleProduct }: Props) {
     gtin,
   ])
 
+  const options = data?.product?.isVariantOf?.hasVariant
+    .map((option) => {
+      return option?.additionalProperty
+        ?.map((item) => {
+          return [
+            {
+              label: item?.value?.toString(),
+              value: item?.value?.toString(),
+              src: option?.image[0]?.url,
+              alt: option?.image[0]?.alternateName,
+            },
+          ]
+        })
+        .flat()
+    })
+    .flat()
+
+  const slugs = data?.product?.isVariantOf?.hasVariant
+    .map((specification) => {
+      return [specification?.slug]
+    })
+    .flat()
+
   return (
-    <Section className="product-details layout__content layout__section">
+    <Section className="product-details layout__content-full layout__section">
       <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
 
       <section className="product-details__body">
         <header className="product-details__title">
-          <ProductTitle
-            title={<h1>{name}</h1>}
-            label={
-              <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} big />
-            }
-            refNumber={productId}
-          />
+          <ProductTitle title={<h1>{variantName}</h1>} refNumber={productId} />
         </header>
 
         <ImageGallery images={productImages} />
 
+        <SkuSelector
+          options={options}
+          variant={additionalProperty[0]?.name === 'Cor' ? 'image' : 'label'}
+          label={additionalProperty[0]?.name}
+          defaultSku={options[0].label}
+          slugs={slugs}
+        />
+
         <section className="product-details__settings">
           <section className="product-details__values">
             <div className="product-details__prices">
-              <Price
-                value={listPrice}
-                formatter={useFormattedPrice}
-                testId="list-price"
-                data-value={listPrice}
-                variant="listing"
-                classes="text__legend"
-                SRText="Original price:"
-              />
+              {listPrice !== lowPrice && (
+                <div className="product-details__prices--badge">
+                  <Price
+                    value={listPrice}
+                    formatter={useFormattedPrice}
+                    testId="list-price"
+                    data-value={listPrice}
+                    variant="listing"
+                    classes="text__legend"
+                    SRText="Original price:"
+                  />
+                  <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />
+                </div>
+              )}
+
               <Price
                 value={lowPrice}
                 formatter={useFormattedPrice}
@@ -160,7 +192,7 @@ function ProductDetails({ product: staleProduct }: Props) {
             <AddToCartLoadingSkeleton />
           ) : (
             <ButtonBuy disabled={buyDisabled} {...buyProps}>
-              Adicionar ao carrinho
+              adicionar ao carrinho
             </ButtonBuy>
           )}
           {!availability && (
@@ -174,7 +206,7 @@ function ProductDetails({ product: staleProduct }: Props) {
 
         <section className="product-details__content">
           <article className="product-details__description">
-            <h2 className="text__title-subsection">Description</h2>
+            <h2 className="text__title-subsection">Informações do produto</h2>
             <p className="text__body">{description}</p>
           </article>
         </section>
@@ -248,21 +280,30 @@ export const fragment = graphql`
     name
     gtin
     description
-
     isVariantOf {
       productGroupID
       name
+      hasVariant {
+        additionalProperty {
+          name
+          propertyID
+          value
+          valueReference
+        }
+        slug
+        image {
+          url
+          alternateName
+        }
+      }
     }
-
     image {
       url
       alternateName
     }
-
     brand {
       name
     }
-
     offers {
       lowPrice
       offers {
@@ -274,7 +315,6 @@ export const fragment = graphql`
         }
       }
     }
-
     breadcrumbList {
       itemListElement {
         item
@@ -282,7 +322,6 @@ export const fragment = graphql`
         position
       }
     }
-
     additionalProperty {
       propertyID
       name
