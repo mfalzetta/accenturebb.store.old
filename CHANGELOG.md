@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added- 
-- `SKU Selector` and PDP changes ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
+- `SKU Selector` and PDP changes ([#29](https://github.com/vtex-sites/accenturebb.store/pull/29)
 - `Menu Category` add category from graphQL ([#31](https://github.com/vtex-sites/accenturebb.store/pull/31)
 - `CMS Query` remove version status filter ([#27](https://github.com/vtex-sites/accenturebb.store/pull/27)
 - `Main Banner` component to CMS ([#25](https://github.com/vtex-sites/accenturebb.store/pull/25))
