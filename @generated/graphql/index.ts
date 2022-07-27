@@ -442,8 +442,6 @@ export type CmsInstitutionalPage = Node & {
   name: Scalars['String']
   parent: Maybe<Node>
   sections: Array<CmsBlock>
-  seo: Maybe<CmsInstitutionalPageSeo>
-  versionStatus: Maybe<Scalars['String']>
 }
 
 export type CmsInstitutionalPageConnection = {
@@ -578,11 +576,6 @@ export type CmsInstitutionalPageFieldsEnum =
   | 'sections___data'
   | 'sections___id'
   | 'sections___name'
-  | 'seo___siteMetadataWithSlug___description'
-  | 'seo___siteMetadataWithSlug___slug'
-  | 'seo___siteMetadataWithSlug___title'
-  | 'seo___siteMetadataWithSlug___titleTemplate'
-  | 'versionStatus'
 
 export type CmsInstitutionalPageFilterInput = {
   children: InputMaybe<NodeFilterListInput>
@@ -591,8 +584,6 @@ export type CmsInstitutionalPageFilterInput = {
   name: InputMaybe<StringQueryOperatorInput>
   parent: InputMaybe<NodeFilterInput>
   sections: InputMaybe<CmsBlockFilterListInput>
-  seo: InputMaybe<CmsInstitutionalPageSeoFilterInput>
-  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type CmsInstitutionalPageGroupConnection = {
@@ -629,28 +620,6 @@ export type CmsInstitutionalPageGroupConnectionMinArgs = {
 
 export type CmsInstitutionalPageGroupConnectionSumArgs = {
   field: CmsInstitutionalPageFieldsEnum
-}
-
-export type CmsInstitutionalPageSeo = {
-  siteMetadataWithSlug: Maybe<CmsInstitutionalPageSeoSiteMetadataWithSlug>
-}
-
-export type CmsInstitutionalPageSeoFilterInput = {
-  siteMetadataWithSlug: InputMaybe<CmsInstitutionalPageSeoSiteMetadataWithSlugFilterInput>
-}
-
-export type CmsInstitutionalPageSeoSiteMetadataWithSlug = {
-  description: Maybe<Scalars['String']>
-  slug: Maybe<Scalars['String']>
-  title: Maybe<Scalars['String']>
-  titleTemplate: Maybe<Scalars['String']>
-}
-
-export type CmsInstitutionalPageSeoSiteMetadataWithSlugFilterInput = {
-  description: InputMaybe<StringQueryOperatorInput>
-  slug: InputMaybe<StringQueryOperatorInput>
-  title: InputMaybe<StringQueryOperatorInput>
-  titleTemplate: InputMaybe<StringQueryOperatorInput>
 }
 
 export type CmsInstitutionalPageSortInput = {
@@ -759,6 +728,10 @@ export type CmsPlpFieldsEnum =
   | 'internal___owner'
   | 'internal___type'
   | 'name'
+  | 'parameters___collection___clusterId'
+  | 'parameters___collection___seo___description'
+  | 'parameters___collection___seo___slug'
+  | 'parameters___collection___seo___title'
   | 'parameters___collection___sort'
   | 'parent___children'
   | 'parent___children___children'
@@ -856,11 +829,27 @@ export type CmsPlpParameters = {
 }
 
 export type CmsPlpParametersCollection = {
+  clusterId: Maybe<Scalars['String']>
+  seo: Maybe<CmsPlpParametersCollectionSeo>
   sort: Maybe<Scalars['String']>
 }
 
 export type CmsPlpParametersCollectionFilterInput = {
+  clusterId: InputMaybe<StringQueryOperatorInput>
+  seo: InputMaybe<CmsPlpParametersCollectionSeoFilterInput>
   sort: InputMaybe<StringQueryOperatorInput>
+}
+
+export type CmsPlpParametersCollectionSeo = {
+  description: Maybe<Scalars['String']>
+  slug: Maybe<Scalars['String']>
+  title: Maybe<Scalars['String']>
+}
+
+export type CmsPlpParametersCollectionSeoFilterInput = {
+  description: InputMaybe<StringQueryOperatorInput>
+  slug: InputMaybe<StringQueryOperatorInput>
+  title: InputMaybe<StringQueryOperatorInput>
 }
 
 export type CmsPlpParametersFilterInput = {
@@ -2145,8 +2134,6 @@ export type QueryCmsInstitutionalPageArgs = {
   name: InputMaybe<StringQueryOperatorInput>
   parent: InputMaybe<NodeFilterInput>
   sections: InputMaybe<CmsBlockFilterListInput>
-  seo: InputMaybe<CmsInstitutionalPageSeoFilterInput>
-  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type QueryCmsPlpArgs = {
@@ -3877,6 +3864,27 @@ export type HeaderLinkQueryQueryVariables = Exact<{ [key: string]: never }>
 
 export type HeaderLinkQueryQuery = {
   cmsHeaderLink: { sections: Array<{ data: any; name: string }> } | null
+}
+
+export type MenuCategoryQueryQueryVariables = Exact<{
+  first: Scalars['Int']
+}>
+
+export type MenuCategoryQueryQuery = {
+  allCollections: {
+    edges: Array<{
+      node: {
+        type: StoreCollectionType
+        breadcrumbList: {
+          itemListElement: Array<{
+            name: string
+            item: string
+            position: number
+          }>
+        }
+      }
+    }>
+  }
 }
 
 export type ProductSummary_ProductFragment = {
