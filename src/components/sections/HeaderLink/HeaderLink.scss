@@ -6,7 +6,12 @@
     display: flex;
     gap: 21px;
     width: fit-content;
+    max-width: 100%;
     padding: 0 16px;
+
+    @media (max-width: 920px) {
+      overflow-x: scroll;
+    }
   }
 
   .link {
