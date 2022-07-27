@@ -99,11 +99,9 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
 
   const subChildren: CategoryProps[][] = []
 
-  category.forEach((cat: CategoryProps) => {
+  category.forEach((dep: CategoryProps) => {
     subChildren.push(
-      subCategory.filter((subCat: CategoryProps) =>
-        subCat.item.includes(cat.item)
-      )
+      subCategory.filter((el: CategoryProps) => el.item.includes(dep.item))
     )
   })
 
@@ -148,7 +146,9 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
                                 <a href={`${linkSubI}`}>{nameSubI}</a>
                               </h3>
                               {subChildren[index] &&
-                                subChildren[index].map(
+                                subChildren[
+                                  index + id * children[0].length
+                                ].map(
                                   (
                                     {
                                       name: nameSubII,
