@@ -121,13 +121,22 @@ function SkuSelector({
                   </span>
                 )}
                 {variant === 'image' && 'src' in option && (
-                  <Image
-                    src={option.src}
-                    alt={option.alt}
-                    width={20}
-                    height={20}
-                    loading="lazy"
-                  />
+                  <span>
+                    <div
+                      data-sku-selector-color
+                      style={{
+                        backgroundColor: option.label,
+                      }}
+                    >
+                      <Image
+                        src={option.src}
+                        alt={option.alt}
+                        width={20}
+                        height={20}
+                        loading="lazy"
+                      />
+                    </div>
+                  </span>
                 )}
               </RadioOption>
             </Link>
