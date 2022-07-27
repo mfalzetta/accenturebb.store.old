@@ -3866,6 +3866,27 @@ export type HeaderLinkQueryQuery = {
   cmsHeaderLink: { sections: Array<{ data: any; name: string }> } | null
 }
 
+export type MenuCategoryQueryQueryVariables = Exact<{
+  first: Scalars['Int']
+}>
+
+export type MenuCategoryQueryQuery = {
+  allCollections: {
+    edges: Array<{
+      node: {
+        type: StoreCollectionType
+        breadcrumbList: {
+          itemListElement: Array<{
+            name: string
+            item: string
+            position: number
+          }>
+        }
+      }
+    }>
+  }
+}
+
 export type ProductSummary_ProductFragment = {
   slug: string
   sku: string
