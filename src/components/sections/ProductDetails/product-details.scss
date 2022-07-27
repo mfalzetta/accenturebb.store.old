@@ -93,6 +93,8 @@
   }
 
   .product-details__prices--badge {
+    display: flex;
+
     [data-store-badge] {
       position: unset;
       margin-left: 0.5rem;
