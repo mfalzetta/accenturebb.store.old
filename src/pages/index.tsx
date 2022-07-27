@@ -6,7 +6,7 @@ import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
 import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
-import Newsletter from 'src/components/sections/Newsletter'
+// import Newsletter from 'src/components/sections/Newsletter'
 import RenderCMS from 'src/components/RenderCMS'
 
 export type Props = PageProps<HomePageQueryQuery>
@@ -62,12 +62,12 @@ function Page(props: Props) {
         (not the HTML tag) before rendering it here.
       */}
       <RenderCMS sections={cmsHome?.sections} />
-      <Newsletter
+      {/* <Newsletter
         title="Receba notícias e ofertas especiais!"
         onSubmit={() => {
           return null
         }}
-      />
+      /> */}
     </>
   )
 }
