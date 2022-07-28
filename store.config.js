@@ -14,11 +14,11 @@ module.exports = {
   locale: 'en-US',
 
   // Production URLs
-  storeUrl: 'https://faststore.kyroz.io',
-  secureSubdomain: 'https://secure.faststore.kyroz.io',
-  checkoutUrl: 'https://secure.faststore.kyroz.io/checkout',
-  loginUrl: 'https://secure.faststore.kyroz.io/api/io/login',
-  accountUrl: 'https://secure.faststore.kyroz.io/api/io/account',
+  storeUrl: 'https://vtex.venturelabs.com.br',
+  secureSubdomain: 'https://secure.venturalabs.com.br',
+  checkoutUrl: 'https://secure.venturalabs.com.br/checkout',
+  loginUrl: 'https://secure.venturalabs.com.br/api/io/login',
+  accountUrl: 'https://secure.venturalabs.com.br/api/io/account',
 
   // Lighthouse CI
   lighthouse: {
