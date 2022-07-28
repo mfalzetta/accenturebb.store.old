@@ -52,7 +52,7 @@ const Newsletter = forwardRef<HTMLFormElement, NewsletterProps>(
               placeholder="Email"
               ref={emailInputRef}
             />
-            <Button type="submit">Enviar</Button>
+            <Button type="submit">Inscreva-se</Button>
           </div>
         </Form>
       </section>

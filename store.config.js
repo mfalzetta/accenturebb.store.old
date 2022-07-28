@@ -14,11 +14,11 @@ module.exports = {
   locale: 'en-US',
 
   // Production URLs
-  storeUrl: 'https://faststore.kyroz.io',
-  secureSubdomain: 'https://secure.faststore.kyroz.io',
-  checkoutUrl: 'https://secure.faststore.kyroz.io/checkout',
-  loginUrl: 'https://secure.faststore.kyroz.io/api/io/login',
-  accountUrl: 'https://secure.faststore.kyroz.io/api/io/account',
+  storeUrl: 'https://accenturebb.cloudns.ph',
+  secureSubdomain: 'https://secure.accenturebb.cloudns.ph',
+  checkoutUrl: 'https://secure.accenturebb.cloudns.ph/checkout',
+  loginUrl: 'https://secure.accenturebb.cloudns.ph/api/io/login',
+  accountUrl: 'https://secure.accenturebb.cloudns.ph/api/io/account',
 
   // Lighthouse CI
   lighthouse: {
