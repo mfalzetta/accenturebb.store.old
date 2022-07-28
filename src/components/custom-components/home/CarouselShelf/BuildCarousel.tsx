@@ -78,9 +78,23 @@ const BuildCarousel = (
           itemsW =
             widthP < 920 ? (width - 64) / itemPerPage : width / itemPerPage
         }
+      } else if (itemsW > 144) {
+        while (itemsW > widthP * 0.8 && itemsW > 144) {
+          itemPerPage += 1
+          itemsW =
+            widthP < 920 ? (width - 64) / itemPerPage : width / itemPerPage
+        }
       }
     } else if (widthP > 600) {
-      while (itemsW > 400) {
+      while (itemsW > 420) {
+        itemPerPage += 1
+        itemsW =
+          widthP < 920
+            ? (width - 100) / itemPerPage
+            : (width - 120) / itemPerPage
+      }
+    } else {
+      while (itemsW > widthP) {
         itemPerPage += 1
         itemsW =
           widthP < 920
