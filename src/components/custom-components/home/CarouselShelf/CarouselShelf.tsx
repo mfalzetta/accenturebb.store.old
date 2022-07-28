@@ -38,6 +38,7 @@ const CarouselShelf = ({
   const build = () => {
     const items = children.length
 
+    setCarouselIndex(1)
     setMovePosition(0)
     setCarouselPosition(0)
     setCard(BuildCarousel(itemsPerPage, arrows, items, size))
@@ -117,16 +118,14 @@ const CarouselShelf = ({
   const moveDot = (index: number) => {
     setCarouselIndex(index)
     if (card) {
-      const cardW =
+      const itemW = card.cardWidth
+      let position =
         size === 'small'
           ? (index - 1) * card.maxWidth
-          : (index - 1) * card.maxWidth - 120
-
-      let position = index > 1 ? cardW : 0
+          : (index - 1) * itemW * card.itemPerPage
 
       if (index === card.dots) {
         const lastItem = children.length % card.itemPerPage
-        const itemW = card.cardWidth
 
         if (lastItem > 0) {
           position =
