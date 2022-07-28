@@ -14,11 +14,11 @@ module.exports = {
   locale: 'en-US',
 
   // Production URLs
-  storeUrl: 'https://vtex.venturelabs.com.br',
-  secureSubdomain: 'https://secure.venturalabs.com.br',
-  checkoutUrl: 'https://secure.venturalabs.com.br/checkout',
-  loginUrl: 'https://secure.venturalabs.com.br/api/io/login',
-  accountUrl: 'https://secure.venturalabs.com.br/api/io/account',
+  storeUrl: 'https://accenturebb.cloudns.ph',
+  secureSubdomain: 'https://secure.accenturebb.cloudns.ph',
+  checkoutUrl: 'https://secure.accenturebb.cloudns.ph/checkout',
+  loginUrl: 'https://secure.accenturebb.cloudns.ph/api/io/login',
+  accountUrl: 'https://secure.accenturebb.cloudns.ph/api/io/account',
 
   // Lighthouse CI
   lighthouse: {
