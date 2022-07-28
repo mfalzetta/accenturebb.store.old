@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Fixed 
 - `Home Components Fixes` slider arrows for 1 banner and category section button size ([#33](https://github.com/vtex-sites/accenturebb.store/pull/33)
+- `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
 ### Added- 
 - `SKU Selector` and PDP changes ([#29](https://github.com/vtex-sites/accenturebb.store/pull/29)
 - `Menu Category` add category from graphQL ([#31](https://github.com/vtex-sites/accenturebb.store/pull/31)

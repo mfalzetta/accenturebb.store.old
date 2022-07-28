@@ -1,93 +1,54 @@
 import { List as UIList } from '@faststore/ui'
 import Link from 'src/components/ui/Link'
 
-const mobileLinks = [
-  {
-    items: [
-      {
-        href: '/',
-        name: 'Sobre nós',
-      },
-      {
-        href: '/',
-        name: 'Seus pedidos',
-      },
-      {
-        href: '/',
-        name: 'Informações de envio',
-      },
-    ],
-  },
-  {
-    items: [
-      {
-        href: '/',
-        name: 'Politica de Devolução',
-      },
-      {
-        href: '/',
-        name: 'Serviço ao cliente',
-      },
-      {
-        href: '/',
-        name: 'Contato e Suporte',
-      },
-    ],
-  },
-]
-
 const links = [
   {
-    title: 'Sobre nós',
+    title: 'SOBRE A LACOSTE',
     items: [
       {
         href: '/',
-        name: 'Nossa empresa',
+        name: 'O Grupo Lacoste',
       },
       {
         href: '/',
-        name: 'Carreiras',
+        name: 'Carreira',
       },
       {
         href: '/',
-        name: 'Venda com a Accenture',
-      },
-      {
-        href: '/',
-        name: 'Relações com Investidores',
-      },
-      {
-        href: '/',
-        name: 'Anuncie conosco',
-      },
-      {
-        href: '/',
-        name: 'Localizações',
+        name: 'Proteção da marca',
       },
     ],
   },
   {
-    title: 'Serviço ao cliente',
+    title: 'LOJA',
     items: [
       {
         href: '/',
-        name: 'Centro de ajuda',
+        name: 'Coleção Homens',
       },
       {
         href: '/',
-        name: 'Devoluções',
+        name: 'Coleção Mulheres',
       },
       {
         href: '/',
-        name: 'Recolhimentos de produtos',
+        name: 'Coleção Infantil',
       },
       {
         href: '/',
-        name: 'Opções de entrega',
+        name: 'Loja de Polos',
       },
       {
         href: '/',
-        name: 'Opções de pagamento',
+        name: 'Loja de Calçados',
+      },
+      {
+        href: '/',
+        name: 'Lacoste Live',
+      },
+      {
+        href: '/',
+        name: 'Lacoste Sport',
       },
     ],
   },
@@ -123,25 +84,13 @@ function LinksList({ items }: LinksListProps) {
 function FooterLinks() {
   return (
     <section className="footer__links">
-      <div className="display-mobile">
-        <div className="footer__links--container">
-          {mobileLinks.map((section, index) => (
-            <nav key={index}>
-              <LinksList items={section.items} />
-            </nav>
-          ))}
-        </div>
-      </div>
-
-      <div className="hidden-mobile">
-        <div className="footer__links-columns">
-          {links.map((section) => (
-            <nav key={section.title}>
-              <p className="text__title-mini footer__titles">{section.title}</p>
-              <LinksList items={section.items} />
-            </nav>
-          ))}
-        </div>
+      <div className="footer__links-columns">
+        {links.map((section) => (
+          <nav key={section.title}>
+            <p className="text__title-mini footer__titles">{section.title}</p>
+            <LinksList items={section.items} />
+          </nav>
+        ))}
       </div>
     </section>
   )
