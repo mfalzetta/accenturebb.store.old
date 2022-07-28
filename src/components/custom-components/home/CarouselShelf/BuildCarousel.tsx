@@ -42,13 +42,12 @@ const buildBig = ({ widthP, itemsW, width, itemPerPage }: BuildProps) => {
         itemsW = width - 120
       }
     }
-
-    itemPerPage = 1
   } else {
-    itemsW = (width - 64) / 2
-    itemPerPage = 2
-    if (itemsW > 425) {
-      while (itemsW > 425) {
+    itemsW = widthP <= 1125 ? (width - 64) / 2 : (width - 64) / 3
+    const max = widthP <= 1125 ? 425 : 510
+
+    if (itemsW > max) {
+      while (itemsW > max) {
         width -= 10
         itemsW = width - 120
       }
@@ -56,12 +55,15 @@ const buildBig = ({ widthP, itemsW, width, itemPerPage }: BuildProps) => {
   }
 
   width = widthP > 920 ? widthP - 64 : widthP
-  itemPerPage = Math.floor(width / itemsW) > 0 ? Math.floor(width / itemsW) : 1
 
   if (itemsW < 250) {
     width = widthP
     itemsW = width - 30
   }
+
+  const cards = Math.floor(width / itemsW) > 0 ? Math.floor(width / itemsW) : 1
+
+  itemPerPage = cards
 
   return { itemsW, width, itemPerPage }
 }
@@ -86,7 +88,7 @@ const autoSmall = ({ widthP, itemsW, width, itemPerPage }: BuildProps) => {
 
 const autoBig = ({ widthP, itemsW, width, itemPerPage }: BuildProps) => {
   if (widthP > 600) {
-    while (itemsW > 420) {
+    while (itemsW > 380) {
       itemPerPage += 1
       itemsW = (width - 120) / itemPerPage
     }
