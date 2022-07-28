@@ -1,30 +1,36 @@
 @import "src/styles/scaffold";
 
 [data-store-newsletter] {
+  width: 100%;
   max-width: none;
   padding: 0;
-  width: 100%;
 }
 
 [data-newsletter-form] {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  padding: 1.25rem 2rem;
-  background-color: #f2f2f2;
+  padding: 0 2rem;
+  margin-bottom: 20px;
+  background-color: transparent;
 
   @media (max-width: 1279px) {
     flex-direction: column;
     padding: 1rem;
   }
+
+  @include media(">=notebook") {
+    align-items: flex-start;
+  }
 }
 
 [data-newsletter-header] {
-  font-size: 2rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 40px;
-  color: var(--fs-color-theme-3);
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 18px;
+  color: #292929;
 
   @media (max-width: 1279px) {
     padding-bottom: 1rem;
@@ -33,38 +39,43 @@
 
 [data-newsletter-controls] {
   display: flex;
-  padding: 0 .5rem;
-  background-color: #ffffff;
-  border: 4px solid var(--fs-color-theme-3);
-  border-radius: 0.5rem;
+  padding: 0;
 
   input {
-    width: 36vw;
-    height: 54px;
+    max-width: 190px;
+    height: 44px;
+    padding: 0 30px;
+    margin-right: 20px;
     font-size: 1rem;
     font-weight: 400;
     line-height: 24px;
-    color: #837f89;
-    border: none;
+    color: #292929;
+    border: 1px solid white;
+    border-radius: 30px;
+
+    @media (max-width: 500px) {
+      max-width: 156px;
+    }
 
     &:focus {
       outline: none;
     }
-
-    @media (max-width: 1279px) {
-      width: 63vw;
-    }
   }
 
   button {
-    margin: 0.25rem 0;
+    width: 134px;
+    height: 44px;
     font-size: 0.875rem;
-    font-weight: 700;
-    color: #fafafa;
-    background-color: var(--fs-color-theme-4);
-    padding: 0.25rem 1rem;
-    height: 45px;
-    border-radius: 0.25rem;
-    border: 1px solid transparent;
+    font-weight: 400;
+    color: #292929;
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 27px;
+
+    &:hover {
+      color: white;
+      cursor: pointer;
+      background-color: #292929;
+    }
   }
 }
