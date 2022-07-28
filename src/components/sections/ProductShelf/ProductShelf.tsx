@@ -61,7 +61,7 @@ function ProductShelf({
             }`}
           >
             {shelfType === 'isCarousel' ? (
-              <Carousel itemsPerPage={itens} arrows size={size}>
+              <Carousel itemsPerPage={1} arrows size={size}>
                 {products?.edges.map((product, idx) => (
                   <li key={`${product.node.id}`}>
                     <ProductCard
