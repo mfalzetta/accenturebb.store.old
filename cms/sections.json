@@ -400,17 +400,26 @@
         },
         "shelfType": {
           "type": "string",
+          "default": "isCarousel",
           "title": "Display as",
           "enum": ["isCarousel", "isRowLayout"],
           "enumNames": ["Carousel", "Row"]
         },
-        "first": {
-          "type": "number",
-          "title": "Total of products that will be display"
+        "size": {
+          "type": "string",
+          "title": "Card size",
+          "description": "This field only works on Carousel Shelf",
+          "enum": ["big", "small"],
+          "enumNames": ["Big", "Small"],
+          "default": "Small"
         },
         "itens": {
           "type": "number",
           "title": "Number of products that will be display per page"
+        },
+        "first": {
+          "type": "number",
+          "title": "Total of products that will be display"
         },
         "isSimpleCard": {
           "default": false,

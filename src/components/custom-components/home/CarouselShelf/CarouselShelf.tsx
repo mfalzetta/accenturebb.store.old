@@ -12,6 +12,7 @@ export interface CarouselShelfProps {
   children: any
   itemsPerPage?: number
   arrows?: boolean
+  size?: string
 }
 
 export interface CarouselfProps {
@@ -25,6 +26,7 @@ const CarouselShelf = ({
   children,
   itemsPerPage = 1,
   arrows = false,
+  size = 'small',
 }: CarouselShelfProps) => {
   const [card, setCard] = useState<CarouselfProps>()
   const [carouselIndex, setCarouselIndex] = useState(1)
@@ -38,7 +40,7 @@ const CarouselShelf = ({
 
     setMovePosition(0)
     setCarouselPosition(0)
-    setCard(BuildCarousel(itemsPerPage, arrows, items))
+    setCard(BuildCarousel(itemsPerPage, arrows, items, size))
   }
 
   useEffect(() => {
@@ -64,7 +66,8 @@ const CarouselShelf = ({
       const screen = document.documentElement.clientWidth
       const itemW = card.cardWidth
       const maxMove =
-        itemW * (children.length - card.itemPerPage) - Math.abs(64 - itemW)
+        itemW * (children.length - card.itemPerPage) -
+        (screen - 32 - itemW * card.itemPerPage)
 
       if (type === 'move') {
         if (!moveCarousel) {
@@ -114,13 +117,21 @@ const CarouselShelf = ({
   const moveDot = (index: number) => {
     setCarouselIndex(index)
     if (card) {
-      let position = (index - 1) * card?.maxWidth
+      const cardW =
+        size === 'small'
+          ? (index - 1) * card.maxWidth
+          : (index - 1) * card.maxWidth - 120
+
+      let position = index > 1 ? cardW : 0
 
       if (index === card.dots) {
         const lastItem = children.length % card.itemPerPage
+        const itemW = card.cardWidth
 
         if (lastItem > 0) {
-          position = (index - 2) * card.maxWidth + lastItem * card.cardWidth
+          position =
+            itemW * (children.length - card.itemPerPage) -
+            (card.maxWidth - itemW * card.itemPerPage)
         }
       }
 
@@ -156,7 +167,11 @@ const CarouselShelf = ({
         style={{ minWidth: `${card?.maxWidth}px` }}
       >
         <div
-          className="carouselShelf--container"
+          className={
+            size === 'small'
+              ? 'small--card carouselShelf--container'
+              : 'carouselShelf--container'
+          }
           draggable
           onTouchStart={(e) => carouselSlide(e, 'start')}
           onTouchMove={(e) => carouselSlide(e, 'move')}
