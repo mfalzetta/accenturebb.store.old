@@ -21,6 +21,7 @@
   flex-direction: column;
   row-gap: var(--fs-image-gallery-gap-mobile);
   width: var(--fs-image-gallery-width);
+  cursor: pointer;
 
   @include media(">=notebook") {
     left: 0;
