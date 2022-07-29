@@ -34,36 +34,30 @@ const buildSmall = ({ widthP, itemsW, width, itemPerPage }: BuildProps) => {
 }
 
 const buildBig = ({ widthP, itemsW, width, itemPerPage }: BuildProps) => {
+  let wd = width
+
   if (widthP < 760) {
     itemsW = width - 120
-    if (itemsW > 576) {
-      while (itemsW > 576) {
-        width -= 20
-        itemsW = width - 120
-      }
+    while (itemsW > 576) {
+      wd -= 20
+      itemsW = wd - 120
     }
   } else {
-    itemsW = widthP <= 1125 ? (width - 64) / 2 : (width - 64) / 3
+    itemsW = widthP <= 1125 ? (width - 120) / 2 : (width - 120) / 3
     const max = widthP <= 1125 ? 425 : 510
 
-    if (itemsW > max) {
-      while (itemsW > max) {
-        width -= 10
-        itemsW = width - 120
-      }
+    while (itemsW > max) {
+      wd -= 10
+      itemsW = wd - 120
     }
   }
-
-  width = widthP > 920 ? widthP - 64 : widthP
 
   if (itemsW < 250) {
     width = widthP
     itemsW = width - 30
   }
 
-  const cards = Math.floor(width / itemsW) > 0 ? Math.floor(width / itemsW) : 1
-
-  itemPerPage = cards
+  itemPerPage = Math.floor(width / itemsW) > 0 ? Math.floor(width / itemsW) : 1
 
   return { itemsW, width, itemPerPage }
 }
