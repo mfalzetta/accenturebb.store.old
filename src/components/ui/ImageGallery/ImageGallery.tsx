@@ -65,7 +65,7 @@ function ImageGallery({ images }: ImageGalleryProps) {
         <ImageViewer
           src={photos}
           currentIndex={selectedImageIdx}
-          disableScroll={false}
+          disableScroll
           closeOnClickOutside
           onClose={closeImageViewer}
         />
