@@ -1,3 +1,4 @@
+import './Installment.scss'
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
 export type InstallmentProps = {
@@ -15,14 +16,20 @@ export type InstallmentProps = {
   >
 }
 
+const roundInstallment = (value: number) => {
+  const decimal = parseFloat(value.toString()).toFixed(2)
+
+  return decimal.replace('.', ',')
+}
+
 const Installment = ({ Installments }: InstallmentProps) => {
   if (Installments) {
-    const installmentNumber = Installments.flat().map(
-      (el: any) => el.NumberOfInstallments
-    )
+    const noFee = Installments.flat().filter((el: any) => el.InterestRate === 0)
 
-    const maxInstallment = Math.max(...installmentNumber)
-    let installmentValue = Installments.flat().filter(
+    const NumberOfInstallments = noFee.map((el: any) => el.NumberOfInstallments)
+
+    const maxInstallment = Math.max(...NumberOfInstallments)
+    let installmentValue = noFee.filter(
       (el: any) => el.NumberOfInstallments === maxInstallment
     )
 
@@ -30,9 +37,7 @@ const Installment = ({ Installments }: InstallmentProps) => {
       const value = installmentValue.map((el: any) => el.Value)
       const minValue = Math.min(...value)
 
-      installmentValue = Installments.flat().filter(
-        (el: any) => el.Value === minValue
-      )
+      installmentValue = noFee.filter((el: any) => el.Value === minValue)
     }
 
     if (maxInstallment > 1) {
@@ -41,7 +46,7 @@ const Installment = ({ Installments }: InstallmentProps) => {
           {installmentValue[0] && (
             <span>
               ou {installmentValue[0].NumberOfInstallments}x de R${' '}
-              {installmentValue[0].Value}
+              {roundInstallment(installmentValue[0].Value)}
             </span>
           )}
         </div>
