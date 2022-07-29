@@ -110,6 +110,7 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
 
     items.push(categ)
   })
+
   const depart = items.map((el) => el.depart)
 
   if (!isMobile) {
