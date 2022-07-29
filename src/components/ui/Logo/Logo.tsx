@@ -1,6 +1,22 @@
+import './Logo.scss'
+
 function Logo() {
   return (
-    <img src="/logo.svg" alt="The Accenture Logo" width="176px" height="30px" />
+    <div data-theme-logo>
+      <img
+        data-theme-logo-first
+        src="/logo-lacoste2.svg"
+        alt="Lacoste Logo"
+        width="104px"
+        height="23px"
+      />
+      <img
+        src="/logo-lacoste.svg"
+        alt="Lacoste Logo"
+        width="50px"
+        height="23px"
+      />
+    </div>
   )
 }
 
