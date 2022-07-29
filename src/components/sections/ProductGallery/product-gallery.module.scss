@@ -256,7 +256,7 @@
       font-size: 14px;
       font-weight: var(--fs-text-weight-regular);
       line-height: 20px;
-      color: #837f89;
+      color: var(--fs-color-theme-5);
       background-color: #ffffff;
       border: 1px solid #e6dcff80;
 
@@ -297,7 +297,7 @@
       }
 
       path {
-        stroke: #837f89;
+        stroke: var(--fs-color-theme-5);
       }
     }
   }

@@ -280,7 +280,6 @@ export const fragment = graphql`
     name
     gtin
     description
-
     isVariantOf {
       productGroupID
       name
@@ -298,16 +297,13 @@ export const fragment = graphql`
         }
       }
     }
-
     image {
       url
       alternateName
     }
-
     brand {
       name
     }
-
     offers {
       lowPrice
       offers {
@@ -319,7 +315,6 @@ export const fragment = graphql`
         }
       }
     }
-
     breadcrumbList {
       itemListElement {
         item
@@ -327,7 +322,6 @@ export const fragment = graphql`
         position
       }
     }
-
     additionalProperty {
       propertyID
       name

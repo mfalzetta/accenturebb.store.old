@@ -95,11 +95,9 @@ function Page(props: Props) {
       {/*
         WARNING: Do not import or render components from any
         other folder than '../components/sections' in here.
-
         This is necessary to keep the integration with the CMS
         easy and consistent, enabling the change and reorder
         of elements on this page.
-
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
@@ -131,22 +129,18 @@ export const querySSR = gql`
   query ServerProductPageQuery($slug: String!) {
     product(locator: [{ key: "slug", value: $slug }]) {
       id: productID
-
       seo {
         title
         description
         canonical
       }
-
       brand {
         name
       }
-
       sku
       gtin
       name
       description
-
       breadcrumbList {
         itemListElement {
           item
@@ -154,12 +148,10 @@ export const querySSR = gql`
           position
         }
       }
-
       image {
         url
         alternateName
       }
-
       offers {
         lowPrice
         highPrice
@@ -175,11 +167,9 @@ export const querySSR = gql`
           }
         }
       }
-
       isVariantOf {
         productGroupID
       }
-
       ...ProductDetailsFragment_product
     }
   }
