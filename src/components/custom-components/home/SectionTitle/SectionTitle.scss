@@ -38,13 +38,13 @@
     margin: 10px 0;
     font-size: 32px;
     font-weight: 400;
-    color: #a055f5;
+    color: var(--fs-color-theme-4);
   }
 
   .classSection__description {
     margin: 10px 0;
     font-size: 16px;
-    color: #837f89;
+    color: var(--fs-color-theme-4);
   }
 
   @media (max-width: 1279px) {
