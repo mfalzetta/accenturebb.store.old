@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Fixed 
+- `Menu Category` fix ([#41](https://github.com/vtex-sites/accenturebb.store/pull/41)
 - `Carousel` new layout ([#39](https://github.com/vtex-sites/accenturebb.store/pull/39)
 - `Home Components Fixes` slider arrows for 1 banner and category section button size ([#33](https://github.com/vtex-sites/accenturebb.store/pull/33)
 - `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
