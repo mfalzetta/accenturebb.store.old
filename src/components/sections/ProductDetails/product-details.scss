@@ -21,6 +21,12 @@
     row-gap: 0;
     column-gap: var(--fs-spacing-4);
   }
+
+  @media screen and (max-width: 768px) {
+    .react-simple-image-viewer__modal {
+      height: 49%;
+    }
+  }
 }
 
 .product-details__content {
