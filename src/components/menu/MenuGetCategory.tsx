@@ -13,6 +13,16 @@ interface CategoryProps {
   position: number
 }
 
+interface ItemProp {
+  depart: CategoryProps
+  category: SubProp[]
+}
+
+interface SubProp {
+  subCategory: CategoryProps[]
+  category: CategoryProps
+}
+
 const removeDuplicate = (obj: CategoryProps[]) => {
   const uniqueIds: string[] = []
   const unique = obj.filter((element: CategoryProps) => {
@@ -65,52 +75,49 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
     allCollections: { edges },
   } = data
 
-  const categoryNode = edges.filter((e) => e.node.type === 'Category')
-  const departmentNode = edges.filter((ed) => ed.node.type === 'Department')
-  const department = removeDuplicate(
-    departmentNode.map((ele) => ele.node.breadcrumbList.itemListElement).flat()
-  )
+  const departNode = edges.filter((el) => el.node.type === 'Department').flat()
+  const categoryNode = edges.filter((el) => el.node.type === 'Category').flat()
+  const departament = departNode
+    .map((el) => el.node.breadcrumbList.itemListElement)
+    .flat()
 
-  const category = removeDuplicate(
-    categoryNode
-      .map((elem) =>
-        elem.node.breadcrumbList.itemListElement.filter((p) => p.position === 2)
-      )
-      .flat()
-  )
+  const categoryList = categoryNode
+    .map((el) => el.node.breadcrumbList.itemListElement)
+    .flat()
 
-  const subCategory = removeDuplicate(
-    categoryNode
-      .map((c) =>
-        c.node.breadcrumbList.itemListElement.filter(
-          (subC) => subC.position === 3
-        )
-      )
-      .flat()
-  )
+  const category2 = categoryList.flat().filter((el) => el.position === 2)
+  const categorySub = categoryList.flat().filter((el) => el.position === 3)
+  const items: ItemProp[] = []
 
-  const children: CategoryProps[][] = []
-
-  department.forEach((dep: CategoryProps) => {
-    children.push(
-      category.filter((el: CategoryProps) => el.item.includes(dep.item))
+  departament.forEach((dep) => {
+    const cat = category2.filter((el) =>
+      dep.item.includes(el.item.split('/')[1])
     )
-  })
 
-  const subChildren: CategoryProps[][] = []
+    const cate: SubProp[] = []
 
-  category.forEach((dep: CategoryProps) => {
-    subChildren.push(
-      subCategory.filter((el: CategoryProps) => el.item.includes(dep.item))
-    )
+    removeDuplicate(cat).forEach((c) => {
+      const sub = categorySub.filter(
+        (el) =>
+          el.item.includes(c.item) && dep.item.includes(el.item.split('/')[1])
+      )
+
+      const subc = { subCategory: sub, category: c }
+
+      cate.push(subc)
+    })
+    const categ = { depart: dep, category: cate }
+
+    items.push(categ)
   })
+  const depart = items.map((el) => el.depart)
 
   if (!isMobile) {
     return (
       <div className="container-menu">
         <nav className="categories-field">
           <ul data-menu-category>
-            {department.map(({ name: nameCat }: CategoryProps, idx: number) => (
+            {depart.map(({ name: nameCat }: CategoryProps, idx: number) => (
               <li
                 key={`category--${idx}`}
                 className={active === idx + 1 ? 'category-active' : ''}
@@ -124,8 +131,14 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
         </nav>
         <div className="subcategories-field">
           <ul data-menu-sub-category>
-            {department.map(
-              ({ name: nameCat, item: linkCat }: CategoryProps, id: number) => (
+            {items.map(
+              (
+                {
+                  depart: { name: nameCat, item: linkCat },
+                  category,
+                }: ItemProp,
+                id: number
+              ) => (
                 <div
                   key={nameCat}
                   className={active === id + 1 ? 'active ' : 'not-active'}
@@ -135,21 +148,21 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
                       <a href={`${linkCat}`}>{nameCat}</a>
                     </h2>
                     <nav>
-                      {children[id] &&
-                        children[id].map(
+                      {category &&
+                        category.map(
                           (
-                            { name: nameSubI, item: linkSubI }: CategoryProps,
+                            {
+                              category: { name: nameSubI, item: linkSubI },
+                              subCategory,
+                            }: SubProp,
                             index: number
                           ) => (
                             <div key={`subCategory--${index}`}>
                               <h3>
                                 <a href={`${linkSubI}`}>{nameSubI}</a>
                               </h3>
-                              {subChildren[index] &&
-                                subChildren[
-                                  index +
-                                    id * children[id > 0 ? id - 1 : 0].length
-                                ].map(
+                              {subCategory &&
+                                subCategory.map(
                                   (
                                     {
                                       name: nameSubII,
@@ -179,7 +192,5 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
     )
   }
 
-  return (
-    <MenuMobile isOpen={isOpen} menuItems={department} subCategory={children} />
-  )
+  return <MenuMobile isOpen={isOpen} items={items} />
 }
