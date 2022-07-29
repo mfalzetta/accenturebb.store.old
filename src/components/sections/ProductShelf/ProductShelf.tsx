@@ -15,6 +15,7 @@ interface ProductShelfProps extends Partial<ProductsQueryQueryVariables> {
   itens?: number
   otherBackground?: boolean
   productClusterIds?: string
+  size?: string
 }
 
 function ProductShelf({
@@ -26,6 +27,7 @@ function ProductShelf({
   itens,
   otherBackground,
   productClusterIds,
+  size = 'small',
   ...variables
 }: ProductShelfProps) {
   if (productClusterIds) {
@@ -59,7 +61,7 @@ function ProductShelf({
             }`}
           >
             {shelfType === 'isCarousel' ? (
-              <Carousel itemsPerPage={itens} arrows>
+              <Carousel itemsPerPage={itens} arrows size={size}>
                 {products?.edges.map((product, idx) => (
                   <li key={`${product.node.id}`}>
                     <ProductCard
