@@ -2,18 +2,16 @@ import './Installment.scss'
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
 export type InstallmentProps = {
-  Installments: Array<
-    | Array<{
-        Value: number
-        InterestRate: number
-        TotalValuePlusInterestRate: number
-        NumberOfInstallments: number
-        Name: string
-        PaymentSystemName: string
-      }>
-    | null
-    | undefined
-  >
+  Installments: Array<InstallmentsProps[] | null | undefined>
+}
+
+export type InstallmentsProps = {
+  Value: number
+  InterestRate: number
+  TotalValuePlusInterestRate: number
+  NumberOfInstallments: number
+  Name: string
+  PaymentSystemName: string
 }
 
 const roundInstallment = (value: number) => {
