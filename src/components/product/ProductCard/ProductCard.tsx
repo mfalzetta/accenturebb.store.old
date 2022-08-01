@@ -32,6 +32,15 @@ export interface ProductCardProps {
   isSimpleCard?: boolean
 }
 
+export interface InstallmentsProps {
+  Value: number
+  InterestRate: number
+  TotalValuePlusInterestRate: number
+  NumberOfInstallments: number
+  Name: string
+  PaymentSystemName: string
+}
+
 function ProductCard({
   product,
   index,
@@ -58,6 +67,13 @@ function ProductCard({
 
   const sellerD = sellers?.filter((element) => element?.sellerDefault === true)
   const installments = sellerD?.map((el) => el?.commertialOffer?.Installments)
+  const allInstallment: InstallmentsProps[][] = []
+
+  installments?.forEach((element) => {
+    if (element !== undefined && element !== null) {
+      allInstallment.push(element)
+    }
+  })
   const linkProps = useProductLink({ product, selectedOffer: 0, index })
   const outOfStock = availability !== 'https://schema.org/InStock'
 
@@ -134,7 +150,11 @@ function ProductCard({
                 SRText="Sale Price:"
               />
             </div>
-            {installments && <Installment Installments={installments} />}
+            {allInstallment ? (
+              <Installment Installments={allInstallment} />
+            ) : (
+              <></>
+            )}
           </div>
         </UIProductCardContent>
       </div>

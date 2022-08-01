@@ -1,17 +1,8 @@
+import type { InstallmentsProps } from 'src/components/product/ProductCard/ProductCard'
 import './Installment.scss'
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 
 export type InstallmentProps = {
-  Installments: Array<InstallmentsProps[] | null | undefined>
-}
-
-export type InstallmentsProps = {
-  Value: number
-  InterestRate: number
-  TotalValuePlusInterestRate: number
-  NumberOfInstallments: number
-  Name: string
-  PaymentSystemName: string
+  Installments: InstallmentsProps[][]
 }
 
 const roundInstallment = (value: number) => {
@@ -22,20 +13,26 @@ const roundInstallment = (value: number) => {
 
 const Installment = ({ Installments }: InstallmentProps) => {
   if (Installments) {
-    const noFee = Installments.flat().filter((el: any) => el.InterestRate === 0)
+    const noFee = Installments.flat().filter(
+      (el: InstallmentsProps) => el.InterestRate === 0
+    )
 
-    const NumberOfInstallments = noFee.map((el: any) => el.NumberOfInstallments)
+    const NumberOfInstallments = noFee.map(
+      (el: InstallmentsProps) => el.NumberOfInstallments
+    )
 
     const maxInstallment = Math.max(...NumberOfInstallments)
     let installmentValue = noFee.filter(
-      (el: any) => el.NumberOfInstallments === maxInstallment
+      (el: InstallmentsProps) => el.NumberOfInstallments === maxInstallment
     )
 
     if (installmentValue.length > 1) {
-      const value = installmentValue.map((el: any) => el.Value)
+      const value = installmentValue.map((el: InstallmentsProps) => el.Value)
       const minValue = Math.min(...value)
 
-      installmentValue = noFee.filter((el: any) => el.Value === minValue)
+      installmentValue = noFee.filter(
+        (el: InstallmentsProps) => el.Value === minValue
+      )
     }
 
     if (maxInstallment > 1) {
