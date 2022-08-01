@@ -1,8 +1,15 @@
-import type { InstallmentsProps } from 'src/components/product/ProductCard/ProductCard'
 import './Installment.scss'
 
-export type InstallmentProps = {
-  Installments: InstallmentsProps[][]
+export type InstallmentsProps = {
+  Installments: InstallmentProps[][]
+}
+export interface InstallmentProps {
+  Value: number
+  InterestRate: number
+  TotalValuePlusInterestRate: number
+  NumberOfInstallments: number
+  Name: string
+  PaymentSystemName: string
 }
 
 const roundInstallment = (value: number) => {
@@ -11,27 +18,27 @@ const roundInstallment = (value: number) => {
   return decimal.replace('.', ',')
 }
 
-const Installment = ({ Installments }: InstallmentProps) => {
+const Installment = ({ Installments }: InstallmentsProps) => {
   if (Installments) {
     const noFee = Installments.flat().filter(
-      (el: InstallmentsProps) => el.InterestRate === 0
+      (el: InstallmentProps) => el.InterestRate === 0
     )
 
     const NumberOfInstallments = noFee.map(
-      (el: InstallmentsProps) => el.NumberOfInstallments
+      (el: InstallmentProps) => el.NumberOfInstallments
     )
 
     const maxInstallment = Math.max(...NumberOfInstallments)
     let installmentValue = noFee.filter(
-      (el: InstallmentsProps) => el.NumberOfInstallments === maxInstallment
+      (el: InstallmentProps) => el.NumberOfInstallments === maxInstallment
     )
 
     if (installmentValue.length > 1) {
-      const value = installmentValue.map((el: InstallmentsProps) => el.Value)
+      const value = installmentValue.map((el: InstallmentProps) => el.Value)
       const minValue = Math.min(...value)
 
       installmentValue = noFee.filter(
-        (el: InstallmentsProps) => el.Value === minValue
+        (el: InstallmentProps) => el.Value === minValue
       )
     }
 

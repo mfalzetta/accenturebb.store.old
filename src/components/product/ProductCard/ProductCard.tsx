@@ -15,6 +15,7 @@ import { useProductLink } from 'src/sdk/product/useProductLink'
 import type { ReactNode } from 'react'
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
 import Installment from 'src/components/custom-components/Price/Installment'
+import type { InstallmentProps } from 'src/components/custom-components/Price/Installment/Installment'
 
 import styles from './product-card.module.scss'
 
@@ -30,15 +31,6 @@ export interface ProductCardProps {
   ButtonBuy?: ReactNode
   galleryList?: boolean
   isSimpleCard?: boolean
-}
-
-export interface InstallmentsProps {
-  Value: number
-  InterestRate: number
-  TotalValuePlusInterestRate: number
-  NumberOfInstallments: number
-  Name: string
-  PaymentSystemName: string
 }
 
 function ProductCard({
@@ -67,7 +59,7 @@ function ProductCard({
 
   const sellerD = sellers?.filter((element) => element?.sellerDefault === true)
   const installments = sellerD?.map((el) => el?.commertialOffer?.Installments)
-  const allInstallment: InstallmentsProps[][] = []
+  const allInstallment: InstallmentProps[][] = []
 
   installments?.forEach((element) => {
     if (element !== undefined && element !== null) {
