@@ -1,5 +1,5 @@
 import { sendAnalyticsEvent, useSession } from '@faststore/sdk'
-import { graphql } from 'gatsby'
+import { graphql, navigate } from 'gatsby'
 import { useEffect, useState } from 'react'
 import { DiscountBadge } from 'src/components/ui/Badge'
 import Breadcrumb from 'src/components/ui/Breadcrumb'
@@ -23,9 +23,19 @@ interface Props {
   product: ProductDetailsFragment_ProductFragment
 }
 
+interface TreatmentType {
+  name: string
+  label: string
+  value: string
+  src: string
+  alt: string
+  disabled: boolean
+}
+
 function ProductDetails({ product: staleProduct }: Props) {
   const { currency } = useSession()
   const [addQuantity, setAddQuantity] = useState(1)
+  // const navigate = useNavigate()
 
   // Stale while revalidate the product for fetching the new price etc
   const { data, isValidating } = useProduct(staleProduct.id, {
@@ -108,28 +118,124 @@ function ProductDetails({ product: staleProduct }: Props) {
     gtin,
   ])
 
-  const options = data?.product?.isVariantOf?.hasVariant
-    .map((option) => {
-      return option?.additionalProperty
-        ?.map((item) => {
-          return [
-            {
-              label: item?.value?.toString(),
-              value: item?.value?.toString(),
-              src: option?.image[0]?.url,
-              alt: option?.image[0]?.alternateName,
-            },
-          ]
-        })
-        .flat()
+  const cor = data?.product?.additionalProperty[0]?.value
+  const tamanho = data?.product?.additionalProperty[1]?.value
+  const firstOptionName = data?.product?.additionalProperty[0]?.name
+
+  const findDisable = data?.product?.isVariantOf?.hasVariant
+    .map((element) => {
+      return (
+        element.additionalProperty.filter((el) => el.value === cor).length >
+          0 && element.additionalProperty
+      )
     })
+    .filter((el) => el)
     .flat()
 
-  const slugs = data?.product?.isVariantOf?.hasVariant
-    .map((specification) => {
-      return [specification?.slug]
+  const defaultSelected = data?.product?.isVariantOf?.hasVariant
+    .map((element) => {
+      const findColor = element.additionalProperty.filter(
+        (el) => el.value === cor
+      )
+
+      const findSize = element.additionalProperty.filter(
+        (el) => el.value === tamanho
+      )
+
+      if (findColor.length > 0 && findSize.length > 0) {
+        return element.additionalProperty.map((el) => el.value)
+      }
+
+      return undefined
     })
+    .filter((el) => el)
     .flat()
+
+  const treatment = data?.product?.isVariantOf?.hasVariant.reduce(
+    (acumulador: TreatmentType[], elemento) => {
+      let newItem: TreatmentType[] = []
+
+      elemento?.additionalProperty.forEach((item) => {
+        if (
+          acumulador?.filter((el) => el?.label === item?.value).length === 0
+        ) {
+          newItem = [
+            ...newItem,
+            {
+              name: item?.name?.toString(),
+              label: item?.value?.toString(),
+              value: item?.value?.toString(),
+              src: elemento?.image[0]?.url,
+              alt: elemento?.image[0]?.alternateName,
+              disabled:
+                data?.product?.additionalProperty[0]?.name === item?.name
+                  ? false
+                  : findDisable?.filter((el: any) => el?.value === item?.value)
+                      ?.length === 0,
+            },
+          ]
+        }
+      })
+
+      return [...acumulador, ...newItem]
+    },
+    []
+  )
+
+  function handleChange(params: React.FormEvent<HTMLInputElement>) {
+    const param = params?.currentTarget?.value
+
+    const findBySize = data?.product?.isVariantOf?.hasVariant
+      .map((element) =>
+        element.additionalProperty.map((el) => {
+          if (
+            el?.name === firstOptionName &&
+            el?.value !== cor &&
+            el?.value === param
+          ) {
+            return element?.slug
+          }
+
+          return undefined
+        })
+      )
+      .flat()
+      .filter((el) => el)
+
+    if (findBySize && findBySize?.length > 0) {
+      navigate(`/${findBySize[0]}/p`)
+    } else {
+      const filterByColor = data?.product?.isVariantOf?.hasVariant
+        .map((element) =>
+          element?.additionalProperty.map((el) => {
+            if (el?.value === cor) {
+              return element
+            }
+
+            return undefined
+          })
+        )
+        .flat()
+        .filter((el) => el)
+
+      const slugByColor = filterByColor
+        ?.map((item) => {
+          if (item) {
+            return (
+              item?.additionalProperty?.filter((el) => el?.value === param)
+                ?.length > 0 && item?.slug
+            )
+          }
+
+          return undefined
+        })
+        .filter((el) => el)
+
+      if (slugByColor) {
+        navigate(`/${slugByColor[0]}/p`)
+      }
+    }
+  }
 
   return (
     <Section className="product-details layout__content-full layout__section">
@@ -141,14 +247,16 @@ function ProductDetails({ product: staleProduct }: Props) {
         </header>
 
         <ImageGallery images={productImages} />
-
-        <SkuSelector
-          options={options}
-          variant={additionalProperty[0]?.name === 'Cor' ? 'image' : 'label'}
-          label={additionalProperty[0]?.name}
-          defaultSku={options[0].label}
-          slugs={slugs}
-        />
+        {additionalProperty.map((property, index: number) => (
+          <SkuSelector
+            key={index}
+            options={treatment?.filter((el) => el.name === property.name)}
+            variant={property.name === 'Cor' ? 'image' : 'label'}
+            label={property.name}
+            defaultSku={defaultSelected.length ? defaultSelected[index] : cor}
+            onChange={(e) => handleChange(e)}
+          />
+        ))}
 
         <section className="product-details__settings">
           <section className="product-details__values">
