@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
-- `SKU Selector` for work with multiple specifications ([#29](https://github.com/vtex-sites/accenturebb.store/pull/29)
+- `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
 
 ### Fixed 
 - `Menu Category` fix ([#41](https://github.com/vtex-sites/accenturebb.store/pull/41)
