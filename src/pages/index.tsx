@@ -82,7 +82,6 @@ export const querySSG = graphql`
         siteUrl
       }
     }
-
     cmsHome {
       sections {
         data

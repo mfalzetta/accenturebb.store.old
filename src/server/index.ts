@@ -1,16 +1,24 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 import {
   envelop,
-  useAsyncSchema,
   useExtendContext,
   useMaskedErrors,
+  useSchema,
 } from '@envelop/core'
 import { useParserCache } from '@envelop/parser-cache'
 import { useValidationCache } from '@envelop/validation-cache'
-import { getContextFactory, getSchema, isFastStoreError } from '@faststore/api'
+import {
+  getContextFactory,
+  getSchema,
+  getTypeDefs,
+  isFastStoreError,
+} from '@faststore/api'
 import { GraphQLError } from 'graphql'
 import type { FormatErrorHandler } from '@envelop/core'
-import type { Options as APIOptions } from '@faststore/api'
+import type { Options as APIOptions, Scalars } from '@faststore/api'
+import { mergeTypeDefs } from '@graphql-tools/merge'
+import { makeExecutableSchema, mergeSchemas } from '@graphql-tools/schema'
 
 import persisted from '../../@generated/graphql/persisted.json'
 import storeConfig from '../../store.config'
@@ -35,10 +43,68 @@ const apiOptions: APIOptions = {
   // },
 }
 
-export const apiSchema = getSchema(apiOptions)
+const apiSchemaOld = getSchema(apiOptions)
 
 const apiContextFactory = getContextFactory(apiOptions)
 
+export interface Seller {
+  sellerId: string
+  sellerName: string
+  addToCartLink: string
+  sellerDefault: boolean
+  commertialOffer: Scalars['ObjectOrString']
+}
+const typeDefs = `
+  type Installment {
+    Value: Float!
+    InterestRate: Float!
+    TotalValuePlusInterestRate: Float!
+    NumberOfInstallments: Float!
+    PaymentSystemName: String!
+    PaymentSystemGroupName: String!
+    Name: String!
+  }
+
+  type CommertialOffer {
+    Installments: [Installment!]
+    Price: Float
+    ListPrice: Float
+  }
+
+  type Seller {
+    sellerId: String
+    sellerName: String
+    addToCartLink: String
+    sellerDefault: Boolean!
+    commertialOffer: CommertialOffer
+  }
+  extend type StoreProduct {
+    Sellers: [Seller!]
+  }
+`
+
+const resolvers = {
+  StoreProduct: {
+    Sellers: (root: any) => {
+      return root.sellers
+    },
+  },
+}
+
+const mergedTypeDefs = mergeTypeDefs([getTypeDefs(), typeDefs])
+
+const getMergedSchemas = async () =>
+  mergeSchemas({
+    schemas: [
+      await apiSchemaOld,
+      makeExecutableSchema({
+        resolvers,
+        typeDefs: mergedTypeDefs,
+      }),
+    ],
+  })
+
+export const apiSchema = getMergedSchemas()
 const formatError: FormatErrorHandler = (err) => {
   if (err instanceof GraphQLError && isFastStoreError(err.originalError)) {
     return err
@@ -52,10 +118,9 @@ const formatError: FormatErrorHandler = (err) => {
 const getEnvelop = async () =>
   envelop({
     plugins: [
-      useAsyncSchema(apiSchema),
+      useSchema(await getMergedSchemas()),
       useExtendContext(apiContextFactory),
       useMaskedErrors({ formatError }),
-
       useValidationCache(),
       useParserCache(),
     ],
