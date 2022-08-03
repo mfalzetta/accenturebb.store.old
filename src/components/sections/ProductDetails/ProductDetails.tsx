@@ -151,8 +151,8 @@ function ProductDetails({ product: staleProduct }: Props) {
     .filter((el) => el)
     .flat()
 
-  const treatment = data?.product?.isVariantOf?.hasVariant.reduce(
-    (acumulador: TreatmentType[], elemento) => {
+  const treatment = data?.product?.isVariantOf?.hasVariant
+    .reduce((acumulador: TreatmentType[], elemento) => {
       let newItem: TreatmentType[] = []
 
       elemento?.additionalProperty.forEach((item) => {
@@ -178,9 +178,8 @@ function ProductDetails({ product: staleProduct }: Props) {
       })
 
       return [...acumulador, ...newItem]
-    },
-    []
-  )
+    }, [])
+    .sort((a, b) => (a.value < b.value ? -1 : a.value > b.value ? 1 : 0))
 
   function handleChange(params: React.FormEvent<HTMLInputElement>) {
     const param = params?.currentTarget?.value
