@@ -203,6 +203,10 @@ export const fragment = graphql`
           Name
           PaymentSystemName
         }
+
+        discountHighlights {
+          name
+        }
       }
     }
   }

@@ -1102,6 +1102,7 @@ export type CommertialOffer = {
   Installments: Maybe<Array<Installment>>
   ListPrice: Maybe<Scalars['Float']>
   Price: Maybe<Scalars['Float']>
+  discountHighlights: Maybe<Array<DiscountHighlight>>
 }
 
 export type DateQueryOperatorInput = {
@@ -1440,6 +1441,10 @@ export type DirectoryGroupConnectionSumArgs = {
 export type DirectorySortInput = {
   fields: InputMaybe<Array<InputMaybe<DirectoryFieldsEnum>>>
   order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
+}
+
+export type DiscountHighlight = {
+  name: Scalars['String']
 }
 
 export type File = Node & {
@@ -3942,6 +3947,7 @@ export type ProductSummary_ProductFragment = {
         Name: string
         PaymentSystemName: string
       }> | null
+      discountHighlights: Array<{ name: string }> | null
     } | null
   }> | null
 }
@@ -4313,6 +4319,7 @@ export type ProductsQueryQuery = {
                 Name: string
                 PaymentSystemName: string
               }> | null
+              discountHighlights: Array<{ name: string }> | null
             } | null
           }> | null
         }
@@ -4360,6 +4367,7 @@ export type SearchSuggestionsQueryQuery = {
               Name: string
               PaymentSystemName: string
             }> | null
+            discountHighlights: Array<{ name: string }> | null
           } | null
         }> | null
       }>
