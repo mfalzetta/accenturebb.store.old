@@ -35,7 +35,6 @@ interface TreatmentType {
 function ProductDetails({ product: staleProduct }: Props) {
   const { currency } = useSession()
   const [addQuantity, setAddQuantity] = useState(1)
-  // const navigate = useNavigate()
 
   // Stale while revalidate the product for fetching the new price etc
   const { data, isValidating } = useProduct(staleProduct.id, {
@@ -183,7 +182,6 @@ function ProductDetails({ product: staleProduct }: Props) {
 
   function handleChange(params: React.FormEvent<HTMLInputElement>) {
     const param = params?.currentTarget?.value
-
     const findBySize = data?.product?.isVariantOf?.hasVariant
       .map((element) =>
         element.additionalProperty.map((el) => {
