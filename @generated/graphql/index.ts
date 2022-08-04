@@ -442,6 +442,8 @@ export type CmsInstitutionalPage = Node & {
   name: Scalars['String']
   parent: Maybe<Node>
   sections: Array<CmsBlock>
+  seo: Maybe<CmsInstitutionalPageSeo>
+  versionStatus: Maybe<Scalars['String']>
 }
 
 export type CmsInstitutionalPageConnection = {
@@ -576,6 +578,11 @@ export type CmsInstitutionalPageFieldsEnum =
   | 'sections___data'
   | 'sections___id'
   | 'sections___name'
+  | 'seo___siteMetadataWithSlug___description'
+  | 'seo___siteMetadataWithSlug___slug'
+  | 'seo___siteMetadataWithSlug___title'
+  | 'seo___siteMetadataWithSlug___titleTemplate'
+  | 'versionStatus'
 
 export type CmsInstitutionalPageFilterInput = {
   children: InputMaybe<NodeFilterListInput>
@@ -584,6 +591,8 @@ export type CmsInstitutionalPageFilterInput = {
   name: InputMaybe<StringQueryOperatorInput>
   parent: InputMaybe<NodeFilterInput>
   sections: InputMaybe<CmsBlockFilterListInput>
+  seo: InputMaybe<CmsInstitutionalPageSeoFilterInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type CmsInstitutionalPageGroupConnection = {
@@ -622,8 +631,225 @@ export type CmsInstitutionalPageGroupConnectionSumArgs = {
   field: CmsInstitutionalPageFieldsEnum
 }
 
+export type CmsInstitutionalPageSeo = {
+  siteMetadataWithSlug: Maybe<CmsInstitutionalPageSeoSiteMetadataWithSlug>
+}
+
+export type CmsInstitutionalPageSeoFilterInput = {
+  siteMetadataWithSlug: InputMaybe<CmsInstitutionalPageSeoSiteMetadataWithSlugFilterInput>
+}
+
+export type CmsInstitutionalPageSeoSiteMetadataWithSlug = {
+  description: Maybe<Scalars['String']>
+  slug: Maybe<Scalars['String']>
+  title: Maybe<Scalars['String']>
+  titleTemplate: Maybe<Scalars['String']>
+}
+
+export type CmsInstitutionalPageSeoSiteMetadataWithSlugFilterInput = {
+  description: InputMaybe<StringQueryOperatorInput>
+  slug: InputMaybe<StringQueryOperatorInput>
+  title: InputMaybe<StringQueryOperatorInput>
+  titleTemplate: InputMaybe<StringQueryOperatorInput>
+}
+
 export type CmsInstitutionalPageSortInput = {
   fields: InputMaybe<Array<InputMaybe<CmsInstitutionalPageFieldsEnum>>>
+  order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
+}
+
+export type CmsPdp = Node & {
+  children: Array<Node>
+  id: Scalars['ID']
+  internal: Internal
+  name: Scalars['String']
+  parent: Maybe<Node>
+  sections: Array<CmsBlock>
+  versionStatus: Maybe<Scalars['String']>
+}
+
+export type CmsPdpConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsPdpEdge>
+  group: Array<CmsPdpGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsPdp>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsPdpConnectionDistinctArgs = {
+  field: CmsPdpFieldsEnum
+}
+
+export type CmsPdpConnectionGroupArgs = {
+  field: CmsPdpFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsPdpConnectionMaxArgs = {
+  field: CmsPdpFieldsEnum
+}
+
+export type CmsPdpConnectionMinArgs = {
+  field: CmsPdpFieldsEnum
+}
+
+export type CmsPdpConnectionSumArgs = {
+  field: CmsPdpFieldsEnum
+}
+
+export type CmsPdpEdge = {
+  next: Maybe<CmsPdp>
+  node: CmsPdp
+  previous: Maybe<CmsPdp>
+}
+
+export type CmsPdpFieldsEnum =
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'name'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'sections'
+  | 'sections___data'
+  | 'sections___id'
+  | 'sections___name'
+  | 'versionStatus'
+
+export type CmsPdpFilterInput = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
+}
+
+export type CmsPdpGroupConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsPdpEdge>
+  field: Scalars['String']
+  fieldValue: Maybe<Scalars['String']>
+  group: Array<CmsPdpGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsPdp>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsPdpGroupConnectionDistinctArgs = {
+  field: CmsPdpFieldsEnum
+}
+
+export type CmsPdpGroupConnectionGroupArgs = {
+  field: CmsPdpFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsPdpGroupConnectionMaxArgs = {
+  field: CmsPdpFieldsEnum
+}
+
+export type CmsPdpGroupConnectionMinArgs = {
+  field: CmsPdpFieldsEnum
+}
+
+export type CmsPdpGroupConnectionSumArgs = {
+  field: CmsPdpFieldsEnum
+}
+
+export type CmsPdpSortInput = {
+  fields: InputMaybe<Array<InputMaybe<CmsPdpFieldsEnum>>>
   order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
 }
 
@@ -1996,6 +2222,7 @@ export type Query = {
   allCmsHeaderLink: CmsHeaderLinkConnection
   allCmsHome: CmsHomeConnection
   allCmsInstitutionalPage: CmsInstitutionalPageConnection
+  allCmsPdp: CmsPdpConnection
   allCmsPlp: CmsPlpConnection
   allCmsSeo: CmsSeoConnection
   /** Returns information about all collections. */
@@ -2012,6 +2239,7 @@ export type Query = {
   cmsHeaderLink: Maybe<CmsHeaderLink>
   cmsHome: Maybe<CmsHome>
   cmsInstitutionalPage: Maybe<CmsInstitutionalPage>
+  cmsPdp: Maybe<CmsPdp>
   cmsPlp: Maybe<CmsPlp>
   cmsSeo: Maybe<CmsSeo>
   /** Returns the details of a collection based on the collection slug. */
@@ -2048,6 +2276,13 @@ export type QueryAllCmsInstitutionalPageArgs = {
   limit: InputMaybe<Scalars['Int']>
   skip: InputMaybe<Scalars['Int']>
   sort: InputMaybe<CmsInstitutionalPageSortInput>
+}
+
+export type QueryAllCmsPdpArgs = {
+  filter: InputMaybe<CmsPdpFilterInput>
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+  sort: InputMaybe<CmsPdpSortInput>
 }
 
 export type QueryAllCmsPlpArgs = {
@@ -2150,6 +2385,18 @@ export type QueryCmsInstitutionalPageArgs = {
   name: InputMaybe<StringQueryOperatorInput>
   parent: InputMaybe<NodeFilterInput>
   sections: InputMaybe<CmsBlockFilterListInput>
+  seo: InputMaybe<CmsInstitutionalPageSeoFilterInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
+}
+
+export type QueryCmsPdpArgs = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type QueryCmsPlpArgs = {
@@ -4084,6 +4331,7 @@ export type ProductPageQueryQuery = {
       siteUrl: string | null
     } | null
   } | null
+  cmsPdp: { sections: Array<{ data: any; name: string }> } | null
 }
 
 export type ServerProductPageQueryQueryVariables = Exact<{
