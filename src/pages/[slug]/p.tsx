@@ -7,7 +7,6 @@ import {
   ProductJsonLd,
 } from 'gatsby-plugin-next-seo'
 import ProductDetails from 'src/components/sections/ProductDetails'
-import ProductShelf from 'src/components/sections/ProductShelf'
 import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type {
@@ -15,8 +14,8 @@ import type {
   ServerProductPageQueryQuery,
   ProductPageQueryQueryVariables,
 } from '@generated/graphql'
-
 import 'src/styles/pages/pdp.scss'
+import RenderCMS from 'src/components/RenderCMS'
 
 export type Props = PageProps<
   ProductPageQueryQuery,
@@ -28,7 +27,7 @@ export type Props = PageProps<
 function Page(props: Props) {
   const { locale, currency } = useSession()
   const {
-    data: { site },
+    data: { site, cmsPdp },
     serverData,
   } = props
 
@@ -42,8 +41,8 @@ function Page(props: Props) {
     product: { seo },
   } = serverData
 
-  const title = seo.title || site?.siteMetadata?.title || ''
-  const description = seo.description || site?.siteMetadata?.description || ''
+  const title = seo.title ?? site?.siteMetadata?.title ?? ''
+  const description = seo.description ?? site?.siteMetadata?.description ?? ''
   const canonical = `${site?.siteMetadata?.siteUrl}${seo.canonical}`
 
   return (
@@ -91,7 +90,6 @@ function Page(props: Props) {
           price: product.offers.offers[0].price.toString(),
         }}
       />
-
       {/*
         WARNING: Do not import or render components from any
         other folder than '../components/sections' in here.
@@ -102,12 +100,7 @@ function Page(props: Props) {
         (not the HTML tag) before rendering it here.
       */}
       <ProductDetails product={product} />
-      <ProductShelf
-        productClusterIds="142"
-        shelfType="isCarousel"
-        first={18}
-        itens={6}
-      />
+      <RenderCMS sections={cmsPdp?.sections} />
     </>
   )
 }
@@ -120,6 +113,12 @@ export const querySSG = graphql`
         description
         titleTemplate
         siteUrl
+      }
+    }
+    cmsPdp {
+      sections {
+        data
+        name
       }
     }
   }
