@@ -14,7 +14,7 @@ module.exports = {
   locale: 'en-US',
 
   // Production URLs
-  storeUrl: 'https://accenturebb.myvtex.com',
+  storeUrl: 'https://accenturebb.vtex.app',
   secureSubdomain: 'https://accenturebb.myvtex.com',
   checkoutUrl: 'https://accenturebb.myvtex.com/checkout',
   loginUrl: 'https://accenturebb.myvtex.com/api/io/login',
