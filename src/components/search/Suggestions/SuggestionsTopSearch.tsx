@@ -30,7 +30,7 @@ const SuggestionsTopSearch = forwardRef<
   const { terms, isLoading } = useTopSearch(topTerms)
 
   if (isLoading) {
-    return <p data-fs-search-input-loading-text>Loading...</p>
+    return <p data-fs-search-input-loading-text>Carregando...</p>
   }
 
   return (
@@ -41,7 +41,7 @@ const SuggestionsTopSearch = forwardRef<
       {...otherProps}
     >
       <div data-fs-search-suggestion-header>
-        <p data-fs-search-suggestion-title>Top Search</p>
+        <p data-fs-search-suggestion-title>Mais Buscados</p>
       </div>
       <UIList variant="ordered">
         {terms.map((term, index) => (

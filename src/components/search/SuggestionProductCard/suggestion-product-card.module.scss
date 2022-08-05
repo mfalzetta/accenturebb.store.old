@@ -50,4 +50,8 @@
     padding: var(--fs-suggestion-product-card-link-padding);
     text-decoration: none;
   }
+
+  [data-testid="list-price"] {
+    margin-right: var(--fs-spacing-2);
+  }
 }
