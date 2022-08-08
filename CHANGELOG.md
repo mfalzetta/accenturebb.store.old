@@ -12,10 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
 
 ### Fixed 
+- `Search` translate ([#47](https://github.com/vtex-sites/accenturebb.store/pull/47)
 - `Menu Category` fix ([#41](https://github.com/vtex-sites/accenturebb.store/pull/41)
 - `Carousel` new layout ([#39](https://github.com/vtex-sites/accenturebb.store/pull/39)
 - `Home Components Fixes` slider arrows for 1 banner and category section button size ([#33](https://github.com/vtex-sites/accenturebb.store/pull/33)
 - `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
+
 ### Added- 
 - `PDP CMS page` on content-types as a new page ([#46](https://github.com/vtex-sites/accenturebb.store/pull/46)
 - `Product Card` add installment ([#42](https://github.com/vtex-sites/accenturebb.store/pull/42)
