@@ -7,7 +7,7 @@ function EmptyGallery() {
     <EmptyState variant="rounded">
       <header data-fs-empty-state-title>
         <p data-fs-empty-state-title-text>
-          Puxa, não encontramos a palavra buscada.
+          Poxa, não encontramos a palavra buscada.
         </p>
         <UIIcon component={<SearchNotFound />} />
       </header>
