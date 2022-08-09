@@ -16,8 +16,10 @@ import type { CurrencyCode, ViewItemEvent } from '@faststore/sdk'
 import type { AnalyticsItem } from 'src/sdk/analytics/types'
 import OutOfStock from 'src/components/product/OutOfStock'
 import SkuSelector from 'src/components/ui/SkuSelector'
+import Accordion, { AccordionItem } from 'src/components/ui/Accordion'
 
 import Section from '../Section'
+import LinksAndDownloads from './LinksAndDownloads'
 
 interface Props {
   product: ProductDetailsFragment_ProductFragment
@@ -35,7 +37,7 @@ interface TreatmentType {
 function ProductDetails({ product: staleProduct }: Props) {
   const { currency } = useSession()
   const [addQuantity, setAddQuantity] = useState(1)
-
+  const [indexes, setIndexes] = useState([0])
   // Stale while revalidate the product for fetching the new price etc
   const { data, isValidating } = useProduct(staleProduct.id, {
     product: staleProduct,
@@ -234,6 +236,38 @@ function ProductDetails({ product: staleProduct }: Props) {
     }
   }
 
+  const specs = data?.product?.specificationGroups?.filter(
+    (item) => item.name !== 'allSpecifications'
+  )
+
+  const linkAndDownloads = specs
+    ?.map((el) =>
+      el?.specifications?.filter(
+        (element) => element?.name === 'Links e Downloads'
+      )
+    )
+    .flat()
+
+  const details = specs
+    ?.map((el) =>
+      el?.specifications?.filter(
+        (element) => element?.name === 'Características e Detalhes'
+      )
+    )
+    .flat()
+
+  useEffect(() => {
+    if (linkAndDownloads?.length && details?.length) {
+      setIndexes([0, 1])
+    } else if (details?.length) {
+      setIndexes([0])
+    } else if (linkAndDownloads?.length) {
+      setIndexes([1])
+    }
+  }, [])
+
+  console.log(indexes)
+
   return (
     <Section className="product-details layout__content-full layout__section">
       <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
@@ -314,6 +348,30 @@ function ProductDetails({ product: staleProduct }: Props) {
             <h2 className="text__title-subsection">Informações do produto</h2>
             <p className="text__body">{description}</p>
           </article>
+          <article>
+            <Accordion expandedIndices={indexes} onChange={() => {}}>
+              const isExpanded = indicesExpanded.has(index)
+              {details?.length && (
+                <>
+                  <AccordionItem
+                    isExpanded
+                    buttonLabel="Características e Detalhes"
+                  >
+                    <span>{details[0]?.values}</span>
+                  </AccordionItem>
+                </>
+              )}
+              {linkAndDownloads?.length && (
+                <>
+                  <AccordionItem isExpanded buttonLabel="Links e downloads">
+                    <LinksAndDownloads
+                      values={linkAndDownloads[0]?.values as string[]}
+                    />
+                  </AccordionItem>
+                </>
+              )}
+            </Accordion>
+          </article>
         </section>
       </section>
     </Section>
@@ -385,6 +443,15 @@ export const fragment = graphql`
     name
     gtin
     description
+    specificationGroups {
+      name
+      originalName
+      specifications {
+        values
+        originalName
+        name
+      }
+    }
     isVariantOf {
       productGroupID
       name
