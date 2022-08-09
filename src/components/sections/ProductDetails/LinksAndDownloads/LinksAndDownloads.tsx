@@ -1,0 +1,28 @@
+import './links-and-downloads.scss'
+
+interface LinksAndDownloadsProps {
+  values: string[]
+}
+interface LinksAndDownloads {
+  title: string
+  url: string
+  text: string
+}
+const LinksAndDownloads = ({ values }: LinksAndDownloadsProps) => {
+  const json = JSON.parse(values[0])
+
+  console.log('---->', json)
+
+  return (
+    <div data-fs-links-and-downloads>
+      {json.map((element: LinksAndDownloads, index: number) => (
+        <div key={index} className="container">
+          <a href={element.url}>{element.title}</a>
+          <span>{element.text}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export default LinksAndDownloads
