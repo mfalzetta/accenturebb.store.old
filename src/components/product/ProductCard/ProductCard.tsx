@@ -5,7 +5,7 @@ import {
   ProductCardImage as UIProductCardImage,
 } from '@faststore/ui'
 import { graphql } from 'gatsby'
-import { memo } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { Badge, DiscountBadge } from 'src/components/ui/Badge'
 import { Image } from 'src/components/ui/Image'
 import Price from 'src/components/ui/Price'
@@ -45,6 +45,21 @@ function ProductCard({
   isSimpleCard,
   ...otherProps
 }: ProductCardProps) {
+  const [isMobile, setIsMobile] = useState(true)
+
+  useEffect(() => {
+    if (window.innerWidth > 920) {
+      setIsMobile(false)
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 920) {
+        setIsMobile(false)
+      } else {
+        setIsMobile(true)
+      }
+    })
+  }, [isMobile])
   const {
     sku,
     brand: { brandName },
@@ -60,6 +75,9 @@ function ProductCard({
   const sellerD = sellers?.filter((element) => element?.sellerDefault === true)
   const installments = sellerD?.map((el) => el?.commertialOffer?.Installments)
   const allInstallment: InstallmentProps[][] = []
+  const discountHighlights = sellerD
+    ?.map((el) => el?.commertialOffer?.discountHighlights)
+    .flat()
 
   installments?.forEach((element) => {
     if (element !== undefined && element !== null) {
@@ -101,6 +119,15 @@ function ProductCard({
             </UIProductCardActions>
           )}
         </UIProductCardImage>
+        {(!galleryList || isMobile) && (
+          <ul data-fs-product-card-discount>
+            {discountHighlights?.map((el, ind) => (
+              <li data-fs-product-card-discount-item key={ind}>
+                {el?.name}
+              </li>
+            ))}
+          </ul>
+        )}
         <UIProductCardContent data-fs-product-card-content>
           <div data-fs-product-card-heading>
             <h3 data-fs-product-card-brand-title>{brandName}</h3>
@@ -110,6 +137,15 @@ function ProductCard({
               </Link>
             </h3>
             <div data-fs-product-card-prices>
+              {galleryList && !isMobile && (
+                <ul data-fs-product-card-discount>
+                  {discountHighlights?.map((el, i) => (
+                    <li data-fs-product-card-discount-item key={i}>
+                      {el?.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
               {spotPrice !== listPrice ? (
                 <div data-fs-product-card-list-price>
                   <Price
@@ -142,12 +178,12 @@ function ProductCard({
                 classes="text__body"
                 SRText="Sale Price:"
               />
+              {allInstallment ? (
+                <Installment Installments={allInstallment} />
+              ) : (
+                <></>
+              )}
             </div>
-            {allInstallment ? (
-              <Installment Installments={allInstallment} />
-            ) : (
-              <></>
-            )}
           </div>
         </UIProductCardContent>
       </div>
@@ -202,6 +238,10 @@ export const fragment = graphql`
           NumberOfInstallments
           Name
           PaymentSystemName
+        }
+
+        discountHighlights {
+          name
         }
       }
     }
