@@ -43,7 +43,23 @@
 
   [data-fs-suggestion-product-card-prices] {
     display: flex;
+    flex-direction: column;
     align-items: baseline;
+
+    [data-fs-suggestion-product-card-prices-list] {
+      display: flex;
+
+      [data-store-badge] {
+        position: static;
+      }
+
+      [data-fs-badge-wrapper] {
+        display: block;
+        color: #fff;
+        background-color: var(--fs-color-badge-background);
+        border-color: var(--fs-color-badge-background);
+      }
+    }
   }
 
   [data-fs-link] {
@@ -52,6 +68,6 @@
   }
 
   [data-testid="list-price"] {
-    margin-right: var(--fs-spacing-2);
+    margin-right: var(--fs-spacing-1);
   }
 }
