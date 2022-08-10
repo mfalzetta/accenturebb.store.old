@@ -1,6 +1,6 @@
 import { sendAnalyticsEvent, useSession } from '@faststore/sdk'
 import { graphql, navigate } from 'gatsby'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { DiscountBadge } from 'src/components/ui/Badge'
 import Breadcrumb from 'src/components/ui/Breadcrumb'
 import { ButtonBuy } from 'src/components/ui/Button'
@@ -20,6 +20,7 @@ import Accordion, { AccordionItem } from 'src/components/ui/Accordion'
 
 import Section from '../Section'
 import LinksAndDownloads from './LinksAndDownloads'
+import ProductSpecifications from './ProductSpecifications'
 
 interface Props {
   product: ProductDetailsFragment_ProductFragment
@@ -34,10 +35,18 @@ interface TreatmentType {
   disabled: boolean
 }
 
+export interface AllUsableSpecsType {
+  values: string[]
+  originalName: string
+  name: string
+  others?: AllUsableSpecsType[]
+}
+
 function ProductDetails({ product: staleProduct }: Props) {
   const { currency } = useSession()
   const [addQuantity, setAddQuantity] = useState(1)
   const [indexes, setIndexes] = useState([0])
+
   // Stale while revalidate the product for fetching the new price etc
   const { data, isValidating } = useProduct(staleProduct.id, {
     product: staleProduct,
@@ -236,37 +245,83 @@ function ProductDetails({ product: staleProduct }: Props) {
     }
   }
 
-  const specs = data?.product?.specificationGroups?.filter(
-    (item) => item.name !== 'allSpecifications'
-  )
-
-  const linkAndDownloads = specs
-    ?.map((el) =>
-      el?.specifications?.filter(
-        (element) => element?.name === 'Links e Downloads'
-      )
+  const specs = useMemo(() => {
+    return data?.product?.specificationGroups?.filter(
+      (item) => item.name !== 'allSpecifications'
     )
-    .flat()
+  }, [data?.product?.specificationGroups])
 
-  const details = specs
-    ?.map((el) =>
-      el?.specifications?.filter(
-        (element) => element?.name === 'Características e Detalhes'
+  const allUsableSpecs = useMemo(() => {
+    const obj = specs
+      ?.reduce((acumulador: AllUsableSpecsType[] | any, spec) => {
+        const allSpecs = spec?.specifications?.map((element) => element)
+
+        const links = allSpecs?.filter((el) => el?.name === 'Links e Downloads')
+
+        const details = allSpecs?.filter(
+          (el) => el?.name === 'Características e Detalhes'
+        )
+
+        const others = allSpecs?.filter(
+          (el) =>
+            el?.name !== 'Características e Detalhes' &&
+            el?.name !== 'Links e Downloads'
+        )
+
+        const especificacoes = others?.length
+          ? { name: 'Especificações', others }
+          : []
+
+        if (especificacoes && links && details) {
+          return [...acumulador, ...details, ...links, especificacoes]
+        }
+
+        return [...acumulador]
+      }, [])
+      .flat()
+      .sort((a: { name: number }, b: { name: number }) =>
+        a.name < b.name ? -1 : a.name > b.name ? 1 : 0
       )
-    )
-    .flat()
+
+    return obj
+  }, [specs])
+
+  // const allUsableSpecs = specs
+  //   ?.reduce((acumulador: AllUsableSpecsType[] | any, spec) => {
+  //     const allSpecs = spec?.specifications?.map((element) => element)
+
+  //     const links = allSpecs?.filter((el) => el?.name === 'Links e Downloads')
+
+  //     const details = allSpecs?.filter(
+  //       (el) => el?.name === 'Características e Detalhes'
+  //     )
+
+  //     const others = allSpecs?.filter(
+  //       (el) =>
+  //         el?.name !== 'Características e Detalhes' &&
+  //         el?.name !== 'Links e Downloads'
+  //     )
+
+  //     const especificacoes = others?.length
+  //       ? { name: 'Especificações', others }
+  //       : []
+
+  //     if (especificacoes && links && details) {
+  //       return [...acumulador, ...details, ...links, especificacoes]
+  //     }
+
+  //     return [...acumulador]
+  //   }, [])
+  //   .flat()
+  //   .sort((a: { name: number }, b: { name: number }) =>
+  //     a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+  //   )
 
   useEffect(() => {
-    if (linkAndDownloads?.length && details?.length) {
-      setIndexes([0, 1])
-    } else if (details?.length) {
-      setIndexes([0])
-    } else if (linkAndDownloads?.length) {
-      setIndexes([1])
-    }
-  }, [])
+    const indexs = allUsableSpecs?.map((_: null, index: number) => index)
 
-  console.log(indexes)
+    setIndexes(indexs)
+  }, [allUsableSpecs])
 
   return (
     <Section className="product-details layout__content-full layout__section">
@@ -350,26 +405,34 @@ function ProductDetails({ product: staleProduct }: Props) {
           </article>
           <article>
             <Accordion expandedIndices={indexes} onChange={() => {}}>
-              const isExpanded = indicesExpanded.has(index)
-              {details?.length && (
-                <>
+              {allUsableSpecs.map((spec: AllUsableSpecsType, index: number) => {
+                const isExpanded =
+                  indexes.filter((el) => el === index).length > 0
+
+                return (
                   <AccordionItem
-                    isExpanded
-                    buttonLabel="Características e Detalhes"
+                    key={index}
+                    isExpanded={isExpanded}
+                    buttonLabel={spec.name}
+                    onClick={() =>
+                      !isExpanded
+                        ? setIndexes([...indexes, index])
+                        : setIndexes(indexes.filter((el) => el !== index))
+                    }
+                    itemType="normal"
                   >
-                    <span>{details[0]?.values}</span>
+                    {spec.name === 'Links e Downloads' && (
+                      <LinksAndDownloads values={spec.values} />
+                    )}
+                    {spec.name === 'Características e Detalhes' && (
+                      <span> {spec.values} </span>
+                    )}
+                    {spec.name === 'Especificações' && (
+                      <ProductSpecifications specifications={spec.others} />
+                    )}
                   </AccordionItem>
-                </>
-              )}
-              {linkAndDownloads?.length && (
-                <>
-                  <AccordionItem isExpanded buttonLabel="Links e downloads">
-                    <LinksAndDownloads
-                      values={linkAndDownloads[0]?.values as string[]}
-                    />
-                  </AccordionItem>
-                </>
-              )}
+                )
+              })}
             </Accordion>
           </article>
         </section>
