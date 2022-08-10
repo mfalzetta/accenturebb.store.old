@@ -10,6 +10,11 @@
     "configurationSchemaSets": []
   },
   {
+    "id": "pdp",
+    "name": "PDP",
+    "configurationSchemaSets": []
+  },
+  {
     "id": "plp",
     "name": "PLP",
     "configurationSchemaSets": [

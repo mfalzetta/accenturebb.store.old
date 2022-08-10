@@ -70,15 +70,19 @@ function SuggestionProductCard({ product, index }: SuggestionProductCardProps) {
               {name}
             </p>
             <span data-fs-suggestion-product-card-prices>
-              <Price
-                value={listPrice}
-                formatter={useFormattedPrice}
-                testId="list-price"
-                data-value={listPrice}
-                variant="listing"
-                classes="text__legend"
-                SRText="Original price:"
-              />
+              {listPrice !== spotPrice ? (
+                <Price
+                  value={listPrice}
+                  formatter={useFormattedPrice}
+                  testId="list-price"
+                  data-value={listPrice}
+                  variant="listing"
+                  classes="text__legend"
+                  SRText="Original price:"
+                />
+              ) : (
+                <></>
+              )}
               <Price
                 value={spotPrice}
                 formatter={useFormattedPrice}

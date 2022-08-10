@@ -5,13 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
 ## [Unreleased]
+
+### Changed
+- `Search not found` new layout ([#48](https://github.com/vtex-sites/accenturebb.store/pull/48)
+- `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
+
 ### Fixed 
+- `Search` translate ([#47](https://github.com/vtex-sites/accenturebb.store/pull/47)
 - `Menu Category` fix ([#41](https://github.com/vtex-sites/accenturebb.store/pull/41)
 - `Carousel` new layout ([#39](https://github.com/vtex-sites/accenturebb.store/pull/39)
 - `Home Components Fixes` slider arrows for 1 banner and category section button size ([#33](https://github.com/vtex-sites/accenturebb.store/pull/33)
 - `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
+
 ### Added- 
+- `PDP CMS page` on content-types as a new page ([#46](https://github.com/vtex-sites/accenturebb.store/pull/46)
 - `Product Card` add installment ([#42](https://github.com/vtex-sites/accenturebb.store/pull/42)
 - `react-simple-image-viewer` package to do zoom on PDP images ([#29](https://github.com/vtex-sites/accenturebb.store/pull/29)
 - `SKU Selector` and PDP changes ([#29](https://github.com/vtex-sites/accenturebb.store/pull/29)
