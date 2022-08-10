@@ -6,7 +6,9 @@
   // --------------------------------------------------------
 
   // Default properties
-  --fs-product-card-padding: var(--fs-spacing-1) var(--fs-spacing-1) var(--fs-spacing-2) var(--fs-spacing-1);
+  --fs-product-card-padding:
+    var(--fs-spacing-1) var(--fs-spacing-1)
+    var(--fs-spacing-2) var(--fs-spacing-1);
   --fs-product-card-gap: var(--fs-grid-gap-2);
   --fs-product-card-min-width: 12.0831rem;
 
@@ -68,7 +70,8 @@
   border-radius: var(--fs-product-card-border-radius);
   box-shadow: var(--fs-product-card-shadow);
   transition:
-    var(--fs-product-card-transition-property) var(--fs-product-card-transition-timing)
+    var(--fs-product-card-transition-property)
+    var(--fs-product-card-transition-timing)
     var(--fs-product-card-transition-function);
 
   &:focus-within {
@@ -199,7 +202,9 @@
   // --------------------------------------------------------
 
   &[data-fs-product-card-bordered="true"] {
-    border: var(--fs-product-card-border-width) solid var(--fs-product-card-border-color);
+    border:
+      var(--fs-product-card-border-width) solid
+      var(--fs-product-card-border-color);
   }
 
   &[data-fs-product-card-variant="wide"] {
@@ -236,7 +241,9 @@
     }
 
     [data-product-card-image] {
-      border-radius: var(--fs-product-card-border-radius) var(--fs-product-card-border-radius) 0 0;
+      border-radius:
+        var(--fs-product-card-border-radius)
+        var(--fs-product-card-border-radius) 0 0;
     }
 
     [data-store-badge] {
@@ -375,5 +382,36 @@
     [data-testid="list-price"] {
       display: none;
     }
+  }
+
+  [data-fs-product-card-discount] {
+    margin-bottom: 16px;
+
+    [data-fs-product-card-discount-item] {
+      width: fit-content;
+      padding: 2px var(--fs-spacing-1);
+      font-size: var(--fs-text-size-tiny);
+      font-weight: 500;
+      line-height: 16px;
+      color: #ffffff;
+      text-transform: uppercase;
+      background-color: var(--fs-color-theme-3);
+      border-radius: 10px;
+    }
+  }
+
+  @media (max-width: 920px) {
+    [data-fs-product-card-gallery-list="true"] [data-fs-product-card-discount] {
+      position: absolute;
+      margin-top: 105px;
+      margin-left: 0;
+    }
+  }
+
+  [data-fs-product-card-gallery-list="false"] [data-fs-product-card-discount] {
+    position: absolute;
+    padding-bottom: 8px;
+    margin-top: -10px;
+    margin-bottom: 0;
   }
 }
