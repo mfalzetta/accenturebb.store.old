@@ -107,8 +107,8 @@
       margin-left: 0.5rem;
 
       [data-fs-badge-wrapper] {
-        background-color: #3e8629;
-        border-color: #3e8629;
+        background-color: var(--fs-color-badge-background);
+        border-color: var(--fs-color-badge-background);
 
         span {
           font-size: 12px;
