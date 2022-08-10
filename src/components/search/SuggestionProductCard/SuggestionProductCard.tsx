@@ -6,6 +6,7 @@ import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { useProductLink } from 'src/sdk/product/useProductLink'
 import useSearchInput from 'src/sdk/search/useSearchInput'
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
+import { DiscountBadge } from 'src/components/ui/Badge'
 
 import styles from './suggestion-product-card.module.scss'
 
@@ -71,15 +72,18 @@ function SuggestionProductCard({ product, index }: SuggestionProductCardProps) {
             </p>
             <span data-fs-suggestion-product-card-prices>
               {listPrice !== spotPrice ? (
-                <Price
-                  value={listPrice}
-                  formatter={useFormattedPrice}
-                  testId="list-price"
-                  data-value={listPrice}
-                  variant="listing"
-                  classes="text__legend"
-                  SRText="Original price:"
-                />
+                <span data-fs-suggestion-product-card-prices-list>
+                  <Price
+                    value={listPrice}
+                    formatter={useFormattedPrice}
+                    testId="list-price"
+                    data-value={listPrice}
+                    variant="listing"
+                    classes="text__legend"
+                    SRText="Original price:"
+                  />
+                  <DiscountBadge listPrice={listPrice} spotPrice={spotPrice} />
+                </span>
               ) : (
                 <></>
               )}
