@@ -6,23 +6,23 @@
   // --------------------------------------------------------
 
   // Default properties
-  --fs-cart-item-padding               : var(--fs-spacing-3);
-  --fs-cart-item-bkg-color             : var(--fs-control-bkg);
+  --fs-cart-item-padding: var(--fs-spacing-3);
+  --fs-cart-item-bkg-color: var(--fs-control-bkg);
 
-  --fs-cart-item-border-width          : var(--fs-border-width);
-  --fs-cart-item-border-color          : var(--fs-border-color-light);
-  --fs-cart-item-border-radius         : var(--fs-border-radius);
+  --fs-cart-item-border-width: var(--fs-border-width);
+  --fs-cart-item-border-color: var(--fs-border-color-light);
+  --fs-cart-item-border-radius: var(--fs-border-radius);
 
   // Image
-  --fs-cart-item-image-border-radius   : var(--fs-cart-item-border-radius);
+  --fs-cart-item-image-border-radius: var(--fs-cart-item-border-radius);
 
   // Title
-  --fs-cart-item-title-margin-bottom   : var(--fs-spacing-0);
-  --fs-cart-item-title-line-height     : 1.2;
-  --fs-cart-item-title-color           : var(--fs-color-text);
+  --fs-cart-item-title-margin-bottom: var(--fs-spacing-0);
+  --fs-cart-item-title-line-height: 1.2;
+  --fs-cart-item-title-color: var(--fs-color-text);
 
   // Actions
-  --fs-cart-item-actions-margin-top    : var(--fs-spacing-3);
+  --fs-cart-item-actions-margin-top: var(--fs-spacing-3);
 
   // --------------------------------------------------------
   // Structural Styles
@@ -30,7 +30,9 @@
 
   padding: var(--fs-cart-item-padding);
   background-color: var(--fs-cart-item-bkg-color);
-  border: var(--fs-cart-item-border-width) solid var(--fs-cart-item-border-color);
+  border:
+    var(--fs-cart-item-border-width) solid
+    var(--fs-cart-item-border-color);
   border-radius: var(--fs-cart-item-border-radius);
 
   [data-fs-cart-item-content] {
@@ -43,6 +45,23 @@
   [data-fs-cart-item-summary] {
     flex-direction: column;
     grid-column: 2 / span 4;
+
+    [data-fs-cart-item-prices-list] {
+      display: flex;
+      flex-direction: row;
+
+      [data-store-badge] {
+        position: static;
+        display: block;
+
+        [data-fs-badge-wrapper] {
+          display: block;
+          color: #fff;
+          background-color: var(--fs-color-badge-background);
+          border-color: var(--fs-color-badge-background);
+        }
+      }
+    }
   }
 
   [data-fs-cart-item-title] {
@@ -57,6 +76,7 @@
 
   [data-fs-cart-item-prices] {
     display: flex;
+    flex-direction: column;
     align-items: baseline;
   }
 

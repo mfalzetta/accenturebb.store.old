@@ -26,7 +26,7 @@ function ProductGrid({ products, page, pageSize, isGallery = false }: Props) {
         data-gallery-list-layout={!isGallery}
       >
         {products.map(({ node: product }, idx) => (
-          <li key={`${product.id}`}>
+          <li key={`${product.id}`} data-fs-product-grid-item>
             <ProductCard
               product={product}
               index={pageSize * page + idx + 1}

@@ -64,11 +64,15 @@ const typeDefs = `
     PaymentSystemGroupName: String!
     Name: String!
   }
+  type DiscountHighlight {
+    name: String!
+  }
 
   type CommertialOffer {
     Installments: [Installment!]
     Price: Float
     ListPrice: Float
+    discountHighlights: [DiscountHighlight!]
   }
 
   type Seller {

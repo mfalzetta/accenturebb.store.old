@@ -16,6 +16,7 @@ import type {
 } from '@faststore/sdk'
 import { useSession, sendAnalyticsEvent } from '@faststore/sdk'
 import type { AnalyticsItem } from 'src/sdk/analytics/types'
+import { DiscountBadge } from 'src/components/ui/Badge'
 
 import styles from './cart-item.module.scss'
 
@@ -100,15 +101,21 @@ function CartItem({ item }: Props) {
           </p>
           <span data-fs-cart-item-prices>
             {item.listPrice !== item.price ? (
-              <Price
-                value={item.listPrice}
-                formatter={useFormattedPrice}
-                testId="list-price"
-                data-value={item.listPrice}
-                variant="listing"
-                classes="text__legend"
-                SRText="Original price:"
-              />
+              <span data-fs-cart-item-prices-list>
+                <Price
+                  value={item.listPrice}
+                  formatter={useFormattedPrice}
+                  testId="list-price"
+                  data-value={item.listPrice}
+                  variant="listing"
+                  classes="text__legend"
+                  SRText="Original price:"
+                />
+                <DiscountBadge
+                  listPrice={item.listPrice}
+                  spotPrice={item.price}
+                />
+              </span>
             ) : (
               <></>
             )}
