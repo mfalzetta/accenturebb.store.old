@@ -11,8 +11,6 @@ interface LinksAndDownloads {
 const LinksAndDownloads = ({ values }: LinksAndDownloadsProps) => {
   const json = JSON.parse(values[0])
 
-  console.log('---->', json)
-
   return (
     <div data-fs-links-and-downloads>
       {json.map((element: LinksAndDownloads, index: number) => (

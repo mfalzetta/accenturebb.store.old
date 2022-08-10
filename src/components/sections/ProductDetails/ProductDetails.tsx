@@ -286,37 +286,6 @@ function ProductDetails({ product: staleProduct }: Props) {
     return obj
   }, [specs])
 
-  // const allUsableSpecs = specs
-  //   ?.reduce((acumulador: AllUsableSpecsType[] | any, spec) => {
-  //     const allSpecs = spec?.specifications?.map((element) => element)
-
-  //     const links = allSpecs?.filter((el) => el?.name === 'Links e Downloads')
-
-  //     const details = allSpecs?.filter(
-  //       (el) => el?.name === 'Características e Detalhes'
-  //     )
-
-  //     const others = allSpecs?.filter(
-  //       (el) =>
-  //         el?.name !== 'Características e Detalhes' &&
-  //         el?.name !== 'Links e Downloads'
-  //     )
-
-  //     const especificacoes = others?.length
-  //       ? { name: 'Especificações', others }
-  //       : []
-
-  //     if (especificacoes && links && details) {
-  //       return [...acumulador, ...details, ...links, especificacoes]
-  //     }
-
-  //     return [...acumulador]
-  //   }, [])
-  //   .flat()
-  //   .sort((a: { name: number }, b: { name: number }) =>
-  //     a.name < b.name ? -1 : a.name > b.name ? 1 : 0
-  //   )
-
   useEffect(() => {
     const indexs = allUsableSpecs?.map((_: null, index: number) => index)
 
