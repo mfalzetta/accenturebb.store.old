@@ -3,7 +3,7 @@ import './links-and-downloads.scss'
 interface LinksAndDownloadsProps {
   values: string[]
 }
-interface LinksAndDownloads {
+interface LinksAndDownloadsType {
   title: string
   url: string
   text: string
@@ -13,7 +13,7 @@ const LinksAndDownloads = ({ values }: LinksAndDownloadsProps) => {
 
   return (
     <div data-fs-links-and-downloads>
-      {json.map((element: LinksAndDownloads, index: number) => (
+      {json.map((element: LinksAndDownloadsType, index: number) => (
         <div key={index} className="container">
           <a href={element.url}>{element.title}</a>
           <span>{element.text}</span>
