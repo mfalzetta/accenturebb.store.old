@@ -3672,6 +3672,18 @@ export type SiteSortInput = {
 
 export type SortOrderEnum = 'ASC' | 'DESC'
 
+export type Specification = {
+  name: Maybe<Scalars['String']>
+  originalName: Maybe<Scalars['String']>
+  values: Maybe<Array<Maybe<Scalars['String']>>>
+}
+
+export type SpecificationGroup = {
+  name: Maybe<Scalars['String']>
+  originalName: Maybe<Scalars['String']>
+  specifications: Maybe<Array<Maybe<Specification>>>
+}
+
 /** Aggregate offer information, for a given SKU that is available to be fulfilled by multiple sellers. */
 export type StoreAggregateOffer = {
   /** Highest price among all sellers. */
@@ -3961,6 +3973,7 @@ export type StoreProduct = {
   sku: Scalars['String']
   /** Corresponding collection URL slug, with which to retrieve this entity. */
   slug: Scalars['String']
+  specificationGroups: Maybe<Array<SpecificationGroup>>
 }
 
 /** Product connections, including pagination information and products returned by the query. */
@@ -4196,6 +4209,15 @@ export type ProductDetailsFragment_ProductFragment = {
   gtin: string
   description: string
   id: string
+  specificationGroups: Array<{
+    name: string | null
+    originalName: string | null
+    specifications: Array<{
+      values: Array<string | null> | null
+      originalName: string | null
+      name: string | null
+    } | null> | null
+  }> | null
   isVariantOf: {
     productGroupID: string
     name: string
@@ -4352,6 +4374,15 @@ export type ServerProductPageQueryQuery = {
         image: Array<{ url: string; alternateName: string }>
       }>
     }
+    specificationGroups: Array<{
+      name: string | null
+      originalName: string | null
+      specifications: Array<{
+        values: Array<string | null> | null
+        originalName: string | null
+        name: string | null
+      } | null> | null
+    }> | null
     additionalProperty: Array<{
       propertyID: string
       name: string
@@ -4454,6 +4485,15 @@ export type BrowserProductQueryQuery = {
     gtin: string
     description: string
     id: string
+    specificationGroups: Array<{
+      name: string | null
+      originalName: string | null
+      specifications: Array<{
+        values: Array<string | null> | null
+        originalName: string | null
+        name: string | null
+      } | null> | null
+    }> | null
     isVariantOf: {
       productGroupID: string
       name: string

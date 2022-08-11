@@ -6,6 +6,11 @@
   [data-fs-out-of-stock] {
     margin-top: var(--fs-spacing-4);
   }
+
+  [data-fs-accordion-item-button],
+  [data-fs-accordion-item-panel] {
+    padding-left: 0;
+  }
 }
 
 .product-details__body {

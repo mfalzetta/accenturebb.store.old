@@ -82,8 +82,22 @@ const typeDefs = `
     sellerDefault: Boolean!
     commertialOffer: CommertialOffer
   }
+
+  type Specification {
+    originalName: String
+    name: String
+    values: [String]
+  }
+
+  type SpecificationGroup {
+    originalName: String
+    name: String
+    specifications: [Specification]
+  }
+
   extend type StoreProduct {
     Sellers: [Seller!]
+    specificationGroups: [SpecificationGroup!]
   }
 `
 
@@ -91,6 +105,10 @@ const resolvers = {
   StoreProduct: {
     Sellers: (root: any) => {
       return root.sellers
+    },
+
+    specificationGroups: (root: any) => {
+      return root.isVariantOf.specificationGroups
     },
   },
 }

@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
 
 ### Added- 
+- `PDP Specs` product specifications on PDP ([#51](https://github.com/vtex-sites/accenturebb.store/pull/51)
 - `Badge Price` on cart and search suggestion ([#50](https://github.com/vtex-sites/accenturebb.store/pull/50)
 - `Discount Name` on product card ([#49](https://github.com/vtex-sites/accenturebb.store/pull/49)
 - `PDP CMS page` on content-types as a new page ([#46](https://github.com/vtex-sites/accenturebb.store/pull/46)
