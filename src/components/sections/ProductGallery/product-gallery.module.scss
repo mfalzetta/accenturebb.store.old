@@ -2,19 +2,57 @@
 
 .fs-product-listing {
   --product-listing-row-height: var(--fs-spacing-6);
+  --text-color-search: #585959;
 
   height: 100%;
   padding-top: 0;
 
   [data-fs-empty-state] {
+    gap: 0;
     margin: var(--fs-spacing-3) 0;
+    color: var(--text-color-search);
+    background-color: transparent;
+
+    [data-fs-empty-state-title] {
+      margin-bottom: var(--fs-spacing-6);
+    }
+
+    [data-fs-empty-state-title-text] {
+      margin: 0 0 var(--fs-spacing-6);
+      font-size: 24px;
+      font-style: normal;
+      font-weight: var(--fs-text-weight-bold);
+      line-height: 120%;
+      color: var(--text-color-search);
+    }
+
+    [data-fs-empty-state-subtitle] {
+      margin-bottom: var(--fs-spacing-1);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 130%;
+      color: var(--text-color-search);
+      text-align: center;
+    }
+
+    [data-fs-empty-state-item] {
+      margin-bottom: 72px;
+
+      li {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 150%;
+        color: var(--text-color-search);
+        text-align: center;
+      }
+    }
   }
 
   @include media(">=notebook") {
     padding-top: var(--fs-spacing-5);
 
     [data-fs-empty-state] {
-      margin: var(--fs-spacing-5) 0;
+      margin: 0;
     }
   }
 
@@ -154,6 +192,10 @@
       }
 
       @media (min-width: 950px) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      @media (min-width: 1500px) {
         grid-template-columns: repeat(5, 1fr);
       }
 
@@ -161,10 +203,10 @@
         grid-template-columns: repeat(1, 1fr);
       }
 
-      li {
+      [data-fs-product-grid-item] {
         width: 191px;
         min-width: 191px;
-        min-height: 331px;
+        min-height: 364px;
         margin: auto;
 
         @media (max-width: 450px) {
@@ -173,7 +215,7 @@
         }
 
         [data-store-product-card] {
-          min-height: 331px;
+          min-height: 364px;
           border: none;
         }
       }
@@ -258,7 +300,7 @@
       line-height: 20px;
       color: var(--fs-color-theme-5);
       background-color: #ffffff;
-      border: 1px solid #e6dcff80;
+      border: 1px solid #d5d5d580;
 
       &[aria-label="gallery"],
       &[aria-label="gallery active"] {
