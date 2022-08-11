@@ -47,6 +47,17 @@ function Page(props: Props) {
     return null
   }
 
+  if (props.location.search.includes('productClusterIds')) {
+    const id = props.location.search.split('productClusterIds')
+
+    searchParams.selectedFacets = [
+      {
+        key: 'productClusterIds',
+        value: id[1].replace('=', ''),
+      },
+    ]
+  }
+
   return (
     <SearchProvider
       onChange={applySearchState}
