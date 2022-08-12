@@ -8,11 +8,11 @@ import useSearchInput from 'src/sdk/search/useSearchInput'
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
 import { DiscountBadge } from 'src/components/ui/Badge'
 
-import styles from './suggestion-product-card.module.scss'
+import styles from './search-product-card.module.scss'
 
-type SuggestionProductCardProps = {
+type SearchProductCardProps = {
   /**
-   * Product to be showed in `SuggestionProductCard`.
+   * Product to be showed in `SearchProductCard`.
    */
   product: ProductSummary_ProductFragment
   /**
@@ -21,7 +21,11 @@ type SuggestionProductCardProps = {
   index: number
 }
 
-function SuggestionProductCard({ product, index }: SuggestionProductCardProps) {
+function SearchProductCard({
+  product,
+  index,
+  ...otherProps
+}: SearchProductCardProps) {
   const { onSearchInputSelection } = useSearchInput()
   const { onClick, href, ...linkProps } = useProductLink({
     product,
@@ -40,12 +44,14 @@ function SuggestionProductCard({ product, index }: SuggestionProductCardProps) {
 
   return (
     <Card
-      data-fs-suggestion-product-card
-      className={styles.fsSuggestionProductCard}
-      data-testid="suggestion-product-card"
+      data-fs-search-product-card
+      className={styles.fsSearchProductCard}
+      data-testid="search-product-card"
+      {...otherProps}
     >
       <Link
         {...linkProps}
+        data-fs-search-product-card-link
         href={href}
         title={name}
         variant="display"
@@ -54,8 +60,8 @@ function SuggestionProductCard({ product, index }: SuggestionProductCardProps) {
           onSearchInputSelection?.(name, href)
         }}
       >
-        <CardContent data-fs-suggestion-product-card-content>
-          <CardImage data-fs-suggestion-product-card-image>
+        <CardContent data-fs-search-product-card-content>
+          <CardImage data-fs-search-product-card-image>
             <Image
               src={img.url}
               alt={img.alternateName}
@@ -63,16 +69,13 @@ function SuggestionProductCard({ product, index }: SuggestionProductCardProps) {
               height={56}
             />
           </CardImage>
-          <div data-fs-suggestion-product-card-summary>
-            <p
-              className="text__title-mini"
-              data-fs-suggestion-product-card-title
-            >
+          <div data-fs-search-product-card-summary>
+            <p className="text__title-mini" data-fs-search-product-card-title>
               {name}
             </p>
-            <span data-fs-suggestion-product-card-prices>
-              {listPrice !== spotPrice ? (
-                <span data-fs-suggestion-product-card-prices-list>
+            <span data-fs-search-product-card-prices>
+              {listPrice !== spotPrice && (
+                <span data-fs-search-product-card-prices-list>
                   <Price
                     value={listPrice}
                     formatter={useFormattedPrice}
@@ -84,8 +87,6 @@ function SuggestionProductCard({ product, index }: SuggestionProductCardProps) {
                   />
                   <DiscountBadge listPrice={listPrice} spotPrice={spotPrice} />
                 </span>
-              ) : (
-                <></>
               )}
               <Price
                 value={spotPrice}
@@ -104,4 +105,4 @@ function SuggestionProductCard({ product, index }: SuggestionProductCardProps) {
   )
 }
 
-export default SuggestionProductCard
+export default SearchProductCard
