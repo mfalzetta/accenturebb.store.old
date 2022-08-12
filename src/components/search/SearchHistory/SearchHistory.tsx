@@ -4,32 +4,30 @@ import Icon from 'src/components/ui/Icon'
 import Link from 'src/components/ui/Link'
 import useSearchHistory from 'src/sdk/search/useSearchHistory'
 import useSearchInput from 'src/sdk/search/useSearchInput'
-import type { History } from 'src/sdk/search/useSearchHistory'
 
-export interface SearchHistoryProps {
-  history?: History[]
-}
+import styles from '../search.module.scss'
 
-const SearchHistory = ({ history = [] }: SearchHistoryProps) => {
+const SearchHistory = () => {
   const { onSearchInputSelection } = useSearchInput()
-  const { searchHistory, clearSearchHistory } = useSearchHistory(history)
+  const { searchHistory, clearSearchHistory } = useSearchHistory()
 
   if (!searchHistory.length) {
     return null
   }
 
   return (
-    <section data-fs-search-suggestion-section>
-      <div data-fs-search-suggestion-header>
-        <p data-fs-search-suggestion-title>Histórico</p>
+    <section data-fs-search-section className={styles.fsSearch}>
+      <div data-fs-search-header>
+        <p data-fs-search-title>Histórico</p>
         <Button variant="tertiary" onClick={clearSearchHistory}>
           Limpar Histórico
         </Button>
       </div>
       <UIList variant="ordered">
         {searchHistory.map((item) => (
-          <li key={item.term} data-fs-search-suggestion-item>
+          <li key={item.term} data-fs-search-item>
             <Link
+              data-fs-search-item-link
               variant="display"
               href={item.path}
               onClick={() => onSearchInputSelection?.(item.term, item.path)}
@@ -38,7 +36,7 @@ const SearchHistory = ({ history = [] }: SearchHistoryProps) => {
                 name="Clock"
                 width={18}
                 height={18}
-                data-fs-search-suggestion-item-icon
+                data-fs-search-item-icon
               />
               {item.term}
             </Link>

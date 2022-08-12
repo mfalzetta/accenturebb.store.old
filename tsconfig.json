@@ -23,7 +23,8 @@
     "src/**/*.tsx",
     "gatsby-*.ts",
     "gatsby-*.tsx",
-    "@generated/**/*.ts"
+    "@generated/**/*.ts",
+    "src/components/search/History/SearchHistory.stories.mdx"
   ],
   "exclude": ["node_modules", "public"]
 }

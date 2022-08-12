@@ -5,11 +5,12 @@
 
 // Common
 @import "src/components/common/Footer/footer.scss";
-@import "src/components/common/SearchInput/search-input.scss";
-@import "src/components/search/Suggestions/suggestions.scss";
 
 // Sections
 @import "src/components/sections/Incentives/incentives.scss";
+
+// Search
+@import "src/components/search/SearchInput/search-input.scss";
 
 // UI
 @import "src/components/ui/Badge/badge.scss";

@@ -5,20 +5,19 @@
 
 // Common
 @import "src/components/common/Footer/footer.scss";
-@import "src/components/common/SearchInput/search-input.scss";
 
 // Search
-@import "src/components/search/Suggestions/suggestions.scss";
+@import "src/components/search/SearchInput/search-input.scss";
 
 // Sections
 @import "src/components/sections/BannerText/banner-text.scss";
 @import "src/components/sections/Breadcrumb/breadcrumb.scss";
 @import "src/components/sections/Hero/hero.scss";
-@import "src/components/sections/Incentives/incentives.scss";
 @import "src/components/sections/ProductDetails/product-details.scss";
 @import "src/components/sections/ProductShelf/product-shelf.scss";
 @import "src/components/sections/ScrollToTopButton/scroll-to-top-button.scss";
 @import "src/components/sections/Section/section.scss";
+@import "src/components/sections/Incentives/incentives.scss";
 
 // Skeletons
 @import "src/components/skeletons/FilterSkeleton/filter-skeleton.scss";

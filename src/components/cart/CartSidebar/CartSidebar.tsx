@@ -1,6 +1,6 @@
 import { List } from '@faststore/ui'
 import { Badge } from 'src/components/ui/Badge'
-import Button, { ButtonIcon } from 'src/components/ui/Button'
+import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import SlideOver from 'src/components/ui/SlideOver'
 import { useCart } from 'src/sdk/cart/useCart'
@@ -37,7 +37,9 @@ function CartSidebar() {
           <p className="text__lead">Carrinho</p>
           <Badge variant="info">{totalItems}</Badge>
         </div>
-        <ButtonIcon
+        <Button
+          variant="tertiary"
+          data-fs-button-icon
           data-testid="cart-sidebar-button-close"
           aria-label="Close Cart"
           icon={<Icon name="X" width={32} height={32} />}
@@ -73,7 +75,7 @@ function CartSidebar() {
                   iconPosition="right"
                   {...btnProps}
                 >
-                  {isValidating ? 'Loading...' : 'Checkout'}
+                  {isValidating ? 'Carregando...' : 'Checkout'}
                 </Button>
               }
             />
