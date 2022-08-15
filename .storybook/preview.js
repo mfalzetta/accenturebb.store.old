@@ -5,6 +5,12 @@ import '!style-loader!css-loader!sass-loader!../src/styles/global/storybook-comp
 import '!style-loader!css-loader!sass-loader!../src/styles/global/tokens.scss'
 import '!style-loader!css-loader!sass-loader!../src/styles/global/typography.scss'
 import SBTheme from './theme'
+import { initialize, mswDecorator } from 'msw-storybook-addon'
+
+// Initialize MSW
+initialize()
+
+export const decorators = [mswDecorator]
 
 // Viewports from src/styles/vendors/include-media_overwrite.scss
 const customViewports = {

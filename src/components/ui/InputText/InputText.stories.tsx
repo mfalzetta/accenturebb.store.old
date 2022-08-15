@@ -5,7 +5,7 @@ import InputText from '.'
 
 export default {
   component: InputText,
-  title: 'Atoms/InputText',
+  title: 'Atoms/InputText ⚠️',
   argTypes: {
     inputRef: {
       table: {
