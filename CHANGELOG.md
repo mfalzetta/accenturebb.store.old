@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
-- `Update repository` ([#55](https://github.com/vtex-sites/accenturebb.store/pull/55)
-- `Update repository` ([#54](https://github.com/vtex-sites/accenturebb.store/pull/54)
 - `Search not found` new layout ([#48](https://github.com/vtex-sites/accenturebb.store/pull/48)
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
 
@@ -22,6 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
 
 ### Added- 
+- `Update repository` ([#56](https://github.com/vtex-sites/accenturebb.store/pull/56)
+- `Update repository` ([#55](https://github.com/vtex-sites/accenturebb.store/pull/55)
+- `Update repository` ([#54](https://github.com/vtex-sites/accenturebb.store/pull/54)
 - `PDP Specs` product specifications on PDP ([#51](https://github.com/vtex-sites/accenturebb.store/pull/51)
 - `Badge Price` on cart and search suggestion ([#50](https://github.com/vtex-sites/accenturebb.store/pull/50)
 - `Discount Name` on product card ([#49](https://github.com/vtex-sites/accenturebb.store/pull/49)
