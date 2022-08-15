@@ -1,8 +1,8 @@
-import './Logo.scss'
+import styles from './logo.module.scss'
 
 function Logo() {
   return (
-    <div data-theme-logo>
+    <div data-theme-logo className={styles.fsLogo}>
       <img
         data-theme-logo-first
         src="/logo-lacoste2.svg"

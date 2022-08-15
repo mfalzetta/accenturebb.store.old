@@ -4,14 +4,14 @@ import styles from 'src/components/product/ProductGrid/product-grid.module.scss'
 
 import ProductCardSkeleton from '../ProductCardSkeleton'
 
-interface Props {
+interface ProductGridSkeletonProps {
   loading?: boolean
 }
 
 function ProductGridSkeleton({
   children,
   loading = true,
-}: PropsWithChildren<Props>) {
+}: PropsWithChildren<ProductGridSkeletonProps>) {
   return loading ? (
     <ul className={styles.fsProductGrid}>
       {Array.from({ length: ITEMS_PER_PAGE }, (_, index) => (

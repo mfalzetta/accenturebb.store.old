@@ -103,7 +103,7 @@ function ProductCard({
         data-fs-product-card-gallery-list={galleryList}
         data-fs-product-card-simple={isSimpleCard}
       >
-        <UIProductCardImage>
+        <UIProductCardImage data-fs-product-card-image>
           <Image
             src={img.url}
             alt={img.alternateName}

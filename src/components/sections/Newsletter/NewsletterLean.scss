@@ -1,12 +1,12 @@
 @import "src/styles/scaffold";
 
-[data-store-newsletter] {
+[data-fs-newsletter] {
   width: 100%;
   max-width: none;
   padding: 0;
 }
 
-[data-newsletter-form] {
+[data-fs-newsletter-form] {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -19,7 +19,7 @@
   }
 }
 
-[data-newsletter-header] {
+[data-fs-newsletter-header] {
   font-size: 2rem;
   font-style: normal;
   font-weight: 500;
@@ -31,9 +31,9 @@
   }
 }
 
-[data-newsletter-controls] {
+[data-fs-newsletter-controls] {
   display: flex;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   background-color: #ffffff;
   border: 4px solid var(--fs-color-theme-3);
   border-radius: 0.5rem;

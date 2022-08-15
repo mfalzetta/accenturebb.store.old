@@ -1,0 +1,20 @@
+@import "src/styles/scaffold";
+
+.fs-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  [data-theme-logo-first] {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  img {
+    @media screen and (max-width: 768px) {
+      width: 100px;
+      height: auto;
+    }
+  }
+}

@@ -1,25 +1,28 @@
 @import "src/styles/scaffold";
 
-[data-fs-product-shelf] {
+.fs-product-shelf {
   // --------------------------------------------------------
   // Design Tokens for Product Shelf
   // --------------------------------------------------------
 
-  --fs-product-shelf-min-height             : fit-content;
+  --fs-product-shelf-min-height: fit-content;
 
-  --fs-product-shelf-items-gap              : var(--fs-grid-gap-1);
-  --fs-product-shelf-items-padding-top      : 0;
-  --fs-product-shelf-items-padding-bottom   : var(--fs-spacing-3);
+  --fs-product-shelf-items-gap: var(--fs-grid-gap-1);
+  --fs-product-shelf-items-padding-top: 0;
+  --fs-product-shelf-items-padding-bottom: var(--fs-spacing-3);
 
-  --fs-product-shelf-first-item-margin-left : calc(-1 * var(--fs-spacing-1));
+  --fs-product-shelf-first-item-margin-left: calc(-1 * var(--fs-spacing-1));
 
   // --------------------------------------------------------
   // Structural Styles
   // --------------------------------------------------------
 
-  min-height: var(--fs-product-shelf-min-height);
   padding-right: var(--fs-grid-padding);
   padding-left: var(--fs-grid-padding);
+
+  &[data-fs-product-shelf] {
+    min-height: var(--fs-product-shelf-min-height);
+  }
 }
 
 [data-fs-product-shelf-items] {
@@ -32,7 +35,10 @@
 
   li {
     width: 100%;
-    &:first-child { margin-left: 0; }
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 
   @include media(">=tablet") {
