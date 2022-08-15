@@ -17,12 +17,7 @@ function Footer() {
       <div className="footer layout__content-full">
         <div className="footer__section layout__content">
           <section className="footer__newsLetter">
-            <Newsletter
-              title="Junte-se ao Club Lacoste"
-              onSubmit={() => {
-                return null
-              }}
-            />
+            <Newsletter title="Junte-se ao Club Lacoste" />
             <UIList>
               <li>
                 <Link

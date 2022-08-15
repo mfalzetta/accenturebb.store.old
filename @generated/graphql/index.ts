@@ -16,10 +16,14 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
+  ActiveVariations: any
   Date: any
+  FormattedVariants: any
   JSON: any
   JSONPropsCmsObject: any
   ObjectOrString: any
+  SlugsMap: any
+  VariantsByName: any
 }
 
 export type BooleanQueryOperatorInput = {
@@ -1980,6 +1984,14 @@ export type FloatQueryOperatorInput = {
   nin: InputMaybe<Array<InputMaybe<Scalars['Float']>>>
 }
 
+/** Person data input to the newsletter. */
+export type IPersonNewsletter = {
+  /** Person's email. */
+  email: Scalars['String']
+  /** Person's name. */
+  name: Scalars['String']
+}
+
 /** Shopping cart input. */
 export type IStoreCart = {
   /** Order information, including `orderNumber` and `acceptedOffer`. */
@@ -2148,10 +2160,16 @@ export type JsonQueryOperatorInput = {
 }
 
 export type Mutation = {
+  /** Subscribes a new person to the newsletter list. */
+  subscribeToNewsletter: Maybe<PersonNewsletter>
   /** Checks for changes between the cart presented in the UI and the cart stored in the ecommerce platform. If changes are detected, it returns the cart stored on the platform. Otherwise, it returns `null`. */
   validateCart: Maybe<StoreCart>
   /** Updates a web session with the specified values. */
   validateSession: Maybe<StoreSession>
+}
+
+export type MutationSubscribeToNewsletterArgs = {
+  data: IPersonNewsletter
 }
 
 export type MutationValidateCartArgs = {
@@ -2190,6 +2208,12 @@ export type PageInfo = {
   pageCount: Scalars['Int']
   perPage: Maybe<Scalars['Int']>
   totalCount: Scalars['Int']
+}
+
+/** Newsletter information. */
+export type PersonNewsletter = {
+  /** Person's ID in the newsletter list. */
+  id: Scalars['String']
 }
 
 export type Query = {
@@ -3670,6 +3694,34 @@ export type SiteSortInput = {
   order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
 }
 
+export type SkuVariants = {
+  /** SKU property values for the current SKU. */
+  activeVariations: Maybe<Scalars['ActiveVariations']>
+  /** All available options for each SKU variant property, indexed by their name. */
+  allVariantsByName: Maybe<Scalars['VariantsByName']>
+  /**
+   * Available options for each varying SKU property, taking into account the
+   * `dominantVariantName` property. Returns all available options for the
+   * dominant property, and only options that can be combined with its current
+   * value for other properties.
+   */
+  availableVariations: Maybe<Scalars['FormattedVariants']>
+  /**
+   * Maps property value combinations to their respective SKU's slug. Enables
+   * us to retrieve the slug for the SKU that matches the currently selected
+   * variations in O(1) time.
+   */
+  slugsMap: Maybe<Scalars['SlugsMap']>
+}
+
+export type SkuVariantsAvailableVariationsArgs = {
+  dominantVariantName: Scalars['String']
+}
+
+export type SkuVariantsSlugsMapArgs = {
+  dominantVariantName: Scalars['String']
+}
+
 export type SortOrderEnum = 'ASC' | 'DESC'
 
 export type Specification = {
@@ -3788,7 +3840,7 @@ export type StoreCollectionMeta = {
   selectedFacets: Array<StoreCollectionFacet>
 }
 
-/** Product collection type. Possible values are `Department`, `Category`, `Brand` or `Cluster`. */
+/** Product collection type. Possible values are `Department`, `Category`, `Brand`, `Cluster`, `SubCategory` or `Collection`. */
 export type StoreCollectionType =
   /** Product brand. */
   | 'Brand'
@@ -3796,8 +3848,12 @@ export type StoreCollectionType =
   | 'Category'
   /** Product cluster. */
   | 'Cluster'
+  /** Product collection. */
+  | 'Collection'
   /** First level of product categorization. */
   | 'Department'
+  /** Third level of product categorization. */
+  | 'SubCategory'
 
 /** Currency information. */
 export type StoreCurrency = {
@@ -4002,6 +4058,12 @@ export type StoreProductGroup = {
   name: Scalars['String']
   /** Product group ID. */
   productGroupID: Scalars['String']
+  /**
+   * Object containing data structures to facilitate handling different SKU
+   * variant properties. Specially useful for implementing SKU selection
+   * components.
+   */
+  skuVariants: Maybe<SkuVariants>
 }
 
 /** Properties that can be associated with products and products groups. */
@@ -4472,6 +4534,14 @@ export type CartItemFragment = {
       valueReference: string
     }>
   }
+}
+
+export type SubscribeToNewsletterMutationVariables = Exact<{
+  data: IPersonNewsletter
+}>
+
+export type SubscribeToNewsletterMutation = {
+  subscribeToNewsletter: { id: string } | null
 }
 
 export type BrowserProductQueryQueryVariables = Exact<{
