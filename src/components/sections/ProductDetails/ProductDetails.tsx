@@ -1,6 +1,7 @@
-import { sendAnalyticsEvent, useSession } from '@faststore/sdk'
-import { graphql, navigate } from 'gatsby'
-import { useEffect, useMemo, useState } from 'react'
+import { sendAnalyticsEvent } from '@faststore/sdk'
+import { graphql } from 'gatsby'
+import { useEffect, useState, useMemo } from 'react'
+import OutOfStock from 'src/components/product/OutOfStock'
 import { DiscountBadge } from 'src/components/ui/Badge'
 import Breadcrumb from 'src/components/ui/Breadcrumb'
 import { ButtonBuy } from 'src/components/ui/Button'
@@ -8,14 +9,14 @@ import { ImageGallery } from 'src/components/ui/ImageGallery'
 import Price from 'src/components/ui/Price'
 import ProductTitle from 'src/components/ui/ProductTitle'
 import QuantitySelector from 'src/components/ui/QuantitySelector'
+import Selectors from 'src/components/ui/SkuSelector/Selectors'
 import { useBuyButton } from 'src/sdk/cart/useBuyButton'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { useProduct } from 'src/sdk/product/useProduct'
+import { useSession } from 'src/sdk/session'
 import type { ProductDetailsFragment_ProductFragment } from '@generated/graphql'
 import type { CurrencyCode, ViewItemEvent } from '@faststore/sdk'
 import type { AnalyticsItem } from 'src/sdk/analytics/types'
-import OutOfStock from 'src/components/product/OutOfStock'
-import SkuSelector from 'src/components/ui/SkuSelector'
 import Accordion, { AccordionItem } from 'src/components/ui/Accordion'
 
 import Section from '../Section'
@@ -24,15 +25,6 @@ import ProductSpecifications from './ProductSpecifications'
 
 interface Props {
   product: ProductDetailsFragment_ProductFragment
-}
-
-interface TreatmentType {
-  name: string
-  label: string
-  value: string
-  src: string
-  alt: string
-  disabled: boolean
 }
 
 export interface AllUsableSpecsType {
@@ -65,7 +57,7 @@ function ProductDetails({ product: staleProduct }: Props) {
       name: variantName,
       brand,
       isVariantOf,
-      isVariantOf: { productGroupID: productId },
+      isVariantOf: { name, productGroupID: productId, skuVariants },
       image: productImages,
       offers: {
         offers: [{ availability, price, listPrice, seller }],
@@ -128,123 +120,6 @@ function ProductDetails({ product: staleProduct }: Props) {
     gtin,
   ])
 
-  const cor = data?.product?.additionalProperty[0]?.value
-  const tamanho = data?.product?.additionalProperty[1]?.value
-  const firstOptionName = data?.product?.additionalProperty[0]?.name
-
-  const findDisable = data?.product?.isVariantOf?.hasVariant
-    .map((element) => {
-      return (
-        element.additionalProperty.filter((el) => el.value === cor).length >
-          0 && element.additionalProperty
-      )
-    })
-    .filter((el) => el)
-    .flat()
-
-  const defaultSelected = data?.product?.isVariantOf?.hasVariant
-    .map((element) => {
-      const findColor = element.additionalProperty.filter(
-        (el) => el.value === cor
-      )
-
-      const findSize = element.additionalProperty.filter(
-        (el) => el.value === tamanho
-      )
-
-      if (findColor.length > 0 && findSize.length > 0) {
-        return element.additionalProperty.map((el) => el.value)
-      }
-
-      return undefined
-    })
-    .filter((el) => el)
-    .flat()
-
-  const treatment = data?.product?.isVariantOf?.hasVariant
-    .reduce((acumulador: TreatmentType[], elemento) => {
-      let newItem: TreatmentType[] = []
-
-      elemento?.additionalProperty.forEach((item) => {
-        if (
-          acumulador?.filter((el) => el?.label === item?.value).length === 0
-        ) {
-          newItem = [
-            ...newItem,
-            {
-              name: item?.name?.toString(),
-              label: item?.value?.toString(),
-              value: item?.value?.toString(),
-              src: elemento?.image[0]?.url,
-              alt: elemento?.image[0]?.alternateName,
-              disabled:
-                data?.product?.additionalProperty[0]?.name === item?.name
-                  ? false
-                  : findDisable?.filter((el: any) => el?.value === item?.value)
-                      ?.length === 0,
-            },
-          ]
-        }
-      })
-
-      return [...acumulador, ...newItem]
-    }, [])
-    .sort((a, b) => (a.value < b.value ? -1 : a.value > b.value ? 1 : 0))
-
-  function handleChange(params: React.FormEvent<HTMLInputElement>) {
-    const param = params?.currentTarget?.value
-    const findBySize = data?.product?.isVariantOf?.hasVariant
-      .map((element) =>
-        element.additionalProperty.map((el) => {
-          if (
-            el?.name === firstOptionName &&
-            el?.value !== cor &&
-            el?.value === param
-          ) {
-            return element?.slug
-          }
-
-          return undefined
-        })
-      )
-      .flat()
-      .filter((el) => el)
-
-    if (findBySize && findBySize?.length > 0) {
-      navigate(`/${findBySize[0]}/p`)
-    } else {
-      const filterByColor = data?.product?.isVariantOf?.hasVariant
-        .map((element) =>
-          element?.additionalProperty.map((el) => {
-            if (el?.value === cor) {
-              return element
-            }
-
-            return undefined
-          })
-        )
-        .flat()
-        .filter((el) => el)
-
-      const slugByColor = filterByColor
-        ?.map((item) => {
-          if (item) {
-            return (
-              item?.additionalProperty?.filter((el) => el?.value === param)
-                ?.length > 0 && item?.slug
-            )
-          }
-
-          return undefined
-        })
-        .filter((el) => el)
-
-      if (slugByColor) {
-        navigate(`/${slugByColor[0]}/p`)
-      }
-    }
-  }
-
   const specs = useMemo(() => {
     return data?.product?.specificationGroups?.filter(
       (item) => item.name !== 'allSpecifications'
@@ -256,7 +131,9 @@ function ProductDetails({ product: staleProduct }: Props) {
       ?.reduce((acumulador: AllUsableSpecsType[] | any, spec) => {
         const allSpecs = spec?.specifications?.map((element) => element)
 
-        const links = allSpecs?.filter((el) => el?.name === 'Links e Downloads')
+        const links = allSpecs?.filter(
+          (el: any) => el?.name === 'Links e Downloads'
+        )
 
         const details = allSpecs?.filter(
           (el) => el?.name === 'Características e Detalhes'
@@ -293,26 +170,30 @@ function ProductDetails({ product: staleProduct }: Props) {
   }, [allUsableSpecs])
 
   return (
-    <Section className="product-details layout__content-full layout__section">
+    <Section className="product-details layout__content layout__section">
       <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
 
       <section className="product-details__body">
         <header className="product-details__title">
-          <ProductTitle title={<h1>{variantName}</h1>} refNumber={productId} />
+          <ProductTitle
+            title={<h1>{name}</h1>}
+            label={
+              <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} big />
+            }
+            refNumber={productId}
+          />
         </header>
 
         <ImageGallery images={productImages} />
-        {additionalProperty.map((property, index: number) => (
-          <SkuSelector
-            key={index}
-            options={treatment?.filter((el) => el.name === property.name)}
-            variant={property.name === 'Cor' ? 'image' : 'label'}
-            label={property.name}
-            defaultSku={defaultSelected.length ? defaultSelected[index] : cor}
-            onChange={(e) => handleChange(e)}
-          />
-        ))}
-
+        <section className="product-details__selector">
+          {skuVariants && (
+            <Selectors
+              slugsMap={skuVariants.slugsMap}
+              availableVariations={skuVariants.availableVariations}
+              activeVariations={skuVariants.activeVariations}
+            />
+          )}
+        </section>
         <section className="product-details__settings">
           <section className="product-details__values">
             <div className="product-details__prices">
@@ -330,7 +211,6 @@ function ProductDetails({ product: staleProduct }: Props) {
                   <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />
                 </div>
               )}
-
               <Price
                 value={lowPrice}
                 formatter={useFormattedPrice}
@@ -355,7 +235,7 @@ function ProductDetails({ product: staleProduct }: Props) {
             <AddToCartLoadingSkeleton />
           ) : (
             <ButtonBuy disabled={buyDisabled} {...buyProps}>
-              adicionar ao carrinho
+              Add to Cart
             </ButtonBuy>
           )}
           {!availability && (
@@ -484,30 +364,26 @@ export const fragment = graphql`
         name
       }
     }
+
     isVariantOf {
       productGroupID
       name
-      hasVariant {
-        additionalProperty {
-          name
-          propertyID
-          value
-          valueReference
-        }
-        slug
-        image {
-          url
-          alternateName
-        }
+      skuVariants {
+        activeVariations
+        slugsMap(dominantVariantName: "Cor")
+        availableVariations(dominantVariantName: "Cor")
       }
     }
+
     image {
       url
       alternateName
     }
+
     brand {
       name
     }
+
     offers {
       lowPrice
       offers {
@@ -519,6 +395,7 @@ export const fragment = graphql`
         }
       }
     }
+
     breadcrumbList {
       itemListElement {
         item
@@ -526,12 +403,9 @@ export const fragment = graphql`
         position
       }
     }
-    additionalProperty {
-      propertyID
-      name
-      value
-      valueReference
-    }
+
+    # Contains necessary info to add this item to cart
+    ...CartProductItem
   }
 `
 
