@@ -35,12 +35,12 @@ const apiOptions: APIOptions = {
   platform: storeConfig.platform as APIOptions['platform'],
   account: storeConfig.api.storeId,
   environment: storeConfig.api.environment as APIOptions['environment'],
-  channel: storeConfig.channel,
   hideUnavailableItems: storeConfig.api.hideUnavailableItems,
-  locale: storeConfig.locale,
-  // flags: {
-  //   enableOrderFormSync: true,
-  // },
+  channel: storeConfig.session.channel,
+  locale: storeConfig.session.locale,
+  flags: {
+    enableOrderFormSync: true,
+  },
 }
 
 const apiSchemaOld = getSchema(apiOptions)

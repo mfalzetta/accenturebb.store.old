@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import './Installment.scss'
 
 export type InstallmentsProps = {
@@ -10,12 +12,6 @@ export interface InstallmentProps {
   NumberOfInstallments: number
   Name: string
   PaymentSystemName: string
-}
-
-const roundInstallment = (value: number) => {
-  const decimal = parseFloat(value.toString()).toFixed(2)
-
-  return decimal.replace('.', ',')
 }
 
 const Installment = ({ Installments }: InstallmentsProps) => {
@@ -48,7 +44,7 @@ const Installment = ({ Installments }: InstallmentsProps) => {
           {installmentValue[0] && (
             <span>
               ou {installmentValue[0].NumberOfInstallments}x de R${' '}
-              {roundInstallment(installmentValue[0].Value)}
+              {useFormattedPrice(installmentValue[0].Value)}
             </span>
           )}
         </div>

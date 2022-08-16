@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
 
 ### Added- 
+- `Update repository` ([#57](https://github.com/vtex-sites/accenturebb.store/pull/57)
 - `Update repository` ([#56](https://github.com/vtex-sites/accenturebb.store/pull/56)
 - `Update repository` ([#55](https://github.com/vtex-sites/accenturebb.store/pull/55)
 - `Update repository` ([#54](https://github.com/vtex-sites/accenturebb.store/pull/54)

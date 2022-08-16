@@ -1,4 +1,3 @@
-import { useSession } from '@faststore/sdk'
 import { gql } from '@faststore/graphql-utils'
 import { graphql } from 'gatsby'
 import {
@@ -6,6 +5,7 @@ import {
   GatsbySeo,
   ProductJsonLd,
 } from 'gatsby-plugin-next-seo'
+import { useSession } from 'src/sdk/session'
 import ProductDetails from 'src/components/sections/ProductDetails'
 import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'

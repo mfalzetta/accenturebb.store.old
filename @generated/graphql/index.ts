@@ -4021,6 +4021,8 @@ export type StoreProduct = {
   offers: StoreAggregateOffer
   /** Product ID, such as [ISBN](https://www.isbn-international.org/content/what-isbn) or similar global IDs. */
   productID: Scalars['String']
+  /** The product's release date. Formatted using https://en.wikipedia.org/wiki/ISO_8601 */
+  releaseDate: Scalars['String']
   /** Array with review information. */
   review: Array<StoreReview>
   /** Meta tag data. */
@@ -4283,16 +4285,11 @@ export type ProductDetailsFragment_ProductFragment = {
   isVariantOf: {
     productGroupID: string
     name: string
-    hasVariant: Array<{
-      slug: string
-      additionalProperty: Array<{
-        name: string
-        propertyID: string
-        value: any
-        valueReference: string
-      }>
-      image: Array<{ url: string; alternateName: string }>
-    }>
+    skuVariants: {
+      activeVariations: any | null
+      slugsMap: any | null
+      availableVariations: any | null
+    } | null
   }
   image: Array<{ url: string; alternateName: string }>
   brand: { name: string }
@@ -4425,16 +4422,11 @@ export type ServerProductPageQueryQuery = {
     isVariantOf: {
       productGroupID: string
       name: string
-      hasVariant: Array<{
-        slug: string
-        additionalProperty: Array<{
-          name: string
-          propertyID: string
-          value: any
-          valueReference: string
-        }>
-        image: Array<{ url: string; alternateName: string }>
-      }>
+      skuVariants: {
+        activeVariations: any | null
+        slugsMap: any | null
+        availableVariations: any | null
+      } | null
     }
     specificationGroups: Array<{
       name: string | null
@@ -4536,6 +4528,21 @@ export type CartItemFragment = {
   }
 }
 
+export type CartProductItemFragment = {
+  sku: string
+  name: string
+  gtin: string
+  image: Array<{ url: string; alternateName: string }>
+  brand: { name: string }
+  isVariantOf: { productGroupID: string; name: string }
+  additionalProperty: Array<{
+    propertyID: string
+    name: string
+    value: any
+    valueReference: string
+  }>
+}
+
 export type SubscribeToNewsletterMutationVariables = Exact<{
   data: IPersonNewsletter
 }>
@@ -4567,16 +4574,11 @@ export type BrowserProductQueryQuery = {
     isVariantOf: {
       productGroupID: string
       name: string
-      hasVariant: Array<{
-        slug: string
-        additionalProperty: Array<{
-          name: string
-          propertyID: string
-          value: any
-          valueReference: string
-        }>
-        image: Array<{ url: string; alternateName: string }>
-      }>
+      skuVariants: {
+        activeVariations: any | null
+        slugsMap: any | null
+        availableVariations: any | null
+      } | null
     }
     image: Array<{ url: string; alternateName: string }>
     brand: { name: string }
