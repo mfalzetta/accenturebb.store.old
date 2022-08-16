@@ -1,6 +1,6 @@
 import { List } from '@faststore/ui'
 import { Badge } from 'src/components/ui/Badge'
-import Button, { ButtonIcon } from 'src/components/ui/Button'
+import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import SlideOver from 'src/components/ui/SlideOver'
 import { useCart } from 'src/sdk/cart/useCart'
@@ -8,6 +8,7 @@ import { useCheckoutButton } from 'src/sdk/cart/useCheckoutButton'
 import { useUI } from 'src/sdk/ui/Provider'
 import { useFadeEffect } from 'src/sdk/ui/useFadeEffect'
 
+import styles from './cart-sidebar.module.scss'
 import CartItem from '../CartItem'
 import EmptyCart from '../EmptyCart'
 import OrderSummary from '../OrderSummary'
@@ -29,15 +30,18 @@ function CartSidebar() {
       onDismiss={fadeOut}
       size="partial"
       direction="rightSide"
-      className="cart-sidebar"
+      className={styles.fsCartSidebar}
       onTransitionEnd={() => fade === 'out' && closeCart()}
     >
-      <header data-testid="cart-sidebar">
-        <div className="cart-sidebar__title">
-          <p className="text__lead">Carrinho</p>
+      <header data-fs-cart-sidebar-header data-testid="cart-sidebar">
+        <div data-fs-cart-sidebar-title>
+          <p data-fs-cart-sidebar-title-text className="text__lead">
+            Carrinho
+          </p>
           <Badge variant="info">{totalItems}</Badge>
         </div>
-        <ButtonIcon
+        <Button
+          data-fs-cart-sidebar-close-button
           data-testid="cart-sidebar-button-close"
           aria-label="Close Cart"
           icon={<Icon name="X" width={32} height={32} />}
@@ -57,13 +61,14 @@ function CartSidebar() {
             ))}
           </List>
 
-          <footer>
+          <footer data-fs-cart-sidebar-footer>
             <OrderSummary
               subTotal={subTotal}
               total={total}
               numberOfItems={totalItems}
               checkoutButton={
                 <Button
+                  data-fs-cart-sidebar-checkout-button
                   variant="primary"
                   icon={
                     !isValidating && (
@@ -73,7 +78,7 @@ function CartSidebar() {
                   iconPosition="right"
                   {...btnProps}
                 >
-                  {isValidating ? 'Loading...' : 'Checkout'}
+                  {isValidating ? 'Carregando...' : 'Checkout'}
                 </Button>
               }
             />

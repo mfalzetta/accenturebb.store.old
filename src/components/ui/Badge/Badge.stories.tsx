@@ -4,7 +4,7 @@ import { Badge } from '.'
 
 export default {
   component: Badge,
-  title: 'Molecules/Badge',
+  title: 'Molecules/Badge ⚠️',
   argTypes: {
     onClose: { table: { disable: true } },
     children: {

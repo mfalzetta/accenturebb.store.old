@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
 
 ### Fixed 
+- `Filter price` new layout ([#52](https://github.com/vtex-sites/accenturebb.store/pull/52)
 - `Search` translate ([#47](https://github.com/vtex-sites/accenturebb.store/pull/47)
 - `Menu Category` fix ([#41](https://github.com/vtex-sites/accenturebb.store/pull/41)
 - `Carousel` new layout ([#39](https://github.com/vtex-sites/accenturebb.store/pull/39)
@@ -20,6 +21,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
 
 ### Added- 
+- `Update repository` ([#56](https://github.com/vtex-sites/accenturebb.store/pull/56)
+- `Update repository` ([#55](https://github.com/vtex-sites/accenturebb.store/pull/55)
+- `Update repository` ([#54](https://github.com/vtex-sites/accenturebb.store/pull/54)
+- `Collection page` [#53](https://github.com/vtex-sites/accenturebb.store/pull/53)
 - `PDP Specs` product specifications on PDP ([#51](https://github.com/vtex-sites/accenturebb.store/pull/51)
 - `Badge Price` on cart and search suggestion ([#50](https://github.com/vtex-sites/accenturebb.store/pull/50)
 - `Discount Name` on product card ([#49](https://github.com/vtex-sites/accenturebb.store/pull/49)

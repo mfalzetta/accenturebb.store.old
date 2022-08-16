@@ -1,10 +1,9 @@
 import type { SearchInputRef } from '@faststore/ui'
 import { Suspense, useRef, useState } from 'react'
 import CartToggle from 'src/components/cart/CartToggle'
-import SearchInput from 'src/components/common/SearchInput'
+import SearchInput from 'src/components/search/SearchInput'
 import Menu from 'src/components/menu'
-import {
-  ButtonIcon,
+import Button, {
   ButtonSignIn,
   ButtonSignInFallback,
 } from 'src/components/ui/Button'
@@ -27,12 +26,17 @@ function Navbar() {
   }
 
   return (
-    <header className={`${styles.fsNavbar} layout__content-full`}>
+    <header
+      data-fs-navbar
+      className={`${styles.fsNavbar} layout__content-full`}
+    >
       <div className="layout__content" data-fs-navbar-header>
         <section data-fs-navbar-row>
           {!searchExpanded && (
             <>
-              <ButtonIcon
+              <Button
+                variant="tertiary"
+                data-fs-button-icon
                 data-fs-navbar-button-menu
                 aria-label="Open Menu"
                 icon={<Icon name="List" width={32} height={32} />}
@@ -54,7 +58,9 @@ function Navbar() {
             data-fs-navbar-search-expanded={searchExpanded}
           >
             {searchExpanded && (
-              <ButtonIcon
+              <Button
+                variant="tertiary"
+                data-fs-button-icon
                 data-fs-button-collapse
                 aria-label="Collapse search bar"
                 icon={<Icon name="CaretLeft" width={32} height={32} />}

@@ -1,12 +1,12 @@
 @import "src/styles/scaffold";
 
-[data-store-newsletter] {
+[data-fs-newsletter] {
   width: 100%;
   max-width: none;
   padding: 0;
 }
 
-[data-newsletter-form] {
+[data-fs-newsletter-form] {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +25,7 @@
   }
 }
 
-[data-newsletter-header] {
+[data-fs-newsletter-header] {
   margin-bottom: 15px;
   font-size: 18px;
   font-weight: normal;
@@ -37,7 +37,7 @@
   }
 }
 
-[data-newsletter-controls] {
+[data-fs-newsletter-controls] {
   display: flex;
   padding: 0;
 

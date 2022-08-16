@@ -5,6 +5,7 @@ import type { ProductsQueryQueryVariables } from '@generated/graphql'
 import ProductCard from '../../product/ProductCard'
 import Section from '../Section'
 import Carousel from '../../custom-components/home/CarouselShelf'
+import styles from './product-shelf.module.scss'
 
 interface ProductShelfProps extends Partial<ProductsQueryQueryVariables> {
   title?: string | JSX.Element
@@ -51,7 +52,9 @@ function ProductShelf({
     >
       <div
         data-fs-product-shelf
-        className={`${shelfType === 'isRowLayout' ? 'shelf--row' : ''}`}
+        className={`${styles.fsProductShelf} ${
+          shelfType === 'isRowLayout' ? 'shelf--row' : ''
+        }`}
       >
         <ProductShelfSkeleton loading={products === undefined}>
           <ul
