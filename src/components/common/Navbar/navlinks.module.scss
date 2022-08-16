@@ -5,26 +5,32 @@
   // Design Tokens for Navlinks
   // --------------------------------------------------------
 
-  --fs-navlinks-padding-top-notebook             : var(--fs-spacing-1);
+  --fs-navlinks-padding-top-notebook: var(--fs-spacing-1);
 
-  --fs-navlinks-border-top-width-mobile          : var(--fs-border-width);
-  --fs-navlinks-border-top-color-mobile          : var(--fs-border-color-light);
-  --fs-navlinks-border-bottom-width-mobile       : var(--fs-navlinks-border-top-width-mobile);
-  --fs-navlinks-border-bottom-color-mobile       : var(--fs-navlinks-border-top-color-mobile);
-  --fs-navlinks-background-color                 : #000000;
+  --fs-navlinks-border-top-width-mobile: var(--fs-border-width);
+  --fs-navlinks-border-top-color-mobile: var(--fs-border-color-light);
+  --fs-navlinks-border-bottom-width-mobile:
+    var(
+      --fs-navlinks-border-top-width-mobile
+    );
+  --fs-navlinks-border-bottom-color-mobile:
+    var(
+      --fs-navlinks-border-top-color-mobile
+    );
+  --fs-navlinks-background-color: var(--fs-color-theme-4);
 
   // Link
-  --fs-navlinks-link-text-color                  : var(--fs-color-primary-text);
-  --fs-navlinks-link-width-notebook              : auto;
-  --fs-navlinks-link-padding-notebook            : 0 var(--fs-spacing-0);
+  --fs-navlinks-link-text-color: var(--fs-color-primary-text);
+  --fs-navlinks-link-width-notebook: auto;
+  --fs-navlinks-link-padding-notebook: 0 var(--fs-spacing-0);
 
   // List
-  --fs-navlinks-list-padding-left-notebook       : var(--fs-spacing-3);
-  --fs-navlinks-list-margin-left-notebook        : var(--fs-spacing-2);
-  --fs-navlinks-list-border-left-width-notebook  : var(--fs-border-width);
-  --fs-navlinks-list-border-left-color-notebook  : var(--fs-border-color-light);
+  --fs-navlinks-list-padding-left-notebook: var(--fs-spacing-3);
+  --fs-navlinks-list-margin-left-notebook: var(--fs-spacing-2);
+  --fs-navlinks-list-border-left-width-notebook: var(--fs-border-width);
+  --fs-navlinks-list-border-left-color-notebook: var(--fs-border-color-light);
 
-  padding: 0 var(--fs-grid-padding);
+  padding: var(--fs-spacing-0) var(--fs-grid-padding);
   margin: 0 calc(-1 * var(--fs-grid-padding));
 
   // --------------------------------------------------------
@@ -69,6 +75,10 @@
   [data-fs-navlinks-link] {
     display: block;
     width: 100%;
+    font-family: var(--fs-text-face-body);
+    font-size: 14px;
+    font-weight: var(--fs-text-weight-regular);
+    line-height: 24px;
     color: var(--fs-navlinks-link-text-color);
     white-space: nowrap;
 
@@ -81,9 +91,6 @@
     [data-fs-navlinks-list] {
       display: flex;
       column-gap: var(--fs-spacing-3);
-      padding-left: var(--fs-navlinks-list-padding-left-notebook);
-      margin-left: var(--fs-navlinks-list-margin-left-notebook);
-      border-left: var(--fs-navlinks-list-border-left-width-notebook) solid var(--fs-navlinks-list-border-left-color-notebook);
     }
 
     [data-fs-navlinks-link] {
@@ -93,11 +100,32 @@
   }
 
   @include media("<notebook") {
-    border-top: var(--fs-navlinks-border-top-width-mobile) solid var(--fs-navlinks-border-top-color-mobile);
-    border-bottom: var(--fs-navlinks-border-bottom-width-mobile) solid var(--fs-navlinks-border-bottom-color-mobile);
+    border-top:
+      var(--fs-navlinks-border-top-width-mobile) solid
+      var(--fs-navlinks-border-top-color-mobile);
+    border-bottom:
+      var(--fs-navlinks-border-bottom-width-mobile) solid
+      var(--fs-navlinks-border-bottom-color-mobile);
   }
 
-  [data-store-button] span {
-    color: var(--fs-navlinks-link-text-color);
+  [data-fs-regionalization-bar] {
+    width: fit-content;
+    padding-left: 0;
+
+    [data-store-button] {
+      background-color: transparent;
+
+      span {
+        font-family: var(--fs-text-face-body);
+        font-size: 14px;
+        font-weight: var(--fs-text-weight-regular);
+        line-height: 24px;
+        color: var(--fs-navlinks-link-text-color);
+      }
+
+      svg {
+        color: var(--fs-navlinks-link-text-color);
+      }
+    }
   }
 }

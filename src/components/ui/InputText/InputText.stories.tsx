@@ -37,7 +37,7 @@ const TemplateActionable = ({ ...args }: InputTextProps) => {
         actionable
         error={error}
         value={input}
-        onSubmit={() => setError('Invalid Postal Code')}
+        onSubmit={() => setError('CEP inválido')}
         onClear={() => {
           setError(undefined)
           setInput('')
