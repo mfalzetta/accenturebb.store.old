@@ -12,11 +12,11 @@ export default {
         disable: true,
       },
     },
-    actionable: {
-      type: { name: 'boolean' },
-    },
     id: {
       type: { name: 'string', required: true },
+    },
+    actionable: {
+      type: { name: 'boolean' },
     },
   },
 }

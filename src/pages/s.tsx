@@ -1,3 +1,4 @@
+import 'src/styles/pages/search.scss'
 import { parseSearchState, SearchProvider } from '@faststore/sdk'
 import { graphql } from 'gatsby'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
@@ -15,8 +16,6 @@ import type {
   SearchPageQueryQuery,
   SearchPageQueryQueryVariables,
 } from '@generated/graphql'
-
-import 'src/styles/pages/search.scss'
 
 export type Props = PageProps<
   SearchPageQueryQuery,

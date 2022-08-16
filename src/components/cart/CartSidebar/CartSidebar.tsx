@@ -1,4 +1,5 @@
 import { List } from '@faststore/ui'
+import Alert from 'src/components/ui/Alert'
 import { Badge } from 'src/components/ui/Badge'
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
@@ -8,10 +9,10 @@ import { useCheckoutButton } from 'src/sdk/cart/useCheckoutButton'
 import { useUI } from 'src/sdk/ui/Provider'
 import { useFadeEffect } from 'src/sdk/ui/useFadeEffect'
 
-import styles from './cart-sidebar.module.scss'
 import CartItem from '../CartItem'
 import EmptyCart from '../EmptyCart'
 import OrderSummary from '../OrderSummary'
+import styles from './cart-sidebar.module.scss'
 
 function CartSidebar() {
   const btnProps = useCheckoutButton()
@@ -19,7 +20,7 @@ function CartSidebar() {
   const { cart: displayCart, closeCart } = useUI()
   const { fade, fadeOut } = useFadeEffect()
 
-  const { items, totalItems, isValidating, subTotal, total } = cart
+  const { items, gifts, totalItems, isValidating, subTotal, total } = cart
 
   const isEmpty = items.length === 0
 
@@ -41,6 +42,8 @@ function CartSidebar() {
           <Badge variant="info">{totalItems}</Badge>
         </div>
         <Button
+          variant="tertiary"
+          data-fs-button-icon
           data-fs-cart-sidebar-close-button
           data-testid="cart-sidebar-button-close"
           aria-label="Close Cart"
@@ -53,13 +56,28 @@ function CartSidebar() {
         <EmptyCart onDismiss={fadeOut} />
       ) : (
         <>
-          <List>
+          <List data-fs-cart-sidebar-list>
             {items.map((item) => (
               <li key={item.id}>
                 <CartItem item={item} />
               </li>
             ))}
           </List>
+
+          {gifts.length > 0 && (
+            <>
+              <Alert icon={<Icon name="Truck" width={24} height={24} />}>
+                Presente
+              </Alert>
+              <List data-fs-cart-sidebar-list>
+                {gifts.map((item) => (
+                  <li key={item.id}>
+                    <CartItem gift item={item} />
+                  </li>
+                ))}
+              </List>
+            </>
+          )}
 
           <footer data-fs-cart-sidebar-footer>
             <OrderSummary

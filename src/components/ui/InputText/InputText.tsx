@@ -1,8 +1,8 @@
 import { Input as UIInput, Label as UILabel } from '@faststore/ui'
 import type { MutableRefObject } from 'react'
+import type { InputProps } from '@faststore/ui'
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
-import type { InputProps } from '@faststore/ui'
 
 type DefaultProps = {
   /**
@@ -29,6 +29,12 @@ type DefaultProps = {
 
 type ActionableInputText =
   | {
+      actionable?: never
+      onSubmit?: never
+      onClear?: never
+      buttonActionText?: string
+    }
+  | {
       /**
        * Adds a Button to the component.
        */
@@ -46,12 +52,6 @@ type ActionableInputText =
        */
       buttonActionText?: string
     }
-  | {
-      actionable?: never
-      onSubmit?: never
-      onClear?: never
-      buttonActionText?: string
-    }
 
 export type InputTextProps = DefaultProps &
   Omit<InputProps, 'disabled' | 'onSubmit'> &
@@ -67,9 +67,9 @@ const InputText = ({
   onSubmit,
   onClear,
   placeholder = ' ', // initializes with an empty space to style float label using `placeholder-shown`
-  value,
   inputRef,
   disabled,
+  value,
   ...otherProps
 }: InputTextProps) => {
   const shouldDisplayError = !disabled && error && error !== ''
@@ -78,8 +78,8 @@ const InputText = ({
   return (
     <div
       data-fs-input-text
-      data-fs-input-text-error={error && error !== ''}
       data-fs-input-text-actionable={actionable}
+      data-fs-input-text-error={error && error !== ''}
     >
       <UIInput
         id={id}

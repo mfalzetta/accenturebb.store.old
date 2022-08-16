@@ -1,8 +1,8 @@
 import type { SearchInputRef } from '@faststore/ui'
 import { Suspense, useRef, useState } from 'react'
 import CartToggle from 'src/components/cart/CartToggle'
-import SearchInput from 'src/components/search/SearchInput'
 import Menu from 'src/components/menu'
+import SearchInput from 'src/components/search/SearchInput'
 import Button, {
   ButtonSignIn,
   ButtonSignInFallback,
@@ -11,18 +11,31 @@ import Icon from 'src/components/ui/Icon'
 import Link from 'src/components/ui/Link'
 import Logo from 'src/components/ui/Logo'
 import { mark } from 'src/sdk/tests/mark'
+import { useUI } from 'src/sdk/ui/Provider'
 
 import styles from './navbar.module.scss'
+import NavLinks from './NavLinks'
 
 function Navbar() {
+  const { navbar: displayNavbar, openNavbar, closeNavbar } = useUI()
+  const [isOpen, setIsOpen] = useState(displayNavbar)
   const searchMobileRef = useRef<SearchInputRef>(null)
-  const [showMenu, setShowMenu] = useState(false)
 
   const [searchExpanded, setSearchExpanded] = useState(false)
 
   const handlerExpandSearch = () => {
     setSearchExpanded(true)
     searchMobileRef.current?.inputRef?.focus()
+  }
+
+  const showMenu = (show: boolean) => {
+    if (show) {
+      openNavbar
+    } else {
+      closeNavbar
+    }
+
+    setIsOpen(show)
   }
 
   return (
@@ -40,7 +53,7 @@ function Navbar() {
                 data-fs-navbar-button-menu
                 aria-label="Open Menu"
                 icon={<Icon name="List" width={32} height={32} />}
-                onClick={() => setShowMenu(!showMenu)}
+                onClick={() => showMenu(!isOpen)}
               />
               <Link
                 href="/"
@@ -80,9 +93,11 @@ function Navbar() {
             <CartToggle />
           </div>
         </section>
+        <NavLinks />
       </div>
+
       <div>
-        <Menu isOpen={showMenu} />
+        <Menu isOpen={isOpen} />
       </div>
     </header>
   )

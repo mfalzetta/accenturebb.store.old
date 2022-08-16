@@ -1,8 +1,9 @@
 import { List as UIList } from '@faststore/ui'
 import type { AnchorHTMLAttributes } from 'react'
 import RegionalizationButton from 'src/components/regionalization/RegionalizationButton'
-import Link from 'src/components/ui/Link'
+import RenderCMS from 'src/components/RenderCMS'
 import { mark } from 'src/sdk/tests/mark'
+import { graphql, useStaticQuery } from 'gatsby'
 
 import styles from './navlinks.module.scss'
 
@@ -11,46 +12,25 @@ interface NavLinksProps {
   classes?: string
 }
 
-const collections = [
-  {
-    name: "Today's Deals",
-    href: '/deals',
-  },
-  {
-    name: 'New Releases',
-    href: '/new-releases',
-  },
-  {
-    name: 'Top Sale',
-    href: '/top-sale',
-  },
-  {
-    name: 'Customer Service',
-    href: '/customer-service',
-  },
-  {
-    name: 'Gift Cards',
-    href: '/gift-cards',
-  },
-]
+export const querySSG = graphql`
+  query HeaderLinkQuery {
+    cmsHeaderLink {
+      sections {
+        data
+        name
+      }
+    }
+  }
+`
 
-function NavLinks({ onClickLink, classes = '' }: NavLinksProps) {
+function NavLinks({ classes = '' }: NavLinksProps) {
+  const { cmsHeaderLink } = useStaticQuery(querySSG)
+
   return (
     <nav className={`${styles.fsNavlinks} ${classes}`}>
       <RegionalizationButton />
       <UIList data-fs-navlinks-list>
-        {collections.map(({ href, name }) => (
-          <li key={name} data-fs-navlinks-list-item>
-            <Link
-              data-fs-navlinks-link
-              variant="display"
-              href={href}
-              onClick={onClickLink}
-            >
-              {name}
-            </Link>
-          </li>
-        ))}
+        <RenderCMS sections={cmsHeaderLink?.sections} />
       </UIList>
     </nav>
   )
