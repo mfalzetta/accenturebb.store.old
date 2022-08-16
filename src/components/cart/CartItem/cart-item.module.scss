@@ -86,4 +86,19 @@
     justify-content: space-between;
     margin-top: var(--fs-cart-item-actions-margin-top);
   }
+
+  [data-fs-cart-item-prices-discount] {
+    display: flex;
+
+    [data-store-badge] {
+      position: static;
+      display: block;
+      margin-left: 6px;
+
+      [data-fs-badge-wrapper] {
+        color: #fff;
+        background-color: var(--fs-color-badge-background);
+      }
+    }
+  }
 }

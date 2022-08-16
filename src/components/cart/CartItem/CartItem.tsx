@@ -17,6 +17,7 @@ import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { useSession } from 'src/sdk/session'
 import type { CartItem as ICartItem } from 'src/sdk/cart'
 import type { AnalyticsItem } from 'src/sdk/analytics/types'
+import { DiscountBadge } from 'src/components/ui/Badge'
 
 import styles from './cart-item.module.scss'
 
@@ -102,15 +103,23 @@ function CartItem({ item, gift = false }: Props) {
           </p>
           {!gift && (
             <span data-fs-cart-item-prices>
-              <Price
-                value={item.listPrice}
-                formatter={useFormattedPrice}
-                testId="list-price"
-                data-value={item.listPrice}
-                variant="listing"
-                classes="text__legend"
-                SRText="Original price:"
-              />
+              {item.listPrice !== item.price && (
+                <div data-fs-cart-item-prices-discount>
+                  <Price
+                    value={item.listPrice}
+                    formatter={useFormattedPrice}
+                    testId="list-price"
+                    data-value={item.listPrice}
+                    variant="listing"
+                    classes="text__legend"
+                    SRText="Original price:"
+                  />
+                  <DiscountBadge
+                    listPrice={item.listPrice}
+                    spotPrice={item.price}
+                  />
+                </div>
+              )}
               <Price
                 value={item.price}
                 formatter={useFormattedPrice}
