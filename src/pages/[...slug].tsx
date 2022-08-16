@@ -1,10 +1,9 @@
+import { gql } from '@faststore/graphql-utils'
 import {
+  formatSearchState,
   parseSearchState,
   SearchProvider,
-  useSession,
-  formatSearchState,
 } from '@faststore/sdk'
-import { gql } from '@faststore/graphql-utils'
 import { graphql } from 'gatsby'
 import { BreadcrumbJsonLd, GatsbySeo } from 'gatsby-plugin-next-seo'
 import { useMemo } from 'react'
@@ -19,6 +18,7 @@ import type {
   ServerCollectionPageQueryQuery,
   CollectionPageQueryQueryVariables,
 } from '@generated/graphql'
+import { useSession } from 'src/sdk/session'
 import type { PageProps } from 'gatsby'
 import type { SearchState } from '@faststore/sdk'
 import 'src/styles/pages/plp.scss'

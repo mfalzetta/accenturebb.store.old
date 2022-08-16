@@ -13,8 +13,17 @@ module.exports = {
   },
 
   // Default channel
-  channel: '{"salesChannel":"1","regionId":""}',
-  locale: 'en-US',
+  session: {
+    currency: {
+      code: 'BRL',
+      symbol: 'R$',
+    },
+    locale: 'pt-BR',
+    channel: '{"salesChannel":"1","regionId":""}',
+    country: 'BR',
+    postalCode: null,
+    person: null,
+  },
 
   // Production URLs
   storeUrl: 'https://accenturebb.myvtex.com',

@@ -51,7 +51,7 @@ function FilterSlider({
             variant="tertiary"
             data-fs-button-icon
             data-fs-filter-slider-header-icon
-            aria-label="Close Filters"
+            aria-label="Fechar filtro"
             icon={<Icon name="X" width={32} height={32} />}
             onClick={() => {
               dispatch({

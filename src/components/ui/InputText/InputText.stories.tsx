@@ -12,11 +12,11 @@ export default {
         disable: true,
       },
     },
-    actionable: {
-      type: { name: 'boolean' },
-    },
     id: {
       type: { name: 'string', required: true },
+    },
+    actionable: {
+      type: { name: 'boolean' },
     },
   },
 }
@@ -37,7 +37,7 @@ const TemplateActionable = ({ ...args }: InputTextProps) => {
         actionable
         error={error}
         value={input}
-        onSubmit={() => setError('Invalid Postal Code')}
+        onSubmit={() => setError('CEP inválido')}
         onClear={() => {
           setError(undefined)
           setInput('')
