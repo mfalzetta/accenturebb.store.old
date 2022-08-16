@@ -20,11 +20,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Home Components Fixes` slider arrows for 1 banner and category section button size ([#33](https://github.com/vtex-sites/accenturebb.store/pull/33)
 - `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
 
-### Added- 
-- `Update repository` ([#57](https://github.com/vtex-sites/accenturebb.store/pull/57)
-- `Update repository` ([#56](https://github.com/vtex-sites/accenturebb.store/pull/56)
-- `Update repository` ([#55](https://github.com/vtex-sites/accenturebb.store/pull/55)
-- `Update repository` ([#54](https://github.com/vtex-sites/accenturebb.store/pull/54)
+### Added
+- `Update repository` version 22.36.1
+    - Update ([#59](https://github.com/vtex-sites/accenturebb.store/pull/59))
+    - Update ([#57](https://github.com/vtex-sites/accenturebb.store/pull/57))
+    - Update ([#56](https://github.com/vtex-sites/accenturebb.store/pull/56))
+    - Update ([#55](https://github.com/vtex-sites/accenturebb.store/pull/55))
+    - Update ([#54](https://github.com/vtex-sites/accenturebb.store/pull/54))
 - `Collection page` [#53](https://github.com/vtex-sites/accenturebb.store/pull/53)
 - `PDP Specs` product specifications on PDP ([#51](https://github.com/vtex-sites/accenturebb.store/pull/51)
 - `Badge Price` on cart and search suggestion ([#50](https://github.com/vtex-sites/accenturebb.store/pull/50)
