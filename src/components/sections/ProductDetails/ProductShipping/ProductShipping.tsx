@@ -79,7 +79,7 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
   }, [data, getDate])
 
   const handleSubmit = async () => {
-    const value = inputRef.current?.value
+    const value = inputRef?.current?.value
 
     if (typeof value !== 'string') {
       return
