@@ -15,12 +15,12 @@ module.exports = {
   // Default channel
   session: {
     currency: {
-      code: 'USD',
-      symbol: '$',
+      code: 'BRL',
+      symbol: 'R$',
     },
-    locale: 'en-US',
+    locale: 'pt-BR',
     channel: '{"salesChannel":"1","regionId":""}',
-    country: 'USA',
+    country: 'BR',
     postalCode: null,
     person: null,
   },

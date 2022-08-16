@@ -15,13 +15,17 @@ export const usePriceFormatter = ({ decimals }: PriceFormatterOptions = {}) => {
         style: 'currency',
         currency: currency.code,
         minimumFractionDigits: decimals ? 2 : 0,
-      }).format(price),
+      })
+        .format(price)
+        .replace(',', ' ')
+        .replace('.', ',')
+        .replace(' ', '.'),
     [currency.code, locale, decimals]
   )
 }
 
 export const useFormattedPrice = (price: number) => {
-  const formatter = usePriceFormatter()
+  const formatter = usePriceFormatter({ decimals: true })
 
   return useMemo(() => formatter(price), [formatter, price])
 }

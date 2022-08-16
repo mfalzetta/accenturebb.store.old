@@ -54,7 +54,7 @@ function PriceRange({ min, max, onEnd, step = 10, ...otherProps }: Props) {
     }
 
     if (Number(value) > priceRange.max) {
-      setInputMinError(`Min price can't be greater than max`)
+      setInputMinError(`Preço mínimo não pode ser maior que o preço máximo`)
     }
 
     setPriceRange({ ...priceRange, min: Number(value) })
@@ -72,7 +72,7 @@ function PriceRange({ min, max, onEnd, step = 10, ...otherProps }: Props) {
     }
 
     if (Number(value) < priceRange.min) {
-      setInputMaxError(`Max price can't be smaller than min`)
+      setInputMaxError(`Preço máximo não pode ser menor que o preço mínimo`)
     }
 
     setPriceRange({ ...priceRange, max: Number(value) })

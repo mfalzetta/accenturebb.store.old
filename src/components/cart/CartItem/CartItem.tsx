@@ -142,7 +142,7 @@ function CartItem({ item, gift = false }: Props) {
             iconPosition="left"
             {...btnProps}
           >
-            Remove
+            Remover
           </Button>
           <QuantitySelector
             min={1}

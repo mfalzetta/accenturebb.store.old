@@ -131,9 +131,7 @@ function ProductDetails({ product: staleProduct }: Props) {
       ?.reduce((acumulador: AllUsableSpecsType[] | any, spec) => {
         const allSpecs = spec?.specifications?.map((element) => element)
 
-        const links = allSpecs?.filter(
-          (el: any) => el?.name === 'Links e Downloads'
-        )
+        const links = allSpecs?.filter((el) => el?.name === 'Links e Downloads')
 
         const details = allSpecs?.filter(
           (el) => el?.name === 'Características e Detalhes'
@@ -235,7 +233,7 @@ function ProductDetails({ product: staleProduct }: Props) {
             <AddToCartLoadingSkeleton />
           ) : (
             <ButtonBuy disabled={buyDisabled} {...buyProps}>
-              Add to Cart
+              Adicionar ao carrinho
             </ButtonBuy>
           )}
           {!availability && (

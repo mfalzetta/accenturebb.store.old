@@ -11,6 +11,10 @@
   [data-fs-accordion-item-panel] {
     padding-left: 0;
   }
+
+  [data-store-badge] {
+    display: none;
+  }
 }
 
 .product-details__body {
@@ -109,6 +113,7 @@
 
     [data-store-badge] {
       position: unset;
+      display: block;
       margin-left: 0.5rem;
 
       [data-fs-badge-wrapper] {
