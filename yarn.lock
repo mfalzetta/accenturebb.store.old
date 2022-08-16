@@ -1711,6 +1711,15 @@
     tslib "^2.4.0"
     unixify "^1.0.0"
 
+"@graphql-tools/load-files@^6.6.1":
+  version "6.6.1"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/load-files/-/load-files-6.6.1.tgz#91ce18d910baf8678459486d8cccd474767bec0a"
+  integrity sha512-nd4GOjdD68bdJkHfRepILb0gGwF63mJI7uD4oJuuf2Kzeq8LorKa6WfyxUhdMuLmZhnx10zdAlWPfwv1NOAL4Q==
+  dependencies:
+    globby "11.1.0"
+    tslib "^2.4.0"
+    unixify "1.0.0"
+
 "@graphql-tools/load@^6.0.0":
   version "6.2.8"
   resolved "https://registry.yarnpkg.com/@graphql-tools/load/-/load-6.2.8.tgz#16900fb6e75e1d075cad8f7ea439b334feb0b96a"
@@ -10793,7 +10802,7 @@ globby@11.0.4:
     merge2 "^1.3.0"
     slash "^3.0.0"
 
-globby@^11.0.1, globby@^11.0.2, globby@^11.0.3, globby@^11.0.4, globby@^11.1.0:
+globby@11.1.0, globby@^11.0.1, globby@^11.0.2, globby@^11.0.3, globby@^11.0.4, globby@^11.1.0:
   version "11.1.0"
   resolved "https://registry.yarnpkg.com/globby/-/globby-11.1.0.tgz#bd4be98bb042f83d796f7e3811991fbe82a0d34b"
   integrity sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==

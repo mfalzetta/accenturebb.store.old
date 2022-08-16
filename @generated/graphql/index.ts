@@ -1311,6 +1311,14 @@ export type DateQueryOperatorInput = {
   nin: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
 }
 
+export type DeliveryIds = {
+  courierId: Maybe<Scalars['String']>
+  courierName: Maybe<Scalars['String']>
+  dockId: Maybe<Scalars['String']>
+  quantity: Maybe<Scalars['Int']>
+  warehouseId: Maybe<Scalars['String']>
+}
+
 export type Directory = Node & {
   absolutePath: Scalars['String']
   accessTime: Scalars['Date']
@@ -2147,6 +2155,42 @@ export type JsonQueryOperatorInput = {
   regex: InputMaybe<Scalars['JSON']>
 }
 
+export type LogisticsInfo = {
+  itemIndex: Maybe<Scalars['String']>
+  selectedSla: Maybe<Scalars['String']>
+  slas: Maybe<Array<Maybe<ShippingSla>>>
+}
+
+export type LogisticsItem = {
+  availability: Maybe<Scalars['String']>
+  id: Maybe<Scalars['String']>
+  listPrice: Maybe<Scalars['Int']>
+  measurementUnit: Maybe<Scalars['String']>
+  price: Maybe<Scalars['Int']>
+  priceValidUntil: Maybe<Scalars['String']>
+  quantity: Maybe<Scalars['Int']>
+  requestIndex: Maybe<Scalars['Int']>
+  rewardValue: Maybe<Scalars['Int']>
+  seller: Maybe<Scalars['String']>
+  sellerChain: Maybe<Array<Maybe<Scalars['String']>>>
+  sellingPrice: Maybe<Scalars['Int']>
+  tax: Maybe<Scalars['Int']>
+  unitMultiplier: Maybe<Scalars['Int']>
+}
+
+export type MessageFields = {
+  ean: Maybe<Scalars['String']>
+  itemIndex: Maybe<Scalars['String']>
+  skuName: Maybe<Scalars['String']>
+}
+
+export type MessageInfo = {
+  code: Maybe<Scalars['String']>
+  fields: Maybe<MessageFields>
+  status: Maybe<Scalars['String']>
+  text: Maybe<Scalars['String']>
+}
+
 export type Mutation = {
   /** Checks for changes between the cart presented in the UI and the cart stored in the ecommerce platform. If changes are detected, it returns the cart stored on the platform. Otherwise, it returns `null`. */
   validateCart: Maybe<StoreCart>
@@ -2192,6 +2236,22 @@ export type PageInfo = {
   totalCount: Scalars['Int']
 }
 
+export type PickupAddress = {
+  addressId: Maybe<Scalars['String']>
+  addressType: Maybe<Scalars['String']>
+  city: Maybe<Scalars['String']>
+  complement: Maybe<Scalars['String']>
+  country: Maybe<Scalars['String']>
+  geoCoordinates: Maybe<Array<Maybe<Scalars['Float']>>>
+  neighborhood: Maybe<Scalars['String']>
+  number: Maybe<Scalars['String']>
+  postalCode: Maybe<Scalars['String']>
+  receiverName: Maybe<Scalars['String']>
+  reference: Maybe<Scalars['String']>
+  state: Maybe<Scalars['String']>
+  street: Maybe<Scalars['String']>
+}
+
 export type Query = {
   allCmsHeaderLink: CmsHeaderLinkConnection
   allCmsHome: CmsHomeConnection
@@ -2224,6 +2284,7 @@ export type Query = {
   product: StoreProduct
   /** Returns the result of a product, facet, or suggestion search. */
   search: StoreSearchResult
+  shipping: Maybe<ShippingData>
   site: Maybe<Site>
   siteBuildMetadata: Maybe<SiteBuildMetadata>
   siteFunction: Maybe<SiteFunction>
@@ -2485,6 +2546,13 @@ export type QuerySearchArgs = {
   term?: InputMaybe<Scalars['String']>
 }
 
+export type QueryShippingArgs = {
+  country: InputMaybe<Scalars['String']>
+  geoCoordinates: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  items: InputMaybe<Array<InputMaybe<ShippingItem>>>
+  postalCode: InputMaybe<Scalars['String']>
+}
+
 export type QuerySiteArgs = {
   buildTime: InputMaybe<DateQueryOperatorInput>
   children: InputMaybe<NodeFilterListInput>
@@ -2560,6 +2628,32 @@ export type Seller = {
   sellerDefault: Scalars['Boolean']
   sellerId: Maybe<Scalars['String']>
   sellerName: Maybe<Scalars['String']>
+}
+
+export type ShippingData = {
+  items: Maybe<Array<Maybe<LogisticsItem>>>
+  logisticsInfo: Maybe<Array<Maybe<LogisticsInfo>>>
+  messages: Maybe<Array<Maybe<MessageInfo>>>
+}
+
+export type ShippingItem = {
+  id: InputMaybe<Scalars['String']>
+  quantity: InputMaybe<Scalars['String']>
+  seller: InputMaybe<Scalars['String']>
+}
+
+export type ShippingSla = {
+  deliveryChannel: Maybe<Scalars['String']>
+  deliveryIds: Maybe<Array<Maybe<DeliveryIds>>>
+  friendlyName: Maybe<Scalars['String']>
+  id: Maybe<Scalars['String']>
+  name: Maybe<Scalars['String']>
+  pickupDistance: Maybe<Scalars['Float']>
+  pickupPointId: Maybe<Scalars['String']>
+  pickupStoreInfo: Maybe<PickupStoreInfo>
+  price: Maybe<Scalars['Float']>
+  shippingEstimate: Maybe<Scalars['String']>
+  shippingEstimateDate: Maybe<Scalars['String']>
 }
 
 export type Site = Node & {
@@ -4117,6 +4211,14 @@ export type StringQueryOperatorInput = {
   regex: InputMaybe<Scalars['String']>
 }
 
+export type PickupStoreInfo = {
+  additionalInfo: Maybe<Scalars['String']>
+  address: Maybe<PickupAddress>
+  dockId: Maybe<Scalars['String']>
+  friendlyName: Maybe<Scalars['String']>
+  isPickupStore: Maybe<Scalars['Boolean']>
+}
+
 export type HeaderLinkQueryQueryVariables = Exact<{ [key: string]: never }>
 
 export type HeaderLinkQueryQuery = {
@@ -4252,6 +4354,26 @@ export type ProductDetailsFragment_ProductFragment = {
     value: any
     valueReference: string
   }>
+}
+
+export type ShippingQueryQueryVariables = Exact<{
+  country: InputMaybe<Scalars['String']>
+  items: InputMaybe<Array<InputMaybe<ShippingItem>> | InputMaybe<ShippingItem>>
+  postalCode: Scalars['String']
+}>
+
+export type ShippingQueryQuery = {
+  shipping: {
+    logisticsInfo: Array<{
+      slas: Array<{
+        shippingEstimate: string | null
+        price: number | null
+        name: string | null
+        shippingEstimateDate: string | null
+        friendlyName: string | null
+      } | null> | null
+    } | null> | null
+  } | null
 }
 
 export type ProductGalleryQueryQueryVariables = Exact<{
