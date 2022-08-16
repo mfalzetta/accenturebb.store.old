@@ -19,32 +19,15 @@ import type { FormatErrorHandler } from '@envelop/core'
 import type { Options as APIOptions, Scalars } from '@faststore/api'
 import { mergeTypeDefs } from '@graphql-tools/merge'
 import { makeExecutableSchema, mergeSchemas } from '@graphql-tools/schema'
-import { loadFilesSync } from '@graphql-tools/load-files'
-import axios from 'axios'
 
 import persisted from '../../@generated/graphql/persisted.json'
-import storeConfig, { api } from '../../store.config'
+import storeConfig from '../../store.config'
 
 interface ExecuteOptions {
   operationName: string
   variables: Record<string, unknown>
   query?: string | null
 }
-type ShippingVariable = {
-  country: string
-  items: Array<{
-    id: string
-    quantity: string
-    seller: string
-  }>
-  postalCode: string
-}
-
-const typesArray = loadFilesSync('./src/server', {
-  extensions: ['gql'],
-})
-
-const typeDefsFromfile = mergeTypeDefs(typesArray)
 
 const persistedQueries = new Map(Object.entries(persisted))
 
@@ -128,16 +111,9 @@ const resolvers = {
       return root.isVariantOf.specificationGroups
     },
   },
-  Query: {
-    shipping,
-  },
 }
 
-const mergedTypeDefs = mergeTypeDefs([
-  getTypeDefs(),
-  typeDefs,
-  typeDefsFromfile,
-])
+const mergedTypeDefs = mergeTypeDefs([getTypeDefs(), typeDefs])
 
 const getMergedSchemas = async () =>
   mergeSchemas({
@@ -204,22 +180,4 @@ export const execute = async (
     contextValue: await contextFactory({ headers }),
     operationName,
   })
-}
-
-async function shipping(
-  _: unknown,
-  { country, items, postalCode }: ShippingVariable
-) {
-  const { data } = await axios.post(
-    `https://${api.storeId}.${api.environment}.com.br/api/checkout/pub/orderForms/simulation?RnbBehavior=0&sc=1`,
-    { country, items, postalCode }
-  )
-
-  if (!data) {
-    return new GraphQLError(
-      'Não foi possivel calcular o frete para esse produto'
-    )
-  }
-
-  return data
 }
