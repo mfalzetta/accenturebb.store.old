@@ -2254,6 +2254,12 @@ export type PageInfo = {
   totalCount: Scalars['Int']
 }
 
+/** Newsletter information. */
+export type PersonNewsletter = {
+  /** Person's ID in the newsletter list. */
+  id: Scalars['String']
+}
+
 export type PickupAddress = {
   addressId: Maybe<Scalars['String']>
   addressType: Maybe<Scalars['String']>
@@ -2270,11 +2276,6 @@ export type PickupAddress = {
   street: Maybe<Scalars['String']>
 }
 
-/** Newsletter information. */
-export type PersonNewsletter = {
-  /** Person's ID in the newsletter list. */
-  id: Scalars['String']
-}
 export type Query = {
   allCmsHeaderLink: CmsHeaderLinkConnection
   allCmsHome: CmsHomeConnection

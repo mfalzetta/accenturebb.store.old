@@ -111,11 +111,12 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
           <InputText
             inputRef={inputRef}
             id="postal-code-input"
-            errorMessage={errorMessage}
+            error={errorMessage}
             label="CEP"
             actionable
             onSubmit={handleSubmit}
             buttonActionText="Buscar"
+            onClear={() => {}}
           />
         </div>
       </div>
