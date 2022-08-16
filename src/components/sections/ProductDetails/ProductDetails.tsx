@@ -22,6 +22,7 @@ import Accordion, { AccordionItem } from 'src/components/ui/Accordion'
 import Section from '../Section'
 import LinksAndDownloads from './LinksAndDownloads'
 import ProductSpecifications from './ProductSpecifications'
+import ProductShipping from './ProductShipping'
 
 interface Props {
   product: ProductDetailsFragment_ProductFragment
@@ -86,6 +87,12 @@ function ProductDetails({ product: staleProduct }: Props) {
       additionalProperty,
     },
   })
+
+  const shippingItems = {
+    seller: seller.identifier,
+    quantity: addQuantity.toString(),
+    id: sku,
+  }
 
   useEffect(() => {
     sendAnalyticsEvent<ViewItemEvent<AnalyticsItem>>({
@@ -224,6 +231,7 @@ function ProductDetails({ product: staleProduct }: Props) {
               <p className="price__new">{isValidating ? '' : formattedPrice}</p>
             </div> */}
             <QuantitySelector min={1} max={10} onChange={setAddQuantity} />
+            <ProductShipping items={shippingItems} />
           </section>
           {/* NOTE: A loading skeleton had to be used to avoid a Lighthouse's
               non-composited animation violation due to the button transitioning its
