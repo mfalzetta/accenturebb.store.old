@@ -1,6 +1,6 @@
-import { useSession } from '@faststore/sdk'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import InputText from 'src/components/ui/InputText'
+import { sessionStore, useSession } from 'src/sdk/session'
 
 import './product-shipping.scss'
 import useShippingQuery from './useShippingQuery'
@@ -23,7 +23,7 @@ interface ShippingItemsProps {
 
 const ProductShipping = ({ items }: ShippingItemsProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
-  const { setSession, isValidating, ...session } = useSession()
+  const { isValidating, ...session } = useSession()
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [shippingQuery, setShippingQuery] = useState<ShippingQueryT | null>(
     null
@@ -89,7 +89,7 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
 
     try {
       if (value) {
-        setSession({ ...session, postalCode: value })
+        sessionStore.set({ ...session, postalCode: value })
       }
     } catch (error) {
       setErrorMessage('CEP inválido')
