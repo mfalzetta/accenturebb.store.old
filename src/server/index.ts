@@ -148,6 +148,7 @@ const getMergedSchemas = async () =>
         typeDefs: mergedTypeDefs,
       }),
     ],
+    resolvers,
   })
 
 export const apiSchema = getMergedSchemas()
