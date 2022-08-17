@@ -108,6 +108,7 @@ export type CmsHeaderLinkFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -119,6 +120,7 @@ export type CmsHeaderLinkFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -131,6 +133,7 @@ export type CmsHeaderLinkFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -142,6 +145,7 @@ export type CmsHeaderLinkFieldsEnum =
   | 'id'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -156,6 +160,7 @@ export type CmsHeaderLinkFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -167,6 +172,7 @@ export type CmsHeaderLinkFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -179,6 +185,7 @@ export type CmsHeaderLinkFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -303,6 +310,7 @@ export type CmsHomeFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -314,6 +322,7 @@ export type CmsHomeFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -326,6 +335,7 @@ export type CmsHomeFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -337,6 +347,7 @@ export type CmsHomeFieldsEnum =
   | 'id'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -351,6 +362,7 @@ export type CmsHomeFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -362,6 +374,7 @@ export type CmsHomeFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -374,6 +387,7 @@ export type CmsHomeFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -497,6 +511,7 @@ export type CmsInstitutionalPageFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -508,6 +523,7 @@ export type CmsInstitutionalPageFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -520,6 +536,7 @@ export type CmsInstitutionalPageFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -531,6 +548,7 @@ export type CmsInstitutionalPageFieldsEnum =
   | 'id'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -545,6 +563,7 @@ export type CmsInstitutionalPageFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -556,6 +575,7 @@ export type CmsInstitutionalPageFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -568,6 +588,7 @@ export type CmsInstitutionalPageFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -690,6 +711,7 @@ export type CmsPdpFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -701,6 +723,7 @@ export type CmsPdpFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -713,6 +736,7 @@ export type CmsPdpFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -724,6 +748,7 @@ export type CmsPdpFieldsEnum =
   | 'id'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -738,6 +763,7 @@ export type CmsPdpFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -749,6 +775,7 @@ export type CmsPdpFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -761,6 +788,7 @@ export type CmsPdpFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -886,6 +914,7 @@ export type CmsPlpFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -897,6 +926,7 @@ export type CmsPlpFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -909,6 +939,7 @@ export type CmsPlpFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -920,6 +951,7 @@ export type CmsPlpFieldsEnum =
   | 'id'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -939,6 +971,7 @@ export type CmsPlpFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -950,6 +983,7 @@ export type CmsPlpFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -962,6 +996,7 @@ export type CmsPlpFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -1120,6 +1155,7 @@ export type CmsSeoFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -1131,6 +1167,7 @@ export type CmsSeoFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -1143,6 +1180,7 @@ export type CmsSeoFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -1154,6 +1192,7 @@ export type CmsSeoFieldsEnum =
   | 'id'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -1168,6 +1207,7 @@ export type CmsSeoFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -1179,6 +1219,7 @@ export type CmsSeoFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -1191,6 +1232,7 @@ export type CmsSeoFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -1313,6 +1355,14 @@ export type DateQueryOperatorInput = {
   lte: InputMaybe<Scalars['Date']>
   ne: InputMaybe<Scalars['Date']>
   nin: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+}
+
+export type DeliveryIds = {
+  courierId: Maybe<Scalars['String']>
+  courierName: Maybe<Scalars['String']>
+  dockId: Maybe<Scalars['String']>
+  quantity: Maybe<Scalars['Int']>
+  warehouseId: Maybe<Scalars['String']>
 }
 
 export type Directory = Node & {
@@ -1462,6 +1512,7 @@ export type DirectoryFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -1473,6 +1524,7 @@ export type DirectoryFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -1485,6 +1537,7 @@ export type DirectoryFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -1504,6 +1557,7 @@ export type DirectoryFieldsEnum =
   | 'ino'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -1523,6 +1577,7 @@ export type DirectoryFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -1534,6 +1589,7 @@ export type DirectoryFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -1546,6 +1602,7 @@ export type DirectoryFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -1793,6 +1850,7 @@ export type FileFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -1804,6 +1862,7 @@ export type FileFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -1816,6 +1875,7 @@ export type FileFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -1835,6 +1895,7 @@ export type FileFieldsEnum =
   | 'ino'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -1854,6 +1915,7 @@ export type FileFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -1865,6 +1927,7 @@ export type FileFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -1877,6 +1940,7 @@ export type FileFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -2124,6 +2188,7 @@ export type IntQueryOperatorInput = {
 export type Internal = {
   content: Maybe<Scalars['String']>
   contentDigest: Scalars['String']
+  contentFilePath: Maybe<Scalars['String']>
   description: Maybe<Scalars['String']>
   fieldOwners: Maybe<Array<Maybe<Scalars['String']>>>
   ignoreType: Maybe<Scalars['Boolean']>
@@ -2135,6 +2200,7 @@ export type Internal = {
 export type InternalFilterInput = {
   content: InputMaybe<StringQueryOperatorInput>
   contentDigest: InputMaybe<StringQueryOperatorInput>
+  contentFilePath: InputMaybe<StringQueryOperatorInput>
   description: InputMaybe<StringQueryOperatorInput>
   fieldOwners: InputMaybe<StringQueryOperatorInput>
   ignoreType: InputMaybe<BooleanQueryOperatorInput>
@@ -2157,6 +2223,42 @@ export type JsonQueryOperatorInput = {
   ne: InputMaybe<Scalars['JSON']>
   nin: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>
   regex: InputMaybe<Scalars['JSON']>
+}
+
+export type LogisticsInfo = {
+  itemIndex: Maybe<Scalars['String']>
+  selectedSla: Maybe<Scalars['String']>
+  slas: Maybe<Array<Maybe<ShippingSla>>>
+}
+
+export type LogisticsItem = {
+  availability: Maybe<Scalars['String']>
+  id: Maybe<Scalars['String']>
+  listPrice: Maybe<Scalars['Int']>
+  measurementUnit: Maybe<Scalars['String']>
+  price: Maybe<Scalars['Int']>
+  priceValidUntil: Maybe<Scalars['String']>
+  quantity: Maybe<Scalars['Int']>
+  requestIndex: Maybe<Scalars['Int']>
+  rewardValue: Maybe<Scalars['Int']>
+  seller: Maybe<Scalars['String']>
+  sellerChain: Maybe<Array<Maybe<Scalars['String']>>>
+  sellingPrice: Maybe<Scalars['Int']>
+  tax: Maybe<Scalars['Int']>
+  unitMultiplier: Maybe<Scalars['Int']>
+}
+
+export type MessageFields = {
+  ean: Maybe<Scalars['String']>
+  itemIndex: Maybe<Scalars['String']>
+  skuName: Maybe<Scalars['String']>
+}
+
+export type MessageInfo = {
+  code: Maybe<Scalars['String']>
+  fields: Maybe<MessageFields>
+  status: Maybe<Scalars['String']>
+  text: Maybe<Scalars['String']>
 }
 
 export type Mutation = {
@@ -2216,6 +2318,22 @@ export type PersonNewsletter = {
   id: Scalars['String']
 }
 
+export type PickupAddress = {
+  addressId: Maybe<Scalars['String']>
+  addressType: Maybe<Scalars['String']>
+  city: Maybe<Scalars['String']>
+  complement: Maybe<Scalars['String']>
+  country: Maybe<Scalars['String']>
+  geoCoordinates: Maybe<Array<Maybe<Scalars['Float']>>>
+  neighborhood: Maybe<Scalars['String']>
+  number: Maybe<Scalars['String']>
+  postalCode: Maybe<Scalars['String']>
+  receiverName: Maybe<Scalars['String']>
+  reference: Maybe<Scalars['String']>
+  state: Maybe<Scalars['String']>
+  street: Maybe<Scalars['String']>
+}
+
 export type Query = {
   allCmsHeaderLink: CmsHeaderLinkConnection
   allCmsHome: CmsHomeConnection
@@ -2248,6 +2366,7 @@ export type Query = {
   product: StoreProduct
   /** Returns the result of a product, facet, or suggestion search. */
   search: StoreSearchResult
+  shipping: Maybe<ShippingData>
   site: Maybe<Site>
   siteBuildMetadata: Maybe<SiteBuildMetadata>
   siteFunction: Maybe<SiteFunction>
@@ -2509,6 +2628,13 @@ export type QuerySearchArgs = {
   term?: InputMaybe<Scalars['String']>
 }
 
+export type QueryShippingArgs = {
+  country: InputMaybe<Scalars['String']>
+  geoCoordinates: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  items: InputMaybe<Array<InputMaybe<ShippingItem>>>
+  postalCode: InputMaybe<Scalars['String']>
+}
+
 export type QuerySiteArgs = {
   buildTime: InputMaybe<DateQueryOperatorInput>
   children: InputMaybe<NodeFilterListInput>
@@ -2584,6 +2710,32 @@ export type Seller = {
   sellerDefault: Scalars['Boolean']
   sellerId: Maybe<Scalars['String']>
   sellerName: Maybe<Scalars['String']>
+}
+
+export type ShippingData = {
+  items: Maybe<Array<Maybe<LogisticsItem>>>
+  logisticsInfo: Maybe<Array<Maybe<LogisticsInfo>>>
+  messages: Maybe<Array<Maybe<MessageInfo>>>
+}
+
+export type ShippingItem = {
+  id: InputMaybe<Scalars['String']>
+  quantity: InputMaybe<Scalars['String']>
+  seller: InputMaybe<Scalars['String']>
+}
+
+export type ShippingSla = {
+  deliveryChannel: Maybe<Scalars['String']>
+  deliveryIds: Maybe<Array<Maybe<DeliveryIds>>>
+  friendlyName: Maybe<Scalars['String']>
+  id: Maybe<Scalars['String']>
+  name: Maybe<Scalars['String']>
+  pickupDistance: Maybe<Scalars['Float']>
+  pickupPointId: Maybe<Scalars['String']>
+  pickupStoreInfo: Maybe<PickupStoreInfo>
+  price: Maybe<Scalars['Float']>
+  shippingEstimate: Maybe<Scalars['String']>
+  shippingEstimateDate: Maybe<Scalars['String']>
 }
 
 export type Site = Node & {
@@ -2675,6 +2827,7 @@ export type SiteBuildMetadataFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -2686,6 +2839,7 @@ export type SiteBuildMetadataFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -2698,6 +2852,7 @@ export type SiteBuildMetadataFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -2709,6 +2864,7 @@ export type SiteBuildMetadataFieldsEnum =
   | 'id'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -2722,6 +2878,7 @@ export type SiteBuildMetadataFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -2733,6 +2890,7 @@ export type SiteBuildMetadataFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -2745,6 +2903,7 @@ export type SiteBuildMetadataFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -2853,6 +3012,7 @@ export type SiteFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -2864,6 +3024,7 @@ export type SiteFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -2876,6 +3037,7 @@ export type SiteFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -2891,6 +3053,7 @@ export type SiteFieldsEnum =
   | 'id'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -2905,6 +3068,7 @@ export type SiteFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -2916,6 +3080,7 @@ export type SiteFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -2928,6 +3093,7 @@ export type SiteFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -3037,6 +3203,7 @@ export type SiteFunctionFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -3048,6 +3215,7 @@ export type SiteFunctionFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -3060,6 +3228,7 @@ export type SiteFunctionFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -3072,6 +3241,7 @@ export type SiteFunctionFieldsEnum =
   | 'id'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -3088,6 +3258,7 @@ export type SiteFunctionFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -3099,6 +3270,7 @@ export type SiteFunctionFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -3111,6 +3283,7 @@ export type SiteFunctionFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -3276,6 +3449,7 @@ export type SitePageFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -3287,6 +3461,7 @@ export type SitePageFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -3299,6 +3474,7 @@ export type SitePageFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -3313,6 +3489,7 @@ export type SitePageFieldsEnum =
   | 'internalComponentName'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -3328,6 +3505,7 @@ export type SitePageFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -3339,6 +3517,7 @@ export type SitePageFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -3351,6 +3530,7 @@ export type SitePageFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -3368,6 +3548,7 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___children___id'
   | 'pluginCreator___children___internal___content'
   | 'pluginCreator___children___internal___contentDigest'
+  | 'pluginCreator___children___internal___contentFilePath'
   | 'pluginCreator___children___internal___description'
   | 'pluginCreator___children___internal___fieldOwners'
   | 'pluginCreator___children___internal___ignoreType'
@@ -3379,6 +3560,7 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___id'
   | 'pluginCreator___internal___content'
   | 'pluginCreator___internal___contentDigest'
+  | 'pluginCreator___internal___contentFilePath'
   | 'pluginCreator___internal___description'
   | 'pluginCreator___internal___fieldOwners'
   | 'pluginCreator___internal___ignoreType'
@@ -3394,6 +3576,7 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___parent___id'
   | 'pluginCreator___parent___internal___content'
   | 'pluginCreator___parent___internal___contentDigest'
+  | 'pluginCreator___parent___internal___contentFilePath'
   | 'pluginCreator___parent___internal___description'
   | 'pluginCreator___parent___internal___fieldOwners'
   | 'pluginCreator___parent___internal___ignoreType'
@@ -3529,6 +3712,7 @@ export type SitePluginFieldsEnum =
   | 'children___children___id'
   | 'children___children___internal___content'
   | 'children___children___internal___contentDigest'
+  | 'children___children___internal___contentFilePath'
   | 'children___children___internal___description'
   | 'children___children___internal___fieldOwners'
   | 'children___children___internal___ignoreType'
@@ -3540,6 +3724,7 @@ export type SitePluginFieldsEnum =
   | 'children___id'
   | 'children___internal___content'
   | 'children___internal___contentDigest'
+  | 'children___internal___contentFilePath'
   | 'children___internal___description'
   | 'children___internal___fieldOwners'
   | 'children___internal___ignoreType'
@@ -3552,6 +3737,7 @@ export type SitePluginFieldsEnum =
   | 'children___parent___id'
   | 'children___parent___internal___content'
   | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___contentFilePath'
   | 'children___parent___internal___description'
   | 'children___parent___internal___fieldOwners'
   | 'children___parent___internal___ignoreType'
@@ -3563,6 +3749,7 @@ export type SitePluginFieldsEnum =
   | 'id'
   | 'internal___content'
   | 'internal___contentDigest'
+  | 'internal___contentFilePath'
   | 'internal___description'
   | 'internal___fieldOwners'
   | 'internal___ignoreType'
@@ -3579,6 +3766,7 @@ export type SitePluginFieldsEnum =
   | 'parent___children___id'
   | 'parent___children___internal___content'
   | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___contentFilePath'
   | 'parent___children___internal___description'
   | 'parent___children___internal___fieldOwners'
   | 'parent___children___internal___ignoreType'
@@ -3590,6 +3778,7 @@ export type SitePluginFieldsEnum =
   | 'parent___id'
   | 'parent___internal___content'
   | 'parent___internal___contentDigest'
+  | 'parent___internal___contentFilePath'
   | 'parent___internal___description'
   | 'parent___internal___fieldOwners'
   | 'parent___internal___ignoreType'
@@ -3602,6 +3791,7 @@ export type SitePluginFieldsEnum =
   | 'parent___parent___id'
   | 'parent___parent___internal___content'
   | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___contentFilePath'
   | 'parent___parent___internal___description'
   | 'parent___parent___internal___fieldOwners'
   | 'parent___parent___internal___ignoreType'
@@ -4181,6 +4371,14 @@ export type StringQueryOperatorInput = {
   regex: InputMaybe<Scalars['String']>
 }
 
+export type PickupStoreInfo = {
+  additionalInfo: Maybe<Scalars['String']>
+  address: Maybe<PickupAddress>
+  dockId: Maybe<Scalars['String']>
+  friendlyName: Maybe<Scalars['String']>
+  isPickupStore: Maybe<Scalars['Boolean']>
+}
+
 export type HeaderLinkQueryQueryVariables = Exact<{ [key: string]: never }>
 
 export type HeaderLinkQueryQuery = {
@@ -4311,6 +4509,26 @@ export type ProductDetailsFragment_ProductFragment = {
     value: any
     valueReference: string
   }>
+}
+
+export type ShippingQueryQueryVariables = Exact<{
+  country: InputMaybe<Scalars['String']>
+  items: InputMaybe<Array<InputMaybe<ShippingItem>> | InputMaybe<ShippingItem>>
+  postalCode: Scalars['String']
+}>
+
+export type ShippingQueryQuery = {
+  shipping: {
+    logisticsInfo: Array<{
+      slas: Array<{
+        shippingEstimate: string | null
+        price: number | null
+        name: string | null
+        shippingEstimateDate: string | null
+        friendlyName: string | null
+      } | null> | null
+    } | null> | null
+  } | null
 }
 
 export type ProductGalleryQueryQueryVariables = Exact<{
