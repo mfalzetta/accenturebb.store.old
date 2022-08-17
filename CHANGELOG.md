@@ -23,11 +23,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `Shipping Logic` query and front end to calculate shipping price and stimated date ([#60](https://github.com/vtex-sites/accenturebb.store/pull/60)
 - `Update repository` version 22.36.1
-    - Update ([#59](https://github.com/vtex-sites/accenturebb.store/pull/59))
-    - Update ([#57](https://github.com/vtex-sites/accenturebb.store/pull/57))
-    - Update ([#56](https://github.com/vtex-sites/accenturebb.store/pull/56))
-    - Update ([#55](https://github.com/vtex-sites/accenturebb.store/pull/55))
-    - Update ([#54](https://github.com/vtex-sites/accenturebb.store/pull/54))
+- Update ([#59](https://github.com/vtex-sites/accenturebb.store/pull/59))
+- Update ([#57](https://github.com/vtex-sites/accenturebb.store/pull/57))
+- Update ([#56](https://github.com/vtex-sites/accenturebb.store/pull/56))
+- Update ([#55](https://github.com/vtex-sites/accenturebb.store/pull/55))
+- Update ([#54](https://github.com/vtex-sites/accenturebb.store/pull/54))
 - `Collection page` [#53](https://github.com/vtex-sites/accenturebb.store/pull/53)
 - `PDP Specs` product specifications on PDP ([#51](https://github.com/vtex-sites/accenturebb.store/pull/51)
 - `Badge Price` on cart and search suggestion ([#50](https://github.com/vtex-sites/accenturebb.store/pull/50)
