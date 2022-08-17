@@ -21,7 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
 
 ### Added
-- `Shipping Logic` query and front end to calculate shipping price and stimated date ([#60](https://github.com/vtex-sites/accenturebb.store/pull/60)
 - `Update repository` version 22.36.1
 - Update ([#59](https://github.com/vtex-sites/accenturebb.store/pull/59))
 - Update ([#57](https://github.com/vtex-sites/accenturebb.store/pull/57))
