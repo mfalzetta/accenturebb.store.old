@@ -231,7 +231,6 @@ function ProductDetails({ product: staleProduct }: Props) {
               <p className="price__new">{isValidating ? '' : formattedPrice}</p>
             </div> */}
             <QuantitySelector min={1} max={10} onChange={setAddQuantity} />
-            <ProductShipping items={shippingItems} />
           </section>
           {/* NOTE: A loading skeleton had to be used to avoid a Lighthouse's
               non-composited animation violation due to the button transitioning its
@@ -251,6 +250,7 @@ function ProductDetails({ product: staleProduct }: Props) {
               }}
             />
           )}
+          <ProductShipping items={shippingItems} />
         </section>
 
         <section className="product-details__content">

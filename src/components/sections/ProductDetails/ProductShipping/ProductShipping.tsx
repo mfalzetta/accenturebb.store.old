@@ -1,3 +1,4 @@
+import { RadioGroup, RadioOption } from '@faststore/ui'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import InputText from 'src/components/ui/InputText'
 import { sessionStore, useSession } from 'src/sdk/session'
@@ -5,13 +6,6 @@ import { sessionStore, useSession } from 'src/sdk/session'
 import './product-shipping.scss'
 import useShippingQuery from './useShippingQuery'
 
-type ShippingQueryT = {
-  shippingEstimate: string | null
-  price: number | null
-  name: string | null
-  shippingEstimateDate: string | null
-  friendlyName: string | null
-}
 interface ItemsProps {
   seller: string
   id: string
@@ -21,21 +15,37 @@ interface ShippingItemsProps {
   items: ItemsProps
 }
 
+type SlaT = {
+  name: string
+  pickupStoreInfo: {
+    friendlyName: string
+    isPickupStore: boolean
+  }
+  shippingEstimate: string
+  price: number
+}
+
 const ProductShipping = ({ items }: ShippingItemsProps) => {
-  const inputRef = useRef<HTMLInputElement>(null)
   const { isValidating, ...session } = useSession()
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const [shippingQuery, setShippingQuery] = useState<ShippingQueryT | null>(
-    null
-  )
+  const [shippingQuery, setShippingQuery] = useState<SlaT | any>(null)
 
-  const [postalCode, setPostalCode] = useState('')
+  const [showMore, setShowMore] = useState(false)
 
-  useEffect(() => {
-    if (session.postalCode) {
-      setPostalCode(session?.postalCode)
-    }
-  }, [session.postalCode])
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  // const {
+  //   getShippingEstimate,
+  //   loading,
+  //   data,
+  //   error: queryError,
+  // } = useShippingQuery()
+
+  const {
+    data,
+    error: queryError,
+    isValidating: loading,
+  } = useShippingQuery('BRA', [items], session?.postalCode ?? '')
 
   const [estimatedDate, setEstimatedDate] = useState({
     day: '',
@@ -43,17 +53,10 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
     weekDay: '',
   })
 
-  const {
-    data,
-    error: queryError,
-    isValidating: loading,
-  } = useShippingQuery('BRA', [items], postalCode)
-
   const getDate = useCallback(() => {
     const currentDate = new Date()
 
-    const estimate =
-      data?.shipping?.logisticsInfo?.[0]?.slas?.[0]?.shippingEstimate
+    const estimate = shippingQuery.shippingEstimate
 
     if (!estimate) {
       return null
@@ -69,21 +72,32 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
     })
 
     return true
-  }, [data?.shipping?.logisticsInfo])
+  }, [shippingQuery])
 
   useEffect(() => {
     if (data?.shipping?.logisticsInfo) {
       setShippingQuery(data?.shipping?.logisticsInfo?.[0]?.slas?.[0] ?? null)
+    }
+  }, [data])
+
+  useEffect(() => {
+    if (shippingQuery) {
       getDate()
     }
-  }, [data, getDate])
+  }, [shippingQuery, getDate])
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const value = inputRef?.current?.value
 
     if (typeof value !== 'string') {
       return
     }
+
+    // getShippingEstimate({
+    //   country: 'BRA',
+    //   items: [items],
+    //   postalCode: value,
+    // })
 
     setErrorMessage('')
 
@@ -103,6 +117,8 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
     }, 1500)
   }, [queryError])
 
+  const slas = data?.shipping?.logisticsInfo?.[0]?.slas
+
   return (
     <div data-fs-product-shipping>
       <div data-fs-product-shipping-input>
@@ -117,6 +133,7 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
             onSubmit={handleSubmit}
             buttonActionText="Buscar"
             onClear={() => {}}
+            defaultValue={session.postalCode ?? ''}
           />
         </div>
       </div>
@@ -127,22 +144,69 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
         shippingQuery &&
         !errorMessage &&
         data && (
-          <div data-fs-product-shipping-container>
-            <div data-fs-product-shipping-img>
-              <img src="/shipping-truck.png" alt="shipping-truck" />
-            </div>
+          <>
+            <div data-fs-product-shipping-container>
+              <div data-fs-product-shipping-img>
+                <img src="/shipping-truck.png" alt="shipping-truck" />
+              </div>
 
-            <div data-fs-product-shipping-content>
-              <span className="product-shipping-title">
-                {shippingQuery?.name}
-              </span>
-              <span className="product-shipping-text">
-                Chega até {estimatedDate?.weekDay}, {estimatedDate?.day} de{' '}
-                {estimatedDate?.month} por R$ {shippingQuery?.price}
-              </span>
-              <a href="/#">Ver mais opções de envio</a>
+              <div data-fs-product-shipping-content>
+                <span className="product-shipping-title">
+                  {shippingQuery?.pickupStoreInfo?.isPickupStore
+                    ? shippingQuery?.pickupStoreInfo?.friendlyName
+                    : shippingQuery?.name}
+                </span>
+                <span className="product-shipping-text">
+                  Chega até {estimatedDate?.weekDay}, {estimatedDate?.day} de{' '}
+                  {estimatedDate?.month}
+                  {shippingQuery?.price / 100 > 0
+                    ? ` por R$ ${(shippingQuery?.price / 100).toFixed(2)}`
+                    : ' Gratis'}
+                </span>
+                <button onClick={() => setShowMore(!showMore)}>
+                  Ver mais opções de envio
+                </button>
+              </div>
             </div>
-          </div>
+            <div data-fs-product-shipping-options={showMore}>
+              <RadioGroup
+                selectedValue={shippingQuery?.name ?? ''}
+                name="option-shipping"
+              >
+                {showMore &&
+                  slas?.map((sla: SlaT | any, index: number) => {
+                    const name = sla?.pickupStoreInfo?.isPickupStore
+                      ? sla?.pickupStoreInfo?.friendlyName
+                      : sla?.name
+
+                    const estimated = parseInt(sla?.shippingEstimate, 10)
+
+                    const price = parseInt(sla.price, 10) / 100
+
+                    return (
+                      <RadioOption
+                        key={String(index)}
+                        label={name}
+                        value={name}
+                        disabled={false}
+                        checked={sla.name === shippingQuery?.name}
+                        onClick={() => setShippingQuery(slas[index])}
+                      >
+                        <div key={index} className="shipping-option">
+                          <span className="shipping-name">{name}</span>
+                          <span className="shipping-date">
+                            {estimated} {estimated > 1 ? 'dias' : 'dia'}
+                          </span>
+                          <span className="shipping-price">
+                            {price > 0 ? price.toFixed(2) : 'Gratis'}
+                          </span>
+                        </div>
+                      </RadioOption>
+                    )
+                  })}
+              </RadioGroup>
+            </div>
+          </>
         )
       )}
     </div>

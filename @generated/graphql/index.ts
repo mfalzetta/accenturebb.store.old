@@ -4425,11 +4425,13 @@ export type ShippingQueryQuery = {
   shipping: {
     logisticsInfo: Array<{
       slas: Array<{
+        name: string | null
         shippingEstimate: string | null
         price: number | null
-        name: string | null
-        shippingEstimateDate: string | null
-        friendlyName: string | null
+        pickupStoreInfo: {
+          friendlyName: string | null
+          isPickupStore: boolean | null
+        } | null
       } | null> | null
     } | null> | null
   } | null
