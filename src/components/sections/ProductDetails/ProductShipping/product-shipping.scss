@@ -36,7 +36,6 @@
 
   [data-fs-product-shipping-input] {
     width: 100%;
-    padding: 1rem 0;
 
     [data-fs-input-text-actionable="true"] {
       min-width: 12rem;
@@ -52,10 +51,15 @@
 
     [data-store-button] {
       background-color: var(--fs-color-theme-2);
+
+      &::before {
+        content: none;
+      }
     }
   }
 
   .product-shipping-title {
+    padding-top: 0.25rem;
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;

@@ -40,7 +40,7 @@ export interface AllUsableSpecsType {
 function ProductDetails({ product: staleProduct }: Props) {
   const { currency } = useSession()
   const [addQuantity, setAddQuantity] = useState(1)
-  const [indexes, setIndexes] = useState([0])
+  const [indexes, setIndexes] = useState<number[]>([])
 
   // Stale while revalidate the product for fetching the new price etc
   const { data, isValidating } = useProduct(staleProduct.id, {
@@ -200,11 +200,12 @@ function ProductDetails({ product: staleProduct }: Props) {
     return obj
   }, [specs])
 
-  useEffect(() => {
-    const indexs = allUsableSpecs?.map((_: null, index: number) => index)
+  // this function is to bring all specifications OPEN
+  // useEffect(() => {
+  //   const indexs = allUsableSpecs?.map((_: null, index: number) => index)
 
-    setIndexes(indexs)
-  }, [allUsableSpecs])
+  //   setIndexes(indexs)
+  // }, [allUsableSpecs])
 
   const settingSection = () => (
     <section
@@ -313,7 +314,7 @@ function ProductDetails({ product: staleProduct }: Props) {
                 {allUsableSpecs.map(
                   (spec: AllUsableSpecsType, index: number) => {
                     const isExpanded =
-                      indexes.filter((el) => el === index).length > 0
+                      indexes?.filter((el) => el === index).length > 0
 
                     return (
                       <AccordionItem
