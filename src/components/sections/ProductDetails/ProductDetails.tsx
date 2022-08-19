@@ -50,12 +50,12 @@ function ProductDetails({ product: staleProduct }: Props) {
   const [isMobile, setIsMobile] = useState(true)
 
   useEffect(() => {
-    if (window.innerWidth > 1280) {
+    if (window.innerWidth > 1250) {
       setIsMobile(false)
     }
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 1280) {
+      if (window.innerWidth > 1250) {
         setIsMobile(false)
       } else {
         setIsMobile(true)
