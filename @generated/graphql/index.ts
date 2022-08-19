@@ -4404,6 +4404,20 @@ export type ProductDetailsFragment_ProductFragment = {
       seller: { identifier: string }
     }>
   }
+  Sellers: Array<{
+    sellerDefault: boolean
+    commertialOffer: {
+      Installments: Array<{
+        Value: number
+        InterestRate: number
+        TotalValuePlusInterestRate: number
+        NumberOfInstallments: number
+        Name: string
+        PaymentSystemName: string
+      }> | null
+      discountHighlights: Array<{ name: string }> | null
+    } | null
+  }> | null
   breadcrumbList: {
     itemListElement: Array<{ item: string; name: string; position: number }>
   }
@@ -4561,6 +4575,20 @@ export type ServerProductPageQueryQuery = {
         name: string | null
       } | null> | null
     }> | null
+    Sellers: Array<{
+      sellerDefault: boolean
+      commertialOffer: {
+        Installments: Array<{
+          Value: number
+          InterestRate: number
+          TotalValuePlusInterestRate: number
+          NumberOfInstallments: number
+          Name: string
+          PaymentSystemName: string
+        }> | null
+        discountHighlights: Array<{ name: string }> | null
+      } | null
+    }> | null
     additionalProperty: Array<{
       propertyID: string
       name: string
@@ -4715,6 +4743,20 @@ export type BrowserProductQueryQuery = {
         seller: { identifier: string }
       }>
     }
+    Sellers: Array<{
+      sellerDefault: boolean
+      commertialOffer: {
+        Installments: Array<{
+          Value: number
+          InterestRate: number
+          TotalValuePlusInterestRate: number
+          NumberOfInstallments: number
+          Name: string
+          PaymentSystemName: string
+        }> | null
+        discountHighlights: Array<{ name: string }> | null
+      } | null
+    }> | null
     breadcrumbList: {
       itemListElement: Array<{ item: string; name: string; position: number }>
     }

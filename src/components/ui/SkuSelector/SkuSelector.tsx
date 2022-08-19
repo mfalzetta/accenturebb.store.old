@@ -92,7 +92,7 @@ function SkuSelector({
             >
               {variant === 'label' && <span>{option.value}</span>}
               {variant === 'image' && 'src' in option && (
-                <span>
+                <span data-sku-selector-span-image>
                   <Image
                     data-sku-selector-image
                     src={option.src}

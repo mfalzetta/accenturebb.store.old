@@ -400,22 +400,6 @@
     }
   }
 
-  [data-fs-product-card-discount] {
-    margin-bottom: 16px;
-
-    [data-fs-product-card-discount-item] {
-      width: fit-content;
-      padding: 2px var(--fs-spacing-1);
-      font-size: var(--fs-text-size-tiny);
-      font-weight: 500;
-      line-height: 16px;
-      color: #ffffff;
-      text-transform: uppercase;
-      background-color: var(--fs-color-theme-3);
-      border-radius: 10px;
-    }
-  }
-
   @media (max-width: 920px) {
     [data-fs-product-card-gallery-list="true"] [data-fs-product-card-discount] {
       position: absolute;
@@ -429,5 +413,21 @@
     padding-bottom: 8px;
     margin-top: -10px;
     margin-bottom: 0;
+  }
+}
+
+[data-fs-product-card-discount] {
+  margin-bottom: 16px;
+
+  [data-fs-product-card-discount-item] {
+    width: fit-content;
+    padding: 2px var(--fs-spacing-1);
+    font-size: var(--fs-text-size-tiny);
+    font-weight: 500;
+    line-height: 16px;
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: var(--fs-color-theme-3);
+    border-radius: 10px;
   }
 }
