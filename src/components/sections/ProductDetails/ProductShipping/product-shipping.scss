@@ -1,0 +1,130 @@
+@import "src/styles/scaffold";
+
+[data-fs-product-shipping] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+
+  [data-fs-product-shipping-img] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    max-width: 64px;
+    height: 64px;
+    margin-right: 1rem;
+    background-color: var(--fs-color-theme-2);
+    border-radius: 50%;
+
+    img {
+      // deixar a img preta
+      filter: grayscale(100%);
+    }
+  }
+
+  [data-fs-product-shipping-container] {
+    display: flex;
+    align-items: center;
+  }
+
+  [data-fs-product-shipping-content] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  [data-fs-product-shipping-input] {
+    width: 100%;
+
+    [data-fs-input-text-actionable="true"] {
+      min-width: 12rem;
+      max-width: 100%;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      box-shadow: 0 0 0 30px white inset;
+    }
+
+    [data-store-button] {
+      background-color: var(--fs-color-theme-2);
+
+      &::before {
+        content: none;
+      }
+    }
+  }
+
+  .product-shipping-title {
+    padding-top: 0.25rem;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--fs-color-secondary-text);
+  }
+
+  .product-shipping-text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--fs-color-secondary-text);
+  }
+
+  button {
+    padding: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--fs-color-main-1);
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+  }
+
+  [data-fs-product-shipping-options="true"] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 0.25rem;
+    margin: 1rem 0;
+    border: 1px solid var(--fs-color-main-1);
+    border-radius: 0.5rem;
+
+    [data-store-radio-option] {
+      display: flex;
+      width: 100%;
+
+      input {
+        margin-right: 0.25rem;
+        accent-color: var(--fs-color-theme-2);
+      }
+    }
+
+    .shipping-option {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      span {
+        width: 100%;
+        padding: 0.25rem 0;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 20px;
+        color: var(--fs-color-secondary-text);
+      }
+
+      .shipping-name {
+        min-width: 150px;
+        max-width: 150px;
+        padding-right: 0.25rem;
+      }
+    }
+  }
+}

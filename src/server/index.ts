@@ -19,15 +19,32 @@ import type { FormatErrorHandler } from '@envelop/core'
 import type { Options as APIOptions, Scalars } from '@faststore/api'
 import { mergeTypeDefs } from '@graphql-tools/merge'
 import { makeExecutableSchema, mergeSchemas } from '@graphql-tools/schema'
+// import { loadFilesSync } from '@graphql-tools/load-files'
+import axios from 'axios'
 
 import persisted from '../../@generated/graphql/persisted.json'
-import storeConfig from '../../store.config'
+import storeConfig, { api } from '../../store.config'
 
 interface ExecuteOptions {
   operationName: string
   variables: Record<string, unknown>
   query?: string | null
 }
+type ShippingVariable = {
+  country: string
+  items: Array<{
+    id: string
+    quantity: string
+    seller: string
+  }>
+  postalCode: string
+}
+
+// const typesArray = loadFilesSync('./src/server', {
+//   extensions: ['gql'],
+// })
+
+// const typeDefsFromfile = mergeTypeDefs(typesArray)
 
 const persistedQueries = new Map(Object.entries(persisted))
 
@@ -99,6 +116,109 @@ const typeDefs = `
     Sellers: [Seller!]
     specificationGroups: [SpecificationGroup!]
   }
+  type LogisticsItem {
+    id: String
+    requestIndex: Int
+    quantity: Int
+    seller: String
+    sellerChain: [String]
+    tax: Int
+    priceValidUntil: String
+    price: Int
+    listPrice: Int
+    rewardValue: Int
+    sellingPrice: Int
+    measurementUnit: String
+    unitMultiplier: Int
+    availability: String
+  }
+  
+  type MessageFields {
+    itemIndex: String
+    ean: String
+    skuName: String
+  }
+  
+  type MessageInfo {
+    code: String
+    text: String
+    status: String
+    fields: MessageFields
+  }
+  
+  type DeliveryIds {
+    courierId: String
+    warehouseId: String
+    dockId: String
+    courierName: String
+    quantity: Int
+  }
+  
+  type PickupAddress {
+    addressType: String
+    receiverName: String
+    addressId: String
+    postalCode: String
+    city: String
+    state: String
+    country: String
+    street: String
+    number: String
+    neighborhood: String
+    complement: String
+    reference: String
+    geoCoordinates: [Float]
+  }
+  
+  type pickupStoreInfo {
+    friendlyName: String
+    address: PickupAddress
+    additionalInfo: String
+    dockId: String
+    isPickupStore: Boolean
+  }
+  
+  type ShippingSLA {
+    id: String
+    name: String
+    price: Float
+    shippingEstimate: String
+    shippingEstimateDate: String
+    deliveryIds: [DeliveryIds]
+    deliveryChannel: String
+    friendlyName: String
+    pickupPointId: String
+    pickupStoreInfo: pickupStoreInfo
+    pickupDistance: Float
+  }
+  
+  type LogisticsInfo {
+    itemIndex: String
+    selectedSla: String
+    slas: [ShippingSLA]
+  }
+  
+  type ShippingData {
+    items: [LogisticsItem]
+    logisticsInfo: [LogisticsInfo]
+    messages: [MessageInfo]
+  }
+
+  input ShippingItem {
+    id: String
+    quantity: String
+    seller: String
+  }
+  
+  type Query {
+    shipping(
+      postalCode: String
+      geoCoordinates: [String]
+      country: String
+      items: [ShippingItem]
+    ): ShippingData
+  }
+
 `
 
 const resolvers = {
@@ -111,9 +231,16 @@ const resolvers = {
       return root.isVariantOf.specificationGroups
     },
   },
+  Query: {
+    shipping,
+  },
 }
 
-const mergedTypeDefs = mergeTypeDefs([getTypeDefs(), typeDefs])
+const mergedTypeDefs = mergeTypeDefs([
+  getTypeDefs(),
+  typeDefs,
+  // typeDefsFromfile,
+])
 
 const getMergedSchemas = async () =>
   mergeSchemas({
@@ -180,4 +307,22 @@ export const execute = async (
     contextValue: await contextFactory({ headers }),
     operationName,
   })
+}
+
+async function shipping(
+  _: unknown,
+  { country, items, postalCode }: ShippingVariable
+) {
+  const { data } = await axios.post(
+    `https://${api.storeId}.${api.environment}.com.br/api/checkout/pub/orderForms/simulation?RnbBehavior=0&sc=1`,
+    { country, items, postalCode }
+  )
+
+  if (!data) {
+    return new GraphQLError(
+      'Não foi possivel calcular o frete para esse produto'
+    )
+  }
+
+  return data
 }

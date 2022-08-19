@@ -115,18 +115,13 @@
       width: var(--fs-spacing-6);
       height: var(--fs-spacing-6);
       border-radius: var(--fs-border-radius-small);
+      border-radius: 50%;
       transition: transform 0.2s ease;
       transform-origin: center center;
     }
 
-    input {
-      &:hover:not(:disabled):not(:checked) + span [data-sku-selector-image] {
-        transform: scale(0.95);
-      }
-
-      &:checked + span [data-sku-selector-image] {
-        transform: scale(0.85);
-      }
+    [data-sku-selector-span-image] {
+      border-radius: 50%;
     }
   }
 }

@@ -18,10 +18,13 @@ import type { ProductDetailsFragment_ProductFragment } from '@generated/graphql'
 import type { CurrencyCode, ViewItemEvent } from '@faststore/sdk'
 import type { AnalyticsItem } from 'src/sdk/analytics/types'
 import Accordion, { AccordionItem } from 'src/components/ui/Accordion'
+import Installment from 'src/components/custom-components/Price/Installment'
+import type { InstallmentProps } from 'src/components/custom-components/Price/Installment/Installment'
 
 import Section from '../Section'
 import LinksAndDownloads from './LinksAndDownloads'
 import ProductSpecifications from './ProductSpecifications'
+import ProductShipping from './ProductShipping'
 
 interface Props {
   product: ProductDetailsFragment_ProductFragment
@@ -37,12 +40,28 @@ export interface AllUsableSpecsType {
 function ProductDetails({ product: staleProduct }: Props) {
   const { currency } = useSession()
   const [addQuantity, setAddQuantity] = useState(1)
-  const [indexes, setIndexes] = useState([0])
+  const [indexes, setIndexes] = useState<number[]>([])
 
   // Stale while revalidate the product for fetching the new price etc
   const { data, isValidating } = useProduct(staleProduct.id, {
     product: staleProduct,
   })
+
+  const [isMobile, setIsMobile] = useState(true)
+
+  useEffect(() => {
+    if (window.innerWidth > 1250) {
+      setIsMobile(false)
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1250) {
+        setIsMobile(false)
+      } else {
+        setIsMobile(true)
+      }
+    })
+  }, [isMobile])
 
   if (!data) {
     throw new Error('NotFound')
@@ -65,6 +84,7 @@ function ProductDetails({ product: staleProduct }: Props) {
       },
       breadcrumbList: breadcrumbs,
       additionalProperty,
+      Sellers: sellers,
     },
   } = data
 
@@ -85,6 +105,25 @@ function ProductDetails({ product: staleProduct }: Props) {
       isVariantOf,
       additionalProperty,
     },
+  })
+
+  const shippingItems = {
+    seller: seller.identifier,
+    quantity: addQuantity.toString(),
+    id: sku,
+  }
+
+  const sellerD = sellers?.filter((element) => element?.sellerDefault === true)
+  const installments = sellerD?.map((el) => el?.commertialOffer?.Installments)
+  const allInstallment: InstallmentProps[][] = []
+  const discountHighlights = sellerD
+    ?.map((el) => el?.commertialOffer?.discountHighlights)
+    .flat()
+
+  installments?.forEach((element) => {
+    if (element !== undefined && element !== null) {
+      allInstallment.push(element)
+    }
   })
 
   useEffect(() => {
@@ -161,129 +200,153 @@ function ProductDetails({ product: staleProduct }: Props) {
     return obj
   }, [specs])
 
-  useEffect(() => {
-    const indexs = allUsableSpecs?.map((_: null, index: number) => index)
+  // this function is to bring all specifications OPEN
+  // useEffect(() => {
+  //   const indexs = allUsableSpecs?.map((_: null, index: number) => index)
 
-    setIndexes(indexs)
-  }, [allUsableSpecs])
+  //   setIndexes(indexs)
+  // }, [allUsableSpecs])
 
-  return (
-    <Section className="product-details layout__content layout__section">
-      <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
-
-      <section className="product-details__body">
-        <header className="product-details__title">
-          <ProductTitle
-            title={<h1>{name}</h1>}
-            label={
-              <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} big />
-            }
-            refNumber={productId}
-          />
-        </header>
-
-        <ImageGallery images={productImages} />
-        <section className="product-details__selector">
-          {skuVariants && (
-            <Selectors
-              slugsMap={skuVariants.slugsMap}
-              availableVariations={skuVariants.availableVariations}
-              activeVariations={skuVariants.activeVariations}
-            />
-          )}
-        </section>
-        <section className="product-details__settings">
-          <section className="product-details__values">
-            <div className="product-details__prices">
-              {listPrice !== lowPrice && (
-                <div className="product-details__prices--badge">
-                  <Price
-                    value={listPrice}
-                    formatter={useFormattedPrice}
-                    testId="list-price"
-                    data-value={listPrice}
-                    variant="listing"
-                    classes="text__legend"
-                    SRText="Original price:"
-                  />
-                  <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />
-                </div>
-              )}
+  const settingSection = () => (
+    <section
+      data-fs-product-settings-sticky={!isMobile}
+      className="product-details__settings"
+    >
+      <section className="product-details__values">
+        <div className="product-details__prices">
+          {listPrice !== lowPrice && (
+            <div className="product-details__prices--badge">
               <Price
-                value={lowPrice}
+                value={listPrice}
                 formatter={useFormattedPrice}
-                testId="price"
-                data-value={lowPrice}
-                variant="spot"
-                classes="text__lead"
-                SRText="Sale Price:"
+                testId="list-price"
+                data-value={listPrice}
+                variant="listing"
+                classes="text__legend"
+                SRText="Original price:"
               />
+              <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />
             </div>
-            {/* <div className="prices">
+          )}
+          <Price
+            value={lowPrice}
+            formatter={useFormattedPrice}
+            testId="price"
+            data-value={lowPrice}
+            variant="spot"
+            classes="text__lead"
+            SRText="Sale Price:"
+          />
+          {allInstallment ? (
+            <Installment Installments={allInstallment} />
+          ) : (
+            <></>
+          )}
+          <ul data-fs-product-card-discount>
+            {discountHighlights?.map((el, i) => (
+              <li data-fs-product-card-discount-item key={i}>
+                {el?.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* <div className="prices">
               <p className="price__old text__legend">{formattedListPrice}</p>
               <p className="price__new">{isValidating ? '' : formattedPrice}</p>
             </div> */}
-            <QuantitySelector min={1} max={10} onChange={setAddQuantity} />
-          </section>
-          {/* NOTE: A loading skeleton had to be used to avoid a Lighthouse's
+        <QuantitySelector min={1} max={10} onChange={setAddQuantity} />
+      </section>
+      {/* NOTE: A loading skeleton had to be used to avoid a Lighthouse's
               non-composited animation violation due to the button transitioning its
               background color when changing from its initial disabled to active state.
               See full explanation on commit https://git.io/JyXV5. */}
-          {isValidating ? (
-            <AddToCartLoadingSkeleton />
-          ) : (
-            <ButtonBuy disabled={buyDisabled} {...buyProps}>
-              Adicionar ao carrinho
-            </ButtonBuy>
-          )}
-          {!availability && (
-            <OutOfStock
-              onSubmit={(email) => {
-                console.info(email)
-              }}
+      {isValidating ? (
+        <AddToCartLoadingSkeleton />
+      ) : (
+        <ButtonBuy disabled={buyDisabled} {...buyProps}>
+          Adicionar ao carrinho
+        </ButtonBuy>
+      )}
+      {!availability && (
+        <OutOfStock
+          onSubmit={(email) => {
+            console.info(email)
+          }}
+        />
+      )}
+      <ProductShipping items={shippingItems} />
+    </section>
+  )
+
+  return (
+    <Section className="product-details layout__content-full layout__section">
+      <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
+      <div className="wrapper">
+        <section className="product-details__body">
+          <header className="product-details__title">
+            <ProductTitle
+              title={<h1>{name}</h1>}
+              label={
+                <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} big />
+              }
+              refNumber={productId}
             />
-          )}
-        </section>
+          </header>
 
-        <section className="product-details__content">
-          <article className="product-details__description">
-            <h2 className="text__title-subsection">Informações do produto</h2>
-            <p className="text__body">{description}</p>
-          </article>
-          <article>
-            <Accordion expandedIndices={indexes} onChange={() => {}}>
-              {allUsableSpecs.map((spec: AllUsableSpecsType, index: number) => {
-                const isExpanded =
-                  indexes.filter((el) => el === index).length > 0
+          <ImageGallery images={productImages} />
+          <section className="product-details__selector">
+            {skuVariants && (
+              <Selectors
+                slugsMap={skuVariants.slugsMap}
+                availableVariations={skuVariants.availableVariations}
+                activeVariations={skuVariants.activeVariations}
+              />
+            )}
+          </section>
+          {isMobile && settingSection()}
+          <section className="product-details__content">
+            <article className="product-details__description">
+              <h2 className="text__title-subsection">Informações do produto</h2>
+              <p className="text__body">{description}</p>
+            </article>
+            <article>
+              <Accordion expandedIndices={indexes} onChange={() => {}}>
+                {allUsableSpecs.map(
+                  (spec: AllUsableSpecsType, index: number) => {
+                    const isExpanded =
+                      indexes?.filter((el) => el === index).length > 0
 
-                return (
-                  <AccordionItem
-                    key={index}
-                    isExpanded={isExpanded}
-                    buttonLabel={spec.name}
-                    onClick={() =>
-                      !isExpanded
-                        ? setIndexes([...indexes, index])
-                        : setIndexes(indexes.filter((el) => el !== index))
-                    }
-                    itemType="normal"
-                  >
-                    {spec.name === 'Links e Downloads' && (
-                      <LinksAndDownloads values={spec.values} />
-                    )}
-                    {spec.name === 'Características e Detalhes' && (
-                      <span> {spec.values} </span>
-                    )}
-                    {spec.name === 'Especificações' && (
-                      <ProductSpecifications specifications={spec.others} />
-                    )}
-                  </AccordionItem>
-                )
-              })}
-            </Accordion>
-          </article>
+                    return (
+                      <AccordionItem
+                        key={index}
+                        isExpanded={isExpanded}
+                        buttonLabel={spec.name}
+                        onClick={() =>
+                          !isExpanded
+                            ? setIndexes([...indexes, index])
+                            : setIndexes(indexes.filter((el) => el !== index))
+                        }
+                        itemType="normal"
+                      >
+                        {spec.name === 'Links e Downloads' && (
+                          <LinksAndDownloads values={spec.values} />
+                        )}
+                        {spec.name === 'Características e Detalhes' && (
+                          <span> {spec.values} </span>
+                        )}
+                        {spec.name === 'Especificações' && (
+                          <ProductSpecifications specifications={spec.others} />
+                        )}
+                      </AccordionItem>
+                    )
+                  }
+                )}
+              </Accordion>
+            </article>
+          </section>
         </section>
-      </section>
+        {!isMobile && settingSection()}
+      </div>
     </Section>
   )
 }
@@ -393,7 +456,23 @@ export const fragment = graphql`
         }
       }
     }
+    Sellers {
+      sellerDefault
+      commertialOffer {
+        Installments {
+          Value
+          InterestRate
+          TotalValuePlusInterestRate
+          NumberOfInstallments
+          Name
+          PaymentSystemName
+        }
 
+        discountHighlights {
+          name
+        }
+      }
+    }
     breadcrumbList {
       itemListElement {
         item
