@@ -99,6 +99,10 @@
   column-gap: var(--fs-sku-selector-column-gap);
   font-size: var(--fs-sku-selector-text-size);
 
+  + .fs-sku-selector {
+    margin-top: var(--fs-spacing-4);
+  }
+
   [data-fs-sku-selector-title] {
     width: 100%;
     margin-bottom: var(--fs-sku-selector-title-margin-bottom);
