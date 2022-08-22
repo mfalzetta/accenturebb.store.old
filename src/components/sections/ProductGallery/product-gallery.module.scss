@@ -344,7 +344,7 @@
   }
 
   [data-gallery-list-layout="true"] {
-    li {
+    [data-fs-product-grid-item] {
       grid-column: 1 / span 5;
       padding-top: 36px;
       padding-bottom: 12px;
