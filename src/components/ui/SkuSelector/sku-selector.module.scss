@@ -126,6 +126,11 @@
         var(--fs-sku-selector-option-transition-function),
         background-color var(--fs-sku-selector-option-transition-timing)
         var(--fs-sku-selector-option-transition-function);
+
+      &[data-sku-selector-span-image],
+      [data-fs-image] {
+        border-radius: 50%;
+      }
     }
 
     [data-fs-sku-selector-option] {
