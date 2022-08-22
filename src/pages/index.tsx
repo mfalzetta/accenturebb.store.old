@@ -1,19 +1,26 @@
 import 'src/styles/pages/homepage.scss'
 
-import { useSession } from 'src/sdk/session'
 import { graphql } from 'gatsby'
 import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
 import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
-// import Newsletter from 'src/components/sections/Newsletter'
-import RenderCMS from 'src/components/RenderCMS'
+import RenderPageSections from 'src/components/cms/RenderPageSections'
+import { getCMSPageDataByContentType } from 'src/cms/client'
+import type { ContentData } from '@vtex/client-cms'
+import { useSession } from 'src/sdk/session'
 
-export type Props = PageProps<HomePageQueryQuery>
+export type Props = PageProps<
+  HomePageQueryQuery,
+  unknown,
+  unknown,
+  { cmsHome: ContentData }
+>
 
 function Page(props: Props) {
   const {
-    data: { site, cmsHome },
+    data: { site },
+    serverData: { cmsHome },
   } = props
 
   const { locale } = useSession()
@@ -53,21 +60,13 @@ function Page(props: Props) {
       {/*
         WARNING: Do not import or render components from any
         other folder than '../components/sections' in here.
-
         This is necessary to keep the integration with the CMS
         easy and consistent, enabling the change and reorder
         of elements on this page.
-
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-      <RenderCMS sections={cmsHome?.sections} />
-      {/* <Newsletter
-        title="Receba notícias e ofertas especiais!"
-        onSubmit={() => {
-          return null
-        }}
-      /> */}
+      <RenderPageSections sections={cmsHome?.sections} />
     </>
   )
 }
@@ -82,14 +81,23 @@ export const querySSG = graphql`
         siteUrl
       }
     }
-    cmsHome {
-      sections {
-        data
-        name
-      }
-    }
   }
 `
+
+export async function getServerData() {
+  const ONE_YEAR_CACHE = `s-maxage=31536000, stale-while-revalidate`
+
+  const cmsHome = await getCMSPageDataByContentType('home')
+
+  return {
+    status: 200,
+    props: { cmsHome },
+    headers: {
+      'cache-control': ONE_YEAR_CACHE,
+      'content-type': 'text/html',
+    },
+  }
+}
 
 Page.displayName = 'Page'
 export default mark(Page)
