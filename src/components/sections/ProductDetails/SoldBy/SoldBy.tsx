@@ -40,7 +40,7 @@ const SoldBy = ({ sellers, isMobile }: SoldByProps) => {
             <span className="soldby-highlight">
               {selectedSeller.sellerName}
             </span>{' '}
-            e Entregue por{' '}
+            e entregue por{' '}
             <span className="soldby-highlight">
               {selectedSeller.sellerName}
             </span>
