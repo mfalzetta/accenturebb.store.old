@@ -25,6 +25,7 @@ import Section from '../Section'
 import LinksAndDownloads from './LinksAndDownloads'
 import ProductSpecifications from './ProductSpecifications'
 import ProductShipping from './ProductShipping'
+import SoldBy from './SoldBy'
 
 interface Props {
   product: ProductDetailsFragment_ProductFragment
@@ -212,6 +213,7 @@ function ProductDetails({ product: staleProduct }: Props) {
       data-fs-product-settings-sticky={!isMobile}
       className="product-details__settings"
     >
+      <SoldBy sellers={sellers} isMobile={isMobile} />
       <section className="product-details__values">
         <div className="product-details__prices">
           {listPrice !== lowPrice && (
@@ -458,6 +460,7 @@ export const fragment = graphql`
     }
     Sellers {
       sellerDefault
+      sellerName
       commertialOffer {
         Installments {
           Value

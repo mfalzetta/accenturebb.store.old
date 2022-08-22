@@ -123,6 +123,7 @@
 
   .product-details__prices--badge {
     display: flex;
+    align-items: center;
 
     [data-store-badge] {
       position: unset;
