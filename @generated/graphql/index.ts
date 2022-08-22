@@ -4406,6 +4406,7 @@ export type ProductDetailsFragment_ProductFragment = {
   }
   Sellers: Array<{
     sellerDefault: boolean
+    sellerName: string | null
     commertialOffer: {
       Installments: Array<{
         Value: number
@@ -4577,6 +4578,7 @@ export type ServerProductPageQueryQuery = {
     }> | null
     Sellers: Array<{
       sellerDefault: boolean
+      sellerName: string | null
       commertialOffer: {
         Installments: Array<{
           Value: number
@@ -4745,6 +4747,7 @@ export type BrowserProductQueryQuery = {
     }
     Sellers: Array<{
       sellerDefault: boolean
+      sellerName: string | null
       commertialOffer: {
         Installments: Array<{
           Value: number
