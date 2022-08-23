@@ -6,21 +6,13 @@ import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
 import RenderPageSections from 'src/components/cms/RenderPageSections'
-import { getCMSPageDataByContentType } from 'src/cms/client'
-import type { ContentData } from '@vtex/client-cms'
 import { useSession } from 'src/sdk/session'
 
-export type Props = PageProps<
-  HomePageQueryQuery,
-  unknown,
-  unknown,
-  { cmsHome: ContentData }
->
+export type Props = PageProps<HomePageQueryQuery>
 
 function Page(props: Props) {
   const {
-    data: { site },
-    serverData: { cmsHome },
+    data: { site, cmsHome },
   } = props
 
   const { locale } = useSession()
@@ -81,23 +73,14 @@ export const querySSG = graphql`
         siteUrl
       }
     }
+    cmsHome {
+      sections {
+        data
+        name
+      }
+    }
   }
 `
-
-export async function getServerData() {
-  const ONE_DAY_CACHE = `s-maxage=86400, stale-while-revalidate`
-
-  const cmsHome = await getCMSPageDataByContentType('home')
-
-  return {
-    status: 200,
-    props: { cmsHome },
-    headers: {
-      'cache-control': ONE_DAY_CACHE,
-      'content-type': 'text/html',
-    },
-  }
-}
 
 Page.displayName = 'Page'
 export default mark(Page)
