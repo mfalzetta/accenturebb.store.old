@@ -28,7 +28,7 @@ function OrderSummary({
       </li>
       {discount > 0 && (
         <li data-order-summary-discount>
-          <span>Discount</span>
+          <span>Desconto</span>
           <span>-{formattedDiscount}</span>
         </li>
       )}

@@ -1,5 +1,5 @@
 import { Button } from '@faststore/ui'
-import { Link } from '@reach/router'
+import Link from 'src/components/ui/Link'
 import Slider from 'src/components/custom-components/home/Slider'
 import './BlogSection.scss'
 
@@ -17,7 +17,7 @@ export interface BlogSectionProps {
 
 const BlogSection = ({ allItems }: BlogSectionAllItems) => {
   return (
-    <Slider height={425} minWidth={424} itemsPerPage={3}>
+    <Slider height={462} minWidth={424} itemsPerPage={3}>
       {allItems.map((card: BlogSectionProps, index: number) => (
         <div className="blogSection__container" key={index}>
           <img
@@ -34,7 +34,7 @@ const BlogSection = ({ allItems }: BlogSectionAllItems) => {
             <p className="blogSection__secundaryText">{card.secondaryText}</p>
           )}
           {card.btnText && card.btnHref && (
-            <Link to={card.btnHref}>
+            <Link href={card.btnHref}>
               <Button className="blogSection__button">{card.btnText}</Button>
             </Link>
           )}
