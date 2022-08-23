@@ -56,7 +56,6 @@ function Navbar() {
                 onClick={() => showMenu(!isOpen)}
               />
               <Link
-                as="a"
                 href="/"
                 aria-label="Go to Faststore home"
                 title="Go to Faststore home"

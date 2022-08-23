@@ -85,7 +85,7 @@ export const querySSG = graphql`
 `
 
 export async function getServerData() {
-  const ONE_DAY_CACHE = 's-maxage=86400, stale-while-revalidate'
+  const ONE_DAY_CACHE = `s-maxage=86400, stale-while-revalidate`
 
   const cmsHome = await getCMSPageDataByContentType('home')
 
