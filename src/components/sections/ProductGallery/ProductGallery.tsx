@@ -125,7 +125,7 @@ function ProductGallery({ title, searchTerm }: Props) {
             aria-label={`gallery${isGallery ? ' active' : ''}`}
             onClick={() => setIsGallery(true)}
           >
-            Gallery
+            Galeria
           </Button>
           <Button
             variant="secondary"

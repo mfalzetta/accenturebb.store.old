@@ -5,8 +5,6 @@ import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
 import { mark } from 'src/sdk/tests/mark'
 import type { PageProps } from 'gatsby'
 import type { HomePageQueryQuery } from '@generated/graphql'
-import RenderPageSections from 'src/components/cms/RenderPageSections'
-import { getCMSPageDataByContentType } from 'src/cms/client'
 import type { ContentData } from '@vtex/client-cms'
 import { useSession } from 'src/sdk/session'
 
@@ -20,7 +18,6 @@ export type Props = PageProps<
 function Page(props: Props) {
   const {
     data: { site },
-    serverData: { cmsHome },
   } = props
 
   const { locale } = useSession()
@@ -66,7 +63,7 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-      <RenderPageSections sections={cmsHome?.sections} />
+      <span>Teste</span>
     </>
   )
 }
@@ -83,21 +80,6 @@ export const querySSG = graphql`
     }
   }
 `
-
-export async function getServerData() {
-  const ONE_DAY_CACHE = `s-maxage=86400, stale-while-revalidate`
-
-  const cmsHome = await getCMSPageDataByContentType('home')
-
-  return {
-    status: 200,
-    props: { cmsHome },
-    headers: {
-      'cache-control': ONE_DAY_CACHE,
-      'content-type': 'text/html',
-    },
-  }
-}
 
 Page.displayName = 'Page'
 export default mark(Page)
