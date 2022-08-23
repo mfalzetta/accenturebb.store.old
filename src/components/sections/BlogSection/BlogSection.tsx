@@ -33,6 +33,7 @@ const BlogSection = ({ allItems }: BlogSectionAllItems) => {
           {card.secondaryText && (
             <p className="blogSection__secundaryText">{card.secondaryText}</p>
           )}
+          <span>Test</span>
           {card.btnText && card.btnHref && (
             <Link href={card.btnHref} target="_blank">
               <Button className="blogSection__button">{card.btnText}</Button>
