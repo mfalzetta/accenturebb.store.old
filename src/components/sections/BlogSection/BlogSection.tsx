@@ -18,7 +18,6 @@ export interface BlogSectionProps {
 const BlogSection = ({ allItems }: BlogSectionAllItems) => {
   return (
     <Slider height={460} minWidth={424} itemsPerPage={3}>
-      <span>Test</span>
       {allItems.map((card: BlogSectionProps, index: number) => (
         <div className="blogSection__container" key={index}>
           <img
