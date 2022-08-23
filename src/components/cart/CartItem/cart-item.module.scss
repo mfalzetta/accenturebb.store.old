@@ -101,4 +101,8 @@
       }
     }
   }
+
+  [data-testid="remove-from-cart-button"] {
+    margin-right: var(--fs-spacing-4);
+  }
 }

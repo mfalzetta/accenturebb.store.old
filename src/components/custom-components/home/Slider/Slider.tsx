@@ -103,7 +103,7 @@ const Slider = ({
           key={index}
           className={slideIndex === index + 1 ? 'slide active-anim' : 'slide'}
           style={{
-            width: `${!wfull ? 'calc(100% - 2rem)' : ''}`,
+            width: `${!wfull ? 'calc(100% - 4rem)' : ''}`,
             justifyContent: `${
               itemsPage.length === children.length ? 'center' : ''
             }`,
