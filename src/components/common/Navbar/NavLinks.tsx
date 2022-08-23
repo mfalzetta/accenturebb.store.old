@@ -1,6 +1,6 @@
 import { List as UIList } from '@faststore/ui'
 import type { AnchorHTMLAttributes } from 'react'
-import RenderCMS from 'src/components/RenderCMS'
+import RenderPageSections from 'src/components/cms/RenderPageSections'
 import { mark } from 'src/sdk/tests/mark'
 import { graphql, useStaticQuery } from 'gatsby'
 import RegionalizationBar from 'src/components/regionalization/RegionalizationBar'
@@ -30,7 +30,7 @@ function NavLinks({ classes = '' }: NavLinksProps) {
     <nav className={`${styles.fsNavlinks} ${classes}`}>
       <RegionalizationBar classes="region" />
       <UIList data-fs-navlinks-list>
-        <RenderCMS sections={cmsHeaderLink?.sections} />
+        <RenderPageSections sections={cmsHeaderLink?.sections} />
       </UIList>
     </nav>
   )

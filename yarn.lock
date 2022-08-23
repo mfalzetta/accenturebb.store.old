@@ -5051,10 +5051,18 @@
   dependencies:
     resolve "^1.10.0"
 
+"@vtex/client-cms@^0.2.10":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@vtex/client-cms/-/client-cms-0.2.11.tgz#9c115022aecd7b4f7713ae22b0d18ef573899cb7"
+  integrity sha512-aE3+p5/x1lnvrt+/rJJwKdIsajlvKqY877ciBMB1Ha9j6hiduU9FG7ZfabSdwaTpj5mkpQ1/ZkvNL8a6E1J8tA==
+  dependencies:
+    fetch-retry "^4.1.1"
+    isomorphic-unfetch "^3.1.0"
+
 "@vtex/gatsby-source-cms@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@vtex/gatsby-source-cms/-/gatsby-source-cms-0.2.7.tgz#a1db15ff01444206df7ac904ccbdcbd739adbc33"
-  integrity sha512-0i7coSYpjk4mnlsObbqlg//St2y5m1MLtZF8ACUb44AUsXzGlnVg51Ee0mRou699ndAsvHj9AwJce/iF4buApQ==
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@vtex/gatsby-source-cms/-/gatsby-source-cms-0.2.11.tgz#dd0fb325df05063a7e0471312b8ac00273456703"
+  integrity sha512-+kYL7bfWa8kP5K30YyfnDb3HE/VVggVoCUmHrDAvBmG89nI5E/uLaEf98bkJrKMQ2wJHlJShlyfbuPhXNd8MVw==
   dependencies:
     camelcase "^6.2.0"
     fetch-retry "^4.1.1"

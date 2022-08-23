@@ -30,17 +30,17 @@
   --fs-navlinks-list-border-left-width-notebook: var(--fs-border-width);
   --fs-navlinks-list-border-left-color-notebook: var(--fs-border-color-light);
 
-  padding: var(--fs-spacing-0) var(--fs-grid-padding);
-  margin: 0 calc(-1 * var(--fs-grid-padding));
-
   // --------------------------------------------------------
   // Structural Styles
   // --------------------------------------------------------
 
+  z-index: var(--fs-z-index-below);
+  display: flex;
+  padding: var(--fs-spacing-0) var(--fs-grid-padding);
+  margin: 0 calc(-1 * var(--fs-grid-padding));
   background-color: var(--fs-navlinks-background-color);
 
   @include media(">=notebook") {
-    display: flex;
     align-items: center;
   }
 

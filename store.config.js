@@ -8,6 +8,7 @@ module.exports = {
   // Platform specific configs for API
   api: {
     storeId: 'accenturebb',
+    workspace: 'master',
     environment: 'vtexcommercestable',
     hideUnavailableItems: true,
   },

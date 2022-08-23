@@ -15,19 +15,21 @@ import type {
   ProductPageQueryQueryVariables,
 } from '@generated/graphql'
 import 'src/styles/pages/pdp.scss'
-import RenderCMS from 'src/components/RenderCMS'
+import RenderPageSections from 'src/components/cms/RenderPageSections'
+import { getCMSPageDataByContentType } from 'src/cms/client'
+import type { ContentData } from '@vtex/client-cms'
 
 export type Props = PageProps<
   ProductPageQueryQuery,
   ProductPageQueryQueryVariables,
   unknown,
-  ServerProductPageQueryQuery | null
+  (ServerProductPageQueryQuery & { cmsPdp: ContentData }) | null
 > & { slug: string }
 
 function Page(props: Props) {
   const { locale, currency } = useSession()
   const {
-    data: { site, cmsPdp },
+    data: { site },
     serverData,
   } = props
 
@@ -39,6 +41,7 @@ function Page(props: Props) {
   const {
     product,
     product: { seo },
+    cmsPdp,
   } = serverData
 
   const title = seo.title ?? site?.siteMetadata?.title ?? ''
@@ -100,7 +103,7 @@ function Page(props: Props) {
         (not the HTML tag) before rendering it here.
       */}
       <ProductDetails product={product} />
-      <RenderCMS sections={cmsPdp?.sections} />
+      <RenderPageSections sections={cmsPdp?.sections} />
     </>
   )
 }
@@ -113,12 +116,6 @@ export const querySSG = graphql`
         description
         titleTemplate
         siteUrl
-      }
-    }
-    cmsPdp {
-      sections {
-        data
-        name
       }
     }
   }
@@ -188,6 +185,7 @@ export const getServerData = async ({
   })
 
   const notFound = errors.find(isNotFoundError)
+  const cmsPdp = await getCMSPageDataByContentType('pdp')
 
   if (notFound) {
     const params = new URLSearchParams({
@@ -208,9 +206,11 @@ export const getServerData = async ({
     throw errors[0]
   }
 
+  const dataFinal = { ...data, cmsPdp }
+
   return {
     status: 200,
-    props: data,
+    props: dataFinal,
     headers: {
       'cache-control': ONE_YEAR_CACHE,
     },
