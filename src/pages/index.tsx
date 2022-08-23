@@ -67,7 +67,6 @@ function Page(props: Props) {
         (not the HTML tag) before rendering it here.
       */}
       <RenderPageSections sections={cmsHome?.sections} />
-      <p>Teste</p>
     </>
   )
 }
@@ -86,7 +85,7 @@ export const querySSG = graphql`
 `
 
 export async function getServerData() {
-  const ONE_WEEK_CACHE = `s-maxage=604800, stale-while-revalidate`
+  const ONE_DAY_CACHE = `s-maxage=86400, stale-while-revalidate`
 
   const cmsHome = await getCMSPageDataByContentType('home')
 
@@ -94,7 +93,7 @@ export async function getServerData() {
     status: 200,
     props: { cmsHome },
     headers: {
-      'cache-control': ONE_WEEK_CACHE,
+      'cache-control': ONE_DAY_CACHE,
       'content-type': 'text/html',
     },
   }
