@@ -67,6 +67,7 @@ function Page(props: Props) {
         (not the HTML tag) before rendering it here.
       */}
       <RenderPageSections sections={cmsHome?.sections} />
+      <p>Teste</p>
     </>
   )
 }
