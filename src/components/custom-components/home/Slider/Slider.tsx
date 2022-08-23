@@ -98,6 +98,22 @@ const Slider = ({
       className={`${!wfull ? ' layout__content' : ''} container-slider`}
       style={{ height: `${wfull ? height : height + 24}px` }}
     >
+      {Array.from({ length: itemsPage.length }).map((_: any, index: number) => (
+        <div
+          key={index}
+          className={slideIndex === index + 1 ? 'slide active-anim' : 'slide'}
+          style={{
+            width: `${!wfull ? 'calc(100% - 4rem)' : ''}`,
+            justifyContent: `${
+              itemsPage.length === children.length ? 'center' : ''
+            }`,
+          }}
+        >
+          {itemsPage[index].map((ele: any) => {
+            return ele
+          })}
+        </div>
+      ))}
       {arrows && itemsPage.length > 1 && (
         <>
           <BtnSlider moveSlide={nextSlide} direction="next" />
