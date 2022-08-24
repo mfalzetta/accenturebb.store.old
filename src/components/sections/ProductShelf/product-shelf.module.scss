@@ -25,6 +25,10 @@
   }
 }
 
+.product__shelf-skeleton {
+  margin-top: 0;
+}
+
 [data-fs-product-shelf-items] {
   display: flex;
   align-items: stretch;
