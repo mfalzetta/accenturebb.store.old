@@ -251,6 +251,7 @@ export type CmsHome = Node & {
   name: Scalars['String']
   parent: Maybe<Node>
   sections: Array<CmsBlock>
+  versionStatus: Maybe<Scalars['String']>
 }
 
 export type CmsHomeConnection = {
@@ -385,6 +386,7 @@ export type CmsHomeFieldsEnum =
   | 'sections___data'
   | 'sections___id'
   | 'sections___name'
+  | 'versionStatus'
 
 export type CmsHomeFilterInput = {
   children: InputMaybe<NodeFilterListInput>
@@ -393,6 +395,7 @@ export type CmsHomeFilterInput = {
   name: InputMaybe<StringQueryOperatorInput>
   parent: InputMaybe<NodeFilterInput>
   sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type CmsHomeGroupConnection = {
@@ -2431,6 +2434,7 @@ export type QueryCmsHomeArgs = {
   name: InputMaybe<StringQueryOperatorInput>
   parent: InputMaybe<NodeFilterInput>
   sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type QueryCmsInstitutionalPageArgs = {
