@@ -55,7 +55,7 @@ const MenuMobile = ({ isOpen, items }: MenuMobileProps) => {
               ) => (
                 <li key={index}>
                   <a href={`${item.item}`}>{item.name}</a>
-                  {subCategory[index] ? (
+                  {subCategory[0] ? (
                     <button onClick={() => nextLevel(index)}>
                       <ForwardArrowIcon color="#ffffff" />
                     </button>

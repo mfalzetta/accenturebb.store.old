@@ -17,7 +17,7 @@ export interface BlogSectionProps {
 
 const BlogSection = ({ allItems }: BlogSectionAllItems) => {
   return (
-    <Slider height={460} minWidth={424} itemsPerPage={3}>
+    <Slider minWidth={424} itemsPerPage={3}>
       {allItems.map((card: BlogSectionProps, index: number) => (
         <div className="blogSection__container" key={index}>
           <img
@@ -34,7 +34,7 @@ const BlogSection = ({ allItems }: BlogSectionAllItems) => {
             <p className="blogSection__secundaryText">{card.secondaryText}</p>
           )}
           {card.btnText && card.btnHref && (
-            <Link href={card.btnHref} target="_blank">
+            <Link as="a" href={card.btnHref} target="_blank">
               <Button className="blogSection__button">{card.btnText}</Button>
             </Link>
           )}

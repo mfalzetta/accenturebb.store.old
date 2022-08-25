@@ -16,7 +16,7 @@ export interface BrandSectionAllItems {
 const BrandSection = ({ allItems }: BrandSectionAllItems) => {
   return (
     <Section>
-      <Slider itemsPerPage={6} height={200} minWidth={200}>
+      <Slider itemsPerPage={6} minWidth={200}>
         {allItems.map((card: BrandSectionProps, index: number) => (
           <InfoCard
             key={index}

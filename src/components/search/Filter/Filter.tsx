@@ -20,7 +20,10 @@ interface Props {
 }
 
 function Filter({ facets: allFacets, testId = 'store-filter' }: Props) {
-  const filter = useFilter(allFacets)
+  const filter = useFilter(
+    allFacets.filter((el) => el.key !== 'productClusterIds')
+  )
+
   const { resetInfiniteScroll, state, setState } = useSearch()
   const { filter: displayFilter } = useUI()
   const { facets, expanded, dispatch } = filter
