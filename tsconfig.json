@@ -26,5 +26,5 @@
     "@generated/**/*.ts",
     "src/components/search/History/SearchHistory.stories.mdx"
   ],
-  "exclude": ["node_modules", "public"]
+  "exclude": ["node_modules", "public", "email"]
 }
