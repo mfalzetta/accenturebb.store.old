@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed 
 - `Fix layout` ([#71](https://github.com/vtex-sites/accenturebb.store/pull/71)
-    - search filter remove product cluster
+    - search filter remove product cluster id
     - blog section
     - menu mobile
 - `Fix layout` home ([#70](https://github.com/vtex-sites/accenturebb.store/pull/70)
