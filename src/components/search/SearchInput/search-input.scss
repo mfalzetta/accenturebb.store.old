@@ -22,13 +22,6 @@
     }
 
     @include input-focus-ring;
-
-    [data-store-search-input-dropdown-open="true"] & {
-      @include media(">=notebook") {
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-    }
   }
 
   [data-store-icon] { display: block; }
