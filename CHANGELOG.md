@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
 
 ### Fixed 
+- `Email logo` ([#73](https://github.com/vtex-sites/accenturebb.store/pull/73)
 - `Fix layout` ([#71](https://github.com/vtex-sites/accenturebb.store/pull/71)
     - search filter remove product cluster id
     - blog section
