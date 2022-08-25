@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
 
 ### Fixed 
+- `Fix layout` ([#71](https://github.com/vtex-sites/accenturebb.store/pull/71)
+    - search filter remove product cluster
+    - blog section
 - `Fix layout` home ([#70](https://github.com/vtex-sites/accenturebb.store/pull/70)
 - `Fix layout` blog section ([#69](https://github.com/vtex-sites/accenturebb.store/pull/69)
 - `Fix layout` cart component ([#67](https://github.com/vtex-sites/accenturebb.store/pull/67)
