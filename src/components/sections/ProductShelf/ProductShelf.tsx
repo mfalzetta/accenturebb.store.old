@@ -49,6 +49,7 @@ function ProductShelf({
       className={`layout__section ${withDivisor ? 'section__divisor' : ''} ${
         noMargins ? 'section__no-margins' : ''
       } ${otherBackground ? 'section__other-background' : ''}`}
+      style={{ marginTop: 0 }}
     >
       <div
         data-fs-product-shelf

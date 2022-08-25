@@ -13,6 +13,8 @@
 
   --fs-product-shelf-first-item-margin-left: calc(-1 * var(--fs-spacing-1));
 
+  padding-top: var(--fs-spacing-3);
+
   // --------------------------------------------------------
   // Structural Styles
   // --------------------------------------------------------
@@ -23,6 +25,10 @@
   &[data-fs-product-shelf] {
     min-height: var(--fs-product-shelf-min-height);
   }
+}
+
+.product__shelf-skeleton {
+  margin-top: 0;
 }
 
 [data-fs-product-shelf-items] {
