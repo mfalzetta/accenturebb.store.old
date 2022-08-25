@@ -9,7 +9,6 @@ export interface SliderProps {
   children: any
   itemsPerPage?: number
   arrows?: boolean
-  height: number
   wfull?: boolean
   minWidth?: number
 }
@@ -33,7 +32,6 @@ const Slider = ({
   children,
   itemsPerPage,
   arrows,
-  height,
   wfull,
   minWidth,
 }: SliderProps) => {
@@ -94,16 +92,12 @@ const Slider = ({
   }
 
   return (
-    <div
-      className={`${!wfull ? ' layout__content' : ''} container-slider`}
-      style={{ height: `${wfull ? height : height + 24}px` }}
-    >
+    <div className={`${!wfull ? ' layout__content' : ''} container-slider`}>
       {Array.from({ length: itemsPage.length }).map((_: any, index: number) => (
         <div
           key={index}
           className={slideIndex === index + 1 ? 'slide active-anim' : 'slide'}
           style={{
-            width: `${!wfull ? 'calc(100% - 4rem)' : ''}`,
             justifyContent: `${
               itemsPage.length === children.length ? 'center' : ''
             }`,

@@ -24,12 +24,13 @@ function Filter({ facets: allFacets, testId = 'store-filter' }: Props) {
   const { resetInfiniteScroll, state, setState } = useSearch()
   const { filter: displayFilter } = useUI()
   const { facets, expanded, dispatch } = filter
+  const newFacets = facets.filter((el) => el.key !== 'productClusterIds')
 
   return (
     <>
       <div className="hidden-mobile">
         <Facets
-          facets={facets}
+          facets={newFacets}
           testId={`desktop-${testId}`}
           indicesExpanded={expanded}
           onFacetChange={(facet, type) => {
