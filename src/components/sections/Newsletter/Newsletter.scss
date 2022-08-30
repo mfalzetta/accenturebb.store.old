@@ -6,7 +6,8 @@
   padding: 0;
 }
 
-[data-fs-newsletter-form] {
+[data-fs-newsletter-form],
+[data-fs-newsletter-message] {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,4 +79,9 @@
       background-color: #292929;
     }
   }
+}
+
+[data-fs-newsletter-message] {
+  margin-top: -15px;
+  font-size: var(--fs-text-size-1);
 }

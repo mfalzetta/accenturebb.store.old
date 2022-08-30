@@ -5,6 +5,7 @@ import type { GatsbyConfig } from 'gatsby'
 
 import config from './store.config'
 
+dotenv.config({ path: '.env' })
 dotenv.config({ path: 'vtex.env' })
 
 const gatsbyConfig: GatsbyConfig = {

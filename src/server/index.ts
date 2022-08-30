@@ -71,6 +71,7 @@ export interface Seller {
   sellerDefault: boolean
   commertialOffer: Scalars['ObjectOrString']
 }
+
 const typeDefs = `
   type Installment {
     Value: Float!
@@ -197,6 +198,10 @@ const typeDefs = `
     selectedSla: String
     slas: [ShippingSLA]
   }
+
+  type NewsLetterData {
+    id: String
+  }
   
   type ShippingData {
     items: [LogisticsItem]
@@ -217,6 +222,12 @@ const typeDefs = `
       country: String
       items: [ShippingItem]
     ): ShippingData
+
+    newsLetter(email:String!):NewsLetterData
+  }
+
+  type Mutation {
+    newsLetterUpdate(email:String!, id:String): NewsLetterData
   }
 
 `
@@ -233,6 +244,10 @@ const resolvers = {
   },
   Query: {
     shipping,
+    newsLetter,
+  },
+  Mutation: {
+    newsLetterUpdate,
   },
 }
 
@@ -325,4 +340,57 @@ async function shipping(
   }
 
   return data
+}
+
+type NewsLetterVariable = {
+  email: string
+  id: string
+}
+
+async function newsLetter(_: unknown, { email }: NewsLetterVariable) {
+  const { data } = await axios.get(
+    `https://${api.storeId}.${api.environment}.com.br/api/dataentities/CL/search?email=${email}&_fields=id`,
+    {
+      headers: {
+        'content-type': 'application/json',
+        'X-VTEX-API-APPTOKEN': process.env.API_TOKEN ?? '',
+        'X-VTEX-API-APPKEY': process.env.API_KEY ?? '',
+      },
+    }
+  )
+
+  if (!data) {
+    return new GraphQLError('Error get newsletter')
+  }
+
+  return data[0]
+}
+
+async function newsLetterUpdate(_: unknown, { email, id }: NewsLetterVariable) {
+  const data = id
+    ? {
+        isNewsletterOptIn: true,
+      }
+    : {
+        isNewsletterOptIn: true,
+        email,
+      }
+
+  try {
+    await axios.patch(
+      `https://${api.storeId}.${api.environment}.com.br/api/dataentities/CL/documents/${id}`,
+      data,
+      {
+        headers: {
+          'content-type': 'application/json',
+          'X-VTEX-API-APPTOKEN': process.env.API_TOKEN ?? '',
+          'X-VTEX-API-APPKEY': process.env.API_KEY ?? '',
+        },
+      }
+    )
+  } catch (error) {
+    return new GraphQLError(`Error newsletter: ${error}`)
+  }
+
+  return { id }
 }
