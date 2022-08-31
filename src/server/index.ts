@@ -1,5 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable  @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line import/no-nodejs-modules
+import path from 'path'
+
 import {
   envelop,
   useExtendContext,
@@ -44,7 +47,7 @@ type ShippingVariable = {
 //   extensions: ['gql'],
 // })
 
-const typesArray = loadFilesSync('./src/server/graphql', {
+const typesArray = loadFilesSync(path.join(__dirname, './graphql'), {
   extensions: ['gql'],
 })
 
