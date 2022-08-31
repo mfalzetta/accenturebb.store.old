@@ -43,13 +43,24 @@ type ShippingVariable = {
   postalCode: string
 }
 
-// const typesArray = loadFilesSync('./src/server', {
-//   extensions: ['gql'],
-// })
-
-const typesArray = loadFilesSync(path.join(__dirname, './graphql'), {
+const typesArray = loadFilesSync('./src/server', {
   extensions: ['gql'],
 })
+
+// eslint-disable-next-line no-console
+console.log('test 1: ', typesArray)
+const typesArray2 = loadFilesSync('./src/server/graphql', {
+  extensions: ['gql'],
+})
+
+// eslint-disable-next-line no-console
+console.log('test 2: ', typesArray2)
+const typesArray3 = loadFilesSync(path.join(__dirname, '/graphql'), {
+  extensions: ['gql'],
+})
+
+// eslint-disable-next-line no-console
+console.log('test 3: ', typesArray3)
 
 const typeDefsFromfile = mergeTypeDefs(typesArray)
 
