@@ -49,6 +49,10 @@
         left: 0;
       }
     }
+
+    @include media("<notebook") {
+      grid-column: 1 / span 12;
+    }
   }
 
   [data-gallery-list-layout="true"] {
