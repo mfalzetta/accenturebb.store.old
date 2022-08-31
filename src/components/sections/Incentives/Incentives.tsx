@@ -32,7 +32,7 @@ function Incentives({
       data-fs-incentives-colored={colored}
       data-fs-incentives-variant={variant}
     >
-      <Slider height={150} minWidth={150} itemsPerPage={4}>
+      <Slider minWidth={150} itemsPerPage={4}>
         {incentives.map((incentive, index) => (
           <>
             <UIIncentive key={index}>

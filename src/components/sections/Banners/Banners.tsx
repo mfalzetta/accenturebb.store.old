@@ -23,7 +23,7 @@ function Banners({ banners }: BannersProps) {
 
   return (
     <Section className="layout__section" data-main-banner>
-      <Slider arrows wfull height={328}>
+      <Slider arrows wfull>
         {banners.map((banner: BannerProps, index: number) => (
           <div data-banner-container key={index}>
             <Link href={banner.href ? banner.href : '/#'}>

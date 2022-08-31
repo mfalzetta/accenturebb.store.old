@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
 
 ### Fixed 
+- `Fix price` format ([#76](https://github.com/vtex-sites/accenturebb.store/pull/76)
+- `Fix layout` ([#71](https://github.com/vtex-sites/accenturebb.store/pull/71)
+    - search filter remove product cluster id
+    - blog section
+    - menu mobile
+- `Fix layout` home ([#70](https://github.com/vtex-sites/accenturebb.store/pull/70)
+- `Fix layout` blog section ([#69](https://github.com/vtex-sites/accenturebb.store/pull/69)
+- `Fix layout` cart component ([#67](https://github.com/vtex-sites/accenturebb.store/pull/67)
 - `Filter price` new layout ([#52](https://github.com/vtex-sites/accenturebb.store/pull/52)
 - `Search` translate ([#47](https://github.com/vtex-sites/accenturebb.store/pull/47)
 - `Menu Category` fix ([#41](https://github.com/vtex-sites/accenturebb.store/pull/41)
