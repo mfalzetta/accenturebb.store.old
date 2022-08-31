@@ -19,7 +19,7 @@ import type { FormatErrorHandler } from '@envelop/core'
 import type { Options as APIOptions, Scalars } from '@faststore/api'
 import { mergeTypeDefs } from '@graphql-tools/merge'
 import { makeExecutableSchema, mergeSchemas } from '@graphql-tools/schema'
-// import { loadFilesSync } from '@graphql-tools/load-files'
+import { loadFilesSync } from '@graphql-tools/load-files'
 import axios from 'axios'
 
 import persisted from '../../@generated/graphql/persisted.json'
@@ -40,11 +40,11 @@ type ShippingVariable = {
   postalCode: string
 }
 
-// const typesArray = loadFilesSync('./src/server', {
-//   extensions: ['gql'],
-// })
+const typesArray = loadFilesSync('./src/server', {
+  extensions: ['gql'],
+})
 
-// const typeDefsFromfile = mergeTypeDefs(typesArray)
+const typeDefsFromfile = mergeTypeDefs(typesArray)
 
 const persistedQueries = new Map(Object.entries(persisted))
 
@@ -116,109 +116,6 @@ const typeDefs = `
     Sellers: [Seller!]
     specificationGroups: [SpecificationGroup!]
   }
-  type LogisticsItem {
-    id: String
-    requestIndex: Int
-    quantity: Int
-    seller: String
-    sellerChain: [String]
-    tax: Int
-    priceValidUntil: String
-    price: Int
-    listPrice: Int
-    rewardValue: Int
-    sellingPrice: Int
-    measurementUnit: String
-    unitMultiplier: Int
-    availability: String
-  }
-  
-  type MessageFields {
-    itemIndex: String
-    ean: String
-    skuName: String
-  }
-  
-  type MessageInfo {
-    code: String
-    text: String
-    status: String
-    fields: MessageFields
-  }
-  
-  type DeliveryIds {
-    courierId: String
-    warehouseId: String
-    dockId: String
-    courierName: String
-    quantity: Int
-  }
-  
-  type PickupAddress {
-    addressType: String
-    receiverName: String
-    addressId: String
-    postalCode: String
-    city: String
-    state: String
-    country: String
-    street: String
-    number: String
-    neighborhood: String
-    complement: String
-    reference: String
-    geoCoordinates: [Float]
-  }
-  
-  type pickupStoreInfo {
-    friendlyName: String
-    address: PickupAddress
-    additionalInfo: String
-    dockId: String
-    isPickupStore: Boolean
-  }
-  
-  type ShippingSLA {
-    id: String
-    name: String
-    price: Float
-    shippingEstimate: String
-    shippingEstimateDate: String
-    deliveryIds: [DeliveryIds]
-    deliveryChannel: String
-    friendlyName: String
-    pickupPointId: String
-    pickupStoreInfo: pickupStoreInfo
-    pickupDistance: Float
-  }
-  
-  type LogisticsInfo {
-    itemIndex: String
-    selectedSla: String
-    slas: [ShippingSLA]
-  }
-  
-  type ShippingData {
-    items: [LogisticsItem]
-    logisticsInfo: [LogisticsInfo]
-    messages: [MessageInfo]
-  }
-
-  input ShippingItem {
-    id: String
-    quantity: String
-    seller: String
-  }
-  
-  type Query {
-    shipping(
-      postalCode: String
-      geoCoordinates: [String]
-      country: String
-      items: [ShippingItem]
-    ): ShippingData
-  }
-
 `
 
 const resolvers = {
@@ -239,7 +136,7 @@ const resolvers = {
 const mergedTypeDefs = mergeTypeDefs([
   getTypeDefs(),
   typeDefs,
-  // typeDefsFromfile,
+  typeDefsFromfile,
 ])
 
 const getMergedSchemas = async () =>
@@ -251,6 +148,7 @@ const getMergedSchemas = async () =>
         typeDefs: mergedTypeDefs,
       }),
     ],
+    resolvers,
   })
 
 export const apiSchema = getMergedSchemas()
