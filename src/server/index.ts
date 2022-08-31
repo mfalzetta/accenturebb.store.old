@@ -48,21 +48,26 @@ const typesArray = loadFilesSync('./src/server', {
 })
 
 // eslint-disable-next-line no-console
-console.log('test 1: ', typesArray)
+console.log('test 1: ', JSON.stringify(typesArray[1].definitions[0]))
 const typesArray2 = loadFilesSync('./src/server/graphql', {
   extensions: ['gql'],
 })
 
 // eslint-disable-next-line no-console
-console.log('test 2: ', typesArray2)
+console.log('test 2: ', JSON.stringify(typesArray2[1].definitions[0]))
 const typesArray3 = loadFilesSync(path.join(__dirname, '/graphql'), {
   extensions: ['gql'],
 })
 
 // eslint-disable-next-line no-console
-console.log('test 3: ', typesArray3)
+console.log(
+  'test 3: ',
+  JSON.stringify(typesArray3[1].definitions[0]),
+  ' \n path: ',
+  path.join(__dirname, '/graphql')
+)
 
-const typeDefsFromfile = mergeTypeDefs(typesArray)
+// const typeDefsFromfile = mergeTypeDefs(typesArray)
 
 const persistedQueries = new Map(Object.entries(persisted))
 
@@ -151,11 +156,7 @@ const resolvers = {
   },
 }
 
-const mergedTypeDefs = mergeTypeDefs([
-  getTypeDefs(),
-  typeDefs,
-  typeDefsFromfile,
-])
+const mergedTypeDefs = mergeTypeDefs([getTypeDefs(), typeDefs, ...typesArray3])
 
 const getMergedSchemas = async () =>
   mergeSchemas({
