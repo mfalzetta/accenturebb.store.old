@@ -32,6 +32,8 @@ module.exports = {
   checkoutUrl: 'https://accenturebb.myvtex.com/checkout',
   loginUrl: 'https://accenturebb.myvtex.com/api/io/login',
   accountUrl: 'https://accenturebb.myvtex.com/api/io/account',
+  development_api_key: process.env.API_KEY,
+  development_api_token: process.env.TOKEN,
 
   // Lighthouse CI
   lighthouse: {

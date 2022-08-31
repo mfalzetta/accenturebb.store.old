@@ -1,5 +1,6 @@
 import { RadioGroup, RadioOption } from '@faststore/ui'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import Icon from 'src/components/ui/Icon'
 import InputText from 'src/components/ui/InputText'
 import { sessionStore, useSession } from 'src/sdk/session'
 
@@ -147,7 +148,7 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
           <>
             <div data-fs-product-shipping-container>
               <div data-fs-product-shipping-img>
-                <img src="/shipping-truck.png" alt="shipping-truck" />
+                <Icon name="ShippingTruck" width={26} height={26} />
               </div>
 
               <div data-fs-product-shipping-content>

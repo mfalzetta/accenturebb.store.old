@@ -2204,12 +2204,19 @@ export type MessageInfo = {
 }
 
 export type Mutation = {
+  setWishlist: Maybe<WishlistDataMutation>
   /** Subscribes a new person to the newsletter list. */
   subscribeToNewsletter: Maybe<PersonNewsletter>
   /** Checks for changes between the cart presented in the UI and the cart stored in the ecommerce platform. If changes are detected, it returns the cart stored on the platform. Otherwise, it returns `null`. */
   validateCart: Maybe<StoreCart>
   /** Updates a web session with the specified values. */
   validateSession: Maybe<StoreSession>
+}
+
+export type MutationSetWishlistArgs = {
+  email: InputMaybe<Scalars['String']>
+  id: InputMaybe<Scalars['String']>
+  productIds: InputMaybe<Scalars['String']>
 }
 
 export type MutationSubscribeToNewsletterArgs = {
@@ -2304,6 +2311,8 @@ export type Query = {
   collection: StoreCollection
   directory: Maybe<Directory>
   file: Maybe<File>
+  getWishListProducts: Maybe<Array<Maybe<WishListProductsData>>>
+  getWishlist: Maybe<WishlistData>
   /** Returns the details of a product based on the specified locator. */
   product: StoreProduct
   /** Returns the result of a product, facet, or suggestion search. */
@@ -2556,6 +2565,14 @@ export type QueryFileArgs = {
   size: InputMaybe<IntQueryOperatorInput>
   sourceInstanceName: InputMaybe<StringQueryOperatorInput>
   uid: InputMaybe<IntQueryOperatorInput>
+}
+
+export type QueryGetWishListProductsArgs = {
+  productIds: InputMaybe<Scalars['String']>
+}
+
+export type QueryGetWishlistArgs = {
+  email: InputMaybe<Scalars['String']>
 }
 
 export type QueryProductArgs = {
@@ -4275,12 +4292,82 @@ export type StringQueryOperatorInput = {
   regex: InputMaybe<Scalars['String']>
 }
 
+export type WishListProductsData = {
+  allInstallment: Maybe<Array<Installment>>
+  brand: Maybe<Scalars['String']>
+  discountHighlights: Maybe<Array<Maybe<DiscountHighlight>>>
+  image: Maybe<Scalars['String']>
+  link: Maybe<Scalars['String']>
+  listPrice: Maybe<Scalars['String']>
+  price: Maybe<Scalars['String']>
+  productId: Maybe<Scalars['String']>
+  productName: Maybe<Scalars['String']>
+}
+
+export type WishlistData = {
+  email: Maybe<Scalars['String']>
+  id: Maybe<Scalars['String']>
+  productIds: Maybe<Scalars['String']>
+}
+
+export type WishlistDataMutation = {
+  message: Maybe<Scalars['String']>
+}
+
 export type PickupStoreInfo = {
   additionalInfo: Maybe<Scalars['String']>
   address: Maybe<PickupAddress>
   dockId: Maybe<Scalars['String']>
   friendlyName: Maybe<Scalars['String']>
   isPickupStore: Maybe<Scalars['Boolean']>
+}
+
+export type GetWishlistQueryQueryVariables = Exact<{
+  email: InputMaybe<Scalars['String']>
+}>
+
+export type GetWishlistQueryQuery = {
+  getWishlist: {
+    id: string | null
+    productIds: string | null
+    email: string | null
+  } | null
+}
+
+export type SetWishlistMutationMutationVariables = Exact<{
+  email: InputMaybe<Scalars['String']>
+  productIds: InputMaybe<Scalars['String']>
+  id: InputMaybe<Scalars['String']>
+}>
+
+export type SetWishlistMutationMutation = {
+  setWishlist: { message: string | null } | null
+}
+
+export type GetWishListProductsQueryVariables = Exact<{
+  productIds: InputMaybe<Scalars['String']>
+}>
+
+export type GetWishListProductsQuery = {
+  getWishListProducts: Array<{
+    brand: string | null
+    image: string | null
+    listPrice: string | null
+    link: string | null
+    price: string | null
+    productId: string | null
+    productName: string | null
+    allInstallment: Array<{
+      Value: number
+      TotalValuePlusInterestRate: number
+      PaymentSystemName: string
+      PaymentSystemGroupName: string
+      NumberOfInstallments: number
+      Name: string
+      InterestRate: number
+    }> | null
+    discountHighlights: Array<{ name: string } | null> | null
+  } | null> | null
 }
 
 export type HeaderLinkQueryQueryVariables = Exact<{ [key: string]: never }>
