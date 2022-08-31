@@ -15,7 +15,7 @@ type Props = Omit<
 >
 
 function PriceRange({ min, max, onEnd, step = 10, ...otherProps }: Props) {
-  const formatter = usePriceFormatter({ decimals: false })
+  const formatter = usePriceFormatter({ decimals: true })
   const minAbsoluteFormatted = useFormattedPrice(Math.round(min.absolute))
   const maxAbsoluteFormatted = useFormattedPrice(Math.ceil(max.absolute))
 
