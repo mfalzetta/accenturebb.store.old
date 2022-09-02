@@ -34,13 +34,13 @@
   // Structural Styles
   // --------------------------------------------------------
 
-  z-index: var(--fs-z-index-below);
   display: flex;
   padding: var(--fs-spacing-0) var(--fs-grid-padding);
   margin: 0 calc(-1 * var(--fs-grid-padding));
   background-color: var(--fs-navlinks-background-color);
 
   @include media(">=notebook") {
+    z-index: var(--fs-z-index-below);
     align-items: center;
   }
 

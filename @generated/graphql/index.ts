@@ -49,6 +49,198 @@ export type CmsBlockFilterListInput = {
   elemMatch: InputMaybe<CmsBlockFilterInput>
 }
 
+export type CmsCategoryImage = Node & {
+  children: Array<Node>
+  id: Scalars['ID']
+  internal: Internal
+  name: Scalars['String']
+  parent: Maybe<Node>
+  sections: Array<CmsBlock>
+}
+
+export type CmsCategoryImageConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsCategoryImageEdge>
+  group: Array<CmsCategoryImageGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsCategoryImage>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsCategoryImageConnectionDistinctArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageConnectionGroupArgs = {
+  field: CmsCategoryImageFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsCategoryImageConnectionMaxArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageConnectionMinArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageConnectionSumArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageEdge = {
+  next: Maybe<CmsCategoryImage>
+  node: CmsCategoryImage
+  previous: Maybe<CmsCategoryImage>
+}
+
+export type CmsCategoryImageFieldsEnum =
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'name'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'sections'
+  | 'sections___data'
+  | 'sections___id'
+  | 'sections___name'
+
+export type CmsCategoryImageFilterInput = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+}
+
+export type CmsCategoryImageGroupConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsCategoryImageEdge>
+  field: Scalars['String']
+  fieldValue: Maybe<Scalars['String']>
+  group: Array<CmsCategoryImageGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsCategoryImage>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsCategoryImageGroupConnectionDistinctArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageGroupConnectionGroupArgs = {
+  field: CmsCategoryImageFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsCategoryImageGroupConnectionMaxArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageGroupConnectionMinArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageGroupConnectionSumArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageSortInput = {
+  fields: InputMaybe<Array<InputMaybe<CmsCategoryImageFieldsEnum>>>
+  order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
+}
+
 export type CmsHeaderLink = Node & {
   children: Array<Node>
   id: Scalars['ID']
@@ -2225,6 +2417,7 @@ export type MutationSubscribeToNewsletterArgs = {
 
 export type MutationValidateCartArgs = {
   cart: IStoreCart
+  session: InputMaybe<IStoreSession>
 }
 
 export type MutationValidateSessionArgs = {
@@ -2284,6 +2477,7 @@ export type PickupAddress = {
 }
 
 export type Query = {
+  allCmsCategoryImage: CmsCategoryImageConnection
   allCmsHeaderLink: CmsHeaderLinkConnection
   allCmsHome: CmsHomeConnection
   allCmsInstitutionalPage: CmsInstitutionalPageConnection
@@ -2301,6 +2495,7 @@ export type Query = {
   allSiteFunction: SiteFunctionConnection
   allSitePage: SitePageConnection
   allSitePlugin: SitePluginConnection
+  cmsCategoryImage: Maybe<CmsCategoryImage>
   cmsHeaderLink: Maybe<CmsHeaderLink>
   cmsHome: Maybe<CmsHome>
   cmsInstitutionalPage: Maybe<CmsInstitutionalPage>
@@ -2323,6 +2518,13 @@ export type Query = {
   siteFunction: Maybe<SiteFunction>
   sitePage: Maybe<SitePage>
   sitePlugin: Maybe<SitePlugin>
+}
+
+export type QueryAllCmsCategoryImageArgs = {
+  filter: InputMaybe<CmsCategoryImageFilterInput>
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+  sort: InputMaybe<CmsCategoryImageSortInput>
 }
 
 export type QueryAllCmsHeaderLinkArgs = {
@@ -2424,6 +2626,15 @@ export type QueryAllSitePluginArgs = {
   limit: InputMaybe<Scalars['Int']>
   skip: InputMaybe<Scalars['Int']>
   sort: InputMaybe<SitePluginSortInput>
+}
+
+export type QueryCmsCategoryImageArgs = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
 }
 
 export type QueryCmsHeaderLinkArgs = {
@@ -4714,6 +4925,7 @@ export type SearchPageQueryQuery = {
 
 export type ValidateCartMutationMutationVariables = Exact<{
   cart: IStoreCart
+  session: IStoreSession
 }>
 
 export type ValidateCartMutationMutation = {
