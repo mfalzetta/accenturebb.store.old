@@ -21,15 +21,16 @@
     order: unset;
     padding: 0;
 
+    p {
+      margin: 10px 0;
+    }
+
     [data-fs-wishlist-header] {
       display: flex;
       flex-direction: column;
 
       span {
-        padding-right: var(--fs-grid-padding);
         margin: 10px 0;
-        font-weight: 400;
-        color: var(--fs-color-theme-4);
       }
 
       [data-fs-wishlist-title] {
@@ -48,6 +49,12 @@
         top: 0;
         left: 0;
       }
+    }
+
+    [data-fs-wishlist-no-products] {
+      grid-column: 1/12;
+      padding: 2rem 0;
+      font-size: 24px;
     }
 
     @include media("<notebook") {

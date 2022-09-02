@@ -10,6 +10,7 @@ import Button, {
 import Icon from 'src/components/ui/Icon'
 import Link from 'src/components/ui/Link'
 import Logo from 'src/components/ui/Logo'
+import WishListMenuButton from 'src/components/Wishlist/WishListMenuButton'
 import { mark } from 'src/sdk/tests/mark'
 import { useUI } from 'src/sdk/ui/Provider'
 
@@ -90,6 +91,7 @@ function Navbar() {
             <Suspense fallback={<ButtonSignInFallback />}>
               <ButtonSignIn />
             </Suspense>
+            <WishListMenuButton />
             <CartToggle />
           </div>
         </section>
