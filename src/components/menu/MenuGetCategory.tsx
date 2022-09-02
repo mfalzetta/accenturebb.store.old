@@ -23,7 +23,7 @@ interface SubProp {
   category: CategoryProps
 }
 
-const removeDuplicate = (obj: CategoryProps[]) => {
+export const removeDuplicate = (obj: CategoryProps[]) => {
   const uniqueIds: string[] = []
   const unique = obj.filter((element: CategoryProps) => {
     const isDuplicate = uniqueIds.includes(element.item)

@@ -1,5 +1,10 @@
 [
   {
+    "id": "categoryImage",
+    "name": "Category Image",
+    "configurationSchemaSets": []
+  },
+  {
     "id": "headerLink",
     "name": "Header Link",
     "configurationSchemaSets": []

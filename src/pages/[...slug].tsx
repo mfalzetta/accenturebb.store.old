@@ -120,7 +120,7 @@ function Page(props: Props) {
         description={collection?.seo.description}
         className="category-page"
       />
-      <CategoryButtons />
+      <CategoryButtons slug={slug} />
       <ProductGallery title={title} />
 
       <ScrollToTopButton />

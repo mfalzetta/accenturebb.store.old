@@ -24,7 +24,7 @@ const gatsbyConfig: GatsbyConfig = {
     {
       resolve: '@vtex/gatsby-source-cms',
       options: {
-        workspace: 'master',
+        workspace: 'samara',
         tenant: config.api.storeId,
       },
     },
