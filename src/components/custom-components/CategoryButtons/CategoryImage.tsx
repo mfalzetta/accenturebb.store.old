@@ -43,6 +43,24 @@ function formatCategoryName(name: string) {
     .replace(/[\u0300-\u036f]/g, '')
 }
 
+function EmptyCartegory({ items }: CategoryImagesProps) {
+  return (
+    <>
+      {items?.map(({ name, item }: IconsProps, index) => {
+        console
+
+        return (
+          <div key={index} data-fs-category-buttons-link>
+            <Link to={item} className="link__buttons">
+              <span data-fs-category-buttons-link-name>{name}</span>
+            </Link>
+          </div>
+        )
+      })}
+    </>
+  )
+}
+
 function CategoryImages({ slug, items }: CategoryImagesProps) {
   const { cmsCategoryImage } = useStaticQuery(querySSG)
   const [cms, setCms] = useState<CmsCategoryImage>()
@@ -117,22 +135,10 @@ function CategoryImages({ slug, items }: CategoryImagesProps) {
       )
     }
 
-    return (
-      <>
-        {items?.map(({ name, item }: IconsProps, index) => {
-          return (
-            <div key={index} data-fs-category-buttons-link>
-              <Link to={item} className="link__buttons">
-                <span data-fs-category-buttons-link-name>{name}</span>
-              </Link>
-            </div>
-          )
-        })}
-      </>
-    )
+    return <EmptyCartegory slug={slug} items={items} />
   }
 
-  return <></>
+  return <EmptyCartegory slug={slug} items={items} />
 }
 
 export default CategoryImages
