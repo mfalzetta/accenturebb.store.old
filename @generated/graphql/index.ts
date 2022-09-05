@@ -2396,6 +2396,7 @@ export type MessageInfo = {
 }
 
 export type Mutation = {
+  newsLetterUpdate: Maybe<NewsLetterData>
   setWishlist: Maybe<WishlistDataMutation>
   /** Subscribes a new person to the newsletter list. */
   subscribeToNewsletter: Maybe<PersonNewsletter>
@@ -2403,6 +2404,11 @@ export type Mutation = {
   validateCart: Maybe<StoreCart>
   /** Updates a web session with the specified values. */
   validateSession: Maybe<StoreSession>
+}
+
+export type MutationNewsLetterUpdateArgs = {
+  email: Scalars['String']
+  id: InputMaybe<Scalars['String']>
 }
 
 export type MutationSetWishlistArgs = {
@@ -2417,11 +2423,16 @@ export type MutationSubscribeToNewsletterArgs = {
 
 export type MutationValidateCartArgs = {
   cart: IStoreCart
+  session: InputMaybe<IStoreSession>
 }
 
 export type MutationValidateSessionArgs = {
   search: Scalars['String']
   session: IStoreSession
+}
+
+export type NewsLetterData = {
+  id: Maybe<Scalars['String']>
 }
 
 /** Node Interface */
@@ -2507,6 +2518,7 @@ export type Query = {
   file: Maybe<File>
   getWishListProducts: Maybe<Array<Maybe<WishListProductsData>>>
   getWishlist: Maybe<WishlistData>
+  newsLetter: Maybe<NewsLetterData>
   /** Returns the details of a product based on the specified locator. */
   product: StoreProduct
   /** Returns the result of a product, facet, or suggestion search. */
@@ -2783,6 +2795,10 @@ export type QueryGetWishListProductsArgs = {
 
 export type QueryGetWishlistArgs = {
   email: InputMaybe<Scalars['String']>
+}
+
+export type QueryNewsLetterArgs = {
+  email: Scalars['String']
 }
 
 export type QueryProductArgs = {
@@ -4672,6 +4688,21 @@ export type Filter_FacetsFragment =
   | Filter_Facets_StoreFacetBoolean_Fragment
   | Filter_Facets_StoreFacetRange_Fragment
 
+export type NewsLetterQueryUpdateMutationVariables = Exact<{
+  email: Scalars['String']
+  id: InputMaybe<Scalars['String']>
+}>
+
+export type NewsLetterQueryUpdateMutation = {
+  newsLetterUpdate: { id: string | null } | null
+}
+
+export type NewsLetterQueryQueryVariables = Exact<{
+  email: Scalars['String']
+}>
+
+export type NewsLetterQueryQuery = { newsLetter: { id: string | null } | null }
+
 export type ProductDetailsFragment_ProductFragment = {
   sku: string
   name: string
@@ -4930,6 +4961,7 @@ export type SearchPageQueryQuery = {
 
 export type ValidateCartMutationMutationVariables = Exact<{
   cart: IStoreCart
+  session: IStoreSession
 }>
 
 export type ValidateCartMutationMutation = {

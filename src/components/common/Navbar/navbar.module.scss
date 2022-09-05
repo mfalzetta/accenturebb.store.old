@@ -203,9 +203,5 @@
     align-self: stretch;
     width: fit-content;
     padding: 0;
-
-    @include media("<tablet") {
-      margin-right: var(--fs-navbar-logo-margin-right-mobile);
-    }
   }
 }
