@@ -70,6 +70,10 @@
   @media screen and (min-width: 1600px) {
     grid-column: 9 / span 5;
   }
+
+  [data-fs-product-title] {
+    padding-top: 0;
+  }
 }
 
 .product-details__settings {

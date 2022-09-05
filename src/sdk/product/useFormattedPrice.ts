@@ -15,11 +15,7 @@ export const usePriceFormatter = ({ decimals }: PriceFormatterOptions = {}) => {
         style: 'currency',
         currency: currency.code,
         minimumFractionDigits: decimals ? 2 : 0,
-      })
-        .format(price)
-        .replace(',', ' ')
-        .replace('.', ',')
-        .replace(' ', '.'),
+      }).format(price),
     [currency.code, locale, decimals]
   )
 }

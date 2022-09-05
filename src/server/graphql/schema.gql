@@ -11,4 +11,10 @@ type Query {
     country: String
     items: [ShippingItem]
   ): ShippingData
+  getWishlist(email: String): GetWishlistData
+  getWishListProducts(path: String): WishListProductsData
+}
+
+type Mutation {
+  setWishlist(email: String, skuId: String): SetWishlistData
 }

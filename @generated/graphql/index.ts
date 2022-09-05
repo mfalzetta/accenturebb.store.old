@@ -49,6 +49,198 @@ export type CmsBlockFilterListInput = {
   elemMatch: InputMaybe<CmsBlockFilterInput>
 }
 
+export type CmsCategoryImage = Node & {
+  children: Array<Node>
+  id: Scalars['ID']
+  internal: Internal
+  name: Scalars['String']
+  parent: Maybe<Node>
+  sections: Array<CmsBlock>
+}
+
+export type CmsCategoryImageConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsCategoryImageEdge>
+  group: Array<CmsCategoryImageGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsCategoryImage>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsCategoryImageConnectionDistinctArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageConnectionGroupArgs = {
+  field: CmsCategoryImageFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsCategoryImageConnectionMaxArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageConnectionMinArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageConnectionSumArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageEdge = {
+  next: Maybe<CmsCategoryImage>
+  node: CmsCategoryImage
+  previous: Maybe<CmsCategoryImage>
+}
+
+export type CmsCategoryImageFieldsEnum =
+  | 'children'
+  | 'children___children'
+  | 'children___children___children'
+  | 'children___children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___id'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___children___parent___children'
+  | 'children___children___parent___id'
+  | 'children___id'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'children___parent___children'
+  | 'children___parent___children___children'
+  | 'children___parent___children___id'
+  | 'children___parent___id'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___parent___parent___children'
+  | 'children___parent___parent___id'
+  | 'id'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'name'
+  | 'parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___id'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___children___parent___children'
+  | 'parent___children___parent___id'
+  | 'parent___id'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'parent___parent___children'
+  | 'parent___parent___children___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___id'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___parent___id'
+  | 'sections'
+  | 'sections___data'
+  | 'sections___id'
+  | 'sections___name'
+
+export type CmsCategoryImageFilterInput = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
+}
+
+export type CmsCategoryImageGroupConnection = {
+  distinct: Array<Scalars['String']>
+  edges: Array<CmsCategoryImageEdge>
+  field: Scalars['String']
+  fieldValue: Maybe<Scalars['String']>
+  group: Array<CmsCategoryImageGroupConnection>
+  max: Maybe<Scalars['Float']>
+  min: Maybe<Scalars['Float']>
+  nodes: Array<CmsCategoryImage>
+  pageInfo: PageInfo
+  sum: Maybe<Scalars['Float']>
+  totalCount: Scalars['Int']
+}
+
+export type CmsCategoryImageGroupConnectionDistinctArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageGroupConnectionGroupArgs = {
+  field: CmsCategoryImageFieldsEnum
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+}
+
+export type CmsCategoryImageGroupConnectionMaxArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageGroupConnectionMinArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageGroupConnectionSumArgs = {
+  field: CmsCategoryImageFieldsEnum
+}
+
+export type CmsCategoryImageSortInput = {
+  fields: InputMaybe<Array<InputMaybe<CmsCategoryImageFieldsEnum>>>
+  order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>
+}
+
 export type CmsHeaderLink = Node & {
   children: Array<Node>
   id: Scalars['ID']
@@ -2205,6 +2397,7 @@ export type MessageInfo = {
 
 export type Mutation = {
   newsLetterUpdate: Maybe<NewsLetterData>
+  setWishlist: Maybe<WishlistDataMutation>
   /** Subscribes a new person to the newsletter list. */
   subscribeToNewsletter: Maybe<PersonNewsletter>
   /** Checks for changes between the cart presented in the UI and the cart stored in the ecommerce platform. If changes are detected, it returns the cart stored on the platform. Otherwise, it returns `null`. */
@@ -2216,6 +2409,12 @@ export type Mutation = {
 export type MutationNewsLetterUpdateArgs = {
   email: Scalars['String']
   id: InputMaybe<Scalars['String']>
+}
+
+export type MutationSetWishlistArgs = {
+  email: InputMaybe<Scalars['String']>
+  id: InputMaybe<Scalars['String']>
+  productIds: InputMaybe<Scalars['String']>
 }
 
 export type MutationSubscribeToNewsletterArgs = {
@@ -2287,6 +2486,7 @@ export type PickupAddress = {
 }
 
 export type Query = {
+  allCmsCategoryImage: CmsCategoryImageConnection
   allCmsHeaderLink: CmsHeaderLinkConnection
   allCmsHome: CmsHomeConnection
   allCmsInstitutionalPage: CmsInstitutionalPageConnection
@@ -2304,6 +2504,7 @@ export type Query = {
   allSiteFunction: SiteFunctionConnection
   allSitePage: SitePageConnection
   allSitePlugin: SitePluginConnection
+  cmsCategoryImage: Maybe<CmsCategoryImage>
   cmsHeaderLink: Maybe<CmsHeaderLink>
   cmsHome: Maybe<CmsHome>
   cmsInstitutionalPage: Maybe<CmsInstitutionalPage>
@@ -2314,6 +2515,8 @@ export type Query = {
   collection: StoreCollection
   directory: Maybe<Directory>
   file: Maybe<File>
+  getWishListProducts: Maybe<Array<Maybe<WishListProductsData>>>
+  getWishlist: Maybe<WishlistData>
   newsLetter: Maybe<NewsLetterData>
   /** Returns the details of a product based on the specified locator. */
   product: StoreProduct
@@ -2325,6 +2528,13 @@ export type Query = {
   siteFunction: Maybe<SiteFunction>
   sitePage: Maybe<SitePage>
   sitePlugin: Maybe<SitePlugin>
+}
+
+export type QueryAllCmsCategoryImageArgs = {
+  filter: InputMaybe<CmsCategoryImageFilterInput>
+  limit: InputMaybe<Scalars['Int']>
+  skip: InputMaybe<Scalars['Int']>
+  sort: InputMaybe<CmsCategoryImageSortInput>
 }
 
 export type QueryAllCmsHeaderLinkArgs = {
@@ -2426,6 +2636,15 @@ export type QueryAllSitePluginArgs = {
   limit: InputMaybe<Scalars['Int']>
   skip: InputMaybe<Scalars['Int']>
   sort: InputMaybe<SitePluginSortInput>
+}
+
+export type QueryCmsCategoryImageArgs = {
+  children: InputMaybe<NodeFilterListInput>
+  id: InputMaybe<StringQueryOperatorInput>
+  internal: InputMaybe<InternalFilterInput>
+  name: InputMaybe<StringQueryOperatorInput>
+  parent: InputMaybe<NodeFilterInput>
+  sections: InputMaybe<CmsBlockFilterListInput>
 }
 
 export type QueryCmsHeaderLinkArgs = {
@@ -2567,6 +2786,14 @@ export type QueryFileArgs = {
   size: InputMaybe<IntQueryOperatorInput>
   sourceInstanceName: InputMaybe<StringQueryOperatorInput>
   uid: InputMaybe<IntQueryOperatorInput>
+}
+
+export type QueryGetWishListProductsArgs = {
+  productIds: InputMaybe<Scalars['String']>
+}
+
+export type QueryGetWishlistArgs = {
+  email: InputMaybe<Scalars['String']>
 }
 
 export type QueryNewsLetterArgs = {
@@ -4290,12 +4517,82 @@ export type StringQueryOperatorInput = {
   regex: InputMaybe<Scalars['String']>
 }
 
+export type WishListProductsData = {
+  allInstallment: Maybe<Array<Installment>>
+  brand: Maybe<Scalars['String']>
+  discountHighlights: Maybe<Array<Maybe<DiscountHighlight>>>
+  image: Maybe<Scalars['String']>
+  link: Maybe<Scalars['String']>
+  listPrice: Maybe<Scalars['String']>
+  price: Maybe<Scalars['String']>
+  productId: Maybe<Scalars['String']>
+  productName: Maybe<Scalars['String']>
+}
+
+export type WishlistData = {
+  email: Maybe<Scalars['String']>
+  id: Maybe<Scalars['String']>
+  productIds: Maybe<Scalars['String']>
+}
+
+export type WishlistDataMutation = {
+  message: Maybe<Scalars['String']>
+}
+
 export type PickupStoreInfo = {
   additionalInfo: Maybe<Scalars['String']>
   address: Maybe<PickupAddress>
   dockId: Maybe<Scalars['String']>
   friendlyName: Maybe<Scalars['String']>
   isPickupStore: Maybe<Scalars['Boolean']>
+}
+
+export type GetWishlistQueryQueryVariables = Exact<{
+  email: InputMaybe<Scalars['String']>
+}>
+
+export type GetWishlistQueryQuery = {
+  getWishlist: {
+    id: string | null
+    productIds: string | null
+    email: string | null
+  } | null
+}
+
+export type SetWishlistMutationMutationVariables = Exact<{
+  email: InputMaybe<Scalars['String']>
+  productIds: InputMaybe<Scalars['String']>
+  id: InputMaybe<Scalars['String']>
+}>
+
+export type SetWishlistMutationMutation = {
+  setWishlist: { message: string | null } | null
+}
+
+export type GetWishListProductsQueryVariables = Exact<{
+  productIds: InputMaybe<Scalars['String']>
+}>
+
+export type GetWishListProductsQuery = {
+  getWishListProducts: Array<{
+    brand: string | null
+    image: string | null
+    listPrice: string | null
+    link: string | null
+    price: string | null
+    productId: string | null
+    productName: string | null
+    allInstallment: Array<{
+      Value: number
+      TotalValuePlusInterestRate: number
+      PaymentSystemName: string
+      PaymentSystemGroupName: string
+      NumberOfInstallments: number
+      Name: string
+      InterestRate: number
+    }> | null
+    discountHighlights: Array<{ name: string } | null> | null
+  } | null> | null
 }
 
 export type HeaderLinkQueryQueryVariables = Exact<{ [key: string]: never }>

@@ -4,7 +4,9 @@ import Navbar from 'src/components/common/Navbar'
 import Toast from 'src/components/common/Toast'
 import { useUI } from 'src/sdk/ui/Provider'
 import type { PropsWithChildren } from 'react'
+
 import 'src/styles/pages/layout.scss'
+import { WishlistProvider } from './data/context/WishlistContext'
 
 const CartSidebar = lazy(() => import('src/components/cart/CartSidebar'))
 const RegionModal = lazy(
@@ -23,9 +25,9 @@ function Layout({ children }: PropsWithChildren) {
       <Navbar />
 
       <Toast />
-
-      <main>{children}</main>
-
+      <WishlistProvider>
+        <main>{children}</main>
+      </WishlistProvider>
       <Footer />
 
       {displayCart && (
