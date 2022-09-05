@@ -41,7 +41,6 @@ function ProductGallery({ title, searchTerm }: Props) {
 
   useProductsPrefetch(prev ? prev.cursor : null)
   useProductsPrefetch(next ? next.cursor : null)
-
   if (data && totalCount === 0) {
     return (
       <Section

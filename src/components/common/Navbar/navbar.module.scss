@@ -7,48 +7,56 @@
 
   // Default properties
 
-  --fs-navbar-padding                                       : 0;
-  --fs-navbar-bkg-color                                     : var(--fs-color-body-bkg);
+  --fs-navbar-padding: 0;
+  --fs-navbar-bkg-color: var(--fs-color-body-bkg);
 
-  --fs-navbar-border-bottom-width                           : var(--fs-border-width);
-  --fs-navbar-border-bottom-color                           : var(--fs-border-color-light);
+  --fs-navbar-border-bottom-width: var(--fs-border-width);
+  --fs-navbar-border-bottom-color: var(--fs-border-color-light);
 
-  --fs-navbar-box-shadow                                    : 0 var(--fs-spacing-0) var(--fs-spacing-3) rgb(0 0 0 / 5%);
+  --fs-navbar-box-shadow:
+    0 var(--fs-spacing-0) var(--fs-spacing-3)
+    rgb(0 0 0 / 5%);
 
-  --fs-navbar-transition-timing                             : var(--fs-transition-timing);
-  --fs-navbar-transition-function                           : var(--fs-transition-function);
+  --fs-navbar-transition-timing: var(--fs-transition-timing);
+  --fs-navbar-transition-function: var(--fs-transition-function);
 
   // Search
-  --fs-navbar-search-button-icon-width-mobile               : var(--fs-spacing-5);
-  --fs-navbar-search-button-icon-height-mobile              : var(--fs-navbar-search-button-icon-width-mobile);
+  --fs-navbar-search-button-icon-width-mobile: var(--fs-spacing-5);
+  --fs-navbar-search-button-icon-height-mobile:
+    var(
+      --fs-navbar-search-button-icon-width-mobile
+    );
 
   // Search Expanded
-  --fs-navbar-search-expanded-input-wrapper-margin-right    : 0.625rem;
-  --fs-navbar-search-expanded-input-wrapper-margin-left     : var(--fs-spacing-9);
+  --fs-navbar-search-expanded-input-wrapper-margin-right: 0.625rem;
+  --fs-navbar-search-expanded-input-wrapper-margin-left: var(--fs-spacing-9);
 
-  --fs-navbar-search-expanded-input-width                   : calc(100% - var(--fs-spacing-7));
+  --fs-navbar-search-expanded-input-width: calc(100% - var(--fs-spacing-7));
 
-  --fs-navbar-search-expanded-button-icon-margin-right      : -4.063rem;
+  --fs-navbar-search-expanded-button-icon-margin-right: -4.063rem;
 
   // Header
-  --fs-navbar-header-padding-top                            : var(--fs-spacing-1);
-  --fs-navbar-header-padding-bottom                         : var(--fs-spacing-2);
+  --fs-navbar-header-padding-top: var(--fs-spacing-1);
+  --fs-navbar-header-padding-bottom: var(--fs-spacing-2);
 
-  --fs-navbar-header-padding-top-notebook                   : var(--fs-spacing-1);
-  --fs-navbar-header-padding-bottom-notebook                : var(--fs-navbar-header-padding-top-notebook);
+  --fs-navbar-header-padding-top-notebook: var(--fs-spacing-1);
+  --fs-navbar-header-padding-bottom-notebook:
+    var(
+      --fs-navbar-header-padding-top-notebook
+    );
 
   // Logo
-  --fs-navbar-logo-margin-right-mobile                      : var(--fs-spacing-5);
+  --fs-navbar-logo-margin-right-mobile: var(--fs-spacing-5);
 
-  width                                                     : 100%;
+  width: 100%;
 
   // --------------------------------------------------------
   // Structural Styles
   // --------------------------------------------------------
 
-  padding                                                   : var(--fs-navbar-padding);
-  background-color                                          : var(--fs-navbar-bkg-color);
-  box-shadow                                                : var(--fs-navbar-box-shadow);
+  padding: var(--fs-navbar-padding);
+  background-color: var(--fs-navbar-bkg-color);
+  box-shadow: var(--fs-navbar-box-shadow);
 
   [data-store-search-input-wrapper] {
     flex: 1 0 100%;
@@ -122,7 +130,7 @@
         flex: 0;
         flex-direction: column;
         order: 0;
-        width: min-content;
+        width: 48px;
 
         &[data-store-search-input-dropdown-open="false"] [data-store-input] {
           width: 0;
@@ -179,8 +187,8 @@
   }
 
   [data-fs-navbar-header] {
+    padding: 0 0.5rem;
     padding-top: var(--fs-spacing-1);
-    padding-bottom: 0;
     overflow-x: clip;
 
     @include media(">=notebook") {

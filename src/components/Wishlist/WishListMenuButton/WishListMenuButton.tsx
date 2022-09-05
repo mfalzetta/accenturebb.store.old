@@ -1,0 +1,16 @@
+import Icon from 'src/components/ui/Icon'
+import Link from 'src/components/ui/Link'
+
+import './wishlist-menu-button.scss'
+
+const WishListMenuButton = () => {
+  return (
+    <Link data-fs-wishlist-menu-button href="/wishlist">
+      <button>
+        <Icon name="WishlistMenu" width={26} height={26} />
+      </button>
+    </Link>
+  )
+}
+
+export default WishListMenuButton
