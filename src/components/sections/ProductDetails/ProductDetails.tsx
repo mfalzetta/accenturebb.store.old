@@ -295,7 +295,7 @@ function ProductDetails({ product: staleProduct }: Props) {
             />
           </header>
 
-          <ImageGallery images={productImages} />
+          <ImageGallery images={productImages} productId={productId} />
           <section className="product-details__selector">
             {skuVariants && (
               <Selectors

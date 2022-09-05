@@ -1,0 +1,15 @@
+@import "src/styles/scaffold";
+
+[data-fs-wishlist-menu-button] {
+  padding: 0;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+  }
+}

@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - `Category buttons` ([#78](https://github.com/vtex-sites/accenturebb.store/pull/78))
+- `Wishlist` ([#77](https://github.com/vtex-sites/accenturebb.store/pull/77))
 - `Update repository` version 22.38.5 ([#65](https://github.com/vtex-sites/accenturebb.store/pull/65))
 - `Seller badge` on pdp ([#66](https://github.com/vtex-sites/accenturebb.store/pull/66)
 - `Shipping Logic` query and front end to calculate shipping price and stimated date ([#60](https://github.com/vtex-sites/accenturebb.store/pull/60)

@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { Image } from 'src/components/ui/Image'
 import ImageViewer from 'react-simple-image-viewer'
+import WishListPdpButton from 'src/components/Wishlist/WishListPdpButton'
 
 import { ImageGallerySelector, ImageZoom } from '.'
 import styles from './image-gallery.module.scss'
@@ -12,9 +13,10 @@ export interface ImageElementData {
 
 interface ImageGalleryProps {
   images: ImageElementData[]
+  productId?: string
 }
 
-function ImageGallery({ images }: ImageGalleryProps) {
+function ImageGallery({ images, productId }: ImageGalleryProps) {
   const [selectedImageIdx, setSelectedImageIdx] = useState(0)
   const currentImage = images[selectedImageIdx]
   const hasSelector = images.length > 1
@@ -43,16 +45,19 @@ function ImageGallery({ images }: ImageGalleryProps) {
       className={styles.fsImageGallery}
     >
       <ImageZoom>
-        <Image
-          src={currentImage.url}
-          alt={currentImage.alternateName}
-          sizes="(max-width: 804px) 25vw, 30vw"
-          width={804}
-          height={804 * (3 / 4)}
-          loading="eager"
-          fetchPriority="high"
-          onClick={() => openImageViewer(currentImageZoom)}
-        />
+        <div data-fs-pdp-image-with-wishlist>
+          <WishListPdpButton productId={productId} />
+          <Image
+            src={currentImage.url}
+            alt={currentImage.alternateName}
+            sizes="(max-width: 804px) 25vw, 30vw"
+            width={804}
+            height={804 * (3 / 4)}
+            loading="eager"
+            fetchPriority="high"
+            onClick={() => openImageViewer(currentImageZoom)}
+          />
+        </div>
       </ImageZoom>
       {hasSelector && (
         <ImageGallerySelector

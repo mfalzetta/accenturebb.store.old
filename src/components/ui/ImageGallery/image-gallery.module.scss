@@ -26,7 +26,7 @@
   @include media(">=notebook") {
     left: 0;
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: auto auto;
     grid-row: 1 / span 4;
     grid-column: span 7;
     column-gap: var(--fs-image-gallery-gap-notebook);
@@ -53,5 +53,9 @@
         grid-column: 1 / span 8;
       }
     }
+  }
+
+  [data-fs-pdp-image-with-wishlist] {
+    position: relative;
   }
 }
