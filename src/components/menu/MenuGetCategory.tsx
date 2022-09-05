@@ -168,7 +168,12 @@ export const MenuGetCategory = ({ stateChanger, isOpen }: MenuProps) => {
                           ) => (
                             <div key={`subCategory--${index}`}>
                               <h3>
-                                <Link href={`${linkSubI}`}>{nameSubI}</Link>
+                                <Link
+                                  onClick={() => stateChanger(false)}
+                                  href={`${linkSubI}`}
+                                >
+                                  {nameSubI}
+                                </Link>
                               </h3>
                               {subCategory &&
                                 subCategory.map(
@@ -180,6 +185,7 @@ export const MenuGetCategory = ({ stateChanger, isOpen }: MenuProps) => {
                                     i: number
                                   ) => (
                                     <Link
+                                      onClick={() => stateChanger(false)}
                                       key={`subSubCategory--${i}`}
                                       href={`${linkSubII}`}
                                     >
