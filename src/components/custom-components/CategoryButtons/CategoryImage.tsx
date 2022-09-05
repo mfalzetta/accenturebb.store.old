@@ -47,8 +47,6 @@ function EmptyCartegory({ items }: CategoryImagesProps) {
   return (
     <>
       {items?.map(({ name, item }: IconsProps, index) => {
-        console
-
         return (
           <div key={index} data-fs-category-buttons-link>
             <Link to={item} className="link__buttons">
@@ -72,6 +70,7 @@ function CategoryImages({ slug, items }: CategoryImagesProps) {
       }
     }
   }, [items, cms, cmsCategoryImage])
+
   if (cms && items) {
     const section = cms?.sections.filter(
       (el) =>

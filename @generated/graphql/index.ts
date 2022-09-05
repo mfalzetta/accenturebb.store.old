@@ -56,6 +56,7 @@ export type CmsCategoryImage = Node & {
   name: Scalars['String']
   parent: Maybe<Node>
   sections: Array<CmsBlock>
+  versionStatus: Maybe<Scalars['String']>
 }
 
 export type CmsCategoryImageConnection = {
@@ -190,6 +191,7 @@ export type CmsCategoryImageFieldsEnum =
   | 'sections___data'
   | 'sections___id'
   | 'sections___name'
+  | 'versionStatus'
 
 export type CmsCategoryImageFilterInput = {
   children: InputMaybe<NodeFilterListInput>
@@ -198,6 +200,7 @@ export type CmsCategoryImageFilterInput = {
   name: InputMaybe<StringQueryOperatorInput>
   parent: InputMaybe<NodeFilterInput>
   sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type CmsCategoryImageGroupConnection = {
@@ -2635,6 +2638,7 @@ export type QueryCmsCategoryImageArgs = {
   name: InputMaybe<StringQueryOperatorInput>
   parent: InputMaybe<NodeFilterInput>
   sections: InputMaybe<CmsBlockFilterListInput>
+  versionStatus: InputMaybe<StringQueryOperatorInput>
 }
 
 export type QueryCmsHeaderLinkArgs = {

@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from 'react'
 import { useEffect } from 'react'
 
 import './menu.scss'
@@ -5,9 +6,10 @@ import { MenuGetCategory } from './MenuGetCategory'
 
 interface MenuProps {
   isOpen: boolean
+  menuIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const Menu = ({ isOpen }: MenuProps) => {
+const Menu = ({ menuIsOpen, isOpen }: MenuProps) => {
   const modalOpen = isOpen
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const Menu = ({ isOpen }: MenuProps) => {
   return (
     <div className={`menu ${isOpen ? 'open' : 'closed'}`}>
       <div className="arrow" />
-      <MenuGetCategory isOpen={isOpen} />
+      <MenuGetCategory stateChanger={menuIsOpen} isOpen={isOpen} />
     </div>
   )
 }

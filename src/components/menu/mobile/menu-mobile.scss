@@ -50,7 +50,8 @@
     line-height: normal;
     border-top: 1px solid #fff;
 
-    a {
+    a[data-store-link] {
+      padding: 0;
       font-size: 18px;
       color: #fff;
       text-decoration: none;
@@ -102,7 +103,8 @@
     line-height: normal;
     border-top: 1px solid #fff;
 
-    a {
+    a[data-store-link] {
+      padding: 0;
       font-size: 18px;
       color: #fff;
       text-decoration: none;
