@@ -319,14 +319,15 @@
   &[data-fs-button-variant="buy"] {
     color: var(--fs-button-buy-text-color);
     background-color: var(--fs-button-buy-bkg-color);
-    border: var(--fs-button-border-width) solid var(--fs-button-buy-border-color);
 
-    &:hover {
-      color: var(--fs-button-buy-text-color-hover);
-      background-color: var(--fs-button-buy-bkg-color-hover);
-      border-color: var(--fs-button-buy-border-color-hover);
-      box-shadow: var(--fs-button-buy-shadow-hover);
-    }
+    // border: var(--fs-button-border-width) solid var(--fs-button-buy-border-color);
+
+    // &:hover {
+    //   color: var(--fs-button-buy-text-color-hover);
+    //   background-color: var(--fs-button-buy-bkg-color-hover);
+    //   border-color: var(--fs-button-buy-border-color-hover);
+    //   box-shadow: var(--fs-button-buy-shadow-hover);
+    // }
 
     &:focus, &:focus-visible {
       color: var(--fs-button-buy-text-color-hover);
