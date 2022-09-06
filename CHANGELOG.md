@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
 
 ### Fixed 
+- `Fix Menu Alignment` ([#81](https://github.com/vtex-sites/accenturebb.store/pull/81)
 - `Fix category image` ([#80](https://github.com/vtex-sites/accenturebb.store/pull/80)
 - `Fix price` format ([#76](https://github.com/vtex-sites/accenturebb.store/pull/76)
 - `Fix layout` ([#71](https://github.com/vtex-sites/accenturebb.store/pull/71)
