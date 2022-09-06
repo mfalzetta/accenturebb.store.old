@@ -3,6 +3,7 @@
   "SetWishlistMutation": "mutation SetWishlistMutation($email: String, $productIds: String, $id: String) {\n  setWishlist(email: $email, productIds: $productIds, id: $id) {\n    message\n  }\n}\n",
   "GetWishListProducts": "query GetWishListProducts($productIds: String) {\n  getWishListProducts(productIds: $productIds) {\n    allInstallment {\n      Value\n      TotalValuePlusInterestRate\n      PaymentSystemName\n      PaymentSystemGroupName\n      NumberOfInstallments\n      Name\n      InterestRate\n    }\n    discountHighlights {\n      name\n    }\n    brand\n    image\n    listPrice\n    link\n    price\n    productId\n    productName\n  }\n}\n",
   "HeaderLinkQuery": "query HeaderLinkQuery {\n  cmsHeaderLink {\n    sections {\n      data\n      name\n    }\n  }\n}\n",
+  "CategoryImageQuery": "query CategoryImageQuery {\n  cmsCategoryImage {\n    sections {\n      data\n      name\n    }\n  }\n}\n",
   "MenuCategoryQuery": "query MenuCategoryQuery($first: Int!) {\n  allCollections(first: $first) {\n    edges {\n      node {\n        type\n        breadcrumbList {\n          itemListElement {\n            name\n            item\n            position\n          }\n        }\n      }\n    }\n  }\n}\n",
   "NewsLetterQueryUpdate": "mutation NewsLetterQueryUpdate($email: String!, $id: String) {\n  newsLetterUpdate(email: $email, id: $id) {\n    id\n  }\n}\n",
   "NewsLetterQuery": "query NewsLetterQuery($email: String!) {\n  newsLetter(email: $email) {\n    id\n  }\n}\n",

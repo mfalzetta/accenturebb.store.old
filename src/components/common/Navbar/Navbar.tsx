@@ -99,7 +99,7 @@ function Navbar() {
       </div>
 
       <div>
-        <Menu isOpen={isOpen} />
+        <Menu menuIsOpen={setIsOpen} isOpen={isOpen} />
       </div>
     </header>
   )

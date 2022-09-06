@@ -34,31 +34,27 @@ function Incentives({
     >
       <Slider minWidth={150} itemsPerPage={4}>
         {incentives.map((incentive, index) => (
-          <>
-            <UIIncentive key={index}>
-              <img
-                src={incentive.src}
-                alt={incentive.alt}
-                loading="lazy"
-                data-fs-incentive-icon
-                width={32}
-                height={32}
-              />
-              <div data-fs-incentive-content>
-                {incentive.title && (
-                  <p data-fs-incentive-title>{incentive.title}</p>
-                )}
+          <UIIncentive key={index}>
+            <img
+              src={incentive.src}
+              alt={incentive.alt}
+              loading="lazy"
+              data-fs-incentive-icon
+              width={32}
+              height={32}
+            />
+            <div data-fs-incentive-content>
+              {incentive.title && (
+                <p data-fs-incentive-title>{incentive.title}</p>
+              )}
+              <span data-fs-incentive-description>{incentive.primaryText}</span>
+              {incentive.secondaryText && (
                 <span data-fs-incentive-description>
-                  {incentive.primaryText}
+                  {incentive.secondaryText}
                 </span>
-                {incentive.secondaryText && (
-                  <span data-fs-incentive-description>
-                    {incentive.secondaryText}
-                  </span>
-                )}
-              </div>
-            </UIIncentive>
-          </>
+              )}
+            </div>
+          </UIIncentive>
         ))}
       </Slider>
     </div>

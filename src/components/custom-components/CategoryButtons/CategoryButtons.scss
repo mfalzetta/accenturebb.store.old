@@ -1,0 +1,128 @@
+@import "src/styles/scaffold";
+
+.categoryButtons {
+  padding: var(--fs-spacing-0) var(--fs-grid-padding);
+
+  @include media("<notebook") {
+    padding-right: var(--fs-spacing-1);
+    padding-left: var(--fs-spacing-1);
+  }
+
+  [data-fs-category-buttons-content] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 100%;
+    padding: 0 0 var(--fs-spacing-0);
+
+    @include media("<notebook") {
+      padding-right: var(--fs-spacing-1);
+      padding-left: var(--fs-spacing-1);
+    }
+
+    &.classSection__title.category-page {
+      margin: 0;
+    }
+
+    .container-slider .active-anim {
+      justify-content: start;
+    }
+
+    [data-fs-category-buttons-link-dep] {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+
+      svg {
+        border-radius: 50%;
+      }
+
+      a {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        color: var(--fs-border-color);
+        text-decoration: none;
+      }
+    }
+
+    [data-fs-category-buttons-link] {
+      a {
+        display: block;
+        height: fit-content;
+        padding: 6px var(--fs-spacing-3);
+        line-height: 14px;
+        text-decoration: none;
+        border: 1px solid var(--fs-border-color);
+        border-radius: var(--fs-border-radius-pill);
+
+        &:hover {
+          background-color: var(--fs-color-theme-0);
+
+          [data-fs-category-buttons-link-name] {
+            color: #fff;
+          }
+        }
+
+        [data-fs-category-buttons-link-name] {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+          color: var(--fs-border-color);
+        }
+      }
+    }
+
+    [data-fs-category-image] {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .link__buttons {
+      text-decoration: none;
+    }
+
+    [data-fs-category-image-name] {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--fs-color-theme-0);
+    }
+
+    [data-fs-category-image-image],
+    .empty__category {
+      width: 96px;
+      border: 1px solid rgb(213 213 213 / 30%);
+      border-radius: 50%;
+    }
+
+    .container-slider {
+      padding-right: 0;
+      padding-left: 0;
+
+      &.show-arrows {
+        padding-right: 60px;
+        padding-left: 60px;
+
+        @media (max-width: 768px) {
+          padding-right: 0;
+          padding-left: 0;
+        }
+
+        .btn-slide path {
+          stroke: var(--fs-border-color);
+        }
+
+        .prev {
+          left: 0;
+        }
+
+        .next {
+          right: 0;
+        }
+      }
+    }
+  }
+}

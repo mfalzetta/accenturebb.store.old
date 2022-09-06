@@ -1,10 +1,13 @@
+import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useState } from 'react'
+import Link from 'src/components/ui/Link'
 
 import MenuMobile from './mobile/MenuMobile'
 import useCategoryQuery from './useCategoryQuery'
 
 interface MenuProps {
   isOpen: boolean
+  stateChanger: Dispatch<SetStateAction<boolean>>
 }
 
 interface CategoryProps {
@@ -23,7 +26,7 @@ interface SubProp {
   category: CategoryProps
 }
 
-const removeDuplicate = (obj: CategoryProps[]) => {
+export const removeDuplicate = (obj: CategoryProps[]) => {
   const uniqueIds: string[] = []
   const unique = obj.filter((element: CategoryProps) => {
     const isDuplicate = uniqueIds.includes(element.item)
@@ -48,7 +51,7 @@ function handleResize() {
   return false
 }
 
-export const MenuGetCategory = ({ isOpen }: MenuProps) => {
+export const MenuGetCategory = ({ stateChanger, isOpen }: MenuProps) => {
   const [isMobile, setIsMobile] = useState(false)
   const [active, setActive] = useState(0)
 
@@ -146,7 +149,12 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
                 >
                   <li key={`category--${id}`}>
                     <h2>
-                      <a href={`${linkCat}`}>{nameCat}</a>
+                      <Link
+                        href={`${linkCat}`}
+                        onClick={() => stateChanger(false)}
+                      >
+                        {nameCat}
+                      </Link>
                     </h2>
                     <nav>
                       {category &&
@@ -160,7 +168,12 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
                           ) => (
                             <div key={`subCategory--${index}`}>
                               <h3>
-                                <a href={`${linkSubI}`}>{nameSubI}</a>
+                                <Link
+                                  onClick={() => stateChanger(false)}
+                                  href={`${linkSubI}`}
+                                >
+                                  {nameSubI}
+                                </Link>
                               </h3>
                               {subCategory &&
                                 subCategory.map(
@@ -171,12 +184,13 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
                                     }: CategoryProps,
                                     i: number
                                   ) => (
-                                    <a
+                                    <Link
+                                      onClick={() => stateChanger(false)}
                                       key={`subSubCategory--${i}`}
                                       href={`${linkSubII}`}
                                     >
                                       {nameSubII}
-                                    </a>
+                                    </Link>
                                   )
                                 )}
                             </div>
@@ -193,5 +207,7 @@ export const MenuGetCategory = ({ isOpen }: MenuProps) => {
     )
   }
 
-  return <MenuMobile isOpen={isOpen} items={items} />
+  return (
+    <MenuMobile stateChanger={stateChanger} isOpen={isOpen} items={items} />
+  )
 }

@@ -92,7 +92,11 @@ const Slider = ({
   }
 
   return (
-    <div className={`${!wfull ? ' layout__content' : ''} container-slider`}>
+    <div
+      className={`${!wfull ? ' layout__content' : ''} container-slider  ${
+        arrows && itemsPage.length > 1 ? 'show-arrows' : ''
+      }`}
+    >
       {Array.from({ length: itemsPage.length }).map((_: any, index: number) => (
         <div
           key={index}

@@ -1,13 +1,16 @@
+import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
 import {
   BackwardArrowIcon,
   ForwardArrowIcon,
 } from 'src/components/ui/ImageGallery/Icons'
+import Link from 'src/components/ui/Link'
 import './menu-mobile.scss'
 
 interface MenuMobileProps {
   isOpen: boolean
   items: ItemProp[]
+  stateChanger: Dispatch<SetStateAction<boolean>>
 }
 
 interface Node {
@@ -25,7 +28,7 @@ interface SubProp {
   category: Node
 }
 
-const MenuMobile = ({ isOpen, items }: MenuMobileProps) => {
+const MenuMobile = ({ stateChanger, isOpen, items }: MenuMobileProps) => {
   const [firstLevel, setFirstLevel] = useState(true)
   const [secondLevel, setSecondLevel] = useState(false)
   const [active, setActive] = useState(0)
@@ -54,7 +57,12 @@ const MenuMobile = ({ isOpen, items }: MenuMobileProps) => {
                 index: number
               ) => (
                 <li key={index}>
-                  <a href={`${item.item}`}>{item.name}</a>
+                  <Link
+                    onClick={() => stateChanger(false)}
+                    href={`${item.item}`}
+                  >
+                    {item.name}
+                  </Link>
                   {subCategory[0] ? (
                     <button onClick={() => nextLevel(index)}>
                       <ForwardArrowIcon color="#ffffff" />
@@ -83,7 +91,12 @@ const MenuMobile = ({ isOpen, items }: MenuMobileProps) => {
                 {subCategory.map(
                   ({ category: subitem }: SubProp, i: number) => (
                     <li key={i}>
-                      <a href={`${subitem.item}`}>{subitem.name}</a>
+                      <Link
+                        onClick={() => stateChanger(false)}
+                        href={`${subitem.item}`}
+                      >
+                        {subitem.name}
+                      </Link>
                     </li>
                   )
                 )}
