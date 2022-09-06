@@ -112,11 +112,13 @@ function CategoryImages({ slug, items }: CategoryImagesProps) {
                   data-fs-category-image
                 >
                   {src ? (
-                    <img
-                      data-fs-category-image-image
-                      src={src}
-                      alt={alt ?? ''}
-                    />
+                    <div data-fs-category-image-image>
+                      <img
+                        data-fs-category-image-image-content
+                        src={src}
+                        alt={alt ?? ''}
+                      />
+                    </div>
                   ) : (
                     <Icon
                       className="empty__category"
