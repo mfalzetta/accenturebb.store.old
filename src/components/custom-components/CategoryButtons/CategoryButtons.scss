@@ -93,10 +93,17 @@
 
     [data-fs-category-image-image],
     .empty__category {
+      display: flex;
       width: 96px;
       min-height: 96px;
+      overflow: hidden;
       border: 1px solid rgb(213 213 213 / 30%);
       border-radius: 50%;
+    }
+
+    [data-fs-category-image-image-content] {
+      width: 100%;
+      margin: auto;
     }
 
     .container-slider {
