@@ -29,6 +29,9 @@ function scrollView(type: string) {
         const body = document.querySelector('body') as HTMLElement
 
         body.style.overflow = 'hidden'
+        const pdp = document.querySelector('.product-details') as HTMLElement
+
+        pdp.style.minHeight = '100vh'
         window.addEventListener('resize', () => scrollView(type))
       } else {
         retry += 1
@@ -41,6 +44,9 @@ function scrollView(type: string) {
     const body = document.querySelector('body') as HTMLElement
 
     body.style.overflow = 'scroll'
+    const pdp = document.querySelector('.product-details') as HTMLElement
+
+    pdp.style.minHeight = 'fit-content'
   }
 }
 
