@@ -5,21 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
 ## [Unreleased]
 
 ### Changed
+
 - `Search not found` new layout ([#48](https://github.com/vtex-sites/accenturebb.store/pull/48)
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
 
-### Fixed 
+### Fixed
+
+- `Fix PDP` ([#83](https://github.com/vtex-sites/accenturebb.store/pull/83)
+    - zoom image
+    - shipping and image gallery layout
+    - carousel
 - `Fix Menu Alignment` ([#81](https://github.com/vtex-sites/accenturebb.store/pull/81)
 - `Fix category image` ([#80](https://github.com/vtex-sites/accenturebb.store/pull/80)
 - `Fix price` format ([#76](https://github.com/vtex-sites/accenturebb.store/pull/76)
 - `Fix layout` ([#71](https://github.com/vtex-sites/accenturebb.store/pull/71)
-    - search filter remove product cluster id
-    - blog section
-    - menu mobile
+  - search filter remove product cluster id
+  - blog section
+  - menu mobile
 - `Fix layout` home ([#70](https://github.com/vtex-sites/accenturebb.store/pull/70)
 - `Fix layout` blog section ([#69](https://github.com/vtex-sites/accenturebb.store/pull/69)
 - `Fix layout` cart component ([#67](https://github.com/vtex-sites/accenturebb.store/pull/67)
@@ -31,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
 
 ### Added
+
 - `Category buttons` PLP ([#78](https://github.com/vtex-sites/accenturebb.store/pull/78))
 - `Update repository` updated version until 22.39.3 (2022-09-01) ([#77](https://github.com/vtex-sites/accenturebb.store/pull/77))
 - `Category buttons` ([#78](https://github.com/vtex-sites/accenturebb.store/pull/78))
@@ -40,11 +46,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Seller badge` on pdp ([#66](https://github.com/vtex-sites/accenturebb.store/pull/66)
 - `Shipping Logic` query and front end to calculate shipping price and stimated date ([#60](https://github.com/vtex-sites/accenturebb.store/pull/60)
 - `Update repository` version 22.36.1
-    - Update ([#59](https://github.com/vtex-sites/accenturebb.store/pull/59))
-    - Update ([#57](https://github.com/vtex-sites/accenturebb.store/pull/57))
-    - Update ([#56](https://github.com/vtex-sites/accenturebb.store/pull/56))
-    - Update ([#55](https://github.com/vtex-sites/accenturebb.store/pull/55))
-    - Update ([#54](https://github.com/vtex-sites/accenturebb.store/pull/54))
+  - Update ([#59](https://github.com/vtex-sites/accenturebb.store/pull/59))
+  - Update ([#57](https://github.com/vtex-sites/accenturebb.store/pull/57))
+  - Update ([#56](https://github.com/vtex-sites/accenturebb.store/pull/56))
+  - Update ([#55](https://github.com/vtex-sites/accenturebb.store/pull/55))
+  - Update ([#54](https://github.com/vtex-sites/accenturebb.store/pull/54))
 - `Collection page` [#53](https://github.com/vtex-sites/accenturebb.store/pull/53)
 - `PDP Specs` product specifications on PDP ([#51](https://github.com/vtex-sites/accenturebb.store/pull/51)
 - `Badge Price` on cart and search suggestion ([#50](https://github.com/vtex-sites/accenturebb.store/pull/50)
@@ -59,6 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Category gallery` fix layout product card ([#24](https://github.com/vtex-sites/accenturebb.store/pull/24))
 - `Promotion Banner` component changes, full clickable and optional text and button ([#23](https://github.com/vtex-sites/accenturebb.store/pull/23))
 - `Brand Section` component to CMS ([#22](https://github.com/vtex-sites/accenturebb.store/pull/22))
+
 ### Added
 
 - This changelog
