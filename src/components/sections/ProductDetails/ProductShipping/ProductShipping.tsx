@@ -139,7 +139,7 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
         </div>
       </div>
       {loading ? (
-        <span> loading..</span>
+        <span> Carregando..</span>
       ) : (
         session.postalCode &&
         shippingQuery &&

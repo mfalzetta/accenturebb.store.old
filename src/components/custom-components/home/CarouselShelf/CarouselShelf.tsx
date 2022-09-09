@@ -47,9 +47,7 @@ const CarouselShelf = ({
   useEffect(() => {
     if (children) {
       build()
-      window.addEventListener('resize', () => {
-        build()
-      })
+      window.addEventListener('resize', build)
     }
   }, [children, itemsPerPage, arrows])
 
@@ -122,12 +120,11 @@ const CarouselShelf = ({
       let position = (index - 1) * itemW * card.itemPerPage
 
       if (index === card.dots) {
-        const lastItem = children.length % card.itemPerPage
+        const itemsWidth = itemW * card.itemPerPage
+        const last = card.maxWidth - itemsWidth
 
-        if (lastItem > 0) {
-          position =
-            itemW * (children.length - card.itemPerPage) -
-            (card.maxWidth - itemW * card.itemPerPage)
+        if (last > 0) {
+          position = itemsWidth * (index - 1) - last
         }
       }
 

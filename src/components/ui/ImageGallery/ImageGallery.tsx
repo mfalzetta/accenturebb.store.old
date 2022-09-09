@@ -15,6 +15,34 @@ interface ImageGalleryProps {
   images: ImageElementData[]
   productId?: string
 }
+function scrollView(type: string) {
+  if (type === 'open') {
+    let retry = 0
+    const loadingComponent = setInterval(() => {
+      if (document.getElementById('ReactSimpleImageViewer')) {
+        clearInterval(loadingComponent)
+        const image = document.getElementById(
+          'ReactSimpleImageViewer'
+        ) as HTMLElement
+
+        image.scrollIntoView({ behavior: 'smooth' })
+        const body = document.querySelector('body') as HTMLElement
+
+        body.style.overflow = 'hidden'
+        window.addEventListener('resize', () => scrollView(type))
+      } else {
+        retry += 1
+        if (retry > 20) {
+          clearInterval(loadingComponent)
+        }
+      }
+    }, 50)
+  } else if (document.querySelector('body')) {
+    const body = document.querySelector('body') as HTMLElement
+
+    body.style.overflow = 'scroll'
+  }
+}
 
 function ImageGallery({ images, productId }: ImageGalleryProps) {
   const [selectedImageIdx, setSelectedImageIdx] = useState(0)
@@ -26,11 +54,13 @@ function ImageGallery({ images, productId }: ImageGalleryProps) {
   const openImageViewer = useCallback((index: number) => {
     setCurrentImageZoom(index)
     setIsViewerOpen(true)
+    scrollView('open')
   }, [])
 
   const closeImageViewer = () => {
     setCurrentImageZoom(0)
     setIsViewerOpen(false)
+    scrollView('close')
   }
 
   const photos = images

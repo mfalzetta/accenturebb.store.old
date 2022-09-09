@@ -57,5 +57,12 @@
 
   [data-fs-pdp-image-with-wishlist] {
     position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+
+    @include media("<=tablet") {
+      max-width: 500px;
+    }
   }
 }
