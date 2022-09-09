@@ -13,11 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
 
 ### Fixed 
-- `Fix PLP` layout ([#84](https://github.com/vtex-sites/accenturebb.store/pull/84)
-- `Fix PDP` ([#83](https://github.com/vtex-sites/accenturebb.store/pull/83)
+- `Fix PDP` ([#85](https://github.com/vtex-sites/accenturebb.store/pull/85)
     - zoom image
     - shipping and image gallery layout
     - carousel
+- `Fix PLP` layout ([#84](https://github.com/vtex-sites/accenturebb.store/pull/84)
 - `Fix Menu Alignment` ([#81](https://github.com/vtex-sites/accenturebb.store/pull/81)
 - `Fix category image` ([#80](https://github.com/vtex-sites/accenturebb.store/pull/80)
 - `Fix price` format ([#76](https://github.com/vtex-sites/accenturebb.store/pull/76)
