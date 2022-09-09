@@ -91,7 +91,7 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-      <Breadcrumb name="All Products" />
+      <Breadcrumb name="Todos os produtos" />
 
       <ProductGallery
         title="Search Results"
