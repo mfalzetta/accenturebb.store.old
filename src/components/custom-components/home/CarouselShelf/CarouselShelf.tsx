@@ -124,7 +124,9 @@ const CarouselShelf = ({
         const last = card.maxWidth - itemsWidth
 
         if (last > 0) {
-          position = itemsWidth * (index - 1) - last
+          const maxSlide = card.cardWidth * children.length - itemsWidth
+
+          position = maxSlide - last
         }
       }
 
