@@ -49,18 +49,9 @@
     </style>
     <style>
       @media screen and (min-width: 30em) {
-        .w-70-ns {
-          width: 70% !important;
-        }
-
         .ph4-ns {
           padding-left: 2rem !important;
           padding-right: 2rem !important;
-        }
-
-        .mv1-ns {
-          margin-top: 0.25rem !important;
-          margin-bottom: 0.25rem !important;
         }
 
         .mv4-ns {
@@ -184,15 +175,62 @@
                 <h1
                   style="
                     margin: 0;
-                    font-size: 32px;
-                    line-height: 40px;
+                    font-size: 50px;
+                    line-height: 58px;
                     box-sizing: border-box !important;
                   "
                 >
-                  Seu pedido #{{orderId}} teve um valor estornado.
+                  Seu pagamento foi aprovado.
                 </h1>
+                <div
+                  style="
+                    box-sizing: border-box;
+                    color: #777;
+                    margin-top: 0.5rem !important;
+                  "
+                >
+                  Referente ao Pedido
+                  <span style="font-weight: 700 !important">#{{orderId}}</span>
+                </div>
               </td>
             </tr>
+
+            <tr style="box-sizing: border-box !important">
+              <td
+                class="ph4-ns"
+                style="
+                  font-size: 14px;
+                  line-height: 20px;
+                  box-sizing: border-box;
+                  border-collapse: collapse;
+                  text-align: left;
+                  width: 100% !important;
+                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                    Roboto, Helvetica, Arial, sans-serif;
+                "
+                align="left"
+              >
+                <div
+                  style="box-sizing: border-box; margin-top: 2rem !important"
+                >
+                  <p style="box-sizing: border-box !important">
+                    {{#if orders}} {{#if orders.0.clientProfileData.firstName}}
+                    {{#compare orders.0.clientProfileData.firstName '!='
+                    'isAnonymous'}} Olá,
+                    {{orders.0.clientProfileData.firstName}}. {{/compare}}
+                    {{/if}} {{else}} {{#if clientProfileData.firstName}}
+                    {{#compare clientProfileData.firstName '!=' 'isAnonymous'}}
+                    Olá, {{clientProfileData.firstName}}. {{/compare}} {{/if}}
+                    {{/if}} {{#compare shippingData.logisticsInfo.length '>' 1}}
+                    Estamos providenciando a emissão da Nota Fiscal do seu
+                    pedido e o envio dos seus produtos. {{else}} Estamos
+                    providenciando a emissão da Nota Fiscal do seu pedido e o
+                    envio do seu produto. {{/compare}}
+                  </p>
+                </div>
+              </td>
+            </tr>
+
             <tr style="box-sizing: border-box !important">
               <td
                 class="ph4-ns"
@@ -210,6 +248,35 @@
                 "
                 align="left"
               >
+                <h3
+                  style="
+                    font-size: 20px;
+                    line-height: 36px;
+                    text-transform: uppercase;
+                    letter-spacing: 1.2pt;
+                    font-weight: 300;
+                    margin-top: 16px;
+                    box-sizing: border-box;
+                    margin: 0 !important;
+                  "
+                >
+                  Pagamento
+                </h3>
+                {{#each paymentData.transactions}} {{#compare payments.length
+                "==" 1}} {{#each payments}}
+                <div
+                  style="
+                    box-sizing: border-box;
+                    line-height: 1.5;
+                    font-size: 1.25rem !important;
+                  "
+                >
+                  {{paymentSystemName}} {{#if lastDigits}} final {{lastDigits}}
+                  {{/if}}
+                  <br />R$ {{formatCurrency value}} {{#eq installments 1}} à
+                  vista {{else}} em {{installments}}x {{/eq}}
+                </div>
+                {{/each}} {{/compare}} {{#compare payments.length "!=" 1}}
                 <table
                   width="100%"
                   border="0"
@@ -225,81 +292,52 @@
                       Roboto, Helvetica, Arial, sans-serif;
                   "
                 >
-                  <thead></thead>
-                  <tbody>
-                    Itens estornados: {{#eq package.type 'Input'}} {{#each
-                    items}} {{#each ../package.items}} {{#eq @../index
-                    this.itemIndex}}
-                    <tr style="box-sizing: border-box !important">
-                      <td
-                        style="
-                          font-size: 14px;
-                          line-height: 20px;
-                          box-sizing: border-box;
-                          border-collapse: collapse;
-                          text-align: left;
-                          width: 4rem;
-                          padding-right: 0.5rem;
-                          padding-top: 0.5rem;
-                          padding-bottom: 0.5rem;
-                          vertical-align: top;
-                          font-family: -apple-system, BlinkMacSystemFont,
-                            'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-                        "
-                        align="left"
-                        valign="top"
-                      >
-                        <img
-                          alt=""
-                          src="{{../imageUrl}}"
-                          style="
-                            vertical-align: top;
-                            outline: none;
-                            text-decoration: none;
-                            -ms-interpolation-mode: bicubic;
-                            max-width: 100% !important;
-                          "
-                        />
-                      </td>
-                      <td
-                        style="
-                          font-size: 14px;
-                          line-height: 20px;
-                          box-sizing: border-box;
-                          border-collapse: collapse;
-                          text-align: left;
-                          padding-top: 0.5rem;
-                          padding-bottom: 0.5rem;
-                          vertical-align: top !important;
-                          font-family: -apple-system, BlinkMacSystemFont,
-                            'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-                        "
-                        align="left"
-                        valign="top"
-                      >
-                        <div
-                          class="mv1-ns"
-                          style="
-                            box-sizing: border-box;
-                            line-height: 1.25;
-                            font-size: 1rem !important;
-                          "
-                        >
-                          {{../name}}
-                        </div>
-                        <div
-                          style="box-sizing: border-box; color: #777 !important"
-                        >
-                          {{../quantity}} un. {{#if ../sellingPrice}} {{
-                          ../../../storePreferencesData.currencySymbol }}
-                          {{formatCurrency ../sellingPrice}} {{else}} Free
-                          {{/if}}
-                        </div>
-                      </td>
-                    </tr>
-                    {{/eq}} {{/each}} {{/each}} {{/eq}}
-                  </tbody>
+                  {{#each payments}}
+                  <tr style="box-sizing: border-box !important">
+                    <td
+                      style="
+                        line-height: 20px;
+                        box-sizing: border-box;
+                        border-collapse: collapse;
+                        text-align: left;
+                        border-bottom-style: solid;
+                        border-bottom-width: 1px;
+                        border-color: #eee;
+                        padding-top: 0.25rem;
+                        padding-bottom: 0.25rem;
+                        font-size: 1rem !important;
+                        font-family: -apple-system, BlinkMacSystemFont,
+                          'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                      "
+                      align="left"
+                    >
+                      {{paymentSystemName}} {{#if lastDigits}} final
+                      {{lastDigits}} {{/if}} {{#eq installments 1}} à vista
+                      {{else}} em {{installments}}x {{/eq}}
+                    </td>
+                    <td
+                      style="
+                        line-height: 20px;
+                        box-sizing: border-box;
+                        border-collapse: collapse;
+                        text-align: left;
+                        border-bottom-style: solid;
+                        border-bottom-width: 1px;
+                        border-color: #eee;
+                        padding-top: 0.25rem;
+                        padding-bottom: 0.25rem;
+                        font-size: 1rem !important;
+                        font-family: -apple-system, BlinkMacSystemFont,
+                          'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                      "
+                      align="left"
+                    >
+                      R$ {{formatCurrency value}}
+                    </td>
+                  </tr>
+                  {{/each}}
                 </table>
+                {{/compare}} {{/each}}
               </td>
             </tr>
 
@@ -322,32 +360,8 @@
                 "
                 align="left"
               >
-                Total estornado: {{ storePreferencesData.currencySymbol }}
-                {{formatCurrency package.restitutions.Refund.value}}
-              </td>
-            </tr>
-            <tr style="box-sizing: border-box !important">
-              <td
-                class="ph4-ns"
-                style="
-                  font-size: 14px;
-                  line-height: 20px;
-                  box-sizing: border-box;
-                  border-collapse: collapse;
-                  text-align: left;
-                  border-top-style: solid;
-                  border-top-width: 1px;
-                  border-color: #eee;
-                  padding-top: 1rem;
-                  padding-bottom: 1rem !important;
-                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
-                    Roboto, Helvetica, Arial, sans-serif;
-                "
-                align="left"
-              >
                 <p style="box-sizing: border-box !important">
-                  Atenciosamente,<br />
-                  {{_accountInfo.TradingName}}
+                  Atenciosamente,<br />Equipe {{_accountInfo.TradingName}}
                 </p>
               </td>
             </tr>
