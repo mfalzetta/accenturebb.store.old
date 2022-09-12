@@ -1,5 +1,14 @@
 @import "src/styles/scaffold";
 
+.cms-pdp {
+  width: 100%;
+
+  [data-fs-product-shelf-items],
+  .classSection__title--content {
+    max-width: 100%;
+  }
+}
+
 .product-details {
   margin-top: var(--fs-spacing-3);
 

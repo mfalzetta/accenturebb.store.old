@@ -103,7 +103,9 @@ function Page(props: Props) {
         (not the HTML tag) before rendering it here.
       */}
       <ProductDetails product={product} />
-      <RenderPageSections sections={cmsPdp?.sections} />
+      <div className="cms-pdp">
+        <RenderPageSections sections={cmsPdp?.sections} />
+      </div>
     </>
   )
 }

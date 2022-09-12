@@ -283,7 +283,7 @@ function ProductDetails({ product: staleProduct }: Props) {
   return (
     <Section className="product-details layout__content-full layout__section">
       <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
-      <div className="wrapper layout__content">
+      <div className="wrapper">
         <section className="product-details__body">
           <header className="product-details__title">
             <ProductTitle
