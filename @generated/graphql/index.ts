@@ -4725,6 +4725,17 @@ export type ProductDetailsFragment_ProductFragment = {
   isVariantOf: {
     productGroupID: string
     name: string
+    hasVariant: Array<{
+      slug: string
+      offers: { lowPrice: number }
+      additionalProperty: Array<{
+        name: string
+        propertyID: string
+        value: any
+        valueReference: string
+      }>
+      image: Array<{ url: string; alternateName: string }>
+    }>
     skuVariants: {
       activeVariations: any | null
       slugsMap: any | null
@@ -4898,6 +4909,17 @@ export type ServerProductPageQueryQuery = {
     isVariantOf: {
       productGroupID: string
       name: string
+      hasVariant: Array<{
+        slug: string
+        offers: { lowPrice: number }
+        additionalProperty: Array<{
+          name: string
+          propertyID: string
+          value: any
+          valueReference: string
+        }>
+        image: Array<{ url: string; alternateName: string }>
+      }>
       skuVariants: {
         activeVariations: any | null
         slugsMap: any | null
@@ -5066,6 +5088,17 @@ export type BrowserProductQueryQuery = {
     isVariantOf: {
       productGroupID: string
       name: string
+      hasVariant: Array<{
+        slug: string
+        offers: { lowPrice: number }
+        additionalProperty: Array<{
+          name: string
+          propertyID: string
+          value: any
+          valueReference: string
+        }>
+        image: Array<{ url: string; alternateName: string }>
+      }>
       skuVariants: {
         activeVariations: any | null
         slugsMap: any | null
