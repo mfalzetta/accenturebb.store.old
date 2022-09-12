@@ -382,13 +382,6 @@
         }
       }
     }
-
-    @media (max-width: 920px) {
-      [data-store-badge],
-      [data-testid="list-price"] {
-        display: none;
-      }
-    }
   }
 
   [data-fs-product-card-simple="true"] {
