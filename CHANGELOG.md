@@ -39,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `Update repository` version 22.40.0 ([#78](https://github.com/vtex-sites/accenturebb.store/pull/87))
+- `Update repository` version 22.40.0 ([#87](https://github.com/vtex-sites/accenturebb.store/pull/87))
 - `Category buttons` PLP ([#78](https://github.com/vtex-sites/accenturebb.store/pull/78))
 - `Update repository` updated version until 22.39.3 (2022-09-01) ([#77](https://github.com/vtex-sites/accenturebb.store/pull/77))
 - `Category buttons` ([#78](https://github.com/vtex-sites/accenturebb.store/pull/78))
