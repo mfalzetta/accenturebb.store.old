@@ -5,15 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
 ## [Unreleased]
 
 ### Changed
+
 - `Search not found` new layout ([#48](https://github.com/vtex-sites/accenturebb.store/pull/48)
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
 
 ### Fixed 
 - `Fix sync cart` ([#86](https://github.com/vtex-sites/accenturebb.store/pull/86)
+- `Fix PDP` ([#85](https://github.com/vtex-sites/accenturebb.store/pull/85)
+    - zoom image
+    - shipping and image gallery layout
+    - carousel
 - `Fix PLP` layout ([#84](https://github.com/vtex-sites/accenturebb.store/pull/84)
 - `Fix email` template ([#82](https://github.com/vtex-sites/accenturebb.store/pull/82)
 - `Fix Menu Alignment` ([#81](https://github.com/vtex-sites/accenturebb.store/pull/81)
@@ -34,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
 
 ### Added
+
 - `Category buttons` PLP ([#78](https://github.com/vtex-sites/accenturebb.store/pull/78))
 - `Update repository` updated version until 22.39.3 (2022-09-01) ([#77](https://github.com/vtex-sites/accenturebb.store/pull/77))
 - `Category buttons` ([#78](https://github.com/vtex-sites/accenturebb.store/pull/78))
@@ -62,6 +67,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Category gallery` fix layout product card ([#24](https://github.com/vtex-sites/accenturebb.store/pull/24))
 - `Promotion Banner` component changes, full clickable and optional text and button ([#23](https://github.com/vtex-sites/accenturebb.store/pull/23))
 - `Brand Section` component to CMS ([#22](https://github.com/vtex-sites/accenturebb.store/pull/22))
+
 ### Added
 
 - This changelog

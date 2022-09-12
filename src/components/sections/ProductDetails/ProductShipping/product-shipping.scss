@@ -3,12 +3,14 @@
 [data-fs-product-shipping] {
   display: flex;
   flex-direction: column;
+  gap: 8px;
   align-items: center;
   width: 100%;
   padding: 1rem 0;
 
   [data-fs-product-shipping-img] {
     display: flex;
+    gap: 8px;
     align-items: center;
     justify-content: center;
     width: 40%;
