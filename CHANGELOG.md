@@ -9,36 +9,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- `Search not found` new layout ([#48](https://github.com/vtex-sites/accenturebb.store/pull/48)
-- `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44)
+- `Search not found` new layout ([#48](https://github.com/vtex-sites/accenturebb.store/pull/48))
+- `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44))
 
 ### Fixed 
-- `Fix sync cart` ([#86](https://github.com/vtex-sites/accenturebb.store/pull/86)
-- `Fix PDP` ([#85](https://github.com/vtex-sites/accenturebb.store/pull/85)
+- `Fix sync cart` ([#86](https://github.com/vtex-sites/accenturebb.store/pull/86))
+- `Fix PDP` ([#85](https://github.com/vtex-sites/accenturebb.store/pull/85))
     - zoom image
     - shipping and image gallery layout
     - carousel
-- `Fix PLP` layout ([#84](https://github.com/vtex-sites/accenturebb.store/pull/84)
-- `Fix email` template ([#82](https://github.com/vtex-sites/accenturebb.store/pull/82)
-- `Fix Menu Alignment` ([#81](https://github.com/vtex-sites/accenturebb.store/pull/81)
-- `Fix category image` ([#80](https://github.com/vtex-sites/accenturebb.store/pull/80)
-- `Fix price` format ([#76](https://github.com/vtex-sites/accenturebb.store/pull/76)
-- `Fix layout` ([#71](https://github.com/vtex-sites/accenturebb.store/pull/71)
+- `Fix PLP` layout ([#84](https://github.com/vtex-sites/accenturebb.store/pull/84))
+- `Fix email` template ([#82](https://github.com/vtex-sites/accenturebb.store/pull/82))
+- `Fix Menu Alignment` ([#81](https://github.com/vtex-sites/accenturebb.store/pull/81))
+- `Fix category image` ([#80](https://github.com/vtex-sites/accenturebb.store/pull/80))
+- `Fix price` format ([#76](https://github.com/vtex-sites/accenturebb.store/pull/76))
+- `Fix layout` ([#71](https://github.com/vtex-sites/accenturebb.store/pull/71))
     - search filter remove product cluster id
     - blog section
     - menu mobile
-- `Fix layout` home ([#70](https://github.com/vtex-sites/accenturebb.store/pull/70)
-- `Fix layout` blog section ([#69](https://github.com/vtex-sites/accenturebb.store/pull/69)
-- `Fix layout` cart component ([#67](https://github.com/vtex-sites/accenturebb.store/pull/67)
-- `Filter price` new layout ([#52](https://github.com/vtex-sites/accenturebb.store/pull/52)
-- `Search` translate ([#47](https://github.com/vtex-sites/accenturebb.store/pull/47)
-- `Menu Category` fix ([#41](https://github.com/vtex-sites/accenturebb.store/pull/41)
-- `Carousel` new layout ([#39](https://github.com/vtex-sites/accenturebb.store/pull/39)
-- `Home Components Fixes` slider arrows for 1 banner and category section button size ([#33](https://github.com/vtex-sites/accenturebb.store/pull/33)
-- `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32)
+- `Fix layout` home ([#70](https://github.com/vtex-sites/accenturebb.store/pull/70))
+- `Fix layout` blog section ([#69](https://github.com/vtex-sites/accenturebb.store/pull/69))
+- `Fix layout` cart component ([#67](https://github.com/vtex-sites/accenturebb.store/pull/67))
+- `Filter price` new layout ([#52](https://github.com/vtex-sites/accenturebb.store/pull/52))
+- `Search` translate ([#47](https://github.com/vtex-sites/accenturebb.store/pull/47))
+- `Menu Category` fix ([#41](https://github.com/vtex-sites/accenturebb.store/pull/41))
+- `Carousel` new layout ([#39](https://github.com/vtex-sites/accenturebb.store/pull/39))
+- `Home Components Fixes` slider arrows for 1 banner and category section button size ([#33](https://github.com/vtex-sites/accenturebb.store/pull/33))
+- `Footer` new layout ([#32](https://github.com/vtex-sites/accenturebb.store/pull/32))
 
 ### Added
 
+- `Update repository` version 22.40.0 ([#87](https://github.com/vtex-sites/accenturebb.store/pull/87))
 - `Category buttons` PLP ([#78](https://github.com/vtex-sites/accenturebb.store/pull/78))
 - `Update repository` updated version until 22.39.3 (2022-09-01) ([#77](https://github.com/vtex-sites/accenturebb.store/pull/77))
 - `Category buttons` ([#78](https://github.com/vtex-sites/accenturebb.store/pull/78))
