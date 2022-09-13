@@ -19,7 +19,6 @@ import type { FormatErrorHandler } from '@envelop/core'
 import type { Options as APIOptions, Scalars } from '@faststore/api'
 import { mergeTypeDefs } from '@graphql-tools/merge'
 import { makeExecutableSchema, mergeSchemas } from '@graphql-tools/schema'
-// import { loadFilesSync } from '@graphql-tools/load-files'
 import axios from 'axios'
 
 import persisted from '../../@generated/graphql/persisted.json'
@@ -62,12 +61,6 @@ interface InstallmentProps {
   Name: string
   PaymentSystemName: string
 }
-
-// const typesArray = loadFilesSync('./src/server', {
-//   extensions: ['gql'],
-// })
-
-// const typeDefsFromfile = mergeTypeDefs(typesArray)
 
 const persistedQueries = new Map(Object.entries(persisted))
 const apiOptions: APIOptions = {

@@ -31,9 +31,9 @@ function Navbar() {
 
   const showMenu = (show: boolean) => {
     if (show) {
-      openNavbar
+      openNavbar()
     } else {
-      closeNavbar
+      closeNavbar()
     }
 
     setIsOpen(show)
