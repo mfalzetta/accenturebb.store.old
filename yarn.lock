@@ -1395,10 +1395,10 @@
     "@graphql-codegen/plugin-helpers" "^2.2.0"
     "@graphql-tools/relay-operation-optimizer" "^6.4.0"
 
-"@faststore/lighthouse@^1.10.34":
-  version "1.10.34"
-  resolved "https://registry.yarnpkg.com/@faststore/lighthouse/-/lighthouse-1.10.34.tgz#69ceed648659bdaf48382e93b54a2850b6e047fb"
-  integrity sha512-UmolViAhzMNDpnWki7i9eCC7NbpOZU7Dcx6UdWoqYpBw7pwaoUcsbfa5Y1wOif4V8sScdwBXGxRr65U9gCrZYA==
+"@faststore/lighthouse@^1.11.8":
+  version "1.11.8"
+  resolved "https://registry.yarnpkg.com/@faststore/lighthouse/-/lighthouse-1.11.8.tgz#c4a23b96640acbff326111436b82b4bedf3180ce"
+  integrity sha512-Mk1C2/zxhMdd66UfenIDgglfJ9SXUsTCHgpwzw32RN8OcLVwyyeSr4DmRvXnyRwkD7ziR/xTDuTAS8o0nmIsXw==
 
 "@faststore/sdk@^1.10.34":
   version "1.10.34"
@@ -1407,10 +1407,10 @@
   dependencies:
     idb-keyval "^5.1.3"
 
-"@faststore/ui@^1.11.2":
-  version "1.11.2"
-  resolved "https://registry.yarnpkg.com/@faststore/ui/-/ui-1.11.2.tgz#71f13227f86118b4849b68da546b481ba17c3768"
-  integrity sha512-86gxlXmhouz5xYijpGB/KK0gvaACaalo+45d7NDw02gnrH5g1ZmssgCxfCzRhv/cVo23xecU99HQJ0MK9gPchQ==
+"@faststore/ui@^1.11.8":
+  version "1.11.8"
+  resolved "https://registry.yarnpkg.com/@faststore/ui/-/ui-1.11.8.tgz#b9ed0d59831750239a5fdf20434b6c82ec606f28"
+  integrity sha512-n/rr9wgKsfom+O0I16lF6raMtV2Engt0nd9IVekzeX50fIeiIu5VyobZR7kryUYcr+mtXPo8/8FpxQvCkuntvg==
   dependencies:
     "@reach/popover" "^0.16.0"
     "@storybook/addon-a11y" "^6.4.4"
@@ -6038,14 +6038,6 @@ axios@^0.21.1:
   dependencies:
     follow-redirects "^1.14.0"
 
-axios@^0.27.2:
-  version "0.27.2"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
-  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
-  dependencies:
-    follow-redirects "^1.14.9"
-    form-data "^4.0.0"
-
 axobject-query@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.2.0.tgz#943d47e10c0b704aa42275e20edf3722648989be"
@@ -10490,7 +10482,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.0.0, follow-redirects@^1.14.0, follow-redirects@^1.14.9:
+follow-redirects@^1.0.0, follow-redirects@^1.14.0:
   version "1.15.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.1.tgz#0ca6a452306c9b276e4d3127483e29575e207ad5"
   integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
@@ -10555,7 +10547,7 @@ form-data-encoder@^2.0.1:
   resolved "https://registry.yarnpkg.com/form-data-encoder/-/form-data-encoder-2.0.1.tgz#aec41860aca0275cb6026650d139c6701b0992c1"
   integrity sha512-Oy+P9w5mnO4TWXVgUiQvggNKPI9/ummcSt5usuIV6HkaLKigwzPpoenhEqmGmx3zHqm6ZLJ+CR/99N8JLinaEw==
 
-form-data@4.0.0, form-data@^4.0.0:
+form-data@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
   integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
