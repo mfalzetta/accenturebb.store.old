@@ -38,6 +38,20 @@ export interface AllUsableSpecsType {
   others?: AllUsableSpecsType[]
 }
 
+type AvaiableVariatios = {
+  src: string
+  alt: string
+  label: string
+  value: string
+}
+
+type ElementDisabledT = {
+  name: string
+  propertyID: string
+  value: string
+  valueReference: string
+}
+
 function ProductDetails({ product: staleProduct }: Props) {
   const { currency } = useSession()
   const [addQuantity, setAddQuantity] = useState(1)
@@ -77,7 +91,7 @@ function ProductDetails({ product: staleProduct }: Props) {
       name: variantName,
       brand,
       isVariantOf,
-      isVariantOf: { name, productGroupID: productId, skuVariants },
+      isVariantOf: { name, productGroupID: productId, skuVariants, hasVariant },
       image: productImages,
       offers: {
         offers: [{ availability, price, listPrice, seller }],
@@ -201,6 +215,63 @@ function ProductDetails({ product: staleProduct }: Props) {
     return obj
   }, [specs])
 
+  const cor = data?.product?.additionalProperty[0]?.value
+
+  const keysName: string[] = Object.keys(skuVariants?.availableVariations)
+  const disabledElements: AvaiableVariatios | any = [] || null
+
+  Object.values(skuVariants?.availableVariations).forEach(
+    (element: [AvaiableVariatios] | any) => {
+      element.forEach((item1: AvaiableVariatios) => {
+        hasVariant.forEach((item) => {
+          item.additionalProperty.forEach((element2) => {
+            if (item1.value === element2.value) {
+              if (item.offers.lowPrice === 0) {
+                disabledElements.push(element2)
+              }
+            }
+          })
+        })
+      })
+    }
+  )
+
+  if (keysName.length >= 2) {
+    Object.values(skuVariants?.availableVariations).forEach(
+      (element: [AvaiableVariatios] | any) => {
+        element.forEach((item1: AvaiableVariatios, index: number) => {
+          disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
+            if (item1?.value === elementDisabled?.value) {
+              const newAvaiables =
+                skuVariants?.availableVariations[keysName[1]][index] ?? null
+
+              if (disabledElements[0]?.value === cor) {
+                if (elementDisabled?.name !== 'Cor') {
+                  newAvaiables.disabled = true
+                }
+              }
+            }
+          })
+        })
+      }
+    )
+  } else {
+    Object.values(skuVariants?.availableVariations).forEach(
+      (element: [AvaiableVariatios] | any) => {
+        element.forEach((item1: AvaiableVariatios, index: number) => {
+          disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
+            if (item1?.value === elementDisabled.value) {
+              const newAvaiables =
+                skuVariants?.availableVariations[keysName[0]][index] ?? null
+
+              newAvaiables.disabled = true
+            }
+          })
+        })
+      }
+    )
+  }
+
   // this function is to bring all specifications OPEN
   // useEffect(() => {
   //   const indexs = allUsableSpecs?.map((_: null, index: number) => index)
@@ -214,50 +285,57 @@ function ProductDetails({ product: staleProduct }: Props) {
       className="product-details__settings"
     >
       <SoldBy sellers={sellers} isMobile={isMobile} />
-      <section className="product-details__values">
-        <div className="product-details__prices">
-          {listPrice !== lowPrice && (
-            <div className="product-details__prices--badge">
-              <Price
-                value={listPrice}
-                formatter={useFormattedPrice}
-                testId="list-price"
-                data-value={listPrice}
-                variant="listing"
-                classes="text__legend"
-                SRText="Original price:"
-              />
-              <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />
-            </div>
-          )}
-          <Price
-            value={lowPrice}
-            formatter={useFormattedPrice}
-            testId="price"
-            data-value={lowPrice}
-            variant="spot"
-            classes="text__lead"
-            SRText="Sale Price:"
-          />
-          {allInstallment ? (
-            <Installment Installments={allInstallment} />
-          ) : (
-            <></>
-          )}
-          <ul data-fs-product-card-discount>
-            {discountHighlights?.map((el, i) => (
-              <li data-fs-product-card-discount-item key={i}>
-                {el?.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-        {/* <div className="prices">
+      {lowPrice > 0 ? (
+        <section className="product-details__values">
+          <div className="product-details__prices">
+            {listPrice !== lowPrice && (
+              <div className="product-details__prices--badge">
+                <Price
+                  value={listPrice}
+                  formatter={useFormattedPrice}
+                  testId="list-price"
+                  data-value={listPrice}
+                  variant="listing"
+                  classes="text__legend"
+                  SRText="Original price:"
+                />
+                <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />
+              </div>
+            )}
+            <Price
+              value={lowPrice}
+              formatter={useFormattedPrice}
+              testId="price"
+              data-value={lowPrice}
+              variant="spot"
+              classes="text__lead"
+              SRText="Sale Price:"
+            />
+
+            {allInstallment ? (
+              <Installment Installments={allInstallment} />
+            ) : (
+              <></>
+            )}
+            <ul data-fs-product-card-discount>
+              {discountHighlights?.map((el, i) => (
+                <li data-fs-product-card-discount-item key={i}>
+                  {el?.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* <div className="prices">
               <p className="price__old text__legend">{formattedListPrice}</p>
               <p className="price__new">{isValidating ? '' : formattedPrice}</p>
             </div> */}
-        <QuantitySelector min={1} max={10} onChange={setAddQuantity} />
-      </section>
+          <QuantitySelector min={1} max={10} onChange={setAddQuantity} />
+        </section>
+      ) : (
+        <div className="product-details__out-of-stock">
+          <span>Produto indisponível</span>
+        </div>
+      )}
       {/* NOTE: A loading skeleton had to be used to avoid a Lighthouse's
               non-composited animation violation due to the button transitioning its
               background color when changing from its initial disabled to active state.
@@ -431,6 +509,22 @@ export const fragment = graphql`
     isVariantOf {
       productGroupID
       name
+      hasVariant {
+        offers {
+          lowPrice
+        }
+        additionalProperty {
+          name
+          propertyID
+          value
+          valueReference
+        }
+        slug
+        image {
+          url
+          alternateName
+        }
+      }
       skuVariants {
         activeVariations
         slugsMap(dominantVariantName: "Cor")
