@@ -28,6 +28,29 @@ function arrayChunk(arr: any, len: number) {
   return chunks
 }
 
+const buildSlider = ({
+  wfull,
+  itemsPerPage,
+  minWidth,
+  children,
+}: SliderProps) => {
+  const screenW = document.documentElement.clientWidth
+  const length = wfull
+    ? screenW
+    : minWidth ?? 168 * Number(itemsPerPage) > screenW - 32
+    ? minWidth
+    : itemsPerPage
+
+  const itemsDefault = itemsPerPage ?? 1
+  const items = (screenW - 32) / Number(length)
+  const list =
+    items < Math.round(items) ? Math.round(items) - 1 : Math.round(items)
+
+  const newItems = list > itemsDefault ? itemsDefault : list > 1 ? list : 1
+
+  return { slideIndex: 1, itemsPage: arrayChunk([children][0], newItems) }
+}
+
 const Slider = ({
   children,
   itemsPerPage,
@@ -40,29 +63,15 @@ const Slider = ({
 
   useEffect(() => {
     if (children) {
-      const buildSlider = () => {
-        const screenW = document.documentElement.clientWidth
-        const length = wfull
-          ? screenW
-          : minWidth ?? 168 * Number(itemsPerPage) > screenW - 32
-          ? minWidth
-          : itemsPerPage
+      const sliderBuild = () => {
+        const build = buildSlider({ wfull, itemsPerPage, minWidth, children })
 
-        const itemsDefault = itemsPerPage ?? 1
-        const items = (screenW - 32) / Number(length)
-        const list =
-          items < Math.round(items) ? Math.round(items) - 1 : Math.round(items)
-
-        const newItems =
-          list > itemsDefault ? itemsDefault : list > 1 ? list : 1
-
-        setSlideIndex(1)
-        setItemsPage(arrayChunk([children][0], newItems))
+        setSlideIndex(build.slideIndex)
+        setItemsPage(build.itemsPage)
       }
 
-      buildSlider()
       window.addEventListener('resize', () => {
-        buildSlider()
+        sliderBuild()
       })
     }
   }, [children, itemsPerPage, minWidth, wfull])
