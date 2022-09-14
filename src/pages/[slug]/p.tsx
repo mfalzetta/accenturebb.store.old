@@ -34,7 +34,7 @@ function Page(props: Props) {
   } = props
 
   // No data was found
-  if (serverData === null || serverData === undefined) {
+  if (serverData === null) {
     return null
   }
 
