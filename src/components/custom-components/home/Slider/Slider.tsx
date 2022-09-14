@@ -70,6 +70,8 @@ const Slider = ({
         setItemsPage(build.itemsPage)
       }
 
+      sliderBuild()
+
       window.addEventListener('resize', () => {
         sliderBuild()
       })
