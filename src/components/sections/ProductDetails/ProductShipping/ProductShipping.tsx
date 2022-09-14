@@ -35,13 +35,6 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
 
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // const {
-  //   getShippingEstimate,
-  //   loading,
-  //   data,
-  //   error: queryError,
-  // } = useShippingQuery()
-
   const {
     data,
     error: queryError,
