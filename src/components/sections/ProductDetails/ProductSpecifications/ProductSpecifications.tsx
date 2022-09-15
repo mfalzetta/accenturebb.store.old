@@ -1,11 +1,6 @@
-import './product-specifications.scss'
+import type { AllUsableSpecsType } from '../ProductDetails'
 
-export interface AllUsableSpecsType {
-  values: string[]
-  originalName: string
-  name: string
-  others?: AllUsableSpecsType[]
-}
+import './product-specifications.scss'
 
 interface ProductSpecificationsProps {
   specifications: AllUsableSpecsType[] | undefined
