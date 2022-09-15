@@ -26,7 +26,7 @@ import LinksAndDownloads from './LinksAndDownloads'
 import ProductSpecifications from './ProductSpecifications'
 import ProductShipping from './ProductShipping'
 import SoldBy from './SoldBy'
-// NOSONAR
+
 interface Props {
   product: ProductDetailsFragment_ProductFragment
 }
@@ -52,58 +52,107 @@ type ElementDisabledT = {
   valueReference: string
 }
 
-function ProductDetails({ product: staleProduct }: Props) {
-  const { currency } = useSession()
-  const [addQuantity, setAddQuantity] = useState(1)
-  const [indexes, setIndexes] = useState<number[]>([])
+type GetVariantsProps = {
+  data: Props
+}
 
-  // Stale while revalidate the product for fetching the new price etc
-  const { data, isValidating } = useProduct(staleProduct.id, {
-    product: staleProduct,
-  })
+type SettingSectionProps = {
+  isMobile: boolean
+  isValidating: boolean
+}
 
-  const [isMobile, setIsMobile] = useState(true)
+type CartAddProps = {
+  isValidating: boolean
+  addQuantity: number
+}
 
-  useEffect(() => {
-    if (window.innerWidth > 1250) {
-      setIsMobile(false)
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 1250) {
-        setIsMobile(false)
-      } else {
-        setIsMobile(true)
-      }
-    })
-  }, [isMobile])
-
-  if (!data) {
-    throw new Error('NotFound')
+function isMobileFuntion() {
+  if (window.innerWidth > 1250) {
+    return false
   }
 
-  const {
-    product: {
-      id,
-      sku,
-      gtin,
-      description,
-      name: variantName,
-      brand,
-      isVariantOf,
-      isVariantOf: { name, productGroupID: productId, skuVariants, hasVariant },
-      image: productImages,
-      offers: {
-        offers: [{ availability, price, listPrice, seller }],
-        lowPrice,
-      },
-      breadcrumbList: breadcrumbs,
-      additionalProperty,
-      Sellers: sellers,
-    },
-  } = data
+  return true
+}
 
-  const buyDisabled = availability !== 'https://schema.org/InStock'
+function getVariants({ data }: GetVariantsProps) {
+  const {
+    isVariantOf: { skuVariants, hasVariant },
+  } = data.product
+
+  const cor = data?.product?.additionalProperty[0]?.value
+
+  const keysName: string[] = Object.keys(skuVariants?.availableVariations)
+  const disabledElements: AvaiableVariatios | any = [] || null
+
+  Object.values(skuVariants?.availableVariations).forEach(
+    (element: [AvaiableVariatios] | any) => {
+      element.forEach((item1: AvaiableVariatios) => {
+        hasVariant.forEach((item) => {
+          item.additionalProperty.forEach((element2) => {
+            if (item1.value === element2.value) {
+              if (item.offers.lowPrice === 0) {
+                disabledElements.push(element2)
+              }
+            }
+          })
+        })
+      })
+    }
+  )
+
+  if (keysName.length >= 2) {
+    Object.values(skuVariants?.availableVariations).forEach(
+      (element: [AvaiableVariatios] | any) => {
+        element.forEach((item1: AvaiableVariatios, index: number) => {
+          disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
+            if (item1?.value === elementDisabled?.value) {
+              const newAvaiables =
+                skuVariants?.availableVariations[keysName[1]][index] ?? null
+
+              if (disabledElements[0]?.value === cor) {
+                if (elementDisabled?.name !== 'Cor') {
+                  newAvaiables.disabled = true
+                }
+              }
+            }
+          })
+        })
+      }
+    )
+  } else {
+    Object.values(skuVariants?.availableVariations).forEach(
+      (element: [AvaiableVariatios] | any) => {
+        element.forEach((item1: AvaiableVariatios, index: number) => {
+          disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
+            if (item1?.value === elementDisabled.value) {
+              const newAvaiables =
+                skuVariants?.availableVariations[keysName[0]][index] ?? null
+
+              newAvaiables.disabled = true
+            }
+          })
+        })
+      }
+    )
+  }
+
+  return skuVariants
+}
+
+function CartAdd({ isValidating, product, addQuantity }: CartAddProps & Props) {
+  const {
+    id,
+    sku,
+    gtin,
+    name: variantName,
+    brand,
+    isVariantOf,
+    image: productImages,
+    offers: {
+      offers: [{ availability, price, listPrice, seller }],
+    },
+    additionalProperty,
+  } = product
 
   const buyProps = useBuyButton({
     id,
@@ -122,6 +171,62 @@ function ProductDetails({ product: staleProduct }: Props) {
     },
   })
 
+  const buyDisabled = availability !== 'https://schema.org/InStock'
+
+  return (
+    <>
+      {isValidating ? (
+        <AddToCartLoadingSkeleton />
+      ) : (
+        <ButtonBuy disabled={buyDisabled} {...buyProps}>
+          Adicionar ao carrinho
+        </ButtonBuy>
+      )}
+      {!availability && (
+        <OutOfStock
+          onSubmit={(email) => {
+            console.info(email)
+          }}
+        />
+      )}
+    </>
+  )
+}
+
+function GetInstallemnt({ product: { Sellers } }: Props) {
+  const sellerD = Sellers?.filter((element) => element?.sellerDefault === true)
+  const installments = sellerD?.map((el) => el?.commertialOffer?.Installments)
+  const allInstallment: InstallmentProps[][] = []
+
+  installments?.forEach((element) => {
+    if (element !== undefined && element !== null) {
+      allInstallment.push(element)
+    }
+  })
+
+  return (
+    <>
+      {allInstallment ? <Installment Installments={allInstallment} /> : <></>}
+    </>
+  )
+}
+
+const SettingSection = ({
+  isMobile,
+  isValidating,
+  product,
+}: SettingSectionProps & Props) => {
+  const [addQuantity, setAddQuantity] = useState(1)
+
+  const {
+    sku,
+    Sellers: sellers,
+    offers: {
+      offers: [{ listPrice, seller }],
+      lowPrice,
+    },
+  } = product
+
   const shippingItems = {
     seller: seller.identifier,
     quantity: addQuantity.toString(),
@@ -129,17 +234,117 @@ function ProductDetails({ product: staleProduct }: Props) {
   }
 
   const sellerD = sellers?.filter((element) => element?.sellerDefault === true)
-  const installments = sellerD?.map((el) => el?.commertialOffer?.Installments)
-  const allInstallment: InstallmentProps[][] = []
   const discountHighlights = sellerD
     ?.map((el) => el?.commertialOffer?.discountHighlights)
     .flat()
 
-  installments?.forEach((element) => {
-    if (element !== undefined && element !== null) {
-      allInstallment.push(element)
-    }
+  return (
+    <section
+      data-fs-product-settings-sticky={!isMobile}
+      className="product-details__settings"
+    >
+      <SoldBy sellers={sellers} isMobile={isMobile} />
+      {lowPrice > 0 ? (
+        <section className="product-details__values">
+          <div className="product-details__prices">
+            {listPrice !== lowPrice && (
+              <div className="product-details__prices--badge">
+                <Price
+                  value={listPrice}
+                  formatter={useFormattedPrice}
+                  testId="list-price"
+                  data-value={listPrice}
+                  variant="listing"
+                  classes="text__legend"
+                  SRText="Original price:"
+                />
+                <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />
+              </div>
+            )}
+            <Price
+              value={lowPrice}
+              formatter={useFormattedPrice}
+              testId="price"
+              data-value={lowPrice}
+              variant="spot"
+              classes="text__lead"
+              SRText="Sale Price:"
+            />
+            <GetInstallemnt product={product} />
+            <ul data-fs-product-card-discount>
+              {discountHighlights?.map((el, i) => (
+                <li data-fs-product-card-discount-item key={i}>
+                  {el?.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* <div className="prices">
+            <p className="price__old text__legend">{formattedListPrice}</p>
+            <p className="price__new">{isValidating ? '' : formattedPrice}</p>
+          </div> */}
+          <QuantitySelector min={1} max={10} onChange={setAddQuantity} />
+        </section>
+      ) : (
+        <div className="product-details__out-of-stock">
+          <span>Produto indisponível</span>
+        </div>
+      )}
+      {/* NOTE: A loading skeleton had to be used to avoid a Lighthouse's
+            non-composited animation violation due to the button transitioning its
+            background color when changing from its initial disabled to active state.
+            See full explanation on commit https://git.io/JyXV5. */}
+      <CartAdd
+        isValidating={isValidating}
+        addQuantity={addQuantity}
+        product={product}
+      />
+      <ProductShipping items={shippingItems} />
+    </section>
+  )
+}
+
+function ProductDetails({ product: staleProduct }: Props) {
+  const { currency } = useSession()
+  const [indexes, setIndexes] = useState<number[]>([])
+
+  // Stale while revalidate the product for fetching the new price etc
+  const { data, isValidating } = useProduct(staleProduct.id, {
+    product: staleProduct,
   })
+
+  const [isMobile, setIsMobile] = useState(true)
+
+  useEffect(() => {
+    setIsMobile(isMobileFuntion())
+
+    window.addEventListener('resize', () => {
+      setIsMobile(isMobileFuntion())
+    })
+  }, [isMobile])
+
+  if (!data) {
+    throw new Error('NotFound')
+  }
+
+  const {
+    product,
+    product: {
+      sku,
+      gtin,
+      description,
+      name: variantName,
+      brand,
+      isVariantOf,
+      isVariantOf: { name, productGroupID: productId },
+      image: productImages,
+      offers: {
+        offers: [{ price, listPrice }],
+        lowPrice,
+      },
+      breadcrumbList: breadcrumbs,
+    },
+  } = data
 
   useEffect(() => {
     sendAnalyticsEvent<ViewItemEvent<AnalyticsItem>>({
@@ -215,62 +420,7 @@ function ProductDetails({ product: staleProduct }: Props) {
     return obj
   }, [specs])
 
-  const cor = data?.product?.additionalProperty[0]?.value
-
-  const keysName: string[] = Object.keys(skuVariants?.availableVariations)
-  const disabledElements: AvaiableVariatios | any = [] || null
-
-  Object.values(skuVariants?.availableVariations).forEach(
-    (element: [AvaiableVariatios] | any) => {
-      element.forEach((item1: AvaiableVariatios) => {
-        hasVariant.forEach((item) => {
-          item.additionalProperty.forEach((element2) => {
-            if (item1.value === element2.value) {
-              if (item.offers.lowPrice === 0) {
-                disabledElements.push(element2)
-              }
-            }
-          })
-        })
-      })
-    }
-  )
-
-  if (keysName.length >= 2) {
-    Object.values(skuVariants?.availableVariations).forEach(
-      (element: [AvaiableVariatios] | any) => {
-        element.forEach((item1: AvaiableVariatios, index: number) => {
-          disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
-            if (item1?.value === elementDisabled?.value) {
-              const newAvaiables =
-                skuVariants?.availableVariations[keysName[1]][index] ?? null
-
-              if (disabledElements[0]?.value === cor) {
-                if (elementDisabled?.name !== 'Cor') {
-                  newAvaiables.disabled = true
-                }
-              }
-            }
-          })
-        })
-      }
-    )
-  } else {
-    Object.values(skuVariants?.availableVariations).forEach(
-      (element: [AvaiableVariatios] | any) => {
-        element.forEach((item1: AvaiableVariatios, index: number) => {
-          disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
-            if (item1?.value === elementDisabled.value) {
-              const newAvaiables =
-                skuVariants?.availableVariations[keysName[0]][index] ?? null
-
-              newAvaiables.disabled = true
-            }
-          })
-        })
-      }
-    )
-  }
+  const skuVariants = getVariants({ data })
 
   // this function is to bring all specifications OPEN
   // useEffect(() => {
@@ -278,85 +428,6 @@ function ProductDetails({ product: staleProduct }: Props) {
 
   //   setIndexes(indexs)
   // }, [allUsableSpecs])
-
-  const settingSection = () => (
-    <section
-      data-fs-product-settings-sticky={!isMobile}
-      className="product-details__settings"
-    >
-      <SoldBy sellers={sellers} isMobile={isMobile} />
-      {lowPrice > 0 ? (
-        <section className="product-details__values">
-          <div className="product-details__prices">
-            {listPrice !== lowPrice && (
-              <div className="product-details__prices--badge">
-                <Price
-                  value={listPrice}
-                  formatter={useFormattedPrice}
-                  testId="list-price"
-                  data-value={listPrice}
-                  variant="listing"
-                  classes="text__legend"
-                  SRText="Original price:"
-                />
-                <DiscountBadge listPrice={listPrice} spotPrice={lowPrice} />
-              </div>
-            )}
-            <Price
-              value={lowPrice}
-              formatter={useFormattedPrice}
-              testId="price"
-              data-value={lowPrice}
-              variant="spot"
-              classes="text__lead"
-              SRText="Sale Price:"
-            />
-
-            {allInstallment ? (
-              <Installment Installments={allInstallment} />
-            ) : (
-              <></>
-            )}
-            <ul data-fs-product-card-discount>
-              {discountHighlights?.map((el, i) => (
-                <li data-fs-product-card-discount-item key={i}>
-                  {el?.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* <div className="prices">
-              <p className="price__old text__legend">{formattedListPrice}</p>
-              <p className="price__new">{isValidating ? '' : formattedPrice}</p>
-            </div> */}
-          <QuantitySelector min={1} max={10} onChange={setAddQuantity} />
-        </section>
-      ) : (
-        <div className="product-details__out-of-stock">
-          <span>Produto indisponível</span>
-        </div>
-      )}
-      {/* NOTE: A loading skeleton had to be used to avoid a Lighthouse's
-              non-composited animation violation due to the button transitioning its
-              background color when changing from its initial disabled to active state.
-              See full explanation on commit https://git.io/JyXV5. */}
-      {isValidating ? (
-        <AddToCartLoadingSkeleton />
-      ) : (
-        <ButtonBuy disabled={buyDisabled} {...buyProps}>
-          Adicionar ao carrinho
-        </ButtonBuy>
-      )}
-      {!availability && (
-        <OutOfStock
-          onSubmit={(email) => {
-            console.info(email)
-          }}
-        />
-      )}
-      <ProductShipping items={shippingItems} />
-    </section>
-  )
 
   return (
     <Section className="product-details layout__content-full layout__section">
@@ -383,7 +454,7 @@ function ProductDetails({ product: staleProduct }: Props) {
               />
             )}
           </section>
-          {isMobile && settingSection()}
+          {isMobile && SettingSection({ isMobile, product, isValidating })}
           <section className="product-details__content">
             <article className="product-details__description">
               <h2 className="text__title-subsection">Informações do produto</h2>
@@ -425,7 +496,7 @@ function ProductDetails({ product: staleProduct }: Props) {
             </article>
           </section>
         </section>
-        {!isMobile && settingSection()}
+        {!isMobile && SettingSection({ isMobile, product, isValidating })}
       </div>
     </Section>
   )
