@@ -13,9 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44))
 
 ### Fixed 
-- `Product unavailable Page` ([#88](https://github.com/vtex-sites/accenturebb.store/pull/88)
-- `Fix sync cart` ([#86](https://github.com/vtex-sites/accenturebb.store/pull/86)
-- `Fix PDP` ([#85](https://github.com/vtex-sites/accenturebb.store/pull/85)
+- `Fix SonarQube` error ([#90](https://github.com/vtex-sites/accenturebb.store/pull/90))
+- `Product unavailable Page` ([#88](https://github.com/vtex-sites/accenturebb.store/pull/88))
+- `Fix sync cart` ([#86](https://github.com/vtex-sites/accenturebb.store/pull/86))
+- `Fix PDP` ([#85](https://github.com/vtex-sites/accenturebb.store/pull/85))
     - zoom image
     - shipping and image gallery layout
     - carousel

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import './CarouselShelf.scss'
 import BtnCarouselShelf from './BtnCarouselShelf'
 import BuildCarousel from './BuildCarousel'
+import './CarouselShelf.scss'
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 /* eslint-disable  react-hooks/exhaustive-deps */
@@ -22,6 +22,135 @@ export interface CarouselfProps {
   dots: number
 }
 
+interface CarouselSlideProps extends MoveCarouselProps {
+  e: React.TouchEvent<HTMLDivElement>
+  type: string
+  card: CarouselfProps
+  children: number
+}
+
+interface MoveCarouselProps {
+  moveCarousel: boolean
+  moveStart: number
+  carouselPosition: number
+  movePosition: number
+}
+
+interface MoveProps {
+  carousel: MoveCarouselProps
+  getPosition: number
+  screen: number
+  maxMove: number
+}
+
+const MoveCarousel = ({
+  carousel,
+  getPosition,
+  screen,
+  maxMove,
+}: MoveProps) => {
+  const { moveCarousel, carouselPosition, moveStart, movePosition } = carousel
+
+  if (!moveCarousel) {
+    return { moveCarousel, carouselPosition, moveStart, movePosition }
+  }
+
+  const x = getPosition - moveStart
+
+  if (getPosition < 0 || getPosition > screen) {
+    return {
+      moveCarousel: false,
+      carouselPosition,
+      moveStart,
+      movePosition,
+    }
+  }
+
+  if (Math.abs(carouselPosition) >= maxMove && x < 0) {
+    return {
+      moveCarousel,
+      carouselPosition: -maxMove,
+      moveStart,
+      movePosition,
+    }
+  }
+
+  const move =
+    movePosition + x > 0 || (x > 0 && carouselPosition === 0)
+      ? 0
+      : movePosition + x * 1.25
+
+  return { moveCarousel, carouselPosition: move, moveStart, movePosition }
+}
+
+const CarouselSlide = ({
+  e,
+  type,
+  card,
+  children,
+  moveCarousel,
+  moveStart,
+  carouselPosition,
+  movePosition,
+}: CarouselSlideProps) => {
+  const getPosition =
+    type === 'end'
+      ? e.nativeEvent.changedTouches[0].clientX
+      : e.nativeEvent.touches[0].clientX
+
+  const screen = document.documentElement.clientWidth
+  const itemW = card.cardWidth
+  const maxMove =
+    itemW * (children - card.itemPerPage) -
+    (screen - 32 - itemW * card.itemPerPage)
+
+  const carousel = { moveCarousel, carouselPosition, moveStart, movePosition }
+
+  switch (type) {
+    case 'move':
+      return MoveCarousel({ carousel, getPosition, screen, maxMove })
+
+    case 'start': {
+      const startPosition = getPosition > screen ? screen : getPosition
+      const moveS = getPosition < 0 ? 0 : startPosition
+
+      return {
+        moveCarousel: true,
+        carouselPosition,
+        moveStart: moveS,
+        movePosition,
+      }
+    }
+
+    case 'end': {
+      if (carouselPosition > 0 || Math.abs(carouselPosition) >= maxMove) {
+        const move = carouselPosition > 0 ? 0 : -maxMove
+
+        return {
+          moveCarousel,
+          carouselPosition: move,
+          moveStart,
+          movePosition: move,
+        }
+      }
+
+      const itemPP = Math.round(carouselPosition / itemW)
+      const finalPosition =
+        itemW * itemPP === carouselPosition ? carouselPosition : itemW * itemPP
+
+      return {
+        moveCarousel,
+        carouselPosition: finalPosition,
+        moveStart,
+        movePosition: finalPosition,
+      }
+    }
+
+    default:
+      return { moveCarousel, carouselPosition, moveStart, movePosition }
+  }
+}
+
 const CarouselShelf = ({
   children,
   itemsPerPage = 1,
@@ -36,12 +165,10 @@ const CarouselShelf = ({
   const [moveStart, setMoveStart] = useState(0)
 
   const build = () => {
-    const items = children.length
-
     setCarouselIndex(1)
     setMovePosition(0)
     setCarouselPosition(0)
-    setCard(BuildCarousel(itemsPerPage, arrows, items, size))
+    setCard(BuildCarousel(itemsPerPage, arrows, children.length, size))
   }
 
   useEffect(() => {
@@ -55,62 +182,25 @@ const CarouselShelf = ({
     return <></>
   }
 
-  const carouselSlide = (e: React.TouchEvent<HTMLDivElement>, type: string) => {
-    if (card) {
-      const getPosition =
-        type === 'end'
-          ? e.nativeEvent.changedTouches[0].clientX
-          : e.nativeEvent.touches[0].clientX
+  const moveCarouselCard = (
+    e: React.TouchEvent<HTMLDivElement>,
+    type: string
+  ) => {
+    const carouselMove = CarouselSlide({
+      e,
+      type,
+      card,
+      children: children.length,
+      moveCarousel,
+      moveStart,
+      carouselPosition,
+      movePosition,
+    })
 
-      const screen = document.documentElement.clientWidth
-      const itemW = card.cardWidth
-      const maxMove =
-        itemW * (children.length - card.itemPerPage) -
-        (screen - 32 - itemW * card.itemPerPage)
-
-      if (type === 'move') {
-        if (!moveCarousel) {
-          return
-        }
-
-        const x = getPosition - moveStart
-
-        if (getPosition < 0 || getPosition > screen) {
-          setMoveCarousel(false)
-        } else if (Math.abs(carouselPosition) >= maxMove && x < 0) {
-          setCarouselPosition(-maxMove)
-        } else {
-          setCarouselPosition(
-            movePosition + x > 0 || (x > 0 && carouselPosition === 0)
-              ? 0
-              : movePosition + x * 1.25
-          )
-        }
-      }
-
-      if (type === 'start') {
-        setMoveCarousel(true)
-        const startPosition = getPosition > screen ? screen : getPosition
-
-        setMoveStart(getPosition < 0 ? 0 : startPosition)
-      }
-
-      if (type === 'end') {
-        if (carouselPosition > 0 || Math.abs(carouselPosition) >= maxMove) {
-          setMovePosition(carouselPosition > 0 ? 0 : -maxMove)
-          setCarouselPosition(carouselPosition > 0 ? 0 : -maxMove)
-        } else {
-          const itemPP = Math.round(carouselPosition / itemW)
-          const finalPosition =
-            itemW * itemPP === carouselPosition
-              ? carouselPosition
-              : itemW * itemPP
-
-          setMovePosition(finalPosition)
-          setCarouselPosition(finalPosition)
-        }
-      }
-    }
+    setMoveCarousel(carouselMove.moveCarousel)
+    setCarouselPosition(carouselMove.carouselPosition)
+    setMovePosition(carouselMove.movePosition)
+    setMoveStart(carouselMove.moveStart)
   }
 
   const moveDot = (index: number) => {
@@ -168,9 +258,9 @@ const CarouselShelf = ({
               : 'carouselShelf--container'
           }
           draggable
-          onTouchStart={(e) => carouselSlide(e, 'start')}
-          onTouchMove={(e) => carouselSlide(e, 'move')}
-          onTouchEnd={(e) => carouselSlide(e, 'end')}
+          onTouchStart={(e) => moveCarouselCard(e, 'start')}
+          onTouchMove={(e) => moveCarouselCard(e, 'move')}
+          onTouchEnd={(e) => moveCarouselCard(e, 'end')}
           style={{
             transform: `translateX(${carouselPosition}px)`,
             minWidth: 'fit-content',
