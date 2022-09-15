@@ -27,11 +27,11 @@ module.exports = {
   },
 
   // Production URLs
-  storeUrl: 'https://accenturebb.vtex.app',
-  secureSubdomain: 'https://accenturebb.vtexcommercestable.com.br',
-  checkoutUrl: 'https://accenturebb.vtexcommercestable.com.br/checkout',
-  loginUrl: 'https://accenturebb.vtexcommercestable.com.br/api/io/login',
-  accountUrl: 'https://accenturebb.vtexcommercestable.com.br/api/io/account',
+  storeUrl: 'https://accenturebb.cloudns.ph',
+  secureSubdomain: 'https://secure.accenturebb.cloudns.ph',
+  checkoutUrl: 'https://secure.accenturebb.cloudns.ph/checkout',
+  loginUrl: 'https://secure.accenturebb.cloudns.ph/api/io/login',
+  accountUrl: 'https://secure.accenturebb.cloudns.ph/api/io/account',
 
   // Lighthouse CI
   lighthouse: {
