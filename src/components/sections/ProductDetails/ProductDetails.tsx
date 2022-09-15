@@ -99,11 +99,11 @@ function getVariants({ data }: GetVariantsProps) {
     })
   })
 
-  availableVariations?.forEach((element: [AvaiableVariatios] | any) => {
-    element.forEach((item1: AvaiableVariatios, index: number) => {
-      disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
-        if (item1?.value === elementDisabled?.value) {
-          if (keysName.length >= 2) {
+  if (keysName.length >= 2) {
+    availableVariations?.forEach((element: [AvaiableVariatios] | any) => {
+      element.forEach((item1: AvaiableVariatios, index: number) => {
+        disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
+          if (item1?.value === elementDisabled?.value) {
             const newAvaiables =
               skuVariants?.availableVariations[keysName[1]][index] ?? null
 
@@ -112,16 +112,24 @@ function getVariants({ data }: GetVariantsProps) {
                 newAvaiables.disabled = true
               }
             }
-          } else {
+          }
+        })
+      })
+    })
+  } else {
+    availableVariations?.forEach((element: [AvaiableVariatios] | any) => {
+      element.forEach((item1: AvaiableVariatios, index: number) => {
+        disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
+          if (item1?.value === elementDisabled.value) {
             const newAvaiables =
               skuVariants?.availableVariations[keysName[0]][index] ?? null
 
             newAvaiables.disabled = true
           }
-        }
+        })
       })
     })
-  })
+  }
 
   return skuVariants
 }
