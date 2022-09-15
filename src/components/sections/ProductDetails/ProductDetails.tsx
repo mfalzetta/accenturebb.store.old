@@ -79,62 +79,49 @@ function getVariants({ data }: GetVariantsProps) {
     isVariantOf: { skuVariants, hasVariant },
   } = data.product
 
-  const cor = data?.product?.additionalProperty[0]?.value
+  const cor = data.product.additionalProperty[0].value
 
   const keysName: string[] = Object.keys(skuVariants?.availableVariations)
   const disabledElements: AvaiableVariatios | any = [] || null
+  const availableVariations = Object.values(skuVariants?.availableVariations)
 
-  Object.values(skuVariants?.availableVariations).forEach(
-    (element: [AvaiableVariatios] | any) => {
-      element.forEach((item1: AvaiableVariatios) => {
-        hasVariant.forEach((item) => {
-          item.additionalProperty.forEach((element2) => {
-            if (item1.value === element2.value) {
-              if (item.offers.lowPrice === 0) {
-                disabledElements.push(element2)
-              }
+  availableVariations?.forEach((element: [AvaiableVariatios] | any) => {
+    element.forEach((item1: AvaiableVariatios) => {
+      hasVariant.forEach((item) => {
+        item.additionalProperty.forEach((element2) => {
+          if (item1.value === element2.value) {
+            if (item.offers.lowPrice === 0) {
+              disabledElements.push(element2)
             }
-          })
+          }
         })
       })
-    }
-  )
+    })
+  })
 
-  if (keysName.length >= 2) {
-    Object.values(skuVariants?.availableVariations).forEach(
-      (element: [AvaiableVariatios] | any) => {
-        element.forEach((item1: AvaiableVariatios, index: number) => {
-          disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
-            if (item1?.value === elementDisabled?.value) {
-              const newAvaiables =
-                skuVariants?.availableVariations[keysName[1]][index] ?? null
+  availableVariations?.forEach((element: [AvaiableVariatios] | any) => {
+    element.forEach((item1: AvaiableVariatios, index: number) => {
+      disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
+        if (item1?.value === elementDisabled?.value) {
+          if (keysName.length >= 2) {
+            const newAvaiables =
+              skuVariants?.availableVariations[keysName[1]][index] ?? null
 
-              if (disabledElements[0]?.value === cor) {
-                if (elementDisabled?.name !== 'Cor') {
-                  newAvaiables.disabled = true
-                }
+            if (disabledElements[0]?.value === cor) {
+              if (elementDisabled?.name !== 'Cor') {
+                newAvaiables.disabled = true
               }
             }
-          })
-        })
-      }
-    )
-  } else {
-    Object.values(skuVariants?.availableVariations).forEach(
-      (element: [AvaiableVariatios] | any) => {
-        element.forEach((item1: AvaiableVariatios, index: number) => {
-          disabledElements?.forEach((elementDisabled: ElementDisabledT) => {
-            if (item1?.value === elementDisabled.value) {
-              const newAvaiables =
-                skuVariants?.availableVariations[keysName[0]][index] ?? null
+          } else {
+            const newAvaiables =
+              skuVariants?.availableVariations[keysName[0]][index] ?? null
 
-              newAvaiables.disabled = true
-            }
-          })
-        })
-      }
-    )
-  }
+            newAvaiables.disabled = true
+          }
+        }
+      })
+    })
+  })
 
   return skuVariants
 }
