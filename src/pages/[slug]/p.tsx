@@ -102,7 +102,7 @@ function Page(props: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-      <ProductDetails product={product} />
+      <ProductDetails />
       <div className="cms-pdp">
         <RenderPageSections sections={cmsPdp?.sections} />
       </div>
