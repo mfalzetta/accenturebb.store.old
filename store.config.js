@@ -38,8 +38,8 @@ module.exports = {
     server: process.env.BASE_SITE_URL || 'http://localhost:9000',
     pages: {
       home: '/',
-      pdp: '/iphone-13-apple--128gb--meia-noite-tela-de-61--5g-e-camera-dupla-de-12-mp-202-1500/p',
-      collection: '/eletronicos',
+      pdp: '/camisa-polo-masculina-l-12-12-1512/p',
+      collection: '/masculino',
     },
   },
 
@@ -47,11 +47,11 @@ module.exports = {
   cypress: {
     pages: {
       home: '/',
-      pdp: '/iphone-13-apple--128gb--meia-noite-tela-de-61--5g-e-camera-dupla-de-12-mp-202-1500/p',
-      collection: '/eletronicos',
+      pdp: '/camisa-polo-masculina-l-12-12-1512/p',
+      collection: '/masculino',
       collection_filtered:
-        'eletronicos/?category-1=eletronicos&brand=apple&facets=category-1%2Cbrand&sort=score_desc&page=0',
-      search: '/s?q=iphone',
+        '/masculino/?category-1=masculino&brand=lacoste&tamanho=4---m&facets=category-1%2Cbrand%2Ctamanho&sort=score_desc&page=0',
+      search: '/s/?q=camiseta',
     },
   },
 
