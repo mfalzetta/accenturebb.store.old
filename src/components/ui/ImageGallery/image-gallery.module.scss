@@ -26,7 +26,7 @@
   @include media(">=notebook") {
     left: 0;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto 1fr;
     grid-row: 1 / span 4;
     grid-column: span 7;
     column-gap: var(--fs-image-gallery-gap-notebook);
@@ -58,7 +58,7 @@
   [data-fs-pdp-image-with-wishlist] {
     position: relative;
     width: 100%;
-    max-width: 600px;
+    max-width: 1675px;
     margin: auto;
 
     @include media("<=tablet") {
