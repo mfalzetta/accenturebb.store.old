@@ -78,31 +78,38 @@ export const MenuGetCategory = ({ stateChanger, isOpen }: MenuProps) => {
     allCollections: { edges },
   } = data
 
-  const departNode = edges.filter((el) => el.node.type === 'Department').flat()
+  const departNode = edges.filter((e) => e.node.type === 'Department').flat()
   const categoryNode = edges.filter((el) => el.node.type === 'Category').flat()
   const departament = departNode
-    .map((el) => el.node.breadcrumbList.itemListElement)
+    .map((element) => element.node.breadcrumbList.itemListElement)
     .flat()
 
   const categoryList = categoryNode
-    .map((el) => el.node.breadcrumbList.itemListElement)
+    .map((catNode) => catNode.node.breadcrumbList.itemListElement)
     .flat()
 
-  const category2 = categoryList.flat().filter((el) => el.position === 2)
-  const categorySub = categoryList.flat().filter((el) => el.position === 3)
+  const category2 = categoryList
+    .flat()
+    .filter((catList) => catList.position === 2)
+
+  const categorySub = categoryList
+    .flat()
+    .filter((CatPosition) => CatPosition.position === 3)
+
   const items: ItemProp[] = []
 
   departament.forEach((dep) => {
-    const cat = category2.filter((el) =>
-      dep.item.includes(el.item.split('/')[1])
+    const cat = category2.filter((elFilter) =>
+      dep.item.includes(elFilter.item.split('/')[1])
     )
 
     const cate: SubProp[] = []
 
     removeDuplicate(cat).forEach((c) => {
       const sub = categorySub.filter(
-        (el) =>
-          el.item.includes(c.item) && dep.item.includes(el.item.split('/')[1])
+        (catSub) =>
+          catSub.item.includes(c.item) &&
+          dep.item.includes(catSub.item.split('/')[1])
       )
 
       const subc = { subCategory: sub, category: c }
@@ -114,7 +121,7 @@ export const MenuGetCategory = ({ stateChanger, isOpen }: MenuProps) => {
     items.push(categ)
   })
 
-  const depart = items.map((el) => el.depart)
+  const depart = items.map((ele) => ele.depart)
 
   if (!isMobile) {
     return (

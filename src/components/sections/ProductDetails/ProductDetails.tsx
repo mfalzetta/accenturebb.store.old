@@ -26,7 +26,7 @@ import LinksAndDownloads from './LinksAndDownloads'
 import ProductSpecifications from './ProductSpecifications'
 import ProductShipping from './ProductShipping'
 import SoldBy from './SoldBy'
-
+// NOSONAR
 interface Props {
   product: ProductDetailsFragment_ProductFragment
 }
