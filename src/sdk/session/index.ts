@@ -3,7 +3,8 @@ import { createSessionStore } from '@faststore/sdk'
 import { useMemo } from 'react'
 import type { Session } from '@faststore/sdk'
 
-import storeConfig from '../../../store.config'
+import storeConfig from 'store.config'
+
 import { cartStore } from '../cart'
 import { request } from '../graphql/request'
 import { createValidationStore, useStore } from '../useStore'

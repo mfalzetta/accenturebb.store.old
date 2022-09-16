@@ -1,61 +1,49 @@
+import { isNotFoundError } from '@faststore/api'
 import { gql } from '@faststore/graphql-utils'
-import { graphql } from 'gatsby'
-import {
-  BreadcrumbJsonLd,
-  GatsbySeo,
-  ProductJsonLd,
-} from 'gatsby-plugin-next-seo'
-import { useSession } from 'src/sdk/session'
-import ProductDetails from 'src/components/sections/ProductDetails'
-import { mark } from 'src/sdk/tests/mark'
-import type { PageProps } from 'gatsby'
-import type {
-  ProductPageQueryQuery,
-  ServerProductPageQueryQuery,
-  ProductPageQueryQueryVariables,
-} from '@generated/graphql'
-import 'src/styles/pages/pdp.scss'
-import RenderPageSections from 'src/components/cms/RenderPageSections'
-import { getCMSPageDataByContentType } from 'src/cms/client'
+import { BreadcrumbJsonLd, NextSeo, ProductJsonLd } from 'next-seo'
+import type { GetStaticPaths, GetStaticProps } from 'next'
 import type { ContentData } from '@vtex/client-cms'
 
-export type Props = PageProps<
-  ProductPageQueryQuery,
-  ProductPageQueryQueryVariables,
-  unknown,
-  (ServerProductPageQueryQuery & { cmsPdp: ContentData }) | null
-> & { slug: string }
+import ProductDetails from 'src/components/sections/ProductDetails'
+import { useSession } from 'src/sdk/session'
+import { mark } from 'src/sdk/tests/mark'
+import { execute } from 'src/server'
+import type {
+  ServerProductPageQueryQuery,
+  ServerProductPageQueryQueryVariables,
+} from '@generated/graphql'
+import { getCMSPageDataByContentType } from 'src/cms/client'
+import RenderPageSections from 'src/components/cms/RenderPageSections'
 
-function Page(props: Props) {
-  const { locale, currency } = useSession()
-  const {
-    data: { site },
-    serverData,
-  } = props
+import storeConfig from '../../../store.config'
+
+type Props = {
+  data: ServerProductPageQueryQuery
+  cmsPdp: ContentData
+}
+
+function Page({ data, cmsPdp }: Props) {
+  const { currency } = useSession()
 
   // No data was found
-  if (serverData === null) {
+  if (data === undefined) {
     return null
   }
 
-  const {
-    product,
-    product: { seo },
-    cmsPdp,
-  } = serverData
+  const { product } = data
 
-  const title = seo.title ?? site?.siteMetadata?.title ?? ''
-  const description = seo.description ?? site?.siteMetadata?.description ?? ''
-  const canonical = `${site?.siteMetadata?.siteUrl}${seo.canonical}`
+  const { seo } = product
+  const title = seo.title || storeConfig.seo.title
+  const description = seo.description || storeConfig.seo.description
+  const canonical = `${storeConfig.storeUrl}${seo.canonical}`
 
   return (
     <>
       {/* SEO */}
-      <GatsbySeo
+      <NextSeo
         title={title}
         description={description}
         canonical={canonical}
-        language={locale}
         openGraph={{
           type: 'og:product',
           url: canonical,
@@ -66,7 +54,7 @@ function Page(props: Props) {
             alt: img.alternateName,
           })),
         }}
-        metaTags={[
+        additionalMetaTags={[
           {
             property: 'product:price:amount',
             content: product.offers.lowPrice?.toString() ?? undefined,
@@ -78,31 +66,38 @@ function Page(props: Props) {
         ]}
       />
       <BreadcrumbJsonLd
-        itemListElements={product.breadcrumbList.itemListElement ?? []}
+        itemListElements={product.breadcrumbList.itemListElement}
       />
       <ProductJsonLd
-        name={product.name}
+        productName={product.name}
         description={product.description}
         brand={product.brand.name}
         sku={product.sku}
         gtin={product.gtin}
+        releaseDate={product.releaseDate}
         images={product.image.map((img) => img.url)} // Somehow, Google does not understand this valid Schema.org schema, so we need to do conversions
         offersType="AggregateOffer"
         offers={{
           ...product.offers,
-          price: product.offers.offers[0].price.toString(),
+          ...product.offers.offers[0],
+          url: canonical,
         }}
       />
+
       {/*
         WARNING: Do not import or render components from any
         other folder than '../components/sections' in here.
+
         This is necessary to keep the integration with the CMS
         easy and consistent, enabling the change and reorder
         of elements on this page.
+
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
+
       <ProductDetails product={product} />
+
       <div className="cms-pdp">
         <RenderPageSections sections={cmsPdp?.sections} />
       </div>
@@ -110,35 +105,27 @@ function Page(props: Props) {
   )
 }
 
-export const querySSG = graphql`
-  query ProductPageQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        titleTemplate
-        siteUrl
-      }
-    }
-  }
-`
-
-export const querySSR = gql`
+const query = gql`
   query ServerProductPageQuery($slug: String!) {
     product(locator: [{ key: "slug", value: $slug }]) {
       id: productID
+
       seo {
         title
         description
         canonical
       }
+
       brand {
         name
       }
+
       sku
       gtin
       name
       description
+      releaseDate
+
       breadcrumbList {
         itemListElement {
           item
@@ -146,10 +133,12 @@ export const querySSR = gql`
           position
         }
       }
+
       image {
         url
         alternateName
       }
+
       offers {
         lowPrice
         highPrice
@@ -165,57 +154,53 @@ export const querySSR = gql`
           }
         }
       }
+
       isVariantOf {
         productGroupID
       }
+
       ...ProductDetailsFragment_product
     }
   }
 `
+// TODO TYPE THIS
 
-export const getServerData = async ({
-  params: { slug },
-}: {
-  params: Record<string, string>
+export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({
+  params,
 }) => {
-  const ONE_YEAR_CACHE = `s-maxage=31536000, stale-while-revalidate`
-  const { isNotFoundError } = await import('@faststore/api')
-  const { execute } = await import('src/server/index')
-  const { data, errors = [] } = await execute({
-    operationName: querySSR,
-    variables: { slug },
+  const { data, errors = [] } = await execute<
+    ServerProductPageQueryQueryVariables,
+    ServerProductPageQueryQuery
+  >({
+    variables: { slug: params?.slug ?? '' },
+    operationName: query,
   })
 
   const notFound = errors.find(isNotFoundError)
   const cmsPdp = await getCMSPageDataByContentType('pdp')
 
   if (notFound) {
-    const params = new URLSearchParams({
-      from: encodeURIComponent(`/${slug}/p`),
-    })
-
     return {
-      status: 301,
-      props: null,
-      headers: {
-        'cache-control': ONE_YEAR_CACHE,
-        location: `/404/?${params.toString()}}`,
-      },
+      notFound: true,
     }
   }
 
   if (errors.length > 0) {
     throw errors[0]
   }
+  // const { product } = data
 
-  const dataFinal = { ...data, cmsPdp }
+  const dataFinal = { data, cmsPdp }
 
   return {
-    status: 200,
     props: dataFinal,
-    headers: {
-      'cache-control': ONE_YEAR_CACHE,
-    },
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: 'blocking',
   }
 }
 

@@ -3,10 +3,11 @@ import {
   ProductCardContent as UIProductCardContent,
   ProductCardImage as UIProductCardImage,
 } from '@faststore/ui'
+import { useEffect, useState } from 'react'
+
 import Link from 'src/components/ui/Link'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import Price from 'src/components/ui/Price'
-import { useEffect, useState } from 'react'
 import { Badge, DiscountBadge } from 'src/components/ui/Badge'
 import type { InstallmentProps } from 'src/components/custom-components/Price/Installment'
 import Installment from 'src/components/custom-components/Price/Installment'
@@ -17,7 +18,6 @@ import WishListPdpButton from '../WishListPdpButton'
 import ProductGridSkeleton from 'src/components/skeletons/ProductGridSkeleton'
 import stylesGrid from '../../product/ProductGrid/product-grid.module.scss'
 import styles from '../../product/ProductCard/product-card.module.scss'
-import './wishlist-details.scss'
 
 interface DiscountHighlightT {
   name: string

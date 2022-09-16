@@ -1,4 +1,5 @@
 import { Icon as UIIcon, List as UIList } from '@faststore/ui'
+
 import Link from 'src/components/ui/Link'
 import { mark } from 'src/sdk/tests/mark'
 import Newsletter from 'src/components/sections/Newsletter'
@@ -69,9 +70,9 @@ function Footer() {
               <p className="text__title-mini footer__titles">
                 65 LOJAS NO BRASIL
               </p>
-              <a href="/">
+              <Link href="/">
                 <span>Encontrar um loja</span>
-              </a>
+              </Link>
             </section>
           </section>
           <FooterLinks />
@@ -99,22 +100,22 @@ function Footer() {
       <div className="layout__content">
         <ul className="footer__bottom--link">
           <li>
-            <a href="/">Mapa da página</a>
+            <Link href="/">Mapa da página</Link>
           </li>
           <li>
-            <a href="/">Créditos</a>
+            <Link href="/">Créditos</Link>
           </li>
           <li>
-            <a href="/">Termos e Condições</a>
+            <Link href="/">Termos e Condições</Link>
           </li>
           <li>
-            <a href="/">Política de privacidade</a>
+            <Link href="/">Política de privacidade</Link>
           </li>
           <li>
-            <a href="/">Guia de tamanhos</a>
+            <Link href="/">Guia de tamanhos</Link>
           </li>
           <li>
-            <a href="/">Definições de Cookies</a>
+            <Link href="/">Definições de Cookies</Link>
           </li>
         </ul>
       </div>

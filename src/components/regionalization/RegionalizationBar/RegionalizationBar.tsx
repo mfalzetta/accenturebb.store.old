@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from 'react'
+
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import { useSession } from 'src/sdk/session'
@@ -25,10 +26,10 @@ function RegionBar({ classes, ...otherProps }: Props) {
         {postalCode ? (
           <>
             <span data-fs-regionalization-bar-postal-code>{postalCode}</span>
-            <span data-fs-regionalization-bar-cta>Editar</span>
+            <span data-fs-regionalization-bar-cta>Edit</span>
           </>
         ) : (
-          <span data-fs-regionalization-bar-message>Informe seu CEP</span>
+          <span data-fs-regionalization-bar-message>Set your location</span>
         )}
         <Icon name="CaretRight" width={24} height={24} />
       </Button>

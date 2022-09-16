@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+
 import InputText from 'src/components/ui/InputText'
 import { sessionStore, useSession, validateSession } from 'src/sdk/session'
 
@@ -33,7 +34,7 @@ function RegionInput({ closeModal }: Props) {
 
       closeModal()
     } catch (error) {
-      setErrorMessage('CEP inválido')
+      setErrorMessage('You entered an invalid Postal Code')
     }
   }
 
@@ -43,7 +44,7 @@ function RegionInput({ closeModal }: Props) {
         inputRef={inputRef}
         id="postal-code-input"
         error={errorMessage}
-        label="CEP"
+        label="Postal Code"
         actionable
         value={input}
         onInput={(e) => {
@@ -52,7 +53,6 @@ function RegionInput({ closeModal }: Props) {
         }}
         onSubmit={handleSubmit}
         onClear={() => setInput('')}
-        buttonActionText="Aplicar"
       />
     </div>
   )

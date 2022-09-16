@@ -1,6 +1,5 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'
 import { SearchInputProvider } from 'src/sdk/search/useSearchInput'
-import { LocationProvider } from '@reach/router'
 import storeConfig from 'store.config'
 import {
   TokenTable,
@@ -16,16 +15,14 @@ import SearchProductCard from '.'
   component={SearchProductCard}
   args={{
     product,
-    index: 1,
+    index: 1
   }}
 />
 
 export const Template = (args) => (
-  <LocationProvider>
-    <SearchInputProvider>
-      <SearchProductCard {...args} />
-    </SearchInputProvider>
-  </LocationProvider>
+  <SearchInputProvider>
+    <SuggestionProductCard {...args} />
+  </SearchInputProvider>
 )
 
 <header>
@@ -74,7 +71,10 @@ The `SearchProductCard` differs from `ProductCard` because it is used in the `Se
     token="--fs-suggestion-product-card-image-margin-right"
     value="var(--fs-spacing-3)"
   />
-  <TokenRow token="--fs-suggestion-product-card-image-height" value="3.5rem" />
+  <TokenRow
+    token="--fs-suggestion-product-card-image-height"
+    value="3.5rem"
+  />
 </TokenTable>
 
 ### Title

@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { PriceRange as UIPriceRange } from '@faststore/ui'
 import type { PriceRangeProps } from '@faststore/ui'
+
 import {
   usePriceFormatter,
   useFormattedPrice,
@@ -15,7 +16,7 @@ type Props = Omit<
 >
 
 function PriceRange({ min, max, onEnd, step = 10, ...otherProps }: Props) {
-  const formatter = usePriceFormatter({ decimals: true })
+  const formatter = usePriceFormatter({ decimals: false })
   const minAbsoluteFormatted = useFormattedPrice(Math.round(min.absolute))
   const maxAbsoluteFormatted = useFormattedPrice(Math.ceil(max.absolute))
 
@@ -54,7 +55,7 @@ function PriceRange({ min, max, onEnd, step = 10, ...otherProps }: Props) {
     }
 
     if (Number(value) > priceRange.max) {
-      setInputMinError(`Preço mínimo não pode ser maior que o preço máximo`)
+      setInputMinError(`Min price can't be greater than max`)
     }
 
     setPriceRange({ ...priceRange, min: Number(value) })
@@ -72,7 +73,7 @@ function PriceRange({ min, max, onEnd, step = 10, ...otherProps }: Props) {
     }
 
     if (Number(value) < priceRange.min) {
-      setInputMaxError(`Preço máximo não pode ser menor que o preço mínimo`)
+      setInputMaxError(`Max price can't be smaller than min`)
     }
 
     setPriceRange({ ...priceRange, max: Number(value) })

@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
-import { Image } from 'src/components/ui/Image'
 import ImageViewer from 'react-simple-image-viewer'
+
+import { Image } from 'src/components/ui/Image'
 import WishListPdpButton from 'src/components/Wishlist/WishListPdpButton'
 
 import { ImageGallerySelector, ImageZoom } from '.'

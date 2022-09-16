@@ -1,5 +1,6 @@
-import { Link } from '@reach/router'
-import './InfoCard.scss'
+import Image from 'next/image'
+
+import Link from 'src/components/ui/Link'
 
 export interface InfoCardProps {
   src: string
@@ -23,15 +24,15 @@ const InfoCard = ({
   brandSize,
 }: InfoCardProps) => {
   return (
-    <Link to={href}>
+    <Link href={href}>
       <div className={`infocard__container ${className ?? ''}`}>
-        <img
+        <Image
           src={src}
           alt={alt}
           className="infocard__img"
           loading="lazy"
-          width={width}
-          height={height}
+          width={parseInt(width, 10)}
+          height={parseInt(height, 10)}
           data-brand-size={brandSize}
         />
         {text && <span className="infocard__text">{text}</span>}

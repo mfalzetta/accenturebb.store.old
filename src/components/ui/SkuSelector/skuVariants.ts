@@ -1,4 +1,4 @@
-import { navigate } from 'gatsby'
+import type { NextRouter } from 'next/router'
 
 export type SkuVariantsByName = Record<
   string,
@@ -18,25 +18,24 @@ export function getSkuSlug(
 
   const possibleVariants = Object.keys(slugsMap)
 
-  const variant = Object.keys(selectedVariations)
-  const selectedValue = variant[0]
-    ? `${variant[0]}-${selectedVariations[variant[0]]}`
-    : `${dominantVariation}-${selectedVariations[dominantVariation]}`
-
   const firstVariationForDominantValue = possibleVariants.find((slug) =>
-    slug.includes(selectedValue)
+    slug.includes(
+      `${dominantVariation}-${selectedVariations[dominantVariation]}`
+    )
   )
 
   return slugsMap[firstVariationForDominantValue ?? possibleVariants[0]]
 }
 
 export function navigateToSku({
+  router,
   slugsMap,
   dominantSku,
   selectorsState,
   updatedVariationName,
   updatedVariationValue,
 }: {
+  router: NextRouter
   dominantSku: string
   slugsMap: Record<string, string>
   selectorsState: Record<string, string>
@@ -56,5 +55,5 @@ export function navigateToSku({
     return
   }
 
-  navigate(whereTo)
+  router.push(whereTo)
 }

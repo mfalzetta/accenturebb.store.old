@@ -1,6 +1,7 @@
 import { sendAnalyticsEvent } from '@faststore/sdk'
 import { useCallback } from 'react'
 import type { CurrencyCode, SelectItemEvent } from '@faststore/sdk'
+
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
 
 import { useSession } from '../session'

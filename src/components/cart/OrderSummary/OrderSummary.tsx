@@ -1,6 +1,9 @@
-import { List } from '@faststore/ui'
-import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
+import { OrderSummary as UIOrderSummary } from '@faststore/ui'
 import type { ReactNode } from 'react'
+
+import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
+
+import styles from './order-summary.module.scss'
 
 interface OrderSummaryProps {
   subTotal: number
@@ -17,27 +20,19 @@ function OrderSummary({
 }: OrderSummaryProps) {
   const discount = subTotal - total
   const formattedDiscount = useFormattedPrice(discount)
-  const items =
-    numberOfItems > 1 ? `${numberOfItems} produtos` : `${numberOfItems} produto`
 
   return (
-    <List className="order-summary" data-order-summary>
-      <li>
-        <span>Subtotal ({items})</span>
-        <span>{useFormattedPrice(subTotal)}</span>
-      </li>
-      {discount > 0 && (
-        <li data-order-summary-discount>
-          <span>Desconto</span>
-          <span>-{formattedDiscount}</span>
-        </li>
-      )}
-      <li className="text__title-subsection">
-        <span>Total</span>
-        <span>{useFormattedPrice(total)}</span>
-      </li>
+    <div className={styles.fsOrderSummary}>
+      <UIOrderSummary
+        subtotalLabel={`Subtotal (${numberOfItems} products)`}
+        subtotalValue={useFormattedPrice(subTotal)}
+        discountLabel="Discount"
+        discountValue={discount > 0 ? `-${formattedDiscount}` : undefined}
+        totalLabel="Total"
+        totalValue={useFormattedPrice(total)}
+      />
       {checkoutButton}
-    </List>
+    </div>
   )
 }
 

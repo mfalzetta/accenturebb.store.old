@@ -1,5 +1,9 @@
 import { Incentive as UIIncentive } from '@faststore/ui'
+import Image from 'next/image'
+
 import Slider from 'src/components/custom-components/home/Slider'
+
+import styles from './incentives.module.scss'
 
 interface Incentive {
   src: string
@@ -31,11 +35,12 @@ function Incentives({
       data-fs-incentives
       data-fs-incentives-colored={colored}
       data-fs-incentives-variant={variant}
+      className={styles.fsIncentives}
     >
       <Slider minWidth={150} itemsPerPage={4}>
         {incentives.map((incentive, index) => (
           <UIIncentive key={index}>
-            <img
+            <Image
               src={incentive.src}
               alt={incentive.alt}
               loading="lazy"

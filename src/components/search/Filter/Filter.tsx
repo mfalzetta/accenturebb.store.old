@@ -1,6 +1,7 @@
+import { gql } from '@faststore/graphql-utils'
 import { setFacet, toggleFacet, useSearch } from '@faststore/sdk'
+
 import type { Filter_FacetsFragment } from '@generated/graphql'
-import { graphql } from 'gatsby'
 import { useUI } from 'src/sdk/ui/Provider'
 
 import Facets from './Facets'
@@ -20,10 +21,7 @@ interface Props {
 }
 
 function Filter({ facets: allFacets, testId = 'store-filter' }: Props) {
-  const filter = useFilter(
-    allFacets.filter((el) => el.key !== 'productClusterIds')
-  )
-
+  const filter = useFilter(allFacets)
   const { resetInfiniteScroll, state, setState } = useSearch()
   const { filter: displayFilter } = useUI()
   const { facets, expanded, dispatch } = filter
@@ -57,7 +55,7 @@ function Filter({ facets: allFacets, testId = 'store-filter' }: Props) {
   )
 }
 
-export const fragment = graphql`
+export const fragment = gql`
   fragment Filter_facets on StoreFacet {
     ... on StoreFacetRange {
       key

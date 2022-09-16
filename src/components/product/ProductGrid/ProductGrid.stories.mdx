@@ -3,7 +3,6 @@ import { SearchProvider } from '@faststore/sdk'
 import storeConfig from 'store.config'
 import Sentinel from 'src/sdk/search/Sentinel'
 import { productGridItems } from 'src/../.storybook/mocks'
-import { LocationProvider } from '@reach/router'
 
 import { useProducts } from '../../sections/ProductGallery/usePageProducts'
 
@@ -36,9 +35,7 @@ import {
 
 export const Template = (args) => {
   return (
-    <LocationProvider>
-      <ProductGrid {...args} />
-    </LocationProvider>
+    <ProductGrid {...args} />
   )
 }
 

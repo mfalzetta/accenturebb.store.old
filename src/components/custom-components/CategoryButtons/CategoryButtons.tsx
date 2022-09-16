@@ -1,4 +1,4 @@
-import { Link } from '@reach/router'
+import Link from 'src/components/ui/Link'
 import { removeDuplicate } from 'src/components/menu/MenuGetCategory'
 import useCategoryQuery from 'src/components/menu/useCategoryQuery'
 
@@ -53,7 +53,7 @@ const CategoryButtons = ({ slug, className }: CategoryButtonsProps) => {
               {getIcons?.map(({ name, item }: IconsProps, index) => {
                 return (
                   <div key={index} data-fs-category-buttons-link>
-                    <Link to={item} className="link__buttons">
+                    <Link href={item} className="link__buttons">
                       <span data-fs-category-buttons-link-name>{name}</span>
                     </Link>
                   </div>

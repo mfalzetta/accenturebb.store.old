@@ -127,17 +127,6 @@
   [data-product-card-installment] {
     padding: 0.5rem 0;
   }
-
-  .product-details__out-of-stock {
-    display: flex;
-    justify-content: center;
-    margin: 3rem 0;
-
-    span {
-      font-size: 24px;
-      font-weight: var(--fs-text-weight-black);
-    }
-  }
 }
 
 .product-details__values {
@@ -177,6 +166,22 @@
           letter-spacing: 0.02em;
         }
       }
+    }
+  }
+
+  [data-fs-product-card-discount] {
+    margin-bottom: 16px;
+
+    [data-fs-product-card-discount-item] {
+      width: fit-content;
+      padding: 2px var(--fs-spacing-1);
+      font-size: var(--fs-text-size-tiny);
+      font-weight: 500;
+      line-height: 16px;
+      color: #ffffff;
+      text-transform: uppercase;
+      background-color: var(--fs-color-theme-3);
+      border-radius: 10px;
     }
   }
 }

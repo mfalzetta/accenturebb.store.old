@@ -1,11 +1,20 @@
 import { sendAnalyticsEvent } from '@faststore/sdk'
-import { Card, CardActions, CardContent, CardImage } from '@faststore/ui'
+import {
+  CartItem as UICartItem,
+  CartItemActions as UICartItemActions,
+  CartItemSummary as UICartItemSummary,
+  CartItemTitle as UICartItemTitle,
+  CartItemPrices as UICartItemPrices,
+  CartItemContent as UICartItemContent,
+  CartItemImage as UICartItemImage,
+} from '@faststore/ui'
 import { useCallback, useMemo } from 'react'
 import type {
   AddToCartEvent,
   CurrencyCode,
   RemoveFromCartEvent,
 } from '@faststore/sdk'
+
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import { Image } from 'src/components/ui/Image'
@@ -82,27 +91,27 @@ function CartItem({ item, gift = false }: Props) {
   )
 
   return (
-    <Card
+    <UICartItem
       className={styles.fsCartItem}
       data-testid="cart-item"
       data-sku={item.itemOffered.sku}
       data-seller={item.seller.identifier}
     >
-      <CardContent data-fs-cart-item-content>
-        <CardImage>
+      <UICartItemContent>
+        <UICartItemImage>
           <Image
             src={item.itemOffered.image[0].url}
             alt={item.itemOffered.image[0].alternateName}
             width={72}
             height={72}
           />
-        </CardImage>
-        <div data-fs-cart-item-summary>
-          <p className="text__body" data-fs-cart-item-title>
+        </UICartItemImage>
+        <UICartItemSummary>
+          <UICartItemTitle className="text__body">
             {item.itemOffered.isVariantOf.name}
-          </p>
+          </UICartItemTitle>
           {!gift && (
-            <span data-fs-cart-item-prices>
+            <UICartItemPrices>
               {item.listPrice !== item.price && (
                 <div data-fs-cart-item-prices-discount>
                   <Price
@@ -129,29 +138,29 @@ function CartItem({ item, gift = false }: Props) {
                 classes="text__title-subsection"
                 SRText="Price:"
               />
-            </span>
+            </UICartItemPrices>
           )}
-        </div>
-      </CardContent>
+        </UICartItemSummary>
+      </UICartItemContent>
 
       {!gift && (
-        <CardActions data-fs-cart-item-actions>
+        <UICartItemActions>
           <Button
             variant="tertiary"
             icon={<Icon name="XCircle" width={18} height={18} />}
             iconPosition="left"
             {...btnProps}
           >
-            Remover
+            Remove
           </Button>
           <QuantitySelector
             min={1}
             initial={item.quantity}
             onChange={onQuantityChange}
           />
-        </CardActions>
+        </UICartItemActions>
       )}
-    </Card>
+    </UICartItem>
   )
 }
 

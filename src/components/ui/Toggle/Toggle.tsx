@@ -1,6 +1,7 @@
 import { Input as UIInput, Label as UILabel } from '@faststore/ui'
 import { forwardRef } from 'react'
 import type { InputHTMLAttributes } from 'react'
+
 import Icon from 'src/components/ui/Icon'
 import SROnly from 'src/components/ui/SROnly'
 

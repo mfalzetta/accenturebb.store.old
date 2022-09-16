@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react'
-import { ButtonLink } from 'src/components/ui/Button'
 import {
   Hero as UIHero,
   HeroHeading as UIHeroHeading,
   HeroImage as UIHeroImage,
 } from '@faststore/ui'
+
+import { ButtonLink } from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import Image from 'src/components/ui/Image/Image'
 

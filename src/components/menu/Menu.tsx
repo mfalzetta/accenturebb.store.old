@@ -1,7 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useEffect } from 'react'
 
-import './menu.scss'
 import { MenuGetCategory } from './MenuGetCategory'
 
 interface MenuProps {

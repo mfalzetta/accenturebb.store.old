@@ -1,4 +1,5 @@
 import { List as UIList } from '@faststore/ui'
+
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import Link from 'src/components/ui/Link'
@@ -18,9 +19,9 @@ const SearchHistory = () => {
   return (
     <section data-fs-search-section className={styles.fsSearch}>
       <div data-fs-search-header>
-        <p data-fs-search-title>Histórico</p>
+        <p data-fs-search-title>History</p>
         <Button variant="tertiary" onClick={clearSearchHistory}>
-          Limpar Histórico
+          Clear History
         </Button>
       </div>
       <UIList variant="ordered">

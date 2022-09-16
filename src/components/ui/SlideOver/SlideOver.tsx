@@ -1,5 +1,5 @@
 import { Modal as UIModal } from '@faststore/ui'
-import type { ReactNode, HTMLAttributes } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 
 import styles from './slide-over.module.scss'
 

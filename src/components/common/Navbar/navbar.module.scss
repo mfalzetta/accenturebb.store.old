@@ -58,7 +58,7 @@
   background-color: var(--fs-navbar-bkg-color);
   box-shadow: var(--fs-navbar-box-shadow);
 
-  [data-store-search-input-wrapper] {
+  [data-fs-search-input-wrapper] {
     flex: 1 0 100%;
     order: 2;
 
@@ -120,7 +120,7 @@
       }
     }
 
-    [data-store-search-input-wrapper] {
+    [data-fs-search-input-wrapper] {
       display: none;
       transition:
         flex var(--fs-navbar-transition-timing)
@@ -133,7 +133,7 @@
         order: 0;
         width: 48px;
 
-        &[data-store-search-input-dropdown-open="false"] [data-store-input] {
+        &[data-fs-search-input-dropdown-open="false"] [data-store-input] {
           width: 0;
           padding: 0;
           border-width: 0;
@@ -161,7 +161,7 @@
     &[data-fs-navbar-search-expanded="true"] {
       width: 100%;
 
-      [data-store-search-input-wrapper] {
+      [data-fs-search-input-wrapper] {
         flex: 1 1;
         margin-right:
           var(

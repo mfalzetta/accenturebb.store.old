@@ -7,7 +7,6 @@ import {
 import { SearchInputProvider } from 'src/sdk/search/useSearchInput'
 import { productGridItems, searchTerms } from 'src/../.storybook/mocks'
 import { products } from '../searchMock'
-import { LocationProvider } from '@reach/router'
 
 import SearchSuggestions from '.'
 
@@ -22,11 +21,9 @@ export const Template = (args) => (
       background: 'white',
     }}
   >
-    <LocationProvider>
-      <SearchInputProvider>
-        <SearchSuggestions {...args} />
-      </SearchInputProvider>
-    </LocationProvider>
+    <SearchInputProvider>
+      <SearchSuggestions {...args} />
+    </SearchInputProvider>
   </div>
 )
 

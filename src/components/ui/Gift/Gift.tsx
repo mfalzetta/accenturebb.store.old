@@ -4,6 +4,7 @@ import {
   GiftContent as UIGiftContent,
 } from '@faststore/ui'
 import type { GiftProps } from '@faststore/ui'
+
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import Icon from 'src/components/ui/Icon'
 import Price from 'src/components/ui/Price'

@@ -1,7 +1,4 @@
-import {
-  SliderArrowLeft,
-  SliderArrowRight,
-} from '../../../../images/home/Slider'
+import { SliderArrowLeft, SliderArrowRight } from '../../../../images/Slider'
 
 interface BtnSliderProps {
   direction: string

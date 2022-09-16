@@ -1,4 +1,3 @@
-import './HeaderLink.scss'
 import Link from 'src/components/ui/Link'
 
 export interface HeaderLinkProps {

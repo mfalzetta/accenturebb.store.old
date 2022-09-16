@@ -1,14 +1,14 @@
 import InfoCard from 'src/components/custom-components/home/InfoCard'
 import Section from 'src/components/sections/Section'
 
-import './CategorySection.scss'
-
 export interface CategorySectionAllItems {
   allItems: CategorySectionProps[]
 }
 export interface CategorySectionProps {
   src: string
   alt: string
+  href: string
+  width: string
   href: string
   text?: string
 }
@@ -24,8 +24,8 @@ const CategorySection = ({ allItems }: CategorySectionAllItems) => {
               href={card.href}
               src={card.src}
               alt={card.alt}
-              width="100%"
-              height="auto"
+              width={card.width}
+              height={card.height}
               text={card.text}
             />
           ))}

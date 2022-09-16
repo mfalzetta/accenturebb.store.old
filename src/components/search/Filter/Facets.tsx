@@ -1,4 +1,5 @@
 import { Label as UILabel, List as UIList } from '@faststore/ui'
+
 import type {
   Filter_FacetsFragment,
   IStoreSelectedFacet,
@@ -52,7 +53,7 @@ function Facets({
   return (
     <div className={styles.fsFacets} data-store-filter data-testid={testId}>
       <h2 className="text__title-mini-alt" data-fs-facets-title>
-        Filtro
+        Filters
       </h2>
       <Accordion
         expandedIndices={indicesExpanded}

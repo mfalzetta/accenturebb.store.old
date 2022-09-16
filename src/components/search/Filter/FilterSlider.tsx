@@ -1,4 +1,5 @@
 import { useSearch } from '@faststore/sdk'
+
 import type { Filter_FacetsFragment } from '@generated/graphql'
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
@@ -46,12 +47,12 @@ function FilterSlider({
     >
       <div data-fs-filter-slider-content>
         <header data-fs-filter-slider-header>
-          <h2 className="text__lead">Filtro</h2>
+          <h2 className="text__lead">Filters</h2>
           <Button
             variant="tertiary"
             data-fs-button-icon
             data-fs-filter-slider-header-icon
-            aria-label="Fechar filtro"
+            aria-label="Close Filters"
             icon={<Icon name="X" width={32} height={32} />}
             onClick={() => {
               dispatch({
@@ -83,7 +84,7 @@ function FilterSlider({
           variant="secondary"
           onClick={() => dispatch({ type: 'selectFacets', payload: [] })}
         >
-          Limpar tudo
+          Clear All
         </Button>
         <Button
           data-fs-filter-slider-footer-button-apply
@@ -100,7 +101,7 @@ function FilterSlider({
             fadeOut()
           }}
         >
-          Aplicar
+          Apply
         </Button>
       </footer>
     </SlideOver>

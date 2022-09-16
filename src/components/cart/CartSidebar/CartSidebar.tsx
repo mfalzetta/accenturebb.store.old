@@ -1,4 +1,5 @@
 import { List } from '@faststore/ui'
+
 import Alert from 'src/components/ui/Alert'
 import { Badge } from 'src/components/ui/Badge'
 import Button from 'src/components/ui/Button'
@@ -37,7 +38,7 @@ function CartSidebar() {
       <header data-fs-cart-sidebar-header data-testid="cart-sidebar">
         <div data-fs-cart-sidebar-title>
           <p data-fs-cart-sidebar-title-text className="text__lead">
-            Carrinho
+            Your Cart
           </p>
           <Badge variant="info">{totalItems}</Badge>
         </div>
@@ -51,6 +52,9 @@ function CartSidebar() {
           onClick={fadeOut}
         />
       </header>
+      <Alert icon={<Icon name="Truck" width={24} height={24} />}>
+        Free shipping starts at $300
+      </Alert>
 
       {isEmpty ? (
         <EmptyCart onDismiss={fadeOut} />
@@ -66,8 +70,8 @@ function CartSidebar() {
 
           {gifts.length > 0 && (
             <>
-              <Alert icon={<Icon name="Truck" width={24} height={24} />}>
-                Presente
+              <Alert icon={<Icon name="Gift" width={24} height={24} />}>
+                Gifts
               </Alert>
               <List data-fs-cart-sidebar-list>
                 {gifts.map((item) => (
@@ -96,7 +100,7 @@ function CartSidebar() {
                   iconPosition="right"
                   {...btnProps}
                 >
-                  {isValidating ? 'Carregando...' : 'Checkout'}
+                  {isValidating ? 'Loading...' : 'Checkout'}
                 </Button>
               }
             />

@@ -380,8 +380,19 @@
                 "title": "Image Button Href",
                 "description": "Set a Button Href",
                 "type": "string"
+              },
+              "width": {
+                "title": "Image Width",
+                "description": "Set a Width",
+                "type": "number"
+              },
+              "height": {
+                "title": "Image Height",
+                "description": "Set a Height",
+                "type": "number"
               }
-            }
+            },
+            "required": ["height", "width"]
           }
         }
       }
@@ -566,13 +577,23 @@
                 "description": "Set a Text",
                 "type": "string"
               },
+              "width": {
+                "title": "Image Width",
+                "description": "Set a Width",
+                "type": "number"
+              },
+              "height": {
+                "title": "Image Height",
+                "description": "Set a Height",
+                "type": "number"
+              },
               "href": {
                 "title": "Href Link",
                 "description": "Set a URL",
                 "type": "string"
               }
             },
-            "required": ["href"]
+            "required": ["href", "width", "height"]
           }
         }
       }

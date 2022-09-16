@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import type { FocusEvent } from 'react'
 import { Icon as UIIcon } from '@faststore/ui'
+
 import Link from 'src/components/ui/Link'
 import type { LinkProps } from 'src/components/ui/Link'
 

@@ -1,7 +1,9 @@
 import { useSearch } from '@faststore/sdk'
-import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { NextSeo } from 'next-seo'
 import { lazy, Suspense, useState } from 'react'
 import type { MouseEvent } from 'react'
+
+import { GalleryIcon, ListIcon } from 'src/images/categoryType/categoryType'
 import Filter from 'src/components/search/Filter'
 import Sort from 'src/components/search/Sort'
 import FilterSkeleton from 'src/components/skeletons/FilterSkeleton'
@@ -11,7 +13,6 @@ import Button, { ButtonLink } from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import { mark } from 'src/sdk/tests/mark'
 import { useUI } from 'src/sdk/ui/Provider'
-import { GalleryIcon, ListIcon } from 'src/images/categoryType/categoryType'
 
 import Section from '../Section'
 import EmptyGallery from './EmptyGallery'
@@ -142,7 +143,9 @@ function ProductGallery({ title, searchTerm }: Props) {
           {/* Add link to previous page. This helps on SEO */}
           {prev !== false && (
             <div data-fs-product-listing-pagination="top">
-              <GatsbySeo defer linkTags={[{ rel: 'prev', href: prev.link }]} />
+              <NextSeo
+                additionalLinkTags={[{ rel: 'prev', href: prev.link }]}
+              />
               <ButtonLink
                 onClick={(e: MouseEvent<HTMLElement>) => {
                   e.currentTarget.blur()
@@ -182,7 +185,9 @@ function ProductGallery({ title, searchTerm }: Props) {
           {/* Add link to next page. This helps on SEO */}
           {next !== false && (
             <div data-fs-product-listing-pagination="bottom">
-              <GatsbySeo defer linkTags={[{ rel: 'next', href: next.link }]} />
+              <NextSeo
+                additionalLinkTags={[{ rel: 'next', href: next.link }]}
+              />
               <ButtonLink
                 data-testid="show-more"
                 onClick={(e: MouseEvent<HTMLElement>) => {

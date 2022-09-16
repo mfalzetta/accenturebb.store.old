@@ -1,5 +1,4 @@
 import Section from 'src/components/sections/Section'
-import './PromotionBanner.scss'
 
 export interface PromotionBannerProps {
   src: string

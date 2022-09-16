@@ -1,6 +1,8 @@
+import { gql } from '@faststore/graphql-utils'
 import { sendAnalyticsEvent } from '@faststore/sdk'
-import { graphql } from 'gatsby'
 import { useEffect, useState, useMemo } from 'react'
+import type { CurrencyCode, ViewItemEvent } from '@faststore/sdk'
+
 import OutOfStock from 'src/components/product/OutOfStock'
 import { DiscountBadge } from 'src/components/ui/Badge'
 import Breadcrumb from 'src/components/ui/Breadcrumb'
@@ -15,7 +17,6 @@ import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { useProduct } from 'src/sdk/product/useProduct'
 import { useSession } from 'src/sdk/session'
 import type { ProductDetailsFragment_ProductFragment } from '@generated/graphql'
-import type { CurrencyCode, ViewItemEvent } from '@faststore/sdk'
 import type { AnalyticsItem } from 'src/sdk/analytics/types'
 import Accordion, { AccordionItem } from 'src/components/ui/Accordion'
 import Installment from 'src/components/custom-components/Price/Installment'
@@ -278,7 +279,6 @@ function ProductDetails({ product: staleProduct }: Props) {
 
   //   setIndexes(indexs)
   // }, [allUsableSpecs])
-
   const settingSection = () => (
     <section
       data-fs-product-settings-sticky={!isMobile}
@@ -489,7 +489,7 @@ function AddToCartLoadingSkeleton() {
   )
 }
 
-export const fragment = graphql`
+export const fragment = gql`
   fragment ProductDetailsFragment_product on StoreProduct {
     id: productID
     sku
@@ -582,5 +582,4 @@ export const fragment = graphql`
     ...CartProductItem
   }
 `
-
 export default ProductDetails

@@ -1,7 +1,9 @@
-import { graphql, useStaticQuery } from 'gatsby'
+import { gql } from '@faststore/graphql-utils'
 import { useEffect, useState } from 'react'
-import { Link } from '@reach/router'
-import type { CmsCategoryImage } from '@generated/graphql'
+
+import Link from 'src/components/ui/Link'
+import { useQuery } from 'src/sdk/graphql/useQuery'
+// import type { CmsCategoryImage } from '@generated/graphql'
 import Icon from 'src/components/ui/Icon'
 
 import type { IconsProps } from './CategoryButtons'
@@ -25,7 +27,7 @@ export interface CategoryImageProps {
 }
 export interface AllImageProps extends CategoryImageProps, ItemsProps {}
 
-export const querySSG = graphql`
+export const query = gql`
   query CategoryImageQuery {
     cmsCategoryImage {
       sections {
@@ -49,7 +51,7 @@ function EmptyCartegory({ items }: CategoryImagesProps) {
       {items?.map(({ name, item }: IconsProps, index) => {
         return (
           <div key={index} data-fs-category-buttons-link>
-            <Link to={item} className="link__buttons">
+            <Link href={item} className="link__buttons">
               <span data-fs-category-buttons-link-name>{name}</span>
             </Link>
           </div>
@@ -60,16 +62,17 @@ function EmptyCartegory({ items }: CategoryImagesProps) {
 }
 
 function CategoryImages({ slug, items }: CategoryImagesProps) {
-  const { cmsCategoryImage } = useStaticQuery(querySSG)
-  const [cms, setCms] = useState<CmsCategoryImage>()
+  const { data } = useQuery<any, any>(query, null)
+
+  const [cms, setCms] = useState<any>()
 
   useEffect(() => {
-    if (cmsCategoryImage && items) {
-      if (cms !== cmsCategoryImage) {
-        setCms(cmsCategoryImage)
+    if (data && items) {
+      if (cms !== data) {
+        setCms(data)
       }
     }
-  }, [items, cms, cmsCategoryImage])
+  }, [items, cms, data])
 
   if (cms && items) {
     const section = cms?.sections.filter(
@@ -107,7 +110,7 @@ function CategoryImages({ slug, items }: CategoryImagesProps) {
             return (
               <div key={index}>
                 <Link
-                  to={item}
+                  href={item}
                   className="link__buttons"
                   data-fs-category-image
                 >

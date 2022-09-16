@@ -1,6 +1,7 @@
 import { gql } from '@faststore/graphql-utils'
 import { useCallback, useMemo } from 'react'
 import { useSWRConfig } from 'swr'
+
 import { ITEMS_PER_SECTION } from 'src/constants'
 import type {
   ProductsQueryQuery,

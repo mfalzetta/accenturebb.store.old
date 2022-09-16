@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import './CarouselShelf.scss'
 import BtnCarouselShelf from './BtnCarouselShelf'
 import BuildCarousel from './BuildCarousel'
 

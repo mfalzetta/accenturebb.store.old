@@ -1,10 +1,10 @@
 import { RadioGroup, RadioOption } from '@faststore/ui'
 import { useCallback, useEffect, useRef, useState } from 'react'
+
 import Icon from 'src/components/ui/Icon'
 import InputText from 'src/components/ui/InputText'
 import { sessionStore, useSession } from 'src/sdk/session'
 
-import './product-shipping.scss'
 import useShippingQuery from './useShippingQuery'
 
 interface ItemsProps {

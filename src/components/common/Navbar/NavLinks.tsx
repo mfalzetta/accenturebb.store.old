@@ -1,8 +1,10 @@
 import { List as UIList } from '@faststore/ui'
 import type { AnchorHTMLAttributes } from 'react'
+import { gql } from '@faststore/graphql-utils'
+
+import { useQuery } from 'src/sdk/graphql/useQuery'
 import RenderPageSections from 'src/components/cms/RenderPageSections'
 import { mark } from 'src/sdk/tests/mark'
-import { graphql, useStaticQuery } from 'gatsby'
 import RegionalizationBar from 'src/components/regionalization/RegionalizationBar'
 
 import styles from './navlinks.module.scss'
@@ -12,7 +14,7 @@ interface NavLinksProps {
   classes?: string
 }
 
-export const querySSG = graphql`
+export const query = gql`
   query HeaderLinkQuery {
     cmsHeaderLink {
       sections {
@@ -24,13 +26,13 @@ export const querySSG = graphql`
 `
 
 function NavLinks({ classes = '' }: NavLinksProps) {
-  const { cmsHeaderLink } = useStaticQuery(querySSG)
+  const { data } = useQuery<any, any>(query, null)
 
   return (
     <nav className={`${styles.fsNavlinks} ${classes}`}>
       <RegionalizationBar classes="region hidden-mobile" />
       <UIList data-fs-navlinks-list>
-        <RenderPageSections sections={cmsHeaderLink?.sections} />
+        <RenderPageSections sections={data?.sections} />
       </UIList>
     </nav>
   )

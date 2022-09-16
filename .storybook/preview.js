@@ -60,13 +60,13 @@ export const parameters = {
   docs: {
     theme: SBTheme,
   },
-  viewport: {
-    viewports: customViewports,
-  },
   viewMode: 'docs',
   previewTabs: {
     'storybook/docs/panel': {},
     canvas: { title: 'Sandbox' },
+  },
+  viewport: {
+    viewports: customViewports,
   },
   options: {
     showToolbar: true,

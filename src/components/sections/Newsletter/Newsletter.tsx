@@ -1,7 +1,6 @@
 import type { ComponentPropsWithRef, FormEvent, ReactNode } from 'react'
 import { useState, forwardRef, useRef } from 'react'
 import { Form, Input, LoadingButton } from '@faststore/ui'
-import './Newsletter.scss'
 
 import Section from '../Section'
 import { useNewsletterQuery, useNewsletterQueryUpdate } from './NewsLetterQuery'
