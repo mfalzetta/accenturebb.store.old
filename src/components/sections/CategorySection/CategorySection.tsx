@@ -9,7 +9,7 @@ export interface CategorySectionProps {
   alt: string
   href: string
   width: string
-  href: string
+  height: string
   text?: string
 }
 
