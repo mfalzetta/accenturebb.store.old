@@ -1,11 +1,9 @@
 import { List as UIList } from '@faststore/ui'
 import type { AnchorHTMLAttributes } from 'react'
-import { gql } from '@faststore/graphql-utils'
 
-import { useQuery } from 'src/sdk/graphql/useQuery'
-import RenderPageSections from 'src/components/cms/RenderPageSections'
+import RegionalizationButton from 'src/components/regionalization/RegionalizationButton'
+import Link from 'src/components/ui/Link'
 import { mark } from 'src/sdk/tests/mark'
-import RegionalizationBar from 'src/components/regionalization/RegionalizationBar'
 
 import styles from './navlinks.module.scss'
 
@@ -14,26 +12,45 @@ interface NavLinksProps {
   classes?: string
 }
 
-export const query = gql`
-  query HeaderLinkQuery {
-    cmsHeaderLink {
-      sections {
-        data
-        name
-      }
-    }
-  }
-`
+const collections = [
+  {
+    name: 'Office',
+    href: '/office',
+  },
+  {
+    name: 'Home Appliances',
+    href: '/kitchen---home-appliances',
+  },
+  {
+    name: 'Computer and Software',
+    href: '/computer---software',
+  },
+  {
+    name: 'Technology',
+    href: '/technology',
+  },
+]
 
-function NavLinks({ classes = '' }: NavLinksProps) {
-  const { data } = useQuery<any, any>(query, null)
-
+function NavLinks({ onClickLink, classes = '' }: NavLinksProps) {
   return (
     <nav className={`${styles.fsNavlinks} ${classes}`}>
-      <RegionalizationBar classes="region hidden-mobile" />
-      <UIList data-fs-navlinks-list>
-        <RenderPageSections sections={data?.sections} />
-      </UIList>
+      <div className="layout__content">
+        <RegionalizationButton />
+        <UIList data-fs-navlinks-list>
+          {collections.map(({ href, name }) => (
+            <li key={name} data-fs-navlinks-list-item>
+              <Link
+                data-fs-navlinks-link
+                variant="display"
+                href={href}
+                onClick={onClickLink}
+              >
+                {name}
+              </Link>
+            </li>
+          ))}
+        </UIList>
+      </div>
     </nav>
   )
 }
