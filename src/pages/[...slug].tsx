@@ -22,6 +22,7 @@ import type {
   ServerCollectionPageQueryQuery,
   ServerCollectionPageQueryQueryVariables,
 } from '@generated/graphql'
+import SectionTitle from 'src/components/custom-components/home/SectionTitle'
 
 import storeConfig from '../../store.config'
 
@@ -95,7 +96,11 @@ function Page(props: Props) {
         breadcrumbList={collection?.breadcrumbList.itemListElement}
         name={title}
       />
-
+      <SectionTitle
+        title={title}
+        description={collection?.seo.description}
+        className="category-page"
+      />
       <ProductGallery title={title} />
 
       <ScrollToTopButton />

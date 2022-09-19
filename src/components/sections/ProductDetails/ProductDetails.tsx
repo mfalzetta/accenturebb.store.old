@@ -407,6 +407,7 @@ function ProductDetails({ product: staleProduct }: Props) {
                             : setIndexes(indexes.filter((el) => el !== index))
                         }
                         itemType="normal"
+                        data-fs-accordion-pdp
                       >
                         {spec.name === 'Links e Downloads' && (
                           <LinksAndDownloads values={spec.values} />
@@ -442,7 +443,7 @@ function AddToCartLoadingSkeleton() {
       viewBox="0 0 112 48"
       preserveAspectRatio="none"
     >
-      <title id="loading-aria">Loading...</title>
+      <title id="loading-aria">Carregando...</title>
       <rect
         x="0"
         y="0"

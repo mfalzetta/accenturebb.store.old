@@ -54,6 +54,7 @@
 
     @include media(">=notebook") {
       padding-right: var(--fs-accordion-item-button-padding-right-notebook);
+      padding-left: var(--fs-accordion-item-button-padding-left-notebook);
     }
   }
 
@@ -74,6 +75,14 @@
 
     @include media(">=notebook") {
       padding-right: var(--fs-accordion-item-panel-padding-right-notebook);
+    }
+  }
+
+  [data-fs-accordion-pdp] {
+    [data-fs-accordion-item-button] {
+      @include media(">=notebook") {
+        padding-left: 0;
+      }
     }
   }
 }

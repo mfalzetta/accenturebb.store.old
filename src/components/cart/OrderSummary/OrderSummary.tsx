@@ -24,9 +24,9 @@ function OrderSummary({
   return (
     <div className={styles.fsOrderSummary}>
       <UIOrderSummary
-        subtotalLabel={`Subtotal (${numberOfItems} products)`}
+        subtotalLabel={`Subtotal (${numberOfItems} produtos)`}
         subtotalValue={useFormattedPrice(subTotal)}
-        discountLabel="Discount"
+        discountLabel="Desconto"
         discountValue={discount > 0 ? `-${formattedDiscount}` : undefined}
         totalLabel="Total"
         totalValue={useFormattedPrice(total)}
