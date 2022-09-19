@@ -99,13 +99,6 @@ function Page(props: Props) {
 
       <ProductGallery title={title} />
 
-      <ProductShelf
-        first={ITEMS_PER_SECTION}
-        sort="score_desc"
-        title="You might also like"
-        withDivisor
-      />
-
       <ScrollToTopButton />
     </SearchProvider>
   )
