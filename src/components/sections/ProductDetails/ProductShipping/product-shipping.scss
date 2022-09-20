@@ -54,6 +54,10 @@
 
     [data-store-button] {
       background-color: var(--fs-color-theme-2);
+
+      &::before {
+        display: none;
+      }
     }
   }
 
