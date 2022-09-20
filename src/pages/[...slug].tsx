@@ -15,7 +15,7 @@ import type { ContentData } from '@vtex/client-cms'
 import Breadcrumb from 'src/components/sections/Breadcrumb'
 import ProductGallery from 'src/components/sections/ProductGallery'
 import ScrollToTopButton from 'src/components/sections/ScrollToTopButton'
-import { ITEMS_PER_PAGE, ITEMS_PER_SECTION } from 'src/constants'
+import { ITEMS_PER_PAGE } from 'src/constants'
 import { useApplySearchState } from 'src/sdk/search/state'
 import { mark } from 'src/sdk/tests/mark'
 import { execute } from 'src/server'
@@ -24,7 +24,7 @@ import type {
   ServerCollectionPageQueryQueryVariables,
 } from '@generated/graphql'
 import { getCMSPageDataByContentType } from 'src/cms/client'
-import ProductShelf from 'src/components/sections/ProductShelf'
+import SectionTitle from 'src/components/custom-components/home/SectionTitle'
 
 import storeConfig from '../../store.config'
 
@@ -103,17 +103,16 @@ function Page(props: Props & CmsCategoryImageProps) {
         name={title}
       />
 
+      <SectionTitle
+        title={title}
+        description={collection?.seo.description}
+        className="category-page"
+      />
+
       <ProductGallery
         categoryImage={cmsCategoryImage}
         title={title}
         slug={pathname}
-      />
-
-      <ProductShelf
-        first={ITEMS_PER_SECTION}
-        sort="score_desc"
-        title="You might also like"
-        withDivisor
       />
 
       <ScrollToTopButton />

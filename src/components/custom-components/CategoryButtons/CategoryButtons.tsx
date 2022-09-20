@@ -10,7 +10,6 @@ import type {
 import Link from 'src/components/ui/Link'
 import useCategories from 'src/data/hook/useCategories'
 
-import SectionTitle from '../home/SectionTitle'
 import styles from './category-buttons.module.scss'
 
 interface CategoryButtonsProps {
@@ -188,9 +187,6 @@ const CategoryButtons = ({
 
   return (
     <div className={styles.fsCategoryButtons}>
-      <div data-fs-category-buttons-title>
-        {title && <SectionTitle className="category-page" title={title} />}
-      </div>
       <div className="layout__content" data-fs-category-buttons-content>
         {departButtons !== undefined && departButtons.length > 0 ? (
           <RenderPageSections sections={departButtons} />

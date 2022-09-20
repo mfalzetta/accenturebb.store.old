@@ -39,8 +39,8 @@
       padding-left: var(--fs-spacing-1);
 
       .layout__content {
-        padding-right: 0;
-        padding-left: 0;
+        padding-right: var(--fs-spacing-1);
+        padding-left: var(--fs-spacing-1);
       }
     }
   }
@@ -49,6 +49,7 @@
 .classSection__title--content.category-page {
   flex-direction: column;
   align-items: flex-start;
+  padding: var(--fs-spacing-1) var(--fs-grid-padding);
 
   .classSection__title.category-page {
     padding: 0;
@@ -69,10 +70,14 @@
     padding-top: 0;
 
     .classSection__title.category-page {
+      padding-right: var(--fs-spacing-1);
+      padding-left: var(--fs-spacing-1);
       font-size: 24px;
     }
 
     .classSection__description {
+      padding-right: var(--fs-spacing-1);
+      padding-left: var(--fs-spacing-1);
       font-size: 14px;
     }
   }
