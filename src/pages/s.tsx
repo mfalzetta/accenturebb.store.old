@@ -10,6 +10,10 @@ import SROnly from 'src/components/ui/SROnly'
 import { ITEMS_PER_PAGE } from 'src/constants'
 import { useApplySearchState } from 'src/sdk/search/state'
 import { mark } from 'src/sdk/tests/mark'
+// import type {
+//   SearchPageQueryQuery,
+//   SearchPageQueryQueryVariables,
+// } from '@generated/graphql'
 
 import storeConfig from '../../store.config'
 
@@ -27,6 +31,8 @@ const useSearchParams = () => {
 }
 
 function Page() {
+  const { asPath } = useRouter()
+
   const searchParams = useSearchParams()
   const applySearchState = useApplySearchState()
   const title = 'Search Results'
@@ -34,6 +40,17 @@ function Page() {
 
   if (!searchParams) {
     return null
+  }
+
+  if (asPath.includes('productClusterIds')) {
+    const id = asPath.split('productClusterIds')
+
+    searchParams.selectedFacets = [
+      {
+        key: 'productClusterIds',
+        value: id[1].replace('=', ''),
+      },
+    ]
   }
 
   return (
