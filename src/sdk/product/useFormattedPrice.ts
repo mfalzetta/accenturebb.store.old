@@ -21,7 +21,7 @@ export const usePriceFormatter = ({ decimals }: PriceFormatterOptions = {}) => {
 }
 
 export const useFormattedPrice = (price: number) => {
-  const formatter = usePriceFormatter()
+  const formatter = usePriceFormatter({ decimals: true })
 
   return useMemo(() => formatter(price), [formatter, price])
 }

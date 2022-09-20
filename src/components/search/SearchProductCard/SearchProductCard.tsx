@@ -7,6 +7,7 @@ import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { useProductLink } from 'src/sdk/product/useProductLink'
 import useSearchInput from 'src/sdk/search/useSearchInput'
 import type { ProductSummary_ProductFragment } from '@generated/graphql'
+import { DiscountBadge } from 'src/components/ui/Badge'
 
 import styles from './search-product-card.module.scss'
 
@@ -74,15 +75,20 @@ function SearchProductCard({
               {name}
             </p>
             <span data-fs-search-product-card-prices>
-              <Price
-                value={listPrice}
-                formatter={useFormattedPrice}
-                testId="list-price"
-                data-value={listPrice}
-                variant="listing"
-                classes="text__legend"
-                SRText="Original price:"
-              />
+              {listPrice !== spotPrice && (
+                <span data-fs-search-product-card-prices-list>
+                  <Price
+                    value={listPrice}
+                    formatter={useFormattedPrice}
+                    testId="list-price"
+                    data-value={listPrice}
+                    variant="listing"
+                    classes="text__legend"
+                    SRText="Original price:"
+                  />
+                  <DiscountBadge listPrice={listPrice} spotPrice={spotPrice} />
+                </span>
+              )}
               <Price
                 value={spotPrice}
                 formatter={useFormattedPrice}

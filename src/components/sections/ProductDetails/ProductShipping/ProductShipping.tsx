@@ -135,6 +135,7 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
             buttonActionText="Buscar"
             onClear={() => {}}
             defaultValue={session.postalCode ?? ''}
+            data-fs-shipping-input-text
           />
         </div>
       </div>

@@ -13,9 +13,8 @@ import type { GetStaticPaths, GetStaticProps } from 'next'
 
 import Breadcrumb from 'src/components/sections/Breadcrumb'
 import ProductGallery from 'src/components/sections/ProductGallery'
-import ProductShelf from 'src/components/sections/ProductShelf'
 import ScrollToTopButton from 'src/components/sections/ScrollToTopButton'
-import { ITEMS_PER_PAGE, ITEMS_PER_SECTION } from 'src/constants'
+import { ITEMS_PER_PAGE } from 'src/constants'
 import { useApplySearchState } from 'src/sdk/search/state'
 import { mark } from 'src/sdk/tests/mark'
 import { execute } from 'src/server'
@@ -23,6 +22,7 @@ import type {
   ServerCollectionPageQueryQuery,
   ServerCollectionPageQueryQueryVariables,
 } from '@generated/graphql'
+import SectionTitle from 'src/components/custom-components/home/SectionTitle'
 
 import storeConfig from '../../store.config'
 
@@ -96,15 +96,12 @@ function Page(props: Props) {
         breadcrumbList={collection?.breadcrumbList.itemListElement}
         name={title}
       />
-
-      <ProductGallery title={title} />
-
-      <ProductShelf
-        first={ITEMS_PER_SECTION}
-        sort="score_desc"
-        title="You might also like"
-        withDivisor
+      <SectionTitle
+        title={title}
+        description={collection?.seo.description}
+        className="category-page"
       />
+      <ProductGallery title={title} />
 
       <ScrollToTopButton />
     </SearchProvider>
