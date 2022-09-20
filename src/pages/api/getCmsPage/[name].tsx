@@ -2,8 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 import config from '../../../../store.config'
 
-// POST /api/user
-// Required fields in body: name, email
 export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
