@@ -38,7 +38,7 @@ function CartSidebar() {
       <header data-fs-cart-sidebar-header data-testid="cart-sidebar">
         <div data-fs-cart-sidebar-title>
           <p data-fs-cart-sidebar-title-text className="text__lead">
-            Your Cart
+            Carrinho
           </p>
           <Badge variant="info">{totalItems}</Badge>
         </div>
@@ -52,9 +52,6 @@ function CartSidebar() {
           onClick={fadeOut}
         />
       </header>
-      <Alert icon={<Icon name="Truck" width={24} height={24} />}>
-        Free shipping starts at $300
-      </Alert>
 
       {isEmpty ? (
         <EmptyCart onDismiss={fadeOut} />
@@ -70,8 +67,8 @@ function CartSidebar() {
 
           {gifts.length > 0 && (
             <>
-              <Alert icon={<Icon name="Gift" width={24} height={24} />}>
-                Gifts
+              <Alert icon={<Icon name="Truck" width={24} height={24} />}>
+                Presente
               </Alert>
               <List data-fs-cart-sidebar-list>
                 {gifts.map((item) => (
@@ -100,7 +97,7 @@ function CartSidebar() {
                   iconPosition="right"
                   {...btnProps}
                 >
-                  {isValidating ? 'Loading...' : 'Checkout'}
+                  {isValidating ? 'Carregando...' : 'Checkout'}
                 </Button>
               }
             />

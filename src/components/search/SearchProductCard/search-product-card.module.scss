@@ -44,7 +44,33 @@
 
   [data-fs-search-product-card-prices] {
     display: flex;
+    flex-direction: column;
     align-items: baseline;
+  }
+
+  [data-store-price] {
+    font-weight: 500;
+    color: var(--fs-search-product-card-title-color);
+
+    &[data-testid="list-price"] {
+      font-weight: var(--fs-text-weight-regular);
+      color: var(--fs-color-theme-5);
+    }
+  }
+
+  [data-fs-search-product-card-prices-list] {
+    display: flex;
+
+    [data-fs-badge] {
+      position: static;
+      margin-left: var(--fs-spacing-0);
+
+      [data-fs-badge-wrapper] {
+        color: #fff;
+        background-color: var(--fs-color-badge-background);
+        border-color: var(--fs-color-badge-background);
+      }
+    }
   }
 
   [data-fs-search-product-card-link] {

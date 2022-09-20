@@ -97,4 +97,8 @@
   [data-fs-facets-list-item-badge] {
     margin-left: var(--fs-facets-list-item-badge-margin-left);
   }
+
+  [data-store-badge] {
+    display: none;
+  }
 }

@@ -24,7 +24,7 @@ function SearchDropdown({
   }
 
   if (isLoading) {
-    return <p data-fs-search-input-loading-text>Loading...</p>
+    return <p data-fs-search-input-loading-text>Carregando...</p>
   }
 
   if (terms.length === 0 && products.length === 0) {

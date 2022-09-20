@@ -78,4 +78,18 @@
       padding-left: var(--fs-accordion-item-panel-padding-left-notebook);
     }
   }
+
+  [data-fs-accordion-pdp] {
+    [data-fs-accordion-item-button] {
+      @include media(">=notebook") {
+        padding-left: 0;
+      }
+    }
+
+    [data-fs-accordion-item-panel] {
+      @include media(">=notebook") {
+        padding-left: 0;
+      }
+    }
+  }
 }

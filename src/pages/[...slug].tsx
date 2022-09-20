@@ -14,7 +14,6 @@ import type { ContentData } from '@vtex/client-cms'
 
 import Breadcrumb from 'src/components/sections/Breadcrumb'
 import ProductGallery from 'src/components/sections/ProductGallery'
-import ProductShelf from 'src/components/sections/ProductShelf'
 import ScrollToTopButton from 'src/components/sections/ScrollToTopButton'
 import { ITEMS_PER_PAGE, ITEMS_PER_SECTION } from 'src/constants'
 import { useApplySearchState } from 'src/sdk/search/state'
@@ -25,6 +24,7 @@ import type {
   ServerCollectionPageQueryQueryVariables,
 } from '@generated/graphql'
 import { getCMSPageDataByContentType } from 'src/cms/client'
+import ProductShelf from 'src/components/sections/ProductShelf'
 
 import storeConfig from '../../store.config'
 
