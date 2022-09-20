@@ -2,6 +2,7 @@ import { useSearch } from '@faststore/sdk'
 import { NextSeo } from 'next-seo'
 import { lazy, Suspense, useState } from 'react'
 import type { MouseEvent } from 'react'
+import type { ContentData } from '@vtex/client-cms'
 
 import { GalleryIcon, ListIcon } from 'src/images/categoryType/categoryType'
 import Filter from 'src/components/search/Filter'
@@ -13,6 +14,7 @@ import Button, { ButtonLink } from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import { mark } from 'src/sdk/tests/mark'
 import { useUI } from 'src/sdk/ui/Provider'
+import CategoryButtons from 'src/components/custom-components/CategoryButtons/CategoryButtons'
 
 import Section from '../Section'
 import EmptyGallery from './EmptyGallery'
@@ -28,9 +30,11 @@ const GalleryPageSkeleton = <ProductGridSkeleton loading />
 interface Props {
   title: string
   searchTerm?: string
+  categoryImage?: ContentData
+  slug?: string
 }
 
-function ProductGallery({ title, searchTerm }: Props) {
+function ProductGallery({ title, searchTerm, categoryImage, slug }: Props) {
   const { openFilter } = useUI()
   const { pages, addNextPage, addPrevPage } = useSearch()
 
@@ -67,6 +71,15 @@ function ProductGallery({ title, searchTerm }: Props) {
           </h1>
         </header>
       )}
+      <div>
+        {categoryImage && (
+          <CategoryButtons
+            categoryImage={categoryImage}
+            page={slug}
+            title={title}
+          />
+        )}
+      </div>
       <div data-fs-product-listing-content-grid className="layout__content">
         <div data-fs-product-listing-filters>
           <FilterSkeleton loading={facets?.length === 0}>

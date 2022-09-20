@@ -10,11 +10,12 @@ import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import type { SearchState } from '@faststore/sdk'
 import type { GetStaticPaths, GetStaticProps } from 'next'
+import type { ContentData } from '@vtex/client-cms'
 
 import Breadcrumb from 'src/components/sections/Breadcrumb'
 import ProductGallery from 'src/components/sections/ProductGallery'
 import ScrollToTopButton from 'src/components/sections/ScrollToTopButton'
-import { ITEMS_PER_PAGE } from 'src/constants'
+import { ITEMS_PER_PAGE, ITEMS_PER_SECTION } from 'src/constants'
 import { useApplySearchState } from 'src/sdk/search/state'
 import { mark } from 'src/sdk/tests/mark'
 import { execute } from 'src/server'
@@ -22,11 +23,16 @@ import type {
   ServerCollectionPageQueryQuery,
   ServerCollectionPageQueryQueryVariables,
 } from '@generated/graphql'
-import SectionTitle from 'src/components/custom-components/home/SectionTitle'
+import { getCMSPageDataByContentType } from 'src/cms/client'
+import ProductShelf from 'src/components/sections/ProductShelf'
 
 import storeConfig from '../../store.config'
 
 type Props = ServerCollectionPageQueryQuery
+
+type CmsCategoryImageProps = {
+  cmsCategoryImage: ContentData
+}
 
 const useSearchParams = ({ collection }: Props): SearchState => {
   const selectedFacets = collection?.meta.selectedFacets
@@ -46,8 +52,8 @@ const useSearchParams = ({ collection }: Props): SearchState => {
   return useMemo(() => parseSearchState(new URL(hrefState)), [hrefState])
 }
 
-function Page(props: Props) {
-  const { collection } = props
+function Page(props: Props & CmsCategoryImageProps) {
+  const { collection, cmsCategoryImage } = props
   const router = useRouter()
   const applySearchState = useApplySearchState()
   const searchParams = useSearchParams(props)
@@ -96,12 +102,19 @@ function Page(props: Props) {
         breadcrumbList={collection?.breadcrumbList.itemListElement}
         name={title}
       />
-      <SectionTitle
+
+      <ProductGallery
+        categoryImage={cmsCategoryImage}
         title={title}
-        description={collection?.seo.description}
-        className="category-page"
+        slug={pathname}
       />
-      <ProductGallery title={title} />
+
+      <ProductShelf
+        first={ITEMS_PER_SECTION}
+        sort="score_desc"
+        title="You might also like"
+        withDivisor
+      />
 
       <ScrollToTopButton />
     </SearchProvider>
@@ -145,6 +158,7 @@ export const getStaticProps: GetStaticProps<
   })
 
   const notFound = errors.find(isNotFoundError)
+  const cmsCategoryImage = await getCMSPageDataByContentType('categoryImage')
 
   if (notFound) {
     return {
@@ -156,8 +170,10 @@ export const getStaticProps: GetStaticProps<
     throw errors[0]
   }
 
+  const finalData = { ...data, cmsCategoryImage }
+
   return {
-    props: data,
+    props: finalData,
   }
 }
 

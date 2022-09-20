@@ -8,6 +8,7 @@ import RegionalizationBar from 'src/components/regionalization/RegionalizationBa
 import { useUI } from 'src/sdk/ui/Provider'
 
 import { WishlistProvider } from './data/context/WishlistContext'
+import { CategoriesProvider } from './data/context/CategoriesContext'
 
 const CartSidebar = lazy(() => import('src/components/cart/CartSidebar'))
 const RegionModal = lazy(
@@ -19,16 +20,18 @@ function Layout({ children }: PropsWithChildren) {
 
   return (
     <>
-      <Navbar />
+      <CategoriesProvider>
+        <Navbar />
 
-      <Toast />
+        <Toast />
 
-      <WishlistProvider>
-        <main>
-          <RegionalizationBar classes="display-mobile" />
-          {children}
-        </main>
-      </WishlistProvider>
+        <WishlistProvider>
+          <main>
+            <RegionalizationBar classes="display-mobile" />
+            {children}
+          </main>
+        </WishlistProvider>
+      </CategoriesProvider>
 
       <Footer />
 
