@@ -10,7 +10,6 @@ import type {
 import Link from 'src/components/ui/Link'
 import useCategories from 'src/data/hook/useCategories'
 
-import SectionTitle from '../home/SectionTitle'
 import styles from './category-buttons.module.scss'
 
 interface CategoryButtonsProps {
