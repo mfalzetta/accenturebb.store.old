@@ -34,6 +34,9 @@ const InfoCard = ({
           width={parseInt(width, 10)}
           height={parseInt(height, 10)}
           data-brand-size={brandSize}
+          // sizes="(max-width: 768px) 100vw,
+          //     (max-width: 1200px) 50vw,
+          //     33vw"
         />
         {text && <span className="infocard__text">{text}</span>}
       </div>

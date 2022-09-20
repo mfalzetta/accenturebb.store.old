@@ -41,7 +41,7 @@ const SearchTop = forwardRef<HTMLDivElement, SearchTopProps>(function SearchTop(
       {...otherProps}
     >
       {isLoading ? (
-        <p data-fs-search-input-loading-text>Loading...</p>
+        <p data-fs-search-input-loading-text>Carregando...</p>
       ) : (
         <>
           <div data-fs-search-header>

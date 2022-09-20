@@ -1,9 +1,10 @@
-import type { Dispatch, SetStateAction } from 'react'
 import { useEffect, useState } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
+
 import Link from 'src/components/ui/Link'
+import useCategories from 'src/data/hook/useCategories'
 
 import MenuMobile from './mobile/MenuMobile'
-import useCategoryQuery from './useCategoryQuery'
 
 interface MenuProps {
   isOpen: boolean
@@ -68,15 +69,16 @@ export const MenuGetCategory = ({ stateChanger, isOpen }: MenuProps) => {
     )
   }, [setActive])
 
-  const { data } = useCategoryQuery(100)
+  const data = useCategories()
+  const categories = data?.categories
 
-  if (!data) {
+  if (!categories) {
     return <></>
   }
 
   const {
     allCollections: { edges },
-  } = data
+  } = categories
 
   const departNode = edges.filter((el) => el.node.type === 'Department').flat()
   const categoryNode = edges.filter((el) => el.node.type === 'Category').flat()
@@ -157,45 +159,43 @@ export const MenuGetCategory = ({ stateChanger, isOpen }: MenuProps) => {
                       </Link>
                     </h2>
                     <nav>
-                      {category &&
-                        category.map(
-                          (
-                            {
-                              category: { name: nameSubI, item: linkSubI },
-                              subCategory,
-                            }: SubProp,
-                            index: number
-                          ) => (
-                            <div key={`subCategory--${index}`}>
-                              <h3>
+                      {category?.map(
+                        (
+                          {
+                            category: { name: nameSubI, item: linkSubI },
+                            subCategory,
+                          }: SubProp,
+                          index: number
+                        ) => (
+                          <div key={`subCategory--${index}`}>
+                            <h3>
+                              <Link
+                                onClick={() => stateChanger(false)}
+                                href={`${linkSubI}`}
+                              >
+                                {nameSubI}
+                              </Link>
+                            </h3>
+                            {subCategory?.map(
+                              (
+                                {
+                                  name: nameSubII,
+                                  item: linkSubII,
+                                }: CategoryProps,
+                                i: number
+                              ) => (
                                 <Link
                                   onClick={() => stateChanger(false)}
-                                  href={`${linkSubI}`}
+                                  key={`subSubCategory--${i}`}
+                                  href={`${linkSubII}`}
                                 >
-                                  {nameSubI}
+                                  {nameSubII}
                                 </Link>
-                              </h3>
-                              {subCategory &&
-                                subCategory.map(
-                                  (
-                                    {
-                                      name: nameSubII,
-                                      item: linkSubII,
-                                    }: CategoryProps,
-                                    i: number
-                                  ) => (
-                                    <Link
-                                      onClick={() => stateChanger(false)}
-                                      key={`subSubCategory--${i}`}
-                                      href={`${linkSubII}`}
-                                    >
-                                      {nameSubII}
-                                    </Link>
-                                  )
-                                )}
-                            </div>
-                          )
-                        )}
+                              )
+                            )}
+                          </div>
+                        )
+                      )}
                     </nav>
                   </li>
                 </div>

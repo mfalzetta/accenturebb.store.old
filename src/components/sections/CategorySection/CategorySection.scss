@@ -5,7 +5,7 @@
   justify-content: space-between;
   padding: 1rem 0;
 
-  .infocard__img {
+  .infocard__container {
     max-width: 216px;
   }
 
@@ -13,7 +13,7 @@
     width: fit-content;
 
     @media (max-width: 650px) {
-      .infocard__img {
+      .infocard__container {
         max-width: 170px;
       }
     }

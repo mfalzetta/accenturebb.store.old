@@ -12,7 +12,7 @@ function Page() {
     <>
       <NextSeo noindex nofollow />
 
-      <div>loading...</div>
+      <div>carregando...</div>
     </>
   )
 }
