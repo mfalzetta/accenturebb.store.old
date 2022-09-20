@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import type { SearchState } from '@faststore/sdk'
 import type { GetStaticPaths, GetStaticProps } from 'next'
+import type { ContentData } from '@vtex/client-cms'
 
 import Breadcrumb from 'src/components/sections/Breadcrumb'
 import ProductGallery from 'src/components/sections/ProductGallery'
@@ -23,10 +24,15 @@ import type {
   ServerCollectionPageQueryQuery,
   ServerCollectionPageQueryQueryVariables,
 } from '@generated/graphql'
+import { getCMSPageDataByContentType } from 'src/cms/client'
 
 import storeConfig from '../../store.config'
 
 type Props = ServerCollectionPageQueryQuery
+
+type CmsCategoryImageProps = {
+  cmsCategoryImage: ContentData
+}
 
 const useSearchParams = ({ collection }: Props): SearchState => {
   const selectedFacets = collection?.meta.selectedFacets
@@ -46,8 +52,8 @@ const useSearchParams = ({ collection }: Props): SearchState => {
   return useMemo(() => parseSearchState(new URL(hrefState)), [hrefState])
 }
 
-function Page(props: Props) {
-  const { collection } = props
+function Page(props: Props & CmsCategoryImageProps) {
+  const { collection, cmsCategoryImage } = props
   const router = useRouter()
   const applySearchState = useApplySearchState()
   const searchParams = useSearchParams(props)
@@ -97,7 +103,11 @@ function Page(props: Props) {
         name={title}
       />
 
-      <ProductGallery title={title} />
+      <ProductGallery
+        categoryImage={cmsCategoryImage}
+        title={title}
+        slug={pathname}
+      />
 
       <ProductShelf
         first={ITEMS_PER_SECTION}
@@ -148,6 +158,7 @@ export const getStaticProps: GetStaticProps<
   })
 
   const notFound = errors.find(isNotFoundError)
+  const cmsCategoryImage = await getCMSPageDataByContentType('categoryImage')
 
   if (notFound) {
     return {
@@ -159,8 +170,10 @@ export const getStaticProps: GetStaticProps<
     throw errors[0]
   }
 
+  const finalData = { ...data, cmsCategoryImage }
+
   return {
-    props: data,
+    props: finalData,
   }
 }
 

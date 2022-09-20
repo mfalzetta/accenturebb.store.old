@@ -15,6 +15,7 @@ import Title from '../sections/Title/Title'
 import CategorySection from '../sections/CategorySection/CategorySection'
 import BrandSection from '../sections/BrandSection/BrandSection'
 import Banners from '../sections/Banners'
+import CategoryImage from '../sections/CategoryImage'
 
 /**
  * Sections: Components imported from '../components/sections' only.
@@ -34,6 +35,7 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   CategorySection,
   BrandSection,
   Banners,
+  CategoryImage,
 }
 
 interface Props {

@@ -11,7 +11,6 @@ interface NavLinksProps {
   onClickLink?: AnchorHTMLAttributes<HTMLAnchorElement>['onClick']
   classes?: string
 }
-
 const collections = [
   {
     name: 'Office',
