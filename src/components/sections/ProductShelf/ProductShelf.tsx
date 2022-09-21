@@ -58,7 +58,7 @@ function ProductShelf({
         }`}
       >
         <ProductShelfSkeleton loading={products === undefined}>
-          <ul
+          <div
             data-fs-product-shelf-items
             className={`layout__content ${
               shelfType === 'isRowLayout' ? 'shelf--row' : ''
@@ -67,13 +67,13 @@ function ProductShelf({
             {shelfType === 'isCarousel' ? (
               <Carousel itemsPerPage={itens} arrows size={size}>
                 {products?.edges.map((product, idx) => (
-                  <li key={`${product.node.id}`}>
+                  <div key={`${product.node.id}`}>
                     <ProductCard
                       product={product.node}
                       index={idx + 1}
                       isSimpleCard={isSimpleCard}
                     />
-                  </li>
+                  </div>
                 ))}
               </Carousel>
             ) : (
@@ -90,7 +90,7 @@ function ProductShelf({
                 ))}
               </>
             )}
-          </ul>
+          </div>
         </ProductShelfSkeleton>
       </div>
     </Section>

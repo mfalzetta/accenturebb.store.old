@@ -103,7 +103,7 @@ const BuildCarousel = (
   size: string
 ) => {
   const screen = window.innerWidth
-  const parent = document.querySelector('ul[data-fs-product-shelf-items]')
+  const parent = document.querySelector('div[data-fs-product-shelf-items]')
   const widthP = parent ? parent.clientWidth : 0
   let width = arrows && screen > 920 ? widthP - 64 : widthP
   let itemsW =
