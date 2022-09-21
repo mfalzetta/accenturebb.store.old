@@ -8,20 +8,20 @@ export interface HeaderLinkProps {
 function HeaderLink({ name, link }: HeaderLinkProps) {
   if (link) {
     return (
-      <div className="link">
+      <li className="link">
         <Link data-fs-navlinks-link variant="display" href={link}>
           {name}
         </Link>
-      </div>
+      </li>
     )
   }
 
   return (
-    <div className="link">
+    <li className="link">
       <Link data-fs-navlinks-link variant="display" href="/#">
         {name}
       </Link>
-    </div>
+    </li>
   )
 }
 

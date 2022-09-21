@@ -34,6 +34,7 @@ function Banners({ banners }: BannersProps) {
                 height={328}
                 className="image__temporary"
                 layout="fill"
+                loading="eager"
                 priority
               />
               <div
