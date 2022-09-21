@@ -16,7 +16,7 @@ function RegionButton() {
       iconPosition="left"
       onClick={openModal}
     >
-      <span>{postalCode ?? 'Set your location'}</span>
+      <span>{postalCode ?? 'Informe seu CEP'}</span>
     </Button>
   )
 }

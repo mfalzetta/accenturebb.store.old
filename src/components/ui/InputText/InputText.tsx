@@ -72,7 +72,7 @@ const InputText = ({
   error,
   displayClearButton,
   actionable,
-  buttonActionText = 'Apply',
+  buttonActionText = 'Aplicar',
   onSubmit,
   onClear,
   placeholder = ' ', // initializes with an empty space to style float label using `placeholder-shown`
