@@ -15,7 +15,11 @@ export interface CategorySectionProps {
 
 const CategorySection = ({ allItems }: CategorySectionAllItems) => {
   return (
-    <Section>
+    <Section
+      style={{
+        height: `${parseInt(allItems[0].height, 10) * allItems.length + 100}px`,
+      }}
+    >
       <div className="layout__content classSection__container category-session">
         <div className="classSection__content">
           {allItems.map((card: CategorySectionProps, index: number) => (
