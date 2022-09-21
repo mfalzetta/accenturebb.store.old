@@ -1,4 +1,5 @@
-import Image from 'src/components/ui/Image/Image'
+import Image from 'next/image'
+
 import Link from 'src/components/ui/Link'
 
 export interface InfoCardProps {

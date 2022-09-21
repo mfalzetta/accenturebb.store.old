@@ -1,6 +1,6 @@
 import { Incentive as UIIncentive } from '@faststore/ui'
+import Image from 'next/image'
 
-import Image from 'src/components/ui/Image/Image'
 import Slider from 'src/components/custom-components/home/Slider'
 
 import styles from './incentives.module.scss'
