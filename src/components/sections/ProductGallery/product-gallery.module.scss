@@ -78,6 +78,7 @@
     height: 100%;
     padding-right: 0;
     padding-left: 0;
+    margin-top: 0.5rem;
 
     @include media(">=notebook") {
       display: grid;

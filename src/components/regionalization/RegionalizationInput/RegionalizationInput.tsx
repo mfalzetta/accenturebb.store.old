@@ -34,7 +34,7 @@ function RegionInput({ closeModal }: Props) {
 
       closeModal()
     } catch (error) {
-      setErrorMessage('You entered an invalid Postal Code')
+      setErrorMessage('CEP inválido')
     }
   }
 
@@ -44,7 +44,7 @@ function RegionInput({ closeModal }: Props) {
         inputRef={inputRef}
         id="postal-code-input"
         error={errorMessage}
-        label="Postal Code"
+        label="CEP"
         actionable
         value={input}
         onInput={(e) => {
