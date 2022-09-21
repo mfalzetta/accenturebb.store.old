@@ -1,6 +1,6 @@
 import { Button } from '@faststore/ui'
-import Image from 'next/image'
 
+import { Image } from 'src/components/ui/Image'
 import Link from 'src/components/ui/Link'
 import Slider from 'src/components/custom-components/home/Slider'
 

@@ -1,6 +1,6 @@
 import { Incentive as UIIncentive } from '@faststore/ui'
-import Image from 'next/image'
 
+import Image from 'src/components/ui/Image/Image'
 import Slider from 'src/components/custom-components/home/Slider'
 
 import styles from './incentives.module.scss'
@@ -42,7 +42,7 @@ function Incentives({
           <UIIncentive key={index}>
             <Image
               src={incentive.src}
-              alt={incentive.alt}
+              alt={incentive.alt ?? `${incentive.title} icon`}
               loading="lazy"
               data-fs-incentive-icon
               width={32}

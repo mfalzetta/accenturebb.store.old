@@ -15,6 +15,7 @@ const BtnCarouselShelf = ({ direction, moveSlide }: BtnCarouselShelfProps) => {
           ? 'btn-carouselShelf next'
           : 'btn-carouselShelf prev'
       }
+      aria-label={`${direction}`}
     >
       {direction === 'next' ? <SliderArrowRight /> : <SliderArrowLeft />}
     </button>
