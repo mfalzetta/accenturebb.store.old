@@ -6,6 +6,7 @@ import type {
   CurrencyCode,
   RemoveFromCartEvent,
 } from '@faststore/sdk'
+
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import { Image } from 'src/components/ui/Image'

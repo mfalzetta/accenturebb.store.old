@@ -1,20 +1,22 @@
+import Image from 'next/image'
+
 import styles from './logo.module.scss'
 
 function Logo() {
   return (
     <div data-theme-logo className={styles.fsLogo}>
-      <img
+      <Image
         data-theme-logo-first
         src="/logo-lacoste2.svg"
         alt="Lacoste Logo"
-        width="104px"
-        height="23px"
+        width={104}
+        height={23}
       />
-      <img
+      <Image
         src="/logo-lacoste.svg"
         alt="Lacoste Logo"
-        width="50px"
-        height="23px"
+        width={50}
+        height={23}
       />
     </div>
   )

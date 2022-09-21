@@ -1,8 +1,9 @@
 import { useRef } from 'react'
 import { Button, IconButton } from '@faststore/ui'
+import { useInView } from 'react-intersection-observer'
+
 import Icon from 'src/components/ui/Icon'
 import { Image } from 'src/components/ui/Image'
-import { useInView } from 'react-intersection-observer'
 
 import type { ImageElementData } from './ImageGallery'
 import styles from './image-gallery-selector.module.scss'

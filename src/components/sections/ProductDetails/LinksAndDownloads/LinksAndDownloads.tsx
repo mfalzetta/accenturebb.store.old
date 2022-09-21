@@ -1,5 +1,3 @@
-import './links-and-downloads.scss'
-
 interface LinksAndDownloadsProps {
   values: string[]
 }

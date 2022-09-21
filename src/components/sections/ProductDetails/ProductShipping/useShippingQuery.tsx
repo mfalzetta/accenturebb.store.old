@@ -1,5 +1,5 @@
 import { gql } from '@faststore/graphql-utils'
-import './product-shipping.scss'
+
 import { useQuery } from 'src/sdk/graphql/useQuery'
 import type {
   ShippingQueryQuery as Query,

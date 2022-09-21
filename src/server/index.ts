@@ -6,6 +6,7 @@ import {
   useMaskedErrors,
   useSchema,
 } from '@envelop/core'
+import { useGraphQlJit } from '@envelop/graphql-jit'
 import { useParserCache } from '@envelop/parser-cache'
 import { useValidationCache } from '@envelop/validation-cache'
 import {
@@ -26,9 +27,9 @@ import persisted from '../../@generated/graphql/persisted.json'
 import storeConfig, { api } from '../../store.config'
 import secrets from '../../secrets.hidden.json'
 
-interface ExecuteOptions {
+interface ExecuteOptions<V = Record<string, unknown>> {
   operationName: string
-  variables: Record<string, unknown>
+  variables: V
   query?: string | null
 }
 type ShippingVariable = {
@@ -82,7 +83,7 @@ const apiOptions: APIOptions = {
   },
 }
 
-const apiSchemaOld = getSchema(apiOptions)
+export const apiSchemaOld = getSchema(apiOptions)
 
 const apiContextFactory = getContextFactory(apiOptions)
 
@@ -338,6 +339,7 @@ const getEnvelop = async () =>
       useSchema(await getMergedSchemas()),
       useExtendContext(apiContextFactory),
       useMaskedErrors({ formatError }),
+      useGraphQlJit(),
       useValidationCache(),
       useParserCache(),
     ],
@@ -345,10 +347,10 @@ const getEnvelop = async () =>
 
 const envelopPromise = getEnvelop()
 
-export const execute = async (
-  options: ExecuteOptions,
+export const execute = async <V, D>(
+  options: ExecuteOptions<V>,
   envelopContext = { req: { headers: {} } }
-) => {
+): Promise<{ data: D; errors: unknown[] }> => {
   const { operationName, variables, query: maybeQuery } = options
   const query = maybeQuery ?? persistedQueries.get(operationName)
 
@@ -374,7 +376,7 @@ export const execute = async (
     variableValues: variables,
     contextValue: await contextFactory({ headers }),
     operationName,
-  })
+  }) as Promise<{ data: D; errors: unknown[] }>
 }
 
 async function shipping(

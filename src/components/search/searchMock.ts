@@ -1,4 +1,5 @@
 import { rest } from 'msw'
+
 import { productGridItems, searchTerms } from 'src/../.storybook/mocks'
 
 export const products = productGridItems.map((item) => item.node)

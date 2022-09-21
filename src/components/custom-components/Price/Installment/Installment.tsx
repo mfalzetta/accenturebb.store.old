@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
-import './Installment.scss'
 
 export type InstallmentsProps = {
   Installments: InstallmentProps[][]

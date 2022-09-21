@@ -1,30 +1,20 @@
 import { List as UIList } from '@faststore/ui'
 import type { AnchorHTMLAttributes } from 'react'
+
 import RenderPageSections from 'src/components/cms/RenderPageSections'
 import { mark } from 'src/sdk/tests/mark'
-import { graphql, useStaticQuery } from 'gatsby'
 import RegionalizationBar from 'src/components/regionalization/RegionalizationBar'
 
 import styles from './navlinks.module.scss'
+import useCmsPage from '../../../data/hook/useCmsPage'
 
 interface NavLinksProps {
   onClickLink?: AnchorHTMLAttributes<HTMLAnchorElement>['onClick']
   classes?: string
 }
 
-export const querySSG = graphql`
-  query HeaderLinkQuery {
-    cmsHeaderLink {
-      sections {
-        data
-        name
-      }
-    }
-  }
-`
-
 function NavLinks({ classes = '' }: NavLinksProps) {
-  const { cmsHeaderLink } = useStaticQuery(querySSG)
+  const cmsHeaderLink = useCmsPage('HeaderLink')
 
   return (
     <nav className={`${styles.fsNavlinks} ${classes}`}>

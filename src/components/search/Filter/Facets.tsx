@@ -1,4 +1,5 @@
 import { Label as UILabel, List as UIList } from '@faststore/ui'
+
 import type {
   Filter_FacetsFragment,
   IStoreSelectedFacet,

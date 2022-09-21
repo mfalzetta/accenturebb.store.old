@@ -1,81 +1,69 @@
-import { gql } from '@faststore/graphql-utils'
+import { isNotFoundError } from '@faststore/api'
 import {
   formatSearchState,
   parseSearchState,
   SearchProvider,
 } from '@faststore/sdk'
-import { graphql } from 'gatsby'
-import { BreadcrumbJsonLd, GatsbySeo } from 'gatsby-plugin-next-seo'
+import { gql } from '@faststore/graphql-utils'
+import { BreadcrumbJsonLd, NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { useMemo } from 'react'
+import type { SearchState } from '@faststore/sdk'
+import type { GetStaticPaths, GetStaticProps } from 'next'
+import type { ContentData } from '@vtex/client-cms'
+
 import Breadcrumb from 'src/components/sections/Breadcrumb'
 import ProductGallery from 'src/components/sections/ProductGallery'
 import ScrollToTopButton from 'src/components/sections/ScrollToTopButton'
 import { ITEMS_PER_PAGE } from 'src/constants'
-import { applySearchState } from 'src/sdk/search/state'
+import { useApplySearchState } from 'src/sdk/search/state'
 import { mark } from 'src/sdk/tests/mark'
+import { execute } from 'src/server'
 import type {
-  CollectionPageQueryQuery,
   ServerCollectionPageQueryQuery,
-  CollectionPageQueryQueryVariables,
+  ServerCollectionPageQueryQueryVariables,
 } from '@generated/graphql'
-import { useSession } from 'src/sdk/session'
-import type { PageProps } from 'gatsby'
-import type { SearchState } from '@faststore/sdk'
-import 'src/styles/pages/plp.scss'
+import { getCMSPageDataByContentType } from 'src/cms/client'
 import SectionTitle from 'src/components/custom-components/home/SectionTitle'
-import CategoryButtons from 'src/components/custom-components/CategoryButtons'
 
-type Props = PageProps<
-  CollectionPageQueryQuery,
-  CollectionPageQueryQueryVariables,
-  unknown,
-  ServerCollectionPageQueryQuery | null
-> & { slug: string }
+import storeConfig from '../../store.config'
 
-const useSearchParams = (props: Props): SearchState => {
-  const {
-    location: { href, pathname },
-    serverData,
-  } = props
+type Props = ServerCollectionPageQueryQuery
 
-  const selectedFacets = serverData?.collection?.meta.selectedFacets
+type CmsCategoryImageProps = {
+  cmsCategoryImage: ContentData
+}
+
+const useSearchParams = ({ collection }: Props): SearchState => {
+  const selectedFacets = collection?.meta.selectedFacets
+  const { asPath } = useRouter()
 
   const hrefState = useMemo(() => {
-    const newState = parseSearchState(
-      new URL(href ?? pathname, 'http://localhost')
-    )
+    const newState = parseSearchState(new URL(asPath, 'http://localhost'))
 
     // In case we are in an incomplete url
     if (newState.selectedFacets.length === 0) {
-      newState.selectedFacets = selectedFacets ?? []
+      newState.selectedFacets = selectedFacets
     }
 
     return formatSearchState(newState).href
-  }, [href, pathname, selectedFacets])
+  }, [asPath, selectedFacets])
 
   return useMemo(() => parseSearchState(new URL(hrefState)), [hrefState])
 }
 
-function Page(props: Props) {
-  const {
-    data: { site },
-    serverData,
-    slug,
-  } = props
-
-  const { locale } = useSession()
+function Page(props: Props & CmsCategoryImageProps) {
+  const { collection, cmsCategoryImage } = props
+  const router = useRouter()
+  const applySearchState = useApplySearchState()
   const searchParams = useSearchParams(props)
 
-  // No data was found
-  if (serverData === null) {
-    return null
-  }
-
-  const { collection } = serverData
   const { page } = searchParams
-  const title = collection?.seo.title ?? site?.siteMetadata?.title ?? ''
+  const title = collection?.seo.title ?? storeConfig.seo.title
+  const description = collection?.seo.description ?? storeConfig.seo.title
   const pageQuery = page !== 0 ? `?page=${page}` : ''
-  const canonical = `${site?.siteMetadata?.siteUrl}/${slug}${pageQuery}`
+  const [pathname] = router.asPath.split('?')
+  const canonical = `${storeConfig.storeUrl}${pathname}${pageQuery}`
 
   return (
     <SearchProvider
@@ -84,22 +72,21 @@ function Page(props: Props) {
       {...searchParams}
     >
       {/* SEO */}
-      <GatsbySeo
+      <NextSeo
         title={title}
-        titleTemplate={site?.siteMetadata?.titleTemplate ?? ''}
-        description={site?.siteMetadata?.description ?? ''}
+        description={description}
+        titleTemplate={storeConfig.seo.titleTemplate}
         canonical={canonical}
-        language={locale}
         openGraph={{
           type: 'website',
           title,
-          description: site?.siteMetadata?.description ?? '',
+          description,
         }}
       />
       <BreadcrumbJsonLd
         itemListElements={collection?.breadcrumbList.itemListElement ?? []}
       />
-      {/* TODO: ATENDEDR O WARNING ABAIXO */}
+
       {/*
         WARNING: Do not import or render components from any
         other folder than '../components/sections' in here.
@@ -115,33 +102,25 @@ function Page(props: Props) {
         breadcrumbList={collection?.breadcrumbList.itemListElement}
         name={title}
       />
+
       <SectionTitle
         title={title}
         description={collection?.seo.description}
         className="category-page"
       />
-      <CategoryButtons slug={slug} />
-      <ProductGallery title={title} />
+
+      <ProductGallery
+        categoryImage={cmsCategoryImage}
+        title={title}
+        slug={pathname}
+      />
 
       <ScrollToTopButton />
     </SearchProvider>
   )
 }
 
-export const querySSG = graphql`
-  query CollectionPageQuery {
-    site {
-      siteMetadata {
-        titleTemplate
-        title
-        description
-        siteUrl
-      }
-    }
-  }
-`
-
-export const querySSR = gql`
+const query = gql`
   query ServerCollectionPageQuery($slug: String!) {
     collection(slug: $slug) {
       seo {
@@ -165,33 +144,24 @@ export const querySSR = gql`
   }
 `
 
-export const getServerData = async ({
-  params: { slug },
-}: {
-  params: Record<string, string>
-}) => {
-  const ONE_YEAR_CACHE = `s-maxage=31536000, stale-while-revalidate`
-  const { isNotFoundError } = await import('@faststore/api')
-  const { execute } = await import('src/server/index')
-  const { data, errors = [] } = await execute({
-    operationName: querySSR,
-    variables: { slug },
+export const getStaticProps: GetStaticProps<
+  ServerCollectionPageQueryQuery,
+  { slug: string[] }
+> = async ({ params }) => {
+  const { data, errors = [] } = await execute<
+    ServerCollectionPageQueryQueryVariables,
+    ServerCollectionPageQueryQuery
+  >({
+    variables: { slug: params?.slug.join('/') ?? '' },
+    operationName: query,
   })
 
   const notFound = errors.find(isNotFoundError)
+  const cmsCategoryImage = await getCMSPageDataByContentType('categoryImage')
 
   if (notFound) {
-    const params = new URLSearchParams({
-      from: encodeURIComponent(`/${slug}`),
-    })
-
     return {
-      status: 301,
-      props: null,
-      headers: {
-        'cache-control': ONE_YEAR_CACHE,
-        location: `/404/?${params.toString()}}`,
-      },
+      notFound: true,
     }
   }
 
@@ -199,12 +169,17 @@ export const getServerData = async ({
     throw errors[0]
   }
 
+  const finalData = { ...data, cmsCategoryImage }
+
   return {
-    status: 200,
-    props: data,
-    headers: {
-      'cache-control': ONE_YEAR_CACHE,
-    },
+    props: finalData,
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: 'blocking',
   }
 }
 

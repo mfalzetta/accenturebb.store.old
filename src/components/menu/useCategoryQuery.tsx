@@ -1,10 +1,10 @@
 import { gql } from '@faststore/graphql-utils'
-import { useQuery } from 'src/sdk/graphql/useQuery'
+
 import type {
   MenuCategoryQueryQueryVariables as Variables,
   MenuCategoryQueryQuery as Query,
 } from '@generated/graphql'
-import { useLocalizedVariables } from 'src/sdk/product/useProductsQuery'
+import { useLazyQuery } from 'src/sdk/graphql/useLazyQuery'
 
 /**
  * This query is run on the browser and contains
@@ -29,12 +29,18 @@ export const query = gql`
   }
 `
 
-const useCategoryQuery = (first: number) => {
-  const localizedVariables = useLocalizedVariables({
-    first,
-  })
+const useCategoryQuery = () => {
+  const [getAllCategories, { data, error, isValidating: loading }] =
+    useLazyQuery<Query, Variables>(query, {
+      first: 100,
+    })
 
-  return useQuery<Query, Variables>(query, localizedVariables)
+  return {
+    getAllCategories,
+    data,
+    error,
+    loading,
+  }
 }
 
 export default useCategoryQuery

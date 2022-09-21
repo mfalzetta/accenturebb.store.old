@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
+
 import Icon from 'src/components/ui/Icon'
 import useWishlist from 'src/data/hook/useWishlist'
-
-import './wishlist-pdp-button.scss'
 
 interface WishListPdpButtonProps {
   productId?: string

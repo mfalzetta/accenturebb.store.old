@@ -16,6 +16,7 @@
   // Thumbnail
   --fs-image-gallery-selector-thumbnail-width-mobile            : var(--fs-spacing-8);
   --fs-image-gallery-selector-thumbnail-width-notebook          : var(--fs-spacing-10);
+  --fs-image-gallery-selector-thumbnail-width-notebook-hd       : var(--fs-spacing-12);
   --fs-image-gallery-selector-thumbnail-border-radius           : var(--fs-border-radius);
   --fs-image-gallery-selector-thumbnail-selected-border-color   : var(--fs-border-color-active);
 
@@ -80,6 +81,10 @@
 
     @include media(">=notebook") {
       width: var(--fs-image-gallery-selector-thumbnail-width-notebook);
+    }
+
+    @media (min-width: 1920px) {
+      width: var(--fs-image-gallery-selector-thumbnail-width-notebook-hd);
     }
   }
 

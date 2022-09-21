@@ -1,61 +1,59 @@
-import 'src/styles/pages/search.scss'
 import { parseSearchState, SearchProvider } from '@faststore/sdk'
-import { graphql } from 'gatsby'
-import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import type { SearchState } from '@faststore/sdk'
+
 import Breadcrumb from 'src/components/sections/Breadcrumb'
 import ProductGallery from 'src/components/sections/ProductGallery'
 import SROnly from 'src/components/ui/SROnly'
 import { ITEMS_PER_PAGE } from 'src/constants'
-import { applySearchState } from 'src/sdk/search/state'
-import { useSession } from 'src/sdk/session'
+import { useApplySearchState } from 'src/sdk/search/state'
 import { mark } from 'src/sdk/tests/mark'
-import type { SearchState } from '@faststore/sdk'
-import type { PageProps } from 'gatsby'
-import type {
-  SearchPageQueryQuery,
-  SearchPageQueryQueryVariables,
-} from '@generated/graphql'
+// import type {
+//   SearchPageQueryQuery,
+//   SearchPageQueryQueryVariables,
+// } from '@generated/graphql'
 
-export type Props = PageProps<
-  SearchPageQueryQuery,
-  SearchPageQueryQueryVariables
->
+import storeConfig from '../../store.config'
 
-const useSearchParams = ({ href }: Location) => {
+const useSearchParams = () => {
   const [params, setParams] = useState<SearchState | null>(null)
+  const { asPath } = useRouter()
 
   useEffect(() => {
-    const url = new URL(href)
+    const url = new URL(asPath, 'http://localhost')
 
     setParams(parseSearchState(url))
-  }, [href])
+  }, [asPath])
 
   return params
 }
 
-function Page(props: Props) {
-  const {
-    data: { site },
-  } = props
+function Page() {
+  const { asPath } = useRouter()
 
-  const { locale } = useSession()
-  const searchParams = useSearchParams(props.location)
-  const title = 'Search Results | BaseStore'
+  const searchParams = useSearchParams()
+  const applySearchState = useApplySearchState()
+  const title = 'Search Results'
+  const { description, titleTemplate } = storeConfig.seo
 
   if (!searchParams) {
     return null
   }
 
-  if (props.location.search.includes('productClusterIds')) {
-    const id = props.location.search.split('productClusterIds')
+  if (asPath.includes('productClusterIds')) {
+    const id = asPath.split('productClusterIds')
 
-    searchParams.selectedFacets = [
-      {
-        key: 'productClusterIds',
-        value: id[1].replace('=', ''),
-      },
-    ]
+    const facets = id[1].split('&')
+
+    if (facets.length === 1)
+      searchParams.selectedFacets = [
+        {
+          key: 'productClusterIds',
+          value: facets[0].replace('=', ''),
+        },
+      ]
   }
 
   return (
@@ -65,16 +63,15 @@ function Page(props: Props) {
       {...searchParams}
     >
       {/* SEO */}
-      <GatsbySeo
+      <NextSeo
         noindex
-        language={locale}
         title={title}
-        description={site?.siteMetadata?.description ?? ''}
-        titleTemplate={site?.siteMetadata?.titleTemplate ?? ''}
+        description={description}
+        titleTemplate={titleTemplate}
         openGraph={{
           type: 'website',
           title,
-          description: site?.siteMetadata?.description ?? '',
+          description,
         }}
       />
 
@@ -100,18 +97,6 @@ function Page(props: Props) {
     </SearchProvider>
   )
 }
-
-export const querySSG = graphql`
-  query SearchPageQuery {
-    site {
-      siteMetadata {
-        titleTemplate
-        title
-        description
-      }
-    }
-  }
-`
 
 Page.displayName = 'Page'
 

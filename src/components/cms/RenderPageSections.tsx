@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ComponentType } from 'react'
 
-import BannerText from '../sections/BannerText'
-import Hero from '../sections/Hero'
-import IncentivesHeader from '../sections/Incentives/IncentivesHeader'
-import ProductShelf from '../sections/ProductShelf'
-import ProductTiles from '../sections/ProductTiles'
+import BannerText from 'src/components/sections/BannerText'
+import Hero from 'src/components/sections/Hero'
+import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
+import ProductShelf from 'src/components/sections/ProductShelf'
+import ProductTiles from 'src/components/sections/ProductTiles'
+
 import PromotionBanner from '../sections/PromotionBanner'
 import ImageBanner from '../sections/ImageBanner'
 import BlogSection from '../sections/BlogSection'
@@ -13,12 +15,12 @@ import Title from '../sections/Title/Title'
 import CategorySection from '../sections/CategorySection/CategorySection'
 import BrandSection from '../sections/BrandSection/BrandSection'
 import Banners from '../sections/Banners'
+import CategoryImage from '../sections/CategoryImage'
+
 /**
  * Sections: Components imported from '../components/sections' only.
  * Do not import or render components from any other folder in here.
  */
-
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 const COMPONENTS: Record<string, ComponentType<any>> = {
   Hero,
   BannerText,
@@ -33,10 +35,11 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   CategorySection,
   BrandSection,
   Banners,
+  CategoryImage,
 }
 
 interface Props {
-  sections?: Array<{ name: string; data: unknown }>
+  sections?: Array<{ name: string; data: any }>
 }
 
 function RenderPageSections({ sections }: Props) {
@@ -53,7 +56,7 @@ function RenderPageSections({ sections }: Props) {
           return <></>
         }
 
-        return <Component key={`cms-section-${index}`} {...(data as any)} />
+        return <Component key={`cms-section-${index}`} {...data} />
       })}
     </>
   )

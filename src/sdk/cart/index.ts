@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { gql } from '@faststore/graphql-utils'
 import { createCartStore } from '@faststore/sdk'
 import { useMemo } from 'react'
 import type { Cart as SDKCart, CartItem as SDKCartItem } from '@faststore/sdk'
+
 import type {
   CartItemFragment,
   CartMessageFragment,

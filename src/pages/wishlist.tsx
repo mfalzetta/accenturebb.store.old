@@ -1,13 +1,12 @@
-import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { NextSeo } from 'next-seo'
+
 import useWishlist from 'src/data/hook/useWishlist'
 import { useWishListProductsQuery } from 'src/components/Wishlist/useWishlistQuery'
-import { useSession } from 'src/sdk/session'
 import WishListDetails from 'src/components/Wishlist/WishListDetails/WishListDetails'
 
 function Page() {
   const wishlistData = useWishlist()
   const ctxProductId = JSON.stringify(wishlistData?.productIds)
-  const { locale } = useSession()
   const { data } = useWishListProductsQuery(ctxProductId)
 
   const products = data?.getWishListProducts
@@ -18,12 +17,7 @@ function Page() {
 
   return (
     <>
-      <GatsbySeo
-        title={title}
-        description={description}
-        canonical={canonical}
-        language={locale}
-      />
+      <NextSeo title={title} description={description} canonical={canonical} />
       <div data-fs-wishlist>
         <div data-fs-wishlist-content>
           <div data-fs-wishlist-header>

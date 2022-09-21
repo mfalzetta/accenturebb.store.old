@@ -85,11 +85,11 @@
 
   &[data-fs-link-variant="footer"] {
     font-size: var(--fs-link-footer-text-size);
-    color: var(--fs-link-inverse-text-color);
-    
+    color: var(--fs-link-footer-text-color);
+
     @include media(">=notebook") { padding: var(--fs-link-footer-padding); }
   }
- 
+
   &[data-fs-link-inverse="true"] {
     color: var(--fs-link-inverse-text-color);
 

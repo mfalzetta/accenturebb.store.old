@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+
 import InputText from 'src/components/ui/InputText'
 import { sessionStore, useSession, validateSession } from 'src/sdk/session'
 
@@ -52,7 +53,6 @@ function RegionInput({ closeModal }: Props) {
         }}
         onSubmit={handleSubmit}
         onClear={() => setInput('')}
-        buttonActionText="Aplicar"
       />
     </div>
   )

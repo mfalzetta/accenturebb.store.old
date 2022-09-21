@@ -1,5 +1,6 @@
 import { gql } from '@faststore/graphql-utils'
 import { useMemo } from 'react'
+
 import type {
   BrowserProductQueryQuery,
   BrowserProductQueryQueryVariables,

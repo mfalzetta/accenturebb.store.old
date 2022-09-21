@@ -1,10 +1,11 @@
 import { Alert as UIAlert, Icon as UIIcon } from '@faststore/ui'
 import { useCallback } from 'react'
-import Button from 'src/components/ui/Button'
-import Icon from 'src/components/ui/Icon'
-import Link from 'src/components/ui/Link'
 import type { ReactNode, MouseEvent } from 'react'
 import type { AlertProps } from '@faststore/ui'
+
+import Link from 'src/components/ui/Link'
+import Button from 'src/components/ui/Button'
+import Icon from 'src/components/ui/Icon'
 
 import styles from './alert.module.scss'
 

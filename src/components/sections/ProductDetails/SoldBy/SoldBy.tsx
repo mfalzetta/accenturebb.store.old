@@ -1,7 +1,5 @@
 import type { Seller } from 'src/server'
 
-import './sold-by.scss'
-
 interface SoldByProps {
   sellers: Seller[] | any
   isMobile: boolean

@@ -1,4 +1,3 @@
-import { HelmetProvider } from 'react-helmet-async'
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs'
 import { TokenTable, TokenRow } from 'src/../.storybook/components'
 
@@ -31,11 +30,7 @@ import Icon from 'src/components/ui/Icon'
   }}
 />
 
-export const Template = (args) => (
-  <HelmetProvider>
-    <Hero {...args} />
-  </HelmetProvider>
-)
+export const Template = (args) => <Hero {...args} />
 
 <header>
 

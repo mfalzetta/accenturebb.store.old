@@ -1,6 +1,7 @@
-import EmptyState from 'src/components/ui/EmptyState'
 import { Icon as UIIcon } from '@faststore/ui'
+
 import { SearchNotFound } from 'src/images/search'
+import EmptyState from 'src/components/ui/EmptyState'
 
 function EmptyGallery() {
   return (

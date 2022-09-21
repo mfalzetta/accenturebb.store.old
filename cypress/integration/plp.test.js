@@ -187,7 +187,6 @@ describe('Infinite Scroll pagination', () => {
               })
               .then(() => {
                 cy.go('back')
-                cy.reload()
                   .get(
                     '[data-testid=product-gallery] [data-testid=store-product-card]'
                   )

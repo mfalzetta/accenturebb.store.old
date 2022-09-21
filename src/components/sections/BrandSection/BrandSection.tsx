@@ -6,6 +6,8 @@ export interface BrandSectionProps {
   src: string
   alt: string
   href: string
+  width: string
+  height: string
   size: 'small' | 'big'
 }
 
@@ -23,8 +25,8 @@ const BrandSection = ({ allItems }: BrandSectionAllItems) => {
             href={card.href}
             src={card.src}
             alt={card.alt}
-            width="100%"
-            height="auto"
+            width={card.width}
+            height={card.height}
             className="classSection__brand"
             brandSize={card.size}
           />

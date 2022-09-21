@@ -49,8 +49,6 @@
   }
 
   @include media(">=notebook") {
-    padding-top: var(--fs-spacing-5);
-
     [data-fs-empty-state] {
       margin: 0;
     }
@@ -80,6 +78,7 @@
     height: 100%;
     padding-right: 0;
     padding-left: 0;
+    margin-top: 0.5rem;
 
     @include media(">=notebook") {
       display: grid;

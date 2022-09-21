@@ -1,9 +1,9 @@
 import { DiscountBadge } from '.'
 import type { DiscountBadgeProps } from './DiscountBadge'
 
-export default {
+const story = {
   component: DiscountBadge,
-  title: 'Molecules/Badge ⚠️',
+  title: 'Molecules/Badge/DiscountBadge ⚠️',
 }
 
 const TemplateDiscount = ({ ...args }: DiscountBadgeProps) => (
@@ -17,3 +17,5 @@ Discount.args = {
   listPrice: 45,
   spotPrice: 40,
 }
+
+export default story

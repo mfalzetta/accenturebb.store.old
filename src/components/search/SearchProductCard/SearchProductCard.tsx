@@ -1,4 +1,5 @@
 import { Card, CardContent, CardImage } from '@faststore/ui'
+
 import { Image } from 'src/components/ui/Image'
 import Link from 'src/components/ui/Link'
 import Price from 'src/components/ui/Price'

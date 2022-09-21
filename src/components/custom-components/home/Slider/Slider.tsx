@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import './Slider.scss'
 import BtnSlider from './BtnSlider'
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */

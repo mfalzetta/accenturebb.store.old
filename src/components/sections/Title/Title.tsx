@@ -1,7 +1,6 @@
 import SectionTitle from 'src/components/custom-components/home/SectionTitle'
 
 import Section from '../Section'
-import './Title.scss'
 
 export interface TitleProps {
   titleSection: string

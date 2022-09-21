@@ -1,5 +1,6 @@
 import { useSearch } from '@faststore/sdk'
 import { useEffect } from 'react'
+
 import {
   useProductsQueryPrefetch,
   useProductsQuery,

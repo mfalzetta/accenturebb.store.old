@@ -1,7 +1,8 @@
-import { navigate } from 'gatsby'
-import { memo } from 'react'
 import type { BreadcrumbProps as UIBreadcrumbProps } from '@faststore/ui'
 import { Breadcrumb as UIBreadcrumb } from '@faststore/ui'
+import { useRouter } from 'next/router'
+import { memo } from 'react'
+
 import Dropdown, {
   DropdownButton,
   DropdownItem,
@@ -32,6 +33,7 @@ function BaseBreadcrumb({
   breadcrumbList,
   isDesktop = false,
 }: BaseBreadcrumbProps) {
+  const router = useRouter()
   const firstItem = isDesktop ? breadcrumbList[0] : null
   const mediumItems = isDesktop
     ? breadcrumbList.slice(1, -2)
@@ -86,7 +88,7 @@ function BaseBreadcrumb({
                 icon={
                   <Icon name="ArrowElbowDownRight" width={24} height={24} />
                 }
-                onClick={() => navigate(item)}
+                onClick={() => router.push(item)}
                 key={String(index)}
               >
                 {name}

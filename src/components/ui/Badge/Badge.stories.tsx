@@ -2,9 +2,9 @@ import type { BadgeProps } from '@faststore/ui'
 
 import { Badge } from '.'
 
-export default {
+const story = {
   component: Badge,
-  title: 'Molecules/Badge ⚠️',
+  title: 'Molecules/Badge/Default ⚠️',
   argTypes: {
     onClose: { table: { disable: true } },
     children: {
@@ -33,3 +33,5 @@ Actionable.args = {
   actionable: true,
   variant: 'info',
 }
+
+export default story

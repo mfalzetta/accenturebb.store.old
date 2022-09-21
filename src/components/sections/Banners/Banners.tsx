@@ -1,9 +1,10 @@
+import Image from 'next/image'
+
 import Slider from 'src/components/custom-components/home/Slider'
 import Button from 'src/components/ui/Button'
 import Link from 'src/components/ui/Link'
 
 import Section from '../Section'
-import './Banner.scss'
 
 export interface BannersProps {
   banners: BannerProps[]
@@ -27,13 +28,13 @@ function Banners({ banners }: BannersProps) {
         {banners.map((banner: BannerProps, index: number) => (
           <div data-banner-container key={index}>
             <Link href={banner.href ? banner.href : '/#'}>
-              <img
+              <Image
                 src={banner.src}
                 alt={banner.alt ? banner.alt : 'Banner Home'}
-                width="100%"
                 height={328}
                 loading="lazy"
                 className="image__temporary"
+                layout="fill"
               />
               <div
                 data-banner-info

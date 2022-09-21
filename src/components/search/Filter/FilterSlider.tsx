@@ -1,4 +1,5 @@
 import { useSearch } from '@faststore/sdk'
+
 import type { Filter_FacetsFragment } from '@generated/graphql'
 import Button from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'

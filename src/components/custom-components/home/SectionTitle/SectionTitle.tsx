@@ -1,6 +1,5 @@
-import { Link } from '@reach/router'
+import Link from 'src/components/ui/Link'
 import Section from 'src/components/sections/Section'
-import './SectionTitle.scss'
 
 export interface SectionTitleProps {
   title: string
@@ -30,7 +29,7 @@ const SectionTitle = ({
           {title}
         </span>
         {href && linkText && (
-          <Link to={href}>
+          <Link href={href}>
             <span className="classSection__link ">{linkText}</span>
           </Link>
         )}

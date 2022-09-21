@@ -1,86 +1,63 @@
-import 'src/styles/pages/homepage.scss'
+import { NextSeo, SiteLinksSearchBoxJsonLd } from 'next-seo'
+import type { ContentData } from '@vtex/client-cms'
 
-import { graphql } from 'gatsby'
-import { GatsbySeo, JsonLd } from 'gatsby-plugin-next-seo'
-import { mark } from 'src/sdk/tests/mark'
-import type { PageProps } from 'gatsby'
-import type { HomePageQueryQuery } from '@generated/graphql'
 import RenderPageSections from 'src/components/cms/RenderPageSections'
-import { useSession } from 'src/sdk/session'
+import { mark } from 'src/sdk/tests/mark'
+import { getCMSPageDataByContentType } from 'src/cms/client'
 
-export type Props = PageProps<HomePageQueryQuery>
+import storeConfig from '../../store.config'
 
-function Page(props: Props) {
-  const {
-    data: { site, cmsHome },
-  } = props
+export type Props = { cmsHome: ContentData }
 
-  const { locale } = useSession()
-
-  const title = site?.siteMetadata?.title ?? ''
-  const siteUrl = `${site?.siteMetadata?.siteUrl}`
-
+function Page({ cmsHome }: Props) {
   return (
     <>
       {/* SEO */}
-      <GatsbySeo
-        title={title}
-        description={site?.siteMetadata?.description ?? ''}
-        titleTemplate={site?.siteMetadata?.titleTemplate ?? ''}
-        language={locale}
-        canonical={siteUrl}
+      <NextSeo
+        title={storeConfig.seo.title}
+        description={storeConfig.seo.description}
+        titleTemplate={storeConfig.seo.titleTemplate}
+        canonical={storeConfig.storeUrl}
         openGraph={{
           type: 'website',
-          url: siteUrl,
-          title: title ?? '',
-          description: site?.siteMetadata?.description ?? '',
+          url: storeConfig.storeUrl,
+          title: storeConfig.seo.title,
+          description: storeConfig.seo.description,
         }}
       />
-      <JsonLd
-        json={{
-          '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          url: siteUrl,
-          potentialAction: {
-            '@type': 'SearchAction',
-            target: `${siteUrl}/s/?q={search_term_string}`,
-            'query-input': 'required name=search_term_string',
+      <SiteLinksSearchBoxJsonLd
+        url={storeConfig.storeUrl}
+        potentialActions={[
+          {
+            target: `${storeConfig.storeUrl}/s/?q={search_term_string}`,
+            queryInput: 'required name=search_term_string',
           },
-        }}
+        ]}
       />
 
       {/*
         WARNING: Do not import or render components from any
         other folder than '../components/sections' in here.
+
         This is necessary to keep the integration with the CMS
         easy and consistent, enabling the change and reorder
         of elements on this page.
+
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-      <RenderPageSections sections={cmsHome?.sections} />
+      <RenderPageSections sections={cmsHome.sections} />
     </>
   )
 }
 
-export const querySSG = graphql`
-  query HomePageQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        titleTemplate
-        siteUrl
-      }
-    }
-    cmsHome {
-      sections {
-        data
-        name
-      }
-    }
+export async function getStaticProps() {
+  const cmsHome = await getCMSPageDataByContentType('home')
+
+  return {
+    props: { cmsHome },
   }
-`
+}
 
 Page.displayName = 'Page'
 export default mark(Page)

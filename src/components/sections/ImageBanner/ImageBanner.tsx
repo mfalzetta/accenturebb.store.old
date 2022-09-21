@@ -1,5 +1,6 @@
+import Image from 'next/image'
+
 import Section from 'src/components/sections/Section'
-import './ImageBanner.scss'
 
 export interface ImageBannerProps {
   src: string
@@ -12,15 +13,22 @@ const ImageBanner = ({ src, alt, fullWidth }: ImageBannerProps) => {
     <>
       {!fullWidth ? (
         <Section className="layout__content container__margin">
-          <img
+          <Image
             loading="lazy"
             className="image__temporary"
             src={src}
             alt={alt}
+            layout="fill"
           />
         </Section>
       ) : (
-        <img loading="lazy" className="image__temporary" src={src} alt={alt} />
+        <Image
+          loading="lazy"
+          className="image__temporary"
+          src={src}
+          alt={alt}
+          layout="fill"
+        />
       )}
     </>
   )

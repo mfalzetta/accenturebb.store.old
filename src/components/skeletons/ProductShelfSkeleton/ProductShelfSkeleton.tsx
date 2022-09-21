@@ -1,5 +1,6 @@
-import { ITEMS_PER_SECTION } from 'src/constants'
 import type { PropsWithChildren } from 'react'
+
+import { ITEMS_PER_SECTION } from 'src/constants'
 import styles from 'src/components/sections/ProductShelf/product-shelf.module.scss'
 
 import ProductCardSkeleton from '../ProductCardSkeleton'

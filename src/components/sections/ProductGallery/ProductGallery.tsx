@@ -1,7 +1,10 @@
 import { useSearch } from '@faststore/sdk'
-import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { NextSeo } from 'next-seo'
 import { lazy, Suspense, useState } from 'react'
 import type { MouseEvent } from 'react'
+import type { ContentData } from '@vtex/client-cms'
+
+import { GalleryIcon, ListIcon } from 'src/images/categoryType/categoryType'
 import Filter from 'src/components/search/Filter'
 import Sort from 'src/components/search/Sort'
 import FilterSkeleton from 'src/components/skeletons/FilterSkeleton'
@@ -11,7 +14,7 @@ import Button, { ButtonLink } from 'src/components/ui/Button'
 import Icon from 'src/components/ui/Icon'
 import { mark } from 'src/sdk/tests/mark'
 import { useUI } from 'src/sdk/ui/Provider'
-import { GalleryIcon, ListIcon } from 'src/images/categoryType/categoryType'
+import CategoryButtons from 'src/components/custom-components/CategoryButtons/CategoryButtons'
 
 import Section from '../Section'
 import EmptyGallery from './EmptyGallery'
@@ -27,9 +30,11 @@ const GalleryPageSkeleton = <ProductGridSkeleton loading />
 interface Props {
   title: string
   searchTerm?: string
+  categoryImage?: ContentData
+  slug?: string
 }
 
-function ProductGallery({ title, searchTerm }: Props) {
+function ProductGallery({ title, searchTerm, categoryImage, slug }: Props) {
   const { openFilter } = useUI()
   const { pages, addNextPage, addPrevPage } = useSearch()
 
@@ -66,6 +71,15 @@ function ProductGallery({ title, searchTerm }: Props) {
           </h1>
         </header>
       )}
+      <div>
+        {categoryImage && (
+          <CategoryButtons
+            categoryImage={categoryImage}
+            page={slug}
+            title={title}
+          />
+        )}
+      </div>
       <div data-fs-product-listing-content-grid className="layout__content">
         <div data-fs-product-listing-filters>
           <FilterSkeleton loading={facets?.length === 0}>
@@ -142,7 +156,9 @@ function ProductGallery({ title, searchTerm }: Props) {
           {/* Add link to previous page. This helps on SEO */}
           {prev !== false && (
             <div data-fs-product-listing-pagination="top">
-              <GatsbySeo defer linkTags={[{ rel: 'prev', href: prev.link }]} />
+              <NextSeo
+                additionalLinkTags={[{ rel: 'prev', href: prev.link }]}
+              />
               <ButtonLink
                 onClick={(e: MouseEvent<HTMLElement>) => {
                   e.currentTarget.blur()
@@ -182,7 +198,9 @@ function ProductGallery({ title, searchTerm }: Props) {
           {/* Add link to next page. This helps on SEO */}
           {next !== false && (
             <div data-fs-product-listing-pagination="bottom">
-              <GatsbySeo defer linkTags={[{ rel: 'next', href: next.link }]} />
+              <NextSeo
+                additionalLinkTags={[{ rel: 'next', href: next.link }]}
+              />
               <ButtonLink
                 data-testid="show-more"
                 onClick={(e: MouseEvent<HTMLElement>) => {

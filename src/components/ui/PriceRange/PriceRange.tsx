@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { PriceRange as UIPriceRange } from '@faststore/ui'
 import type { PriceRangeProps } from '@faststore/ui'
+
 import {
   usePriceFormatter,
   useFormattedPrice,

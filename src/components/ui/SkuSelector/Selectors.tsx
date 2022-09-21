@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import type { ChangeEvent } from 'react'
 
 import SkuSelector from './SkuSelector'
@@ -30,6 +31,8 @@ interface Props {
 const DOMINANT_SKU_SELECTOR_PROPERTY = 'Cor'
 
 function Selectors({ slugsMap, availableVariations, activeVariations }: Props) {
+  const router = useRouter()
+
   // 'Color' variants are singled-out here because they will always be rendered
   // as 'image' variants. And they're also the 'dominant' variants in our store.
   const { Cor: colorOptions, ...otherSkuVariants } = availableVariations
@@ -41,6 +44,7 @@ function Selectors({ slugsMap, availableVariations, activeVariations }: Props) {
     const newVariationValue = e.currentTarget.value
 
     navigateToSku({
+      router,
       slugsMap,
       updatedVariationName,
       selectorsState: activeVariations,

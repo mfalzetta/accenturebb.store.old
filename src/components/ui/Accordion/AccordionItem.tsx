@@ -6,6 +6,7 @@ import {
   Icon as UIIcon,
 } from '@faststore/ui'
 import { forwardRef } from 'react'
+
 import Icon from 'src/components/ui/Icon'
 
 interface Props extends AccordionItemProps {

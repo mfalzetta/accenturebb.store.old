@@ -1,8 +1,6 @@
 import Icon from 'src/components/ui/Icon'
 import Link from 'src/components/ui/Link'
 
-import './wishlist-menu-button.scss'
-
 const WishListMenuButton = () => {
   return (
     <Link data-fs-wishlist-menu-button href="/wishlist">

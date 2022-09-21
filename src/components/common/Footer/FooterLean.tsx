@@ -3,6 +3,8 @@ import {
   List as UIList,
   PaymentMethods as UIPaymentMethods,
 } from '@faststore/ui'
+import Image from 'next/image'
+
 import Button from 'src/components/ui/Button'
 import Link from 'src/components/ui/Link'
 import SROnly from 'src/components/ui/SROnly'
@@ -43,7 +45,7 @@ function Footer() {
               Envie uma Mensagem{' '}
             </Button>
             <p>
-              <a href="/">Clique Aqui</a> para ver as nossas horas de
+              <Link href="/">Clique Aqui</Link> para ver as nossas horas de
             </p>
             <p> funcionamento</p>
           </div>
@@ -139,11 +141,11 @@ function FooterLogo() {
       <div className="">
         <UIIcon
           component={
-            <img
+            <Image
               src="/logo-footer.svg"
               alt="BaseStore logo"
-              width="124px"
-              height="32px"
+              width={124}
+              height={32}
               loading="lazy"
             />
           }

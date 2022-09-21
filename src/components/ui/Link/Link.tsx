@@ -1,19 +1,17 @@
 import { forwardRef, useMemo } from 'react'
 import type { Ref, ElementType, AnchorHTMLAttributes } from 'react'
-import { Link as GatsbyLink } from 'gatsby'
-import type { GatsbyLinkProps } from 'gatsby'
+import NextLink from 'next/link'
+import type { LinkProps as FrameworkLinkProps } from 'next/link'
 import { Link as UILink } from '@faststore/ui'
 import type { LinkProps as UILinkProps } from '@faststore/ui'
 
 import styles from './link.module.scss'
 
 type Variant = 'default' | 'display' | 'footer' | 'inline'
-type FrameworkLinkProps = Omit<GatsbyLinkProps<Record<string, unknown>>, 'to'>
 
 export type LinkProps<T extends ElementType = 'a'> = UILinkProps<T> &
   FrameworkLinkProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
-    href: string
     variant?: Variant
     inverse?: boolean
   }
@@ -31,17 +29,18 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link<
 
   if (isInternalLink) {
     return (
-      <UILink
-        as={GatsbyLink}
-        to={href}
-        data-fs-link
-        data-fs-link-variant={variant}
-        data-fs-link-inverse={inverse}
-        className={styles.fsLink}
-        {...otherProps}
-      >
-        {children}
-      </UILink>
+      <NextLink passHref href={href}>
+        <UILink
+          ref={ref}
+          data-fs-link
+          data-fs-link-variant={variant}
+          data-fs-link-inverse={inverse}
+          className={styles.fsLink}
+          {...otherProps}
+        >
+          {children}
+        </UILink>
+      </NextLink>
     )
   }
 

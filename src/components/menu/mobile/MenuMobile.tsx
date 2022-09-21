@@ -1,11 +1,11 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
+
 import {
   BackwardArrowIcon,
   ForwardArrowIcon,
 } from 'src/components/ui/ImageGallery/Icons'
 import Link from 'src/components/ui/Link'
-import './menu-mobile.scss'
 
 interface MenuMobileProps {
   isOpen: boolean

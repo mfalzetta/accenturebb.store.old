@@ -1,13 +1,5 @@
 // Cart
-@import "src/components/cart/CartSidebar/cart-sidebar.scss";
 @import "src/components/cart/CartToggle/cart-toggle.scss";
-@import "src/components/cart/OrderSummary/order-summary.scss";
-
-// Common
-@import "src/components/common/Footer/footer.scss";
-
-// Search
-@import "src/components/search/SearchInput/search-input.scss";
 
 // Sections
 @import "src/components/sections/BannerText/banner-text.scss";
@@ -15,10 +7,8 @@
 @import "src/components/sections/ProductDetails/product-details.scss";
 @import "src/components/sections/ScrollToTopButton/scroll-to-top-button.scss";
 @import "src/components/sections/Section/section.scss";
-@import "src/components/sections/Incentives/incentives.scss";
 
 // UI
 @import "src/components/ui/Badge/badge.scss";
 @import "src/components/ui/SlideOver/overlay.scss";
 @import "src/components/ui/SROnly/sr-only.scss";
-@import "src/components/ui/InputText/input-text.scss";

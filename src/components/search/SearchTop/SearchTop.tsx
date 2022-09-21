@@ -1,6 +1,7 @@
 import { List as UIList } from '@faststore/ui'
 import { forwardRef } from 'react'
 import type { HTMLAttributes } from 'react'
+
 import { Badge } from 'src/components/ui/Badge'
 import Link from 'src/components/ui/Link'
 import useSearchInput, { formatSearchPath } from 'src/sdk/search/useSearchInput'
@@ -44,7 +45,7 @@ const SearchTop = forwardRef<HTMLDivElement, SearchTopProps>(function SearchTop(
       ) : (
         <>
           <div data-fs-search-header>
-            <p data-fs-search-title>Mais Buscados</p>
+            <p data-fs-search-title>Top Search</p>
           </div>
           <UIList variant="ordered">
             {terms.map((term, index) => (

@@ -1,7 +1,5 @@
 import type { AllUsableSpecsType } from '../ProductDetails'
 
-import './product-specifications.scss'
-
 interface ProductSpecificationsProps {
   specifications: AllUsableSpecsType[] | undefined
 }
