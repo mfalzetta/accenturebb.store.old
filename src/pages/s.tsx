@@ -45,12 +45,15 @@ function Page() {
   if (asPath.includes('productClusterIds')) {
     const id = asPath.split('productClusterIds')
 
-    searchParams.selectedFacets = [
-      {
-        key: 'productClusterIds',
-        value: id[1].replace('=', ''),
-      },
-    ]
+    const facets = id[1].split('&')
+
+    if (facets.length === 1)
+      searchParams.selectedFacets = [
+        {
+          key: 'productClusterIds',
+          value: facets[0].replace('=', ''),
+        },
+      ]
   }
 
   return (
