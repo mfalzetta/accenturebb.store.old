@@ -24,7 +24,7 @@ const BlogSection = ({ allItems }: BlogSectionAllItems) => {
   return (
     <Section
       style={{
-        height: `${Number(allItems[0]?.height) + 150}px`,
+        height: `${Number(allItems[0]?.height) + 200}px`,
       }}
     >
       <Slider minWidth={424} itemsPerPage={3}>
