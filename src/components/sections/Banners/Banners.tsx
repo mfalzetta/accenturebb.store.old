@@ -23,7 +23,11 @@ function Banners({ banners }: BannersProps) {
   const regexp = new RegExp('^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$')
 
   return (
-    <Section className="layout__section" data-main-banner>
+    <Section
+      className="layout__section"
+      data-main-banner
+      style={{ height: '330px' }}
+    >
       <Slider arrows wfull>
         {banners.map((banner: BannerProps, index: number) => (
           <div data-banner-container key={index}>

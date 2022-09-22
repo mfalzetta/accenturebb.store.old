@@ -1,4 +1,5 @@
 import InfoCard from 'src/components/custom-components/home/InfoCard'
+import Slider from 'src/components/custom-components/home/Slider'
 import Section from 'src/components/sections/Section'
 
 export interface CategorySectionAllItems {
@@ -15,9 +16,13 @@ export interface CategorySectionProps {
 
 const CategorySection = ({ allItems }: CategorySectionAllItems) => {
   return (
-    <Section className="category__section">
+    <Section
+      style={{
+        height: `${Number(allItems[0]?.height) + 50}px`,
+      }}
+    >
       <div className="layout__content classSection__container category-session">
-        <div className="classSection__content">
+        <Slider itemsPerPage={6} minWidth={200}>
           {allItems.map((card: CategorySectionProps, index: number) => (
             <InfoCard
               key={index}
@@ -29,7 +34,7 @@ const CategorySection = ({ allItems }: CategorySectionAllItems) => {
               text={card.text}
             />
           ))}
-        </div>
+        </Slider>
       </div>
     </Section>
   )
