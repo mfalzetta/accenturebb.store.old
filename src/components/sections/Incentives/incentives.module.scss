@@ -39,6 +39,11 @@
   padding-top: var(--fs-incentives-padding-top);
   padding-bottom: var(--fs-incentives-padding-bottom);
 
+  [data-fs-image] {
+    max-width: 32px;
+    max-height: 32px;
+  }
+
   [data-store-list] {
     display: flex;
     width: fit-content;

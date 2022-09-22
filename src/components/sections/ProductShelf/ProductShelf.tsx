@@ -1,10 +1,10 @@
 import ProductShelfSkeleton from 'src/components/skeletons/ProductShelfSkeleton'
 import { useProductsQuery } from 'src/sdk/product/useProductsQuery'
 import type { ProductsQueryQueryVariables } from '@generated/graphql'
+import CarouselShelf from 'src/components/custom-components/home/CarouselShelf'
 
 import ProductCard from '../../product/ProductCard'
 import Section from '../Section'
-import Carousel from '../../custom-components/home/CarouselShelf'
 import styles from './product-shelf.module.scss'
 
 interface ProductShelfProps extends Partial<ProductsQueryQueryVariables> {
@@ -58,24 +58,24 @@ function ProductShelf({
         }`}
       >
         <ProductShelfSkeleton loading={products === undefined}>
-          <ul
+          <div
             data-fs-product-shelf-items
             className={`layout__content ${
               shelfType === 'isRowLayout' ? 'shelf--row' : ''
             }`}
           >
             {shelfType === 'isCarousel' ? (
-              <Carousel itemsPerPage={itens} arrows size={size}>
+              <CarouselShelf itemsPerPage={itens} arrows size={size}>
                 {products?.edges.map((product, idx) => (
-                  <li key={`${product.node.id}`}>
+                  <div key={`${product.node.id}`}>
                     <ProductCard
                       product={product.node}
                       index={idx + 1}
                       isSimpleCard={isSimpleCard}
                     />
-                  </li>
+                  </div>
                 ))}
-              </Carousel>
+              </CarouselShelf>
             ) : (
               <>
                 {products?.edges.map((product, idx) => (
@@ -90,7 +90,7 @@ function ProductShelf({
                 ))}
               </>
             )}
-          </ul>
+          </div>
         </ProductShelfSkeleton>
       </div>
     </Section>

@@ -36,9 +36,10 @@ function Banners({ banners }: BannersProps) {
                 src={banner.src}
                 alt={banner.alt ? banner.alt : 'Banner Home'}
                 height={328}
-                loading="lazy"
                 className="image__temporary"
                 layout="fill"
+                loading="eager"
+                priority
               />
               <div
                 data-banner-info

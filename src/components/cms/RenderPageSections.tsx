@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ComponentType } from 'react'
 
-import BannerText from 'src/components/sections/BannerText'
 import Hero from 'src/components/sections/Hero'
+import BannerText from 'src/components/sections/BannerText'
 import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
 import ProductShelf from 'src/components/sections/ProductShelf'
 import ProductTiles from 'src/components/sections/ProductTiles'

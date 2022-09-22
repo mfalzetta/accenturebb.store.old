@@ -28,7 +28,7 @@ const CategorySection = ({ allItems }: CategorySectionAllItems) => {
               key={index}
               href={card.href}
               src={card.src}
-              alt={card.alt}
+              alt={card.alt ?? `${card.text} image`}
               width={card.width}
               height={card.height}
               text={card.text}
