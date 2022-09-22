@@ -1,8 +1,7 @@
-import { lazy } from 'react'
-
 import ProductShelfSkeleton from 'src/components/skeletons/ProductShelfSkeleton'
 import { useProductsQuery } from 'src/sdk/product/useProductsQuery'
 import type { ProductsQueryQueryVariables } from '@generated/graphql'
+import CarouselShelf from 'src/components/custom-components/home/CarouselShelf'
 
 import ProductCard from '../../product/ProductCard'
 import Section from '../Section'
@@ -19,10 +18,6 @@ interface ProductShelfProps extends Partial<ProductsQueryQueryVariables> {
   productClusterIds?: string
   size?: string
 }
-
-const Carousel = lazy(
-  () => import('../../custom-components/home/CarouselShelf')
-)
 
 function ProductShelf({
   title,
@@ -70,7 +65,7 @@ function ProductShelf({
             }`}
           >
             {shelfType === 'isCarousel' ? (
-              <Carousel itemsPerPage={itens} arrows size={size}>
+              <CarouselShelf itemsPerPage={itens} arrows size={size}>
                 {products?.edges.map((product, idx) => (
                   <div key={`${product.node.id}`}>
                     <ProductCard
@@ -80,7 +75,7 @@ function ProductShelf({
                     />
                   </div>
                 ))}
-              </Carousel>
+              </CarouselShelf>
             ) : (
               <>
                 {products?.edges.map((product, idx) => (
