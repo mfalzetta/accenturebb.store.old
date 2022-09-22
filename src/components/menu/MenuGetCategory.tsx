@@ -1,28 +1,28 @@
 import { useEffect, useState } from 'react'
 import type { Dispatch, SetStateAction } from 'react'
 
-import Link from 'src/components/ui/Link'
 import useCategories from 'src/data/hook/useCategories'
 
 import MenuMobile from './mobile/MenuMobile'
+import MenuDesktop from './desktop/MenuDesktop'
 
 interface MenuProps {
   isOpen: boolean
   stateChanger: Dispatch<SetStateAction<boolean>>
 }
 
-interface CategoryProps {
+export interface CategoryProps {
   name: string
   item: string
   position: number
 }
 
-interface ItemProp {
+export interface ItemProp {
   depart: CategoryProps
   category: SubProp[]
 }
 
-interface SubProp {
+export interface SubProp {
   subCategory: CategoryProps[]
   category: CategoryProps
 }
@@ -44,7 +44,7 @@ export const removeDuplicate = (obj: CategoryProps[]) => {
   return unique
 }
 
-function handleResize() {
+export function handleResize() {
   if (window.innerWidth < 920) {
     return true
   }
@@ -54,20 +54,17 @@ function handleResize() {
 
 export const MenuGetCategory = ({ stateChanger, isOpen }: MenuProps) => {
   const [isMobile, setIsMobile] = useState(false)
-  const [active, setActive] = useState(0)
 
   useEffect(() => {
     setIsMobile(handleResize())
-    setActive(handleResize() ? 0 : 1)
     window.addEventListener(
       'resize',
       () => {
         setIsMobile(handleResize())
-        setActive(handleResize() ? 0 : 1)
       },
       true
     )
-  }, [setActive])
+  }, [isMobile])
 
   const data = useCategories()
   const categories = data?.categories
@@ -120,90 +117,12 @@ export const MenuGetCategory = ({ stateChanger, isOpen }: MenuProps) => {
 
   if (!isMobile) {
     return (
-      <div className="container-menu">
-        <nav className="categories-field">
-          <ul data-menu-category>
-            {depart.map(({ name: nameCat }: CategoryProps, idx: number) => (
-              <li
-                key={`category--${idx}`}
-                className={active === idx + 1 ? 'category-active' : ''}
-              >
-                <button onClick={() => setActive(idx + 1)}>
-                  <span>{nameCat}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div className="subcategories-field">
-          <ul data-menu-sub-category>
-            {items.map(
-              (
-                {
-                  depart: { name: nameCat, item: linkCat },
-                  category,
-                }: ItemProp,
-                id: number
-              ) => (
-                <div
-                  key={nameCat}
-                  className={active === id + 1 ? 'active ' : 'not-active'}
-                >
-                  <li key={`category--${id}`}>
-                    <h2>
-                      <Link
-                        href={`${linkCat}`}
-                        onClick={() => stateChanger(false)}
-                      >
-                        {nameCat}
-                      </Link>
-                    </h2>
-                    <nav>
-                      {category?.map(
-                        (
-                          {
-                            category: { name: nameSubI, item: linkSubI },
-                            subCategory,
-                          }: SubProp,
-                          index: number
-                        ) => (
-                          <div key={`subCategory--${index}`}>
-                            <h3>
-                              <Link
-                                onClick={() => stateChanger(false)}
-                                href={`${linkSubI}`}
-                              >
-                                {nameSubI}
-                              </Link>
-                            </h3>
-                            {subCategory?.map(
-                              (
-                                {
-                                  name: nameSubII,
-                                  item: linkSubII,
-                                }: CategoryProps,
-                                i: number
-                              ) => (
-                                <Link
-                                  onClick={() => stateChanger(false)}
-                                  key={`subSubCategory--${i}`}
-                                  href={`${linkSubII}`}
-                                >
-                                  {nameSubII}
-                                </Link>
-                              )
-                            )}
-                          </div>
-                        )
-                      )}
-                    </nav>
-                  </li>
-                </div>
-              )
-            )}
-          </ul>
-        </div>
-      </div>
+      <MenuDesktop
+        isOpen={isOpen}
+        stateChanger={stateChanger}
+        depart={depart}
+        items={items}
+      />
     )
   }
 

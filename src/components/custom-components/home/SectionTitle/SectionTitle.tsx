@@ -19,7 +19,7 @@ const SectionTitle = ({
   className,
 }: SectionTitleProps) => {
   return (
-    <Section className={`${className ?? ''}`}>
+    <Section className={`${className ?? 'section__title'}`}>
       <div
         className={`layout__content classSection__title--content ${
           border ? 'border--active' : ''

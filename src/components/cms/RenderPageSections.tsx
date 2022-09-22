@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ComponentType } from 'react'
 
+// import Hero from 'src/components/sections/Hero'
 import BannerText from 'src/components/sections/BannerText'
-import Hero from 'src/components/sections/Hero'
 import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
 import ProductShelf from 'src/components/sections/ProductShelf'
 import ProductTiles from 'src/components/sections/ProductTiles'
@@ -22,7 +22,7 @@ import CategoryImage from '../sections/CategoryImage'
  * Do not import or render components from any other folder in here.
  */
 const COMPONENTS: Record<string, ComponentType<any>> = {
-  Hero,
+  // Hero,
   BannerText,
   IncentivesHeader,
   ProductShelf,

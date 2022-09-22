@@ -29,7 +29,13 @@
   border-bottom: 1px solid #f2f2f2;
 }
 
+.section.category__section {
+  min-height: 360px;
+}
+
 .section {
+  min-height: 20px;
+
   &.category-page {
     padding-right: var(--fs-grid-padding);
     padding-left: var(--fs-grid-padding);

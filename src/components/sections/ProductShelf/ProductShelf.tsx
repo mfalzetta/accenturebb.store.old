@@ -1,10 +1,11 @@
+import { lazy } from 'react'
+
 import ProductShelfSkeleton from 'src/components/skeletons/ProductShelfSkeleton'
 import { useProductsQuery } from 'src/sdk/product/useProductsQuery'
 import type { ProductsQueryQueryVariables } from '@generated/graphql'
 
 import ProductCard from '../../product/ProductCard'
 import Section from '../Section'
-import Carousel from '../../custom-components/home/CarouselShelf'
 import styles from './product-shelf.module.scss'
 
 interface ProductShelfProps extends Partial<ProductsQueryQueryVariables> {
@@ -18,6 +19,10 @@ interface ProductShelfProps extends Partial<ProductsQueryQueryVariables> {
   productClusterIds?: string
   size?: string
 }
+
+const Carousel = lazy(
+  () => import('../../custom-components/home/CarouselShelf')
+)
 
 function ProductShelf({
   title,

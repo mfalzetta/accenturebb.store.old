@@ -15,7 +15,7 @@ export interface CategorySectionProps {
 
 const CategorySection = ({ allItems }: CategorySectionAllItems) => {
   return (
-    <Section>
+    <Section className="category__section">
       <div className="layout__content classSection__container category-session">
         <div className="classSection__content">
           {allItems.map((card: CategorySectionProps, index: number) => (
