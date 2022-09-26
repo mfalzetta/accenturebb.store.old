@@ -29,6 +29,10 @@
   border-bottom: 1px solid #f2f2f2;
 }
 
+.section.category__section {
+  min-height: 360px;
+}
+
 .section {
   &.category-page {
     padding-right: var(--fs-grid-padding);

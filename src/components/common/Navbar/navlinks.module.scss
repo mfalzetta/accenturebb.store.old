@@ -100,12 +100,7 @@
   }
 
   @include media("<notebook") {
-    border-top:
-      var(--fs-navlinks-border-top-width-mobile) solid
-      var(--fs-navlinks-border-top-color-mobile);
-    border-bottom:
-      var(--fs-navlinks-border-bottom-width-mobile) solid
-      var(--fs-navlinks-border-bottom-color-mobile);
+    display: none;
   }
 
   [data-fs-regionalization-bar] {

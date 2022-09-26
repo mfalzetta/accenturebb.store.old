@@ -6,9 +6,28 @@
   justify-content: center;
   height: 100%;
 
-  [data-theme-logo-first] {
+  [data-fs-logo-text] {
+    width: 104px;
+    height: 23px;
+    background-image: url("~/public/logo-lacoste2.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+
     @media screen and (max-width: 768px) {
       display: none;
+    }
+  }
+
+  [data-fs-logo-icon] {
+    width: 50px;
+    height: 23px;
+    background-image: url("~/public/logo-lacoste.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    @media screen and (max-width: 768px) {
+      width: 100px;
+      height: 46px;
     }
   }
 

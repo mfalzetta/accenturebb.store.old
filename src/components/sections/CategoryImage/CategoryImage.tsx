@@ -31,7 +31,7 @@ const CategoryImage = ({ allItems, department }: CategoryImageProps) => {
                   <Image
                     data-fs-category-image-image
                     src={el.src}
-                    alt={el.alt}
+                    alt={el.alt ?? `${el.category} image`}
                     width={94}
                     height={94}
                   />

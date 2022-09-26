@@ -49,6 +49,7 @@ const WishListPdpButton = ({ productId }: WishListPdpButtonProps) => {
     <>
       {isSelected ? (
         <button
+          aria-label="wishlist pdp button"
           data-fs-wishlist-pdp-button
           onClick={() => handleRemoveWishlist()}
         >

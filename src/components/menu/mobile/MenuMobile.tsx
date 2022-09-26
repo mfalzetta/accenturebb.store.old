@@ -7,25 +7,12 @@ import {
 } from 'src/components/ui/ImageGallery/Icons'
 import Link from 'src/components/ui/Link'
 
+import type { DepartProps } from '../desktop/MenuDesktop'
+
 interface MenuMobileProps {
   isOpen: boolean
-  items: ItemProp[]
+  items: DepartProps[]
   stateChanger: Dispatch<SetStateAction<boolean>>
-}
-
-interface Node {
-  name: string
-  item: string
-  position: number
-}
-
-interface ItemProp {
-  depart: Node
-  category: SubProp[]
-}
-interface SubProp {
-  subCategory: Node[]
-  category: Node
 }
 
 const MenuMobile = ({ stateChanger, isOpen, items }: MenuMobileProps) => {
@@ -51,60 +38,51 @@ const MenuMobile = ({ stateChanger, isOpen, items }: MenuMobileProps) => {
       <div className={`first-level ${firstLevel ? 'open' : 'closed'}`}>
         <nav>
           <ul>
-            {items.map(
-              (
-                { depart: item, category: subCategory }: ItemProp,
-                index: number
-              ) => (
-                <li key={index}>
-                  <Link
-                    onClick={() => stateChanger(false)}
-                    href={`${item.item}`}
-                  >
-                    {item.name}
-                  </Link>
-                  {subCategory[0] ? (
-                    <button onClick={() => nextLevel(index)}>
-                      <ForwardArrowIcon color="#ffffff" />
-                    </button>
-                  ) : null}
-                </li>
-              )
-            )}
+            {items.map(({ department, categories }, index: number) => (
+              <li key={index}>
+                <Link
+                  onClick={() => stateChanger(false)}
+                  href={`${department.item}`}
+                >
+                  {department.name}
+                </Link>
+                {categories.length > 0 ? (
+                  <button onClick={() => nextLevel(index)}>
+                    <ForwardArrowIcon color="#ffffff" />
+                  </button>
+                ) : null}
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
-      {items.map(
-        ({ depart: item, category: subCategory }: ItemProp, idx: number) => (
-          <div
-            key={`category-${item.name}`}
-            className={`second-level ${
-              secondLevel && active === idx + 1 ? 'open' : 'closed'
-            }`}
-          >
-            <button onClick={() => previousLevel()}>
-              <BackwardArrowIcon color="#ffffff" />
-              <span> {item.name}</span>
-            </button>
-            <nav>
-              <ul>
-                {subCategory.map(
-                  ({ category: subitem }: SubProp, i: number) => (
-                    <li key={i}>
-                      <Link
-                        onClick={() => stateChanger(false)}
-                        href={`${subitem.item}`}
-                      >
-                        {subitem.name}
-                      </Link>
-                    </li>
-                  )
-                )}
-              </ul>
-            </nav>
-          </div>
-        )
-      )}
+      {items.map(({ department, categories }, idx: number) => (
+        <div
+          key={`category-${department.name}`}
+          className={`second-level ${
+            secondLevel && active === idx + 1 ? 'open' : 'closed'
+          }`}
+        >
+          <button onClick={() => previousLevel()}>
+            <BackwardArrowIcon color="#ffffff" />
+            <span> {department.name}</span>
+          </button>
+          <nav>
+            <ul>
+              {categories.map(({ category }, i: number) => (
+                <li key={i}>
+                  <Link
+                    onClick={() => stateChanger(false)}
+                    href={`${category.item}`}
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      ))}
     </div>
   )
 }

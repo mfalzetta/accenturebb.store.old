@@ -42,7 +42,7 @@ function Incentives({
           <UIIncentive key={index}>
             <Image
               src={incentive.src}
-              alt={incentive.alt}
+              alt={incentive.alt ?? `${incentive.title} icon`}
               loading="lazy"
               data-fs-incentive-icon
               width={32}

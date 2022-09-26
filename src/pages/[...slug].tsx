@@ -60,7 +60,7 @@ function Page(props: Props & CmsCategoryImageProps) {
 
   const { page } = searchParams
   const title = collection?.seo.title ?? storeConfig.seo.title
-  const description = collection?.seo.description ?? storeConfig.seo.title
+  const description = collection?.seo.description || storeConfig.seo.title
   const pageQuery = page !== 0 ? `?page=${page}` : ''
   const [pathname] = router.asPath.split('?')
   const canonical = `${storeConfig.storeUrl}${pathname}${pageQuery}`
