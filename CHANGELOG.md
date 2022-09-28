@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed 
+- `Update NextJS base  Version to 22.36.7 (2022-09-15)` 
 ## ["2.0.1"] - 09/16/2022
 
 ### Changed
