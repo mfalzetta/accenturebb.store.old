@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed 
-- `Update NextJS base  Version to 22.36.7 (2022-09-15)` 
+- `Update NextJS base  Version to 22.36.7 (2022-09-15)` ([#102](https://github.com/vtex-sites/accenturebb.store/pull/102)
 ## ["2.0.1"] - 09/16/2022
 
 ### Changed
