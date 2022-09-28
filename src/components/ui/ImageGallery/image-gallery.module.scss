@@ -7,10 +7,13 @@
 
   // Default properties
   --fs-image-gallery-width: calc(100% + (2 * var(--fs-grid-padding)));
-  --fs-image-gallery-image-border-radius: var(--fs-border-radius);
 
   --fs-image-gallery-gap-mobile: var(--fs-spacing-2);
   --fs-image-gallery-gap-notebook: var(--fs-spacing-3);
+
+  // Current Selected Image
+  --fs-image-gallery-current-border-radius: var(--fs-border-radius);
+  --fs-image-gallery-current-max-height: 33.125rem; // 530px
 
   // --------------------------------------------------------
   // Structural Styles
@@ -35,7 +38,7 @@
 
     > [data-fs-image] {
       grid-column: 2 / span 7;
-      border-radius: var(--fs-image-gallery-image-border-radius);
+      border-radius: var(--fs-image-gallery-current-border-radius);
     }
   }
 
@@ -62,7 +65,7 @@
     margin: auto;
 
     @include media("<=tablet") {
-      max-width: 500px;
+      max-width: var(--fs-image-gallery-current-max-height);
     }
   }
 }

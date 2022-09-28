@@ -27,6 +27,7 @@ import LinksAndDownloads from './LinksAndDownloads'
 import ProductSpecifications from './ProductSpecifications'
 import ProductShipping from './ProductShipping'
 import SoldBy from './SoldBy'
+import styles from './product-details.module.scss'
 
 interface Props {
   product: ProductDetailsFragment_ProductFragment
@@ -282,14 +283,14 @@ function ProductDetails({ product: staleProduct }: Props) {
   const settingSection = () => (
     <section
       data-fs-product-settings-sticky={!isMobile}
-      className="product-details__settings"
+      data-fs-product-details-settings
     >
       <SoldBy sellers={sellers} isMobile={isMobile} />
       {lowPrice > 0 ? (
-        <section className="product-details__values">
-          <div className="product-details__prices">
+        <section data-fs-product-details-values>
+          <div data-fs-product-details-prices>
             {listPrice !== lowPrice && (
-              <div className="product-details__prices--badge">
+              <div data-fs-product-details-prices-badge>
                 <Price
                   value={listPrice}
                   formatter={useFormattedPrice}
@@ -359,11 +360,13 @@ function ProductDetails({ product: staleProduct }: Props) {
   )
 
   return (
-    <Section className="product-details layout__content-full layout__section">
+    <Section
+      className={`${styles.fsProductDetails} layout__content-full layout__section`}
+    >
       <Breadcrumb breadcrumbList={breadcrumbs.itemListElement} />
-      <div className="wrapper">
-        <section className="product-details__body">
-          <header className="product-details__title">
+      <div data-fs-wrapper>
+        <section data-fs-product-details-body>
+          <header data-fs-product-details-title>
             <ProductTitle
               title={<h1>{name}</h1>}
               label={
@@ -374,7 +377,7 @@ function ProductDetails({ product: staleProduct }: Props) {
           </header>
 
           <ImageGallery images={productImages} productId={productId} />
-          <section className="product-details__selector">
+          <section data-fs-product-details-selector>
             {skuVariants && (
               <Selectors
                 slugsMap={skuVariants.slugsMap}
@@ -384,9 +387,9 @@ function ProductDetails({ product: staleProduct }: Props) {
             )}
           </section>
           {isMobile && settingSection()}
-          <section className="product-details__content">
-            <article className="product-details__description">
-              <h2 className="text__title-subsection">Informações do produto</h2>
+          <section data-fs-product-details-content>
+            <article data-fs-product-details-description>
+              <h2 data-fs-product-details-subsection>Informações do produto</h2>
               <p className="text__body">{description}</p>
             </article>
             <article>

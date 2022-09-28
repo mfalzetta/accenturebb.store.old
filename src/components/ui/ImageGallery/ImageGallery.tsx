@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import ImageViewer from 'react-simple-image-viewer'
+import type { HTMLAttributes } from 'react'
 
 import { Image } from 'src/components/ui/Image'
 import WishListPdpButton from 'src/components/Wishlist/WishListPdpButton'
@@ -11,8 +12,7 @@ export interface ImageElementData {
   url: string
   alternateName: string
 }
-
-interface ImageGalleryProps {
+interface ImageGalleryProps extends HTMLAttributes<HTMLDivElement> {
   images: ImageElementData[]
   productId?: string
 }
@@ -30,7 +30,9 @@ function scrollView(type: string) {
         const body = document.querySelector('body') as HTMLElement
 
         body.style.overflow = 'hidden'
-        const pdp = document.querySelector('.product-details') as HTMLElement
+        const pdp = document.querySelector(
+          'div[data-fs-wrapper="true"]'
+        ) as HTMLElement
 
         pdp.style.minHeight = '100vh'
         window.addEventListener('resize', () => scrollView(type))
@@ -45,13 +47,15 @@ function scrollView(type: string) {
     const body = document.querySelector('body') as HTMLElement
 
     body.style.overflow = 'scroll'
-    const pdp = document.querySelector('.product-details') as HTMLElement
+    const pdp = document.querySelector(
+      'div[data-fs-wrapper="true"]'
+    ) as HTMLElement
 
     pdp.style.minHeight = 'fit-content'
   }
 }
 
-function ImageGallery({ images, productId }: ImageGalleryProps) {
+function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
   const [selectedImageIdx, setSelectedImageIdx] = useState(0)
   const currentImage = images[selectedImageIdx]
   const hasSelector = images.length > 1
@@ -80,6 +84,7 @@ function ImageGallery({ images, productId }: ImageGalleryProps) {
     <section
       data-fs-image-gallery={!hasSelector ? 'without-selector' : ''}
       className={styles.fsImageGallery}
+      {...otherProps}
     >
       <ImageZoom>
         <div data-fs-pdp-image-with-wishlist>

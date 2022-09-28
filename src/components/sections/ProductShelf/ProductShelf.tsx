@@ -1,14 +1,18 @@
+import { useEffect, useRef } from 'react'
+import { useInView } from 'react-intersection-observer'
+
 import ProductShelfSkeleton from 'src/components/skeletons/ProductShelfSkeleton'
 import { useProductsQuery } from 'src/sdk/product/useProductsQuery'
 import type { ProductsQueryQueryVariables } from '@generated/graphql'
 import CarouselShelf from 'src/components/custom-components/home/CarouselShelf'
+import { useViewItemListEvent } from 'src/sdk/analytics/hooks/useViewItemListEvent'
 
 import ProductCard from '../../product/ProductCard'
 import Section from '../Section'
 import styles from './product-shelf.module.scss'
 
 interface ProductShelfProps extends Partial<ProductsQueryQueryVariables> {
-  title?: string | JSX.Element
+  title: string
   withDivisor?: boolean
   noMargins?: boolean
   shelfType?: string
@@ -31,6 +35,9 @@ function ProductShelf({
   size = 'small',
   ...variables
 }: ProductShelfProps) {
+  const viewedOnce = useRef(false)
+  const { ref, inView } = useInView()
+
   if (productClusterIds) {
     variables.selectedFacets = {
       key: 'productClusterIds',
@@ -39,8 +46,24 @@ function ProductShelf({
   }
 
   const products = useProductsQuery(variables)
+  const productEdges = products?.edges ?? []
 
-  if (products?.edges.length === 0) {
+  const { sendViewItemListEvent } = useViewItemListEvent({
+    products: productEdges,
+    title,
+    page: 0,
+    pageSize: 0,
+  })
+
+  useEffect(() => {
+    if (inView && !viewedOnce.current && productEdges.length) {
+      sendViewItemListEvent()
+
+      viewedOnce.current = true
+    }
+  }, [inView, productEdges.length, sendViewItemListEvent])
+
+  if (productEdges.length === 0) {
     return null
   }
 
@@ -50,6 +73,7 @@ function ProductShelf({
         noMargins ? 'section__no-margins' : ''
       } ${otherBackground ? 'section__other-background' : ''}`}
       style={{ marginTop: 0 }}
+      ref={ref}
     >
       <div
         data-fs-product-shelf
@@ -66,7 +90,7 @@ function ProductShelf({
           >
             {shelfType === 'isCarousel' ? (
               <CarouselShelf itemsPerPage={itens} arrows size={size}>
-                {products?.edges.map((product, idx) => (
+                {productEdges.map((product, idx: number) => (
                   <div key={`${product.node.id}`}>
                     <ProductCard
                       product={product.node}
@@ -78,7 +102,7 @@ function ProductShelf({
               </CarouselShelf>
             ) : (
               <>
-                {products?.edges.map((product, idx) => (
+                {products?.edges.map((product, idx: number) => (
                   <li key={`${product.node.id}`}>
                     <ProductCard
                       product={product.node}
