@@ -1309,10 +1309,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@faststore/api@^1.11.7":
-  version "1.12.6"
-  resolved "https://registry.yarnpkg.com/@faststore/api/-/api-1.12.6.tgz#58c8896c8d999bd21b02df40ac6496b4806769b7"
-  integrity sha512-g/+iHjbb/ambbOE4DRe7/TqPWom6opv6f3v/dxfPBr66/8zyAhVpbPDWKYBCVGM94QC2jqNmpEVIBLmDRIq27A==
+"@faststore/api@^1.12.6":
+  version "1.12.7"
+  resolved "https://registry.yarnpkg.com/@faststore/api/-/api-1.12.7.tgz#0a75b7f9f8d910d65f6bb2a875cd7309007b4860"
+  integrity sha512-3OunCI63VFuHftZaNinnYBgX+rh/k3LRwY4t6k7j3bShN/r/SV7y1NRM4Q5c7GL/S79Wl5zwua1UZfAl00JXGg==
   dependencies:
     "@graphql-tools/schema" "^8.2.0"
     "@rollup/plugin-graphql" "^1.0.0"

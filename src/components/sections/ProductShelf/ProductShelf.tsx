@@ -63,7 +63,7 @@ function ProductShelf({
     }
   }, [inView, productEdges.length, sendViewItemListEvent])
 
-  if (productEdges.length === 0) {
+  if (products?.edges.length === 0) {
     return null
   }
 
