@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed 
+- `SkuSelector` for products that only have one option that is not "Cor" ([#103](https://github.com/vtex-sites/accenturebb.store/pull/103)
+### Changed 
+- `Update NextJS base  Version to 22.38.1 (2022-09-28)` ([#103](https://github.com/vtex-sites/accenturebb.store/pull/103)
 ## ["2.0.1"] - 09/16/2022
 
 ### Changed

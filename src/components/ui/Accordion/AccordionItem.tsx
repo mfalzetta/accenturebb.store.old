@@ -5,11 +5,12 @@ import {
   AccordionPanel as UIAccordionPanel,
   Icon as UIIcon,
 } from '@faststore/ui'
+import type { ElementType } from 'react'
 import { forwardRef } from 'react'
 
 import Icon from 'src/components/ui/Icon'
 
-interface Props extends AccordionItemProps {
+interface Props extends AccordionItemProps<ElementType> {
   /**
    * Attribute to check whether the item is expanded or not.
    */

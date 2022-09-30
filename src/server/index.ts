@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable  @typescript-eslint/no-explicit-any */
+import type { FormatErrorHandler } from '@envelop/core'
 import {
   envelop,
   useExtendContext,
@@ -16,8 +17,12 @@ import {
   isFastStoreError,
 } from '@faststore/api'
 import { GraphQLError } from 'graphql'
-import type { FormatErrorHandler } from '@envelop/core'
-import type { Options as APIOptions, Scalars } from '@faststore/api'
+import type {
+  Maybe,
+  Options as APIOptions,
+  Scalars,
+  CacheControl,
+} from '@faststore/api'
 import { mergeTypeDefs } from '@graphql-tools/merge'
 import { makeExecutableSchema, mergeSchemas } from '@graphql-tools/schema'
 // import { loadFilesSync } from '@graphql-tools/load-files'
@@ -347,16 +352,16 @@ const getEnvelop = async () =>
 
 const envelopPromise = getEnvelop()
 
-export const execute = async <V, D>(
+export const execute = async <V extends Maybe<{ [key: string]: unknown }>, D>(
   options: ExecuteOptions<V>,
-  envelopContext = { req: { headers: {} } }
-): Promise<{ data: D; errors: unknown[] }> => {
+  envelopContext = { headers: {} }
+): Promise<{
+  data: D
+  errors: unknown[]
+  extensions: { cacheControl?: CacheControl }
+}> => {
   const { operationName, variables, query: maybeQuery } = options
   const query = maybeQuery ?? persistedQueries.get(operationName)
-
-  const {
-    req: { headers },
-  } = envelopContext
 
   if (query == null) {
     throw new Error(`No query found for operationName: ${operationName}`)
@@ -370,13 +375,21 @@ export const execute = async <V, D>(
     schema,
   } = enveloped(envelopContext)
 
-  return run({
+  const contextValue = await contextFactory(envelopContext)
+
+  const { data, errors } = (await run({
     schema,
     document: parse(query),
     variableValues: variables,
-    contextValue: await contextFactory({ headers }),
+    contextValue,
     operationName,
-  }) as Promise<{ data: D; errors: unknown[] }>
+  })) as { data: D; errors: unknown[] }
+
+  return {
+    data,
+    errors,
+    extensions: { cacheControl: contextValue.cacheControl },
+  }
 }
 
 async function shipping(
