@@ -25,7 +25,6 @@ module.exports = {
     'declaration-block-no-shorthand-property-overrides': true,
     'block-no-empty': true,
     'selector-type-no-unknown': true,
-    'selector-pseudo-class-no-unknown': true,
     'selector-pseudo-element-no-unknown': true,
     'comment-no-empty': true,
     'no-descending-specificity': null,
@@ -78,5 +77,11 @@ module.exports = {
     'scss/no-global-function-names': null,
     'selector-class-pattern':
       '^(?:(?:o|c|u|t|s|is|has|_|js|qa)-)?[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:\\[.+\\])?$',
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['global'],
+      },
+    ],
   },
 }

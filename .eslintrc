@@ -1,8 +1,5 @@
 {
-  "extends": [
-    "vtex-react/gatsby",
-    "next/core-web-vitals"
-  ],
+  "extends": ["vtex-react/gatsby", "next/core-web-vitals"],
   "root": true,
   "rules": {
     "react/prop-types": "off",
@@ -16,8 +13,5 @@
       "version": "detect"
     }
   },
-  "ignorePatterns": [
-    "public/~partytown/*",
-    "next-env.d.ts"
-  ]
+  "ignorePatterns": ["public/~partytown/*", "next-env.d.ts"]
 }

@@ -44,15 +44,13 @@
         column-gap: var(--fs-spacing-4);
       }
 
-      .react-simple-image-viewer__modal {
+      :global(.react-simple-image-viewer__modal) {
         width: 100vw;
         height: 100vh;
 
-        .react-simple-image-viewer {
-          &__next,
-          &__previous {
-            color: rgb(150 150 150);
-          }
+        :global(.react-simple-image-viewer__next),
+        :global(.react-simple-image-viewer__previous) {
+          color: rgb(150 150 150);
         }
       }
     }
