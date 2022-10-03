@@ -20,16 +20,6 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   activeVariations: Record<string, string>
 }
 
-/**
- * Name of the property that's considered **dominant**. Which means that all
- * other varying properties will be filtered according to the current value
- * of this property.
- *
- * Ex: If `Red` is the current value for the 'Color' variation, we'll only
- * render possible values for 'Size' that are available in `Red`.
- */
-const DOMINANT_SKU_SELECTOR_PROPERTY = 'Cor'
-
 function Selectors({
   slugsMap,
   availableVariations,
@@ -37,6 +27,16 @@ function Selectors({
   ...otherProps
 }: Props) {
   const router = useRouter()
+  /**
+   * Name of the property that's considered **dominant**. Which means that all
+   * other varying properties will be filtered according to the current value
+   * of this property.
+   *
+   * Ex: If `Red` is the current value for the 'Color' variation, we'll only
+   * render possible values for 'Size' that are available in `Red`.
+   */
+  const DOMINANT_SKU_SELECTOR_PROPERTY =
+    Object.keys(availableVariations)[0] ?? 'Cor'
 
   // 'Color' variants are singled-out here because they will always be rendered
   // as 'image' variants. And they're also the 'dominant' variants in our store.
