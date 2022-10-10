@@ -23,7 +23,7 @@ function Title({
         className={`${
           otherBackground ? 'section__other-background' : ''
         } title`}
-        style={{ height: '88px' }}
+        style={{ height: '65px' }}
       >
         <SectionTitle
           title={titleSection}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { Dispatch, SetStateAction } from 'react'
 
 import useCategories from 'src/data/hook/useCategories'
+import useIsMobile from 'src/data/hook/useIsMobile'
 
 import MenuMobile from './mobile/MenuMobile'
 import MenuDesktop from './desktop/MenuDesktop'
@@ -27,18 +28,7 @@ export function handleResize() {
 }
 
 export const MenuGetCategory = ({ stateChanger, isOpen }: MenuProps) => {
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    setIsMobile(handleResize())
-    window.addEventListener(
-      'resize',
-      () => {
-        setIsMobile(handleResize())
-      },
-      true
-    )
-  }, [isMobile])
+  const isMobile = useIsMobile()
 
   const data = useCategories()
   const categories = data?.categories

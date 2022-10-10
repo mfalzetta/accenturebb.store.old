@@ -1,8 +1,9 @@
 import Image from 'next/image'
 
-import Slider from 'src/components/custom-components/home/Slider'
+import KeenSlider from 'src/components/custom-components/KeenSlider/KeenSlider'
 import Button from 'src/components/ui/Button'
 import Link from 'src/components/ui/Link'
+import useIsMobile from 'src/data/hook/useIsMobile'
 
 import Section from '../Section'
 
@@ -18,53 +19,64 @@ export interface BannerProps {
   subTitle?: string
   buttonText?: string
   color?: string
+  height: number
 }
 function Banners({ banners }: BannersProps) {
   const regexp = new RegExp('^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$')
+  const isMobile = useIsMobile()
 
   return (
     <Section
-      className="layout__section"
+      className="layout__section--full"
       data-main-banner
-      style={{ height: '330px' }}
+      style={{ height: `${banners[0].height}px` }}
     >
-      <Slider arrows wfull>
+      <KeenSlider
+        full
+        arrows={!isMobile}
+        dots
+        breakpoints={{ desktop: 1, tablet: 1, phone: 1 }}
+      >
         {banners.map((banner: BannerProps, index: number) => (
-          <div data-banner-container key={index}>
-            <Link href={banner.href ? banner.href : '/#'}>
-              <Image
-                src={banner.src}
-                alt={banner.alt ? banner.alt : 'Banner Home'}
-                height={328}
-                className="image__temporary"
-                layout="fill"
-                loading="eager"
-                priority
-              />
-              <div
-                data-banner-info
-                style={{
-                  ['--color' as any]: `${
-                    banner.color && regexp.test(banner.color)
-                      ? banner.color
-                      : '#FFFFFF'
-                  }`,
-                }}
-              >
-                {banner.title && (
-                  <span data-banner-info-title>{banner.title}</span>
-                )}
-                {banner.subTitle && (
-                  <span data-banner-info-sub-title>{banner.subTitle}</span>
-                )}
-                {banner.buttonText && (
-                  <Button data-banner-info-button>{banner.buttonText}</Button>
-                )}
-              </div>
-            </Link>
+          <div
+            className={`keen-slider__slide number-slide${index} `}
+            key={index}
+          >
+            <div data-banner-container>
+              <Link href={banner.href ? banner.href : '/#'}>
+                <Image
+                  src={banner.src}
+                  alt={banner.alt ? banner.alt : 'Banner Home'}
+                  className="image__temporary"
+                  layout="fill"
+                  loading="eager"
+                  priority
+                />
+                <div
+                  data-banner-info
+                  style={{
+                    ['--color' as any]: `${
+                      banner.color && regexp.test(banner.color)
+                        ? banner.color
+                        : '#FFFFFF'
+                    }`,
+                  }}
+                >
+                  {banner.title && (
+                    <span data-banner-info-title>{banner.title}</span>
+                  )}
+                  {banner.subTitle && (
+                    <span data-banner-info-sub-title>{banner.subTitle}</span>
+                  )}
+                  {banner.buttonText && (
+                    <Button data-banner-info-button>{banner.buttonText}</Button>
+                  )}
+                </div>
+              </Link>
+            </div>
           </div>
         ))}
-      </Slider>
+      </KeenSlider>
     </Section>
   )
 }

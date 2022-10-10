@@ -21,6 +21,7 @@ import type { AnalyticsItem } from 'src/sdk/analytics/types'
 import Accordion, { AccordionItem } from 'src/components/ui/Accordion'
 import Installment from 'src/components/custom-components/Price/Installment'
 import type { InstallmentProps } from 'src/components/custom-components/Price/Installment/Installment'
+import useIsMobile from 'src/data/hook/useIsMobile'
 
 import Section from '../Section'
 import LinksAndDownloads from './LinksAndDownloads'
@@ -64,21 +65,7 @@ function ProductDetails({ product: staleProduct }: Props) {
     product: staleProduct,
   })
 
-  const [isMobile, setIsMobile] = useState(true)
-
-  useEffect(() => {
-    if (window.innerWidth > 1250) {
-      setIsMobile(false)
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 1250) {
-        setIsMobile(false)
-      } else {
-        setIsMobile(true)
-      }
-    })
-  }, [isMobile])
+  const isMobile = useIsMobile()
 
   if (!data) {
     throw new Error('NotFound')

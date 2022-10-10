@@ -2,13 +2,14 @@
 // Pra mais icones acessar... https://heroicons.com/
 /* eslint-disable react/self-closing-comp */
 
-export const SliderArrowLeft = () => (
+export const SliderArrowLeft = ({ ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="48"
     height="48"
     fill="none"
     viewBox="0 0 48 48"
+    {...props}
   >
     <path
       stroke="#fff"
@@ -25,13 +26,14 @@ export const SliderArrowLeft = () => (
   </svg>
 )
 
-export const SliderArrowRight = () => (
+export const SliderArrowRight = ({ ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="48"
     height="48"
     fill="none"
     viewBox="0 0 48 48"
+    {...props}
   >
     <path
       stroke="#fff"

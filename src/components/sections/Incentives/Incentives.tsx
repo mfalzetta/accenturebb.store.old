@@ -1,7 +1,7 @@
 import { Incentive as UIIncentive } from '@faststore/ui'
 import Image from 'next/image'
 
-import Slider from 'src/components/custom-components/home/Slider'
+import KeenSlider from 'src/components/custom-components/KeenSlider/KeenSlider'
 
 import styles from './incentives.module.scss'
 
@@ -37,31 +37,39 @@ function Incentives({
       data-fs-incentives-variant={variant}
       className={styles.fsIncentives}
     >
-      <Slider minWidth={150} itemsPerPage={4}>
+      <KeenSlider dots breakpoints={{ desktop: 4, tablet: 3, phone: 1 }}>
         {incentives.map((incentive, index) => (
-          <UIIncentive key={index}>
-            <Image
-              src={incentive.src}
-              alt={incentive.alt ?? `${incentive.title} icon`}
-              loading="lazy"
-              data-fs-incentive-icon
-              width={32}
-              height={32}
-            />
-            <div data-fs-incentive-content>
-              {incentive.title && (
-                <p data-fs-incentive-title>{incentive.title}</p>
-              )}
-              <span data-fs-incentive-description>{incentive.primaryText}</span>
-              {incentive.secondaryText && (
+          <div
+            className={`keen-slider__slide number-slide${index}`}
+            style={{ textAlign: '-webkit-center' }}
+            key={index}
+          >
+            <UIIncentive>
+              <Image
+                src={incentive.src}
+                alt={incentive.alt ?? `${incentive.title} icon`}
+                loading="lazy"
+                data-fs-incentive-icon
+                width={32}
+                height={32}
+              />
+              <div data-fs-incentive-content>
+                {incentive.title && (
+                  <p data-fs-incentive-title>{incentive.title}</p>
+                )}
                 <span data-fs-incentive-description>
-                  {incentive.secondaryText}
+                  {incentive.primaryText}
                 </span>
-              )}
-            </div>
-          </UIIncentive>
+                {incentive.secondaryText && (
+                  <span data-fs-incentive-description>
+                    {incentive.secondaryText}
+                  </span>
+                )}
+              </div>
+            </UIIncentive>
+          </div>
         ))}
-      </Slider>
+      </KeenSlider>
     </div>
   )
 }

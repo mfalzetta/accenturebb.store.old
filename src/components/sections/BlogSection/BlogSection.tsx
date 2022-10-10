@@ -2,7 +2,7 @@ import { Button } from '@faststore/ui'
 import Image from 'next/image'
 
 import Link from 'src/components/ui/Link'
-import Slider from 'src/components/custom-components/home/Slider'
+import KeenSlider from 'src/components/custom-components/KeenSlider/KeenSlider'
 
 import Section from '../Section'
 
@@ -21,36 +21,48 @@ export interface BlogSectionProps {
 }
 
 const BlogSection = ({ allItems }: BlogSectionAllItems) => {
+  const height = parseInt(allItems[0]?.height, 10)
+
   return (
     <Section
       style={{
-        height: `${Number(allItems[0]?.height) + 200}px`,
+        height: `${(height as number) + 235}px`,
       }}
     >
-      <Slider minWidth={424} itemsPerPage={3}>
+      <KeenSlider dots breakpoints={{ desktop: 3, tablet: 2, phone: 1 }}>
         {allItems.map((card: BlogSectionProps, index: number) => (
-          <div className="blogSection__container" key={index}>
-            <Image
-              src={card.src}
-              alt={card.alt}
-              loading="lazy"
-              width={parseInt(card.width, 10)}
-              height={parseInt(card.height, 10)}
-            />
-            {card.primaryText && (
-              <p className="blogSection__primaryText">{card.primaryText}</p>
-            )}
-            {card.secondaryText && (
-              <p className="blogSection__secundaryText">{card.secondaryText}</p>
-            )}
-            {card.btnText && card.btnHref && (
-              <Link as="a" href={card.btnHref} target="_blank">
-                <Button className="blogSection__button">{card.btnText}</Button>
-              </Link>
-            )}
+          <div
+            className={`keen-slider__slide number-slide${index}`}
+            style={{ textAlign: '-webkit-center' }}
+            key={index}
+          >
+            <div className="blogSection__container">
+              <Image
+                src={card.src}
+                alt={card.alt}
+                loading="lazy"
+                width={parseInt(card.width, 10)}
+                height={parseInt(card.height, 10)}
+              />
+              {card.primaryText && (
+                <p className="blogSection__primaryText">{card.primaryText}</p>
+              )}
+              {card.secondaryText && (
+                <p className="blogSection__secundaryText">
+                  {card.secondaryText}
+                </p>
+              )}
+              {card.btnText && card.btnHref && (
+                <Link as="a" href={card.btnHref} target="_blank">
+                  <Button className="blogSection__button">
+                    {card.btnText}
+                  </Button>
+                </Link>
+              )}
+            </div>
           </div>
         ))}
-      </Slider>
+      </KeenSlider>
     </Section>
   )
 }

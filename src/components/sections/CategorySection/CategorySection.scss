@@ -1,22 +1,10 @@
-.classSection__content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 0;
-
+.keen-slider__slide {
   .infocard__container {
-    max-width: 216px;
+    max-width: 204px;
   }
 
   a {
     width: fit-content;
-
-    @media (max-width: 650px) {
-      .infocard__container {
-        max-width: 170px;
-      }
-    }
   }
 
   @media (max-width: 350px) {

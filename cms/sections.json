@@ -54,9 +54,14 @@
                 "type": "string",
                 "title": "Color Text",
                 "description": "Hexadecimal color"
+              },
+              "height": {
+                "title": "Image Height",
+                "description": "Set a Height",
+                "type": "number"
               }
             },
-            "required": ["src"]
+            "required": ["src", "height"]
           }
         }
       }
@@ -86,8 +91,14 @@
           "default": false,
           "type": "boolean",
           "title": "Full Width"
+        },
+        "height": {
+          "title": "Image Height",
+          "description": "Set a Height",
+          "type": "number"
         }
-      }
+      },
+      "required": ["height"]
     }
   },
   {
@@ -420,14 +431,18 @@
                 "description": "Set a URL",
                 "type": "string"
               },
-              "size": {
-                "type": "string",
-                "title": "Size",
-                "enum": ["big", "small"],
-                "enumNames": ["Big", "Small"]
+              "width": {
+                "title": "Image Width",
+                "description": "Set a Width",
+                "type": "number"
+              },
+              "height": {
+                "title": "Image Height",
+                "description": "Set a Height",
+                "type": "number"
               }
             },
-            "required": ["size", "href"]
+            "required": ["height", "width", "href"]
           }
         }
       }
