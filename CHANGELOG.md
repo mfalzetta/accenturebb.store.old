@@ -6,8 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+### Added
+- New slider for all Components ([#105](https://github.com/vtex-sites/accenturebb.store/pull/105))
 ### Fixed 
+- Components for Accenture Theme ([#105](https://github.com/vtex-sites/accenturebb.store/pull/105))
 - `SkuSelector` for products that only have one option that is not "Cor" ([#103](https://github.com/vtex-sites/accenturebb.store/pull/103))
 ### Changed 
 - `Update NextJS base  Version to 22.38.1 (2022-09-28)` ([#103](https://github.com/vtex-sites/accenturebb.store/pull/103))
