@@ -25,11 +25,6 @@ function Navbar() {
 
   const [searchExpanded, setSearchExpanded] = useState(false)
 
-  const handlerExpandSearch = () => {
-    setSearchExpanded(true)
-    searchMobileRef.current?.inputRef?.focus()
-  }
-
   const showMenu = (show: boolean) => {
     if (show) {
       openNavbar
@@ -85,13 +80,6 @@ function Navbar() {
                 }}
               />
             )}
-            <SearchInput
-              placeholder=""
-              ref={searchMobileRef}
-              testId="store-input-mobile"
-              buttonTestId="store-input-mobile-button"
-              onSearchClick={handlerExpandSearch}
-            />
             <Suspense fallback={<ButtonSignInFallback />}>
               <ButtonSignIn />
             </Suspense>
@@ -99,7 +87,7 @@ function Navbar() {
             <CartToggle />
           </div>
         </section>
-        <NavLinks classes="hidden-mobile" />
+        <NavLinks />
       </div>
 
       <div>

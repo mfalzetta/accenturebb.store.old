@@ -99,10 +99,6 @@
     }
   }
 
-  @include media("<notebook") {
-    display: none;
-  }
-
   [data-fs-regionalization-bar] {
     width: fit-content;
 
