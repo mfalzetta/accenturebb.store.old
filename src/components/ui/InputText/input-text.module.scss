@@ -7,7 +7,7 @@
 
   // Default properties
   --fs-input-padding: var(--fs-spacing-2) var(--fs-spacing-2) 0;
-  --fs-input-height: var(--fs-control-tap-size);
+  --fs-input-height: 3rem;
 
   --fs-input-box-shadow: none;
   --fs-input-box-shadow-hover:
@@ -30,7 +30,7 @@
 
   // Label
   --fs-input-label-padding: 0 var(--fs-spacing-2);
-  --fs-input-label-color: var(--fs-color-text-light);
+  --fs-input-label-color: var(--fs-color-text);
   --fs-input-label-size: var(--fs-text-size-tiny);
 
   // Error
