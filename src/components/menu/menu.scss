@@ -2,7 +2,7 @@
 
 .menu {
   position: absolute;
-  top: 72px;
+  top: 66px;
   z-index: 1;
   width: calc(100vw - 2 * var(--fs-grid-padding));
   margin: 0 var(--fs-grid-padding);
@@ -22,16 +22,16 @@
 
   .arrow {
     position: absolute;
-    top: -10px;
-    left: 15px;
+    top: -4px;
+    left: 8px;
     width: 0;
     height: 0;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid black;
+    border-bottom: 10px solid var(--fs-color-theme-1);
     border-left: 10px solid transparent;
 
     @media (max-width: 920px) {
-      left: 30px;
+      left: 25px;
     }
   }
 }
