@@ -43,15 +43,26 @@ function Banners({ banners }: BannersProps) {
             key={index}
           >
             <div data-banner-container>
-              <Link href={banner.href ? banner.href : '/#'}>
-                <Image
-                  src={banner.src}
-                  alt={banner.alt ? banner.alt : 'Banner Home'}
-                  className="image__temporary"
-                  layout="fill"
-                  loading="eager"
-                  priority
-                />
+              <Link
+                href={banner.href ? banner.href : '/#'}
+                style={{ all: 'unset', cursor: 'pointer' }}
+              >
+                <div
+                  style={{
+                    width: 1920,
+                    height: `${banner.height}px`,
+                    position: 'relative',
+                  }}
+                >
+                  <Image
+                    src={banner.src}
+                    alt={banner.alt ? banner.alt : 'Banner Home'}
+                    className="image__temporary"
+                    layout="fill"
+                    loading="eager"
+                    priority
+                  />
+                </div>
                 <div
                   data-banner-info
                   style={{
