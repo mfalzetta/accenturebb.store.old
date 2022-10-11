@@ -17,7 +17,10 @@ function NavLinks({ classes = '' }: NavLinksProps) {
   const cmsHeaderLink = useCmsPage('HeaderLink')
 
   return (
-    <nav className={`${styles.fsNavlinks} ${classes}`}>
+    <nav
+      className={`${styles.fsNavlinks} ${classes}`}
+      style={{ height: '48px' }}
+    >
       <RegionalizationBar
         data-store-nav-regionalization
         classes="region hidden-mobile"
