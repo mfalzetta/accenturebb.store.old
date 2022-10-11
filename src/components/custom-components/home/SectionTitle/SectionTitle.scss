@@ -67,7 +67,7 @@
     padding: 0;
     margin: 10px 0;
     font-size: 16px;
-    color: var(--fs-color-theme-4);
+    color: var(--fs-color-disabled-text);
   }
 
   @include media("<notebook") {

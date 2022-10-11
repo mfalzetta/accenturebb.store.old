@@ -6,35 +6,11 @@
   justify-content: center;
   height: 100%;
 
-  [data-fs-logo-text] {
-    width: 104px;
-    height: 23px;
-    background-image: url("~/public/logo-lacoste2.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-
-    @media screen and (max-width: 768px) {
-      display: none;
-    }
-  }
-
   [data-fs-logo-icon] {
-    width: 50px;
-    height: 23px;
-    background-image: url("~/public/logo-lacoste.svg");
+    width: 95px;
+    height: 25px;
+    background-image: url("~/public/logo.svg");
     background-repeat: no-repeat;
     background-size: contain;
-
-    @media screen and (max-width: 768px) {
-      width: 100px;
-      height: 46px;
-    }
-  }
-
-  img {
-    @media screen and (max-width: 768px) {
-      width: 100px;
-      height: auto;
-    }
   }
 }

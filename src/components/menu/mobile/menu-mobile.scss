@@ -15,12 +15,12 @@
 
   .arrow {
     position: absolute;
-    top: -10px;
-    left: 30px;
+    top: -4px;
+    left: 25px;
     width: 0;
     height: 0;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid black;
+    border-bottom: 10px solid var(--fs-color-theme-1);
     border-left: 10px solid transparent;
   }
 }
@@ -28,11 +28,11 @@
 .first-level {
   z-index: 2;
   width: 100%;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 65px);
   padding: 25px;
   overflow: scroll;
-  color: #fff;
-  background-color: #000;
+  color: var(--fs-color-neutral-0);
+  background-color: var(--fs-color-theme-1);
 
   &.open {
     display: block;
@@ -48,17 +48,17 @@
     justify-content: space-between;
     padding: 10px;
     line-height: normal;
-    border-top: 1px solid #fff;
+    border-top: 1px solid var(--fs-color-neutral-0);
 
     a[data-store-link] {
       padding: 0;
       font-size: 18px;
-      color: #fff;
+      color: var(--fs-color-neutral-0);
       text-decoration: none;
     }
 
     button {
-      color: #fff;
+      color: var(--fs-color-neutral-0);
       background-color: transparent;
       border: none;
     }
@@ -71,8 +71,8 @@
   height: calc(100vh - 72px);
   padding: 25px;
   overflow: scroll;
-  color: #fff;
-  background-color: #000;
+  color: var(--fs-color-neutral-0);
+  background-color: var(--fs-color-theme-1);
 
   &.open {
     display: block;
@@ -85,7 +85,7 @@
   button {
     padding: 0;
     margin-bottom: 20px;
-    color: #fff;
+    color: var(--fs-color-neutral-0);
     background-color: transparent;
     border: none;
 
@@ -101,12 +101,12 @@
     justify-content: space-between;
     padding: 10px;
     line-height: normal;
-    border-top: 1px solid #fff;
+    border-top: 1px solid var(--fs-color-neutral-0);
 
     a[data-store-link] {
       padding: 0;
       font-size: 18px;
-      color: #fff;
+      color: var(--fs-color-neutral-0);
       text-decoration: none;
     }
   }

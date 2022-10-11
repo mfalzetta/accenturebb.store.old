@@ -51,6 +51,7 @@ function Banners({ banners }: BannersProps) {
                   loading="eager"
                   layout="fill"
                   className="image__temporary"
+                  priority
                 />
                 <div
                   data-banner-info

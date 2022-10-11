@@ -20,11 +20,6 @@
     margin-right: 1rem;
     background-color: var(--fs-color-theme-2);
     border-radius: 50%;
-
-    svg {
-      // deixar a img preta p/ lacoste
-      filter: grayscale(100%);
-    }
   }
 
   [data-fs-product-shipping-container] {
@@ -59,6 +54,11 @@
         display: none;
       }
     }
+
+    .product-shipping-title {
+      display: block;
+      padding-bottom: 0.5rem;
+    }
   }
 
   .product-shipping-title {
@@ -66,14 +66,14 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
-    color: var(--fs-color-secondary-text);
+    color: var(--fs-color-text);
   }
 
   .product-shipping-text {
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-    color: var(--fs-color-secondary-text);
+    color: var(--fs-color-text);
   }
 
   button {
@@ -81,7 +81,7 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
-    color: var(--fs-color-main-1);
+    color: var(--fs-color-theme-0);
     text-align: left;
     text-decoration: none;
     cursor: pointer;
@@ -96,7 +96,7 @@
     width: 100%;
     padding: 0 0.25rem;
     margin: 1rem 0;
-    border: 1px solid var(--fs-color-main-1);
+    border: 1px solid var(--fs-color-theme-0);
     border-radius: 0.5rem;
 
     [data-store-radio-option] {
@@ -105,7 +105,7 @@
 
       input {
         margin-right: 0.25rem;
-        accent-color: var(--fs-color-theme-2);
+        accent-color: var(--fs-color-theme-1);
       }
     }
 
@@ -120,7 +120,7 @@
         font-size: 12px;
         font-weight: 400;
         line-height: 20px;
-        color: var(--fs-color-secondary-text);
+        color: var(--fs-color-text);
       }
 
       .shipping-name {
