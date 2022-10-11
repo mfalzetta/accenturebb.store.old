@@ -15,7 +15,11 @@ const ImageBanner = ({ src, alt, fullWidth, height }: ImageBannerProps) => {
       {!fullWidth ? (
         <Section
           className="layout__content container__margin"
-          style={{ height: `${height}px` }}
+          style={{
+            height: `${height}px`,
+            display: 'block',
+            position: 'relative',
+          }}
         >
           <Image
             loading="eager"
@@ -23,13 +27,16 @@ const ImageBanner = ({ src, alt, fullWidth, height }: ImageBannerProps) => {
             src={src}
             alt={alt}
             layout="fill"
-            priority
           />
         </Section>
       ) : (
         <Section
           className="layout__content-full"
-          style={{ height: `${height}px` }}
+          style={{
+            height: `${height}px`,
+            display: 'block',
+            position: 'relative',
+          }}
         >
           <Image
             className="image__temporary"
@@ -37,7 +44,6 @@ const ImageBanner = ({ src, alt, fullWidth, height }: ImageBannerProps) => {
             alt={alt}
             layout="fill"
             loading="eager"
-            priority
           />
         </Section>
       )}
