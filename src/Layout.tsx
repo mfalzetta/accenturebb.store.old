@@ -26,10 +26,7 @@ function Layout({ children }: PropsWithChildren) {
         <Toast />
 
         <WishlistProvider>
-          <main>
-            <RegionalizationBar classes="display-mobile" />
-            {children}
-          </main>
+          <main>{children}</main>
         </WishlistProvider>
       </CategoriesProvider>
 

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - New slider for all Components ([#105](https://github.com/vtex-sites/accenturebb.store/pull/105))
 ### Fixed 
+- `Navbar` mobile layout ([#108](https://github.com/vtex-sites/accenturebb.store/pull/108))
 - Components for Accenture Theme ([#105](https://github.com/vtex-sites/accenturebb.store/pull/105))
 - `SkuSelector` for products that only have one option that is not "Cor" ([#103](https://github.com/vtex-sites/accenturebb.store/pull/103))
 ### Changed 

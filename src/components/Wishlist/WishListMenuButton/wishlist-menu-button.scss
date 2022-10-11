@@ -1,8 +1,6 @@
 @import "src/styles/scaffold";
 
 [data-fs-wishlist-menu-button] {
-  margin-right: 4px;
-
   &[data-store-link] {
     padding: 0;
   }
@@ -14,7 +12,7 @@
     width: var(--fs-control-tap-size);
     height: var(--fs-control-tap-size);
     padding: var(--fs-spacing-0);
-    margin-left: 0.5rem;
+    color: var(--fs-color-theme-0);
     cursor: pointer;
     background-color: transparent;
     border: 0;
@@ -27,6 +25,7 @@
     }
 
     &:active {
+      color: var(--fs-color-primary-bkg);
       background-color: var(--fs-color-tertiary-bkg-active);
     }
   }
