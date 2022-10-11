@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## ["2.0.1"] - 09/16/2022
 
 ### Changed
+
+- `Accenture Menu` layout ([#109](https://github.com/vtex-sites/accenturebb.store/pull/109))
 - `Accenture Colors Theme` ([#107](https://github.com/vtex-sites/accenturebb.store/pull/107))
 - `Accenture footer` ([#106](https://github.com/vtex-sites/accenturebb.store/pull/106))
 - `All Store to NextJS` ([#93](https://github.com/vtex-sites/accenturebb.store/pull/93))
