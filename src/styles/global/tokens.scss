@@ -13,15 +13,15 @@ body {
   // PALETTE
   // Tone values must range from lightest to darkest.
   // `0` is more suitable for backgrounds, and `4` for texts.
-  --fs-color-theme-0: #292929;
+  --fs-color-theme-0: #7500c0;
   --fs-color-theme-1: #460073;
   --fs-color-theme-2: #e6dcff;
-  --fs-color-theme-3: #292929;
+  --fs-color-theme-3: #e6dcff;
   --fs-color-theme-4: #a055f5;
   --fs-color-theme-5: #545454;
 
   --fs-color-main-0: #ecf0ff;
-  --fs-color-main-1: #105a33c4;
+  --fs-color-main-1: #6600a5;
   --fs-color-main-2: #105a33c4;
   --fs-color-main-3: #105a33c4;
   --fs-color-main-4: #001947;
@@ -238,10 +238,10 @@ body {
 
   // TAP
   --fs-control-tap-size-smallest       : calc(var(--fs-control-tap-size) / 2);
-  --fs-control-tap-size                : var(--fs-spacing-7); // 3rem = 48px
+  --fs-control-tap-size                : var(--fs-spacing-6); // 2.5rem = 40px
 
   @include media(">=notebook") {
-    --fs-control-tap-size              : var(--fs-spacing-7); // This value can be smaller on desktops
+    --fs-control-tap-size              : var(--fs-spacing-6); // This value can be smaller on desktops
   }
 
   // STATES

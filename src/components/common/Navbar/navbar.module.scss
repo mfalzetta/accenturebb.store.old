@@ -61,10 +61,6 @@
   [data-fs-search-input-wrapper] {
     flex: 1 0 100%;
     order: 2;
-
-    @include media("<notebook") {
-      display: none;
-    }
   }
 
   [data-fs-navbar-row] {
@@ -93,6 +89,7 @@
 
   [data-fs-navbar-buttons] {
     display: flex;
+    gap: 8px;
     align-items: center;
     justify-content: flex-end;
 
@@ -100,14 +97,10 @@
       margin-left: calc(-1 * var(--fs-spacing-3));
     }
 
-    [data-fs-button-signin-link] + [data-fs-button-cart] {
-      @include media(">=notebook") {
-        margin-left: var(--fs-spacing-3);
-      }
-    }
-
     [data-fs-button-signin-link] {
-      display: none;
+      @include media("<notebook") {
+        padding: var(--fs-spacing-1) var(--fs-spacing-2);
+      }
     }
 
     @include media(">=notebook") {

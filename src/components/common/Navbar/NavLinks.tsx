@@ -18,7 +18,10 @@ function NavLinks({ classes = '' }: NavLinksProps) {
 
   return (
     <nav className={`${styles.fsNavlinks} ${classes}`}>
-      <RegionalizationBar classes="region hidden-mobile" />
+      <RegionalizationBar
+        data-store-nav-regionalization
+        classes="region hidden-mobile"
+      />
       <UIList data-fs-navlinks-list>
         <RenderPageSections sections={cmsHeaderLink?.sections} />
       </UIList>
