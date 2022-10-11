@@ -133,6 +133,7 @@
 
   [data-store-list] {
     display: flex;
+    gap: 8px;
     justify-content: center;
     margin-top: var(--fs-spacing-1);
 
@@ -141,13 +142,25 @@
       margin-top: var(--fs-spacing-0);
     }
 
-    [data-fs-link] {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: var(--fs-control-tap-size);
-      min-height: var(--fs-control-tap-size);
-      padding: var(--fs-spacing-1);
+    &[data-store-social-icon] {
+      [data-store-icon] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background-color: #fff;
+        border-radius: var(--fs-border-radius-circle);
+
+        svg {
+          height: 16px;
+          fill: #7500c0;
+        }
+
+        path {
+          fill: #7500c0;
+        }
+      }
     }
   }
 }
@@ -291,13 +304,15 @@
     }
 
     .btnLigar {
-      background-color: var(--fs-color-theme-0);
+      cursor: pointer;
+      background-color: var(--fs-color-theme-4);
       border: 1px solid transparent;
     }
 
     .btnMsg {
+      cursor: pointer;
       background-color: var(--fs-color-theme-1);
-      border: 1px solid var(--fs-color-theme-0);
+      border: 1px solid var(--fs-color-theme-4);
     }
 
     p {
@@ -347,6 +362,7 @@
 .footer__note--desk {
   &--content {
     display: flex;
+    gap: 30px;
     align-items: baseline;
     padding-top: var(--fs-spacing-4);
     border-top: 1px solid #dcafff;
@@ -368,5 +384,9 @@
   .footer__links--container {
     display: flex;
     justify-content: space-between;
+  }
+
+  .footer__note--text {
+    margin-bottom: 24px;
   }
 }

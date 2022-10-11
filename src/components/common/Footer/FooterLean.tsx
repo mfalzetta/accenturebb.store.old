@@ -17,8 +17,11 @@ import {
   Dinners,
   Ligar,
   Enviar,
+  Facebook,
+  Instagram,
+  Twitter,
 } from '../../../images/footer/icons'
-import FooterLinks from './FooterLinks'
+import FooterLinks from './FooterLinksLean'
 
 function Footer() {
   return (
@@ -78,7 +81,7 @@ function Footer() {
             <p className="text__title-mini footer__titles footer__titles--social">
               Siga nas redes sociais
             </p>
-            <UIList>
+            <UIList data-store-social-icon>
               <li>
                 <Link
                   as="a"
@@ -87,7 +90,7 @@ function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <UIIcon component={<Dinners />} />
+                  <UIIcon component={<Facebook />} />
                 </Link>
               </li>
               <li>
@@ -98,18 +101,18 @@ function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <UIIcon component={<Dinners />} />
+                  <UIIcon component={<Instagram />} />
                 </Link>
               </li>
               <li>
                 <Link
                   as="a"
-                  href="https://www.pinterest.com/"
-                  title="Pinterest"
+                  href="https://www.twitter.com/"
+                  title="Twitter"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <UIIcon component={<Dinners />} />
+                  <UIIcon component={<Twitter />} />
                 </Link>
               </li>
             </UIList>
