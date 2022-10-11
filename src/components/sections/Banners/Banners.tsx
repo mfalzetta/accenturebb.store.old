@@ -50,6 +50,7 @@ function Banners({ banners }: BannersProps) {
                   alt={banner.alt ? banner.alt : 'Banner Home'}
                   loading="eager"
                   layout="fill"
+                  className="image__temporary"
                 />
                 <div
                   data-banner-info
