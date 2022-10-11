@@ -18,6 +18,7 @@ import type { ProductSummary_ProductFragment } from '@generated/graphql'
 import styles from 'src/components/product/ProductCard/product-card.module.scss'
 import type { InstallmentProps } from 'src/components/custom-components/Price/Installment'
 import Installment from 'src/components/custom-components/Price/Installment'
+import useIsMobile from 'src/data/hook/useIsMobile'
 
 type Variant = 'wide' | 'default'
 
@@ -45,21 +46,7 @@ function ProductCard({
   isSimpleCard,
   ...otherProps
 }: ProductCardProps) {
-  const [isMobile, setIsMobile] = useState(true)
-
-  useEffect(() => {
-    if (window.innerWidth > 920) {
-      setIsMobile(false)
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 920) {
-        setIsMobile(false)
-      } else {
-        setIsMobile(true)
-      }
-    })
-  }, [isMobile])
+  const isMobile = useIsMobile()
 
   const {
     sku,

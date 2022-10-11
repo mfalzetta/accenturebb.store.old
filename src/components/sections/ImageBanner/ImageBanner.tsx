@@ -6,15 +6,23 @@ export interface ImageBannerProps {
   src: string
   alt?: string
   fullWidth?: boolean
+  height?: number
 }
 
-const ImageBanner = ({ src, alt, fullWidth }: ImageBannerProps) => {
+const ImageBanner = ({ src, alt, fullWidth, height }: ImageBannerProps) => {
   return (
     <>
       {!fullWidth ? (
-        <Section className="layout__content container__margin">
+        <Section
+          className="layout__content container__margin"
+          style={{
+            height: `${height}px`,
+            display: 'block',
+            position: 'relative',
+          }}
+        >
           <Image
-            loading="lazy"
+            loading="eager"
             className="image__temporary"
             src={src}
             alt={alt}
@@ -22,13 +30,22 @@ const ImageBanner = ({ src, alt, fullWidth }: ImageBannerProps) => {
           />
         </Section>
       ) : (
-        <Image
-          loading="lazy"
-          className="image__temporary"
-          src={src}
-          alt={alt}
-          layout="fill"
-        />
+        <Section
+          className="layout__content-full"
+          style={{
+            height: `${height}px`,
+            display: 'block',
+            position: 'relative',
+          }}
+        >
+          <Image
+            className="image__temporary"
+            src={src}
+            alt={alt}
+            layout="fill"
+            loading="eager"
+          />
+        </Section>
       )}
     </>
   )
