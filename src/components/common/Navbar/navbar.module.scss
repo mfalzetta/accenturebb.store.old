@@ -83,7 +83,8 @@
 
     @include media(">=notebook") {
       display: grid;
-      grid-template-columns: auto auto minmax(auto, 50rem) auto;
+      grid-template-columns: auto 1fr minmax(50rem, 4fr) auto;
+      gap: 32px;
     }
   }
 
