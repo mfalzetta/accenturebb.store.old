@@ -1,21 +1,19 @@
+// eslint-disable-next-line import/order
 import {
   ProductCard as UIProductCard,
   ProductCardContent as UIProductCardContent,
   ProductCardImage as UIProductCardImage,
 } from '@faststore/ui'
-import { useEffect, useState } from 'react'
-
 import Link from 'src/components/ui/Link'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import Price from 'src/components/ui/Price'
 import { Badge, DiscountBadge } from 'src/components/ui/Badge'
 import type { InstallmentProps } from 'src/components/custom-components/Price/Installment'
 import Installment from 'src/components/custom-components/Price/Installment'
-
-// eslint-disable-next-line import/order
-import WishListPdpButton from '../WishListPdpButton'
-// eslint-disable-next-line import/order
 import ProductGridSkeleton from 'src/components/skeletons/ProductGridSkeleton'
+import useIsMobile from 'src/data/hook/useIsMobile'
+
+import WishListPdpButton from '../WishListPdpButton'
 import stylesGrid from '../../product/ProductGrid/product-grid.module.scss'
 import styles from '../../product/ProductCard/product-card.module.scss'
 
@@ -40,7 +38,6 @@ export interface WishListDetailsProps {
 }
 
 const WishListDetails = ({ products }: WishListDetailsProps) => {
-  const [isMobile, setIsMobile] = useState(true)
   const variant = 'default'
   const bordered = false
   const rowLayout = true
@@ -48,19 +45,7 @@ const WishListDetails = ({ products }: WishListDetailsProps) => {
   const isSimpleCard = false
   const isGallery = false
 
-  useEffect(() => {
-    if (window.innerWidth > 920) {
-      setIsMobile(false)
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 920) {
-        setIsMobile(false)
-      } else {
-        setIsMobile(true)
-      }
-    })
-  }, [isMobile])
+  const isMobile = useIsMobile()
 
   if (!products) {
     return <ProductGridSkeleton />

@@ -4,8 +4,9 @@ import { useInView } from 'react-intersection-observer'
 import ProductShelfSkeleton from 'src/components/skeletons/ProductShelfSkeleton'
 import { useProductsQuery } from 'src/sdk/product/useProductsQuery'
 import type { ProductsQueryQueryVariables } from '@generated/graphql'
-import CarouselShelf from 'src/components/custom-components/home/CarouselShelf'
 import { useViewItemListEvent } from 'src/sdk/analytics/hooks/useViewItemListEvent'
+import KeenSlider from 'src/components/custom-components/KeenSlider/KeenSlider'
+import useIsMobile from 'src/data/hook/useIsMobile'
 
 import ProductCard from '../../product/ProductCard'
 import Section from '../Section'
@@ -37,6 +38,7 @@ function ProductShelf({
 }: ProductShelfProps) {
   const viewedOnce = useRef(false)
   const { ref, inView } = useInView()
+  const isMobile = useIsMobile()
 
   if (productClusterIds) {
     variables.selectedFacets = {
@@ -77,29 +79,38 @@ function ProductShelf({
     >
       <div
         data-fs-product-shelf
-        className={`${styles.fsProductShelf} ${
-          shelfType === 'isRowLayout' ? 'shelf--row' : ''
-        }`}
+        data-fs-shelftype={shelfType === 'isRowLayout' ? 'shelf--row' : 'false'}
+        className={`${styles.fsProductShelf}`}
       >
         <ProductShelfSkeleton loading={products === undefined}>
           <div
             data-fs-product-shelf-items
-            className={`layout__content ${
-              shelfType === 'isRowLayout' ? 'shelf--row' : ''
-            }`}
+            data-fs-shelftype={
+              shelfType === 'isRowLayout' ? 'shelf--row' : 'false'
+            }
+            className="layout__content"
           >
             {shelfType === 'isCarousel' ? (
-              <CarouselShelf itemsPerPage={itens} arrows size={size}>
+              <KeenSlider
+                arrows={!isMobile}
+                dots
+                breakpoints={{ desktop: 6, tablet: 3, phone: 1.5 }}
+              >
                 {productEdges.map((product, idx: number) => (
-                  <div key={`${product.node.id}`}>
-                    <ProductCard
-                      product={product.node}
-                      index={idx + 1}
-                      isSimpleCard={isSimpleCard}
-                    />
+                  <div
+                    className={`keen-slider__slide number-slide${idx}`}
+                    key={`${product.node.id}`}
+                  >
+                    <div>
+                      <ProductCard
+                        product={product.node}
+                        index={idx + 1}
+                        isSimpleCard={isSimpleCard}
+                      />
+                    </div>
                   </div>
                 ))}
-              </CarouselShelf>
+              </KeenSlider>
             ) : (
               <>
                 {products?.edges.map((product, idx: number) => (

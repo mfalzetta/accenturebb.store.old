@@ -1,5 +1,5 @@
 import InfoCard from 'src/components/custom-components/home/InfoCard'
-import Slider from 'src/components/custom-components/home/Slider'
+import KeenSlider from 'src/components/custom-components/KeenSlider/KeenSlider'
 import Section from 'src/components/sections/Section'
 
 export interface CategorySectionAllItems {
@@ -18,23 +18,28 @@ const CategorySection = ({ allItems }: CategorySectionAllItems) => {
   return (
     <Section
       style={{
-        height: `${Number(allItems[0]?.height) + 50}px`,
+        height: `${Number(allItems[0]?.height) + 80}px`,
       }}
     >
       <div className="layout__content classSection__container category-session">
-        <Slider itemsPerPage={6} minWidth={200}>
+        <KeenSlider dots breakpoints={{ desktop: 5, tablet: 3, phone: 1 }}>
           {allItems.map((card: CategorySectionProps, index: number) => (
-            <InfoCard
+            <div
+              className={`keen-slider__slide number-slide${index}`}
+              style={{ textAlign: '-webkit-center' }}
               key={index}
-              href={card.href}
-              src={card.src}
-              alt={card.alt ?? `${card.text} image`}
-              width={card.width}
-              height={card.height}
-              text={card.text}
-            />
+            >
+              <InfoCard
+                href={card.href}
+                src={card.src}
+                alt={card.alt ?? `${card.text} image`}
+                width={card.width}
+                height={card.height}
+                text={card.text}
+              />
+            </div>
           ))}
-        </Slider>
+        </KeenSlider>
       </div>
     </Section>
   )

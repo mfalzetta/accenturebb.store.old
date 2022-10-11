@@ -1,5 +1,5 @@
 import InfoCard from 'src/components/custom-components/home/InfoCard'
-import Slider from 'src/components/custom-components/home/Slider'
+import KeenSlider from 'src/components/custom-components/KeenSlider/KeenSlider'
 import Section from 'src/components/sections/Section'
 
 export interface BrandSectionProps {
@@ -8,7 +8,6 @@ export interface BrandSectionProps {
   href: string
   width: string
   height: string
-  size: 'small' | 'big'
 }
 
 export interface BrandSectionAllItems {
@@ -17,21 +16,26 @@ export interface BrandSectionAllItems {
 
 const BrandSection = ({ allItems }: BrandSectionAllItems) => {
   return (
-    <Section>
-      <Slider itemsPerPage={6} minWidth={200}>
+    <Section data-fs-brand-section>
+      <KeenSlider dots breakpoints={{ desktop: 5, tablet: 3, phone: 1 }}>
         {allItems.map((card: BrandSectionProps, index: number) => (
-          <InfoCard
+          <div
+            className={`keen-slider__slide number-slide${index}`}
+            style={{ textAlign: '-webkit-center' }}
             key={index}
-            href={card.href}
-            src={card.src}
-            alt={card.alt}
-            width={card.width}
-            height={card.height}
-            className="classSection__brand"
-            brandSize={card.size}
-          />
+          >
+            <InfoCard
+              key={index}
+              href={card.href}
+              src={card.src}
+              alt={card.alt}
+              width={card.width}
+              height={card.height}
+              className="classSection__brand"
+            />
+          </div>
         ))}
-      </Slider>
+      </KeenSlider>
     </Section>
   )
 }

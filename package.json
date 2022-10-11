@@ -38,6 +38,7 @@
     "@vtex/client-cms": "^0.2.10",
     "graphql": "^15.0.0",
     "include-media": "^1.4.10",
+    "keen-slider": "^6.8.2",
     "next": "^12.2.0",
     "next-seo": "^5.4.0",
     "nextjs-progressbar": "^0.0.14",

@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
+import KeenSlider from 'src/components/custom-components/KeenSlider/KeenSlider'
 import Icon from 'src/components/ui/Icon'
 import Link from 'src/components/ui/Link'
 
-import Slider from '../../custom-components/home/Slider'
 import styles from './category-image.module.scss'
 
 export interface CategoryImageProps {
@@ -20,30 +20,36 @@ export interface CategoryImageAllItemsProps {
 const CategoryImage = ({ allItems, department }: CategoryImageProps) => {
   return (
     <div className={`${department} category-image ${styles.fsCategoryImage}`}>
-      <Slider arrows minWidth={96} itemsPerPage={8}>
+      <KeenSlider arrows dots breakpoints={{ desktop: 8, tablet: 5, phone: 2 }}>
         {allItems.map((el, index) => {
           const link = el.link ? el.link : '/'
 
           return (
-            <div key={index} data-fs-category-image-content>
-              <Link href={link}>
-                {el.src ? (
-                  <Image
-                    data-fs-category-image-image
-                    src={el.src}
-                    alt={el.alt ?? `${el.category} image`}
-                    width={94}
-                    height={94}
-                  />
-                ) : (
-                  <Icon name="empty__category" width="94" height="94" />
-                )}
-                <span data-fs-category-image-category>{el.category}</span>
-              </Link>
+            <div
+              className={`keen-slider__slide number-slide${index}`}
+              style={{ textAlign: '-webkit-center' }}
+              key={index}
+            >
+              <div data-fs-category-image-content>
+                <Link href={link}>
+                  {el.src ? (
+                    <Image
+                      data-fs-category-image-image
+                      src={el.src}
+                      alt={el.alt ?? `${el.category} image`}
+                      width={94}
+                      height={94}
+                    />
+                  ) : (
+                    <Icon name="empty__category" width="94" height="94" />
+                  )}
+                  <span data-fs-category-image-category>{el.category}</span>
+                </Link>
+              </div>
             </div>
           )
         })}
-      </Slider>
+      </KeenSlider>
     </div>
   )
 }

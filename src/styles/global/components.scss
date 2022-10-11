@@ -6,6 +6,7 @@
 
 @import "src/components/sections/BannerText/banner-text.scss";
 @import "src/components/sections/Breadcrumb/breadcrumb.scss";
+@import "src/components/sections/BrandSection/brand-section.scss";
 
 // @import "src/components/sections/ProductDetails/product-details.scss";
 @import "src/components/sections/ScrollToTopButton/scroll-to-top-button.scss";
@@ -20,11 +21,10 @@
 
 // custom-components
 
-@import "src/components/custom-components/home/CarouselShelf/CarouselShelf.scss";
 @import "src/components/custom-components/home/InfoCard/InfoCard.scss";
 @import "src/components/custom-components/home/SectionTitle/SectionTitle.scss";
-@import "src/components/custom-components/home/Slider/Slider.scss";
 @import "src/components/custom-components/Price/Installment/Installment.scss";
+@import "src/components/custom-components/KeenSlider/keen-slider.scss";
 
 // UI
 

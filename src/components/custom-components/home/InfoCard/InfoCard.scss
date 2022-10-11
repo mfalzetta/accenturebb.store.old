@@ -30,21 +30,10 @@
   pointer-events: none;
   background-color: var(--fs-color-neutral-0);
   border-radius: 0.5rem;
-
-  @media (max-width: 448px) {
-    max-width: 75px;
-    padding: 10px;
-    font-size: 10px;
-  }
 }
 
 .infocard__img {
   border-radius: 0.5rem;
-
-  @media (max-width: 448px) {
-    max-width: 170px;
-    max-height: 150px;
-  }
 }
 
 .classSection__brand {
@@ -55,14 +44,6 @@
 
   .infocard__container {
     border-radius: 0;
-  }
-
-  [data-brand-size="big"] {
-    max-width: 50%;
-  }
-
-  [data-brand-size="small"] {
-    max-width: 22%;
   }
 
   &:hover {
