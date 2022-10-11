@@ -27,9 +27,10 @@ function Banners({ banners }: BannersProps) {
 
   return (
     <Section
-      className="layout__section--full"
       data-main-banner
-      style={{ height: `${banners[0].height}px` }}
+      style={{
+        height: `${banners[0].height}px`,
+      }}
     >
       <KeenSlider
         full
@@ -42,27 +43,15 @@ function Banners({ banners }: BannersProps) {
             className={`keen-slider__slide number-slide${index} `}
             key={index}
           >
-            <div data-banner-container>
-              <Link
-                href={banner.href ? banner.href : '/#'}
-                style={{ all: 'unset', cursor: 'pointer' }}
-              >
-                <div
-                  style={{
-                    width: 1920,
-                    height: `${banner.height}px`,
-                    position: 'relative',
-                  }}
-                >
-                  <Image
-                    src={banner.src}
-                    alt={banner.alt ? banner.alt : 'Banner Home'}
-                    className="image__temporary"
-                    layout="fill"
-                    loading="eager"
-                    priority
-                  />
-                </div>
+            <div data-banner-container style={{ height: `${banner.height}px` }}>
+              <Link data-banner-link href={banner.href ? banner.href : '/#'}>
+                <Image
+                  src={banner.src}
+                  alt={banner.alt ? banner.alt : 'Banner Home'}
+                  loading="lazy"
+                  width={1920}
+                  height={banner.height}
+                />
                 <div
                   data-banner-info
                   style={{

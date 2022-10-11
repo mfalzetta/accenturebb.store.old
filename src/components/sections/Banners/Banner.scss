@@ -64,6 +64,11 @@
     }
   }
 
+  [data-banner-link] {
+    display: block;
+    padding: 0;
+  }
+
   .arrow {
     path {
       stroke: var(--fs-color-neutral-0);
