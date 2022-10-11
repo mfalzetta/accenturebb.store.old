@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## ["2.0.1"] - 09/16/2022
 
 ### Changed
+- `Accenture footer` ([#106](https://github.com/vtex-sites/accenturebb.store/pull/106))
 - `All Store to NextJS` ([#93](https://github.com/vtex-sites/accenturebb.store/pull/93))
 - `Search not found` new layout ([#48](https://github.com/vtex-sites/accenturebb.store/pull/48))
 - `SKU Selector` for work with multiple specifications ([#44](https://github.com/vtex-sites/accenturebb.store/pull/44))
