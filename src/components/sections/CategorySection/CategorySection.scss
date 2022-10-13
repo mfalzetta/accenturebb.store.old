@@ -1,4 +1,12 @@
-.keen-slider__slide {
+// .keen-slider__slide {
+// }
+
+[data-fs-category-section] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
   .infocard__container {
     max-width: 204px;
   }
