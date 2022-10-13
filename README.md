@@ -11,20 +11,17 @@ Kickoff your store with this boilerplate. This starter ships with the main FastS
 
 ## ⚠️ Before you start
 
-As of Dec, 22, 2021, this starter is still far from covering most basic cases found on VTEX. To summarize what we still do not support that is considered basic on the VTEX commerce platform, we prepared the list below. If the feature you want is listed, you can either wait for us to add support to the feature, or fork the repo and implement on your own. Note that, by forking the repo, you will miss new features and improvements we do in this repo and you will need a developer to backport the feature to your store. Finally, this list is a work in progress, so some features may be missing from both base.store starter and this list.
+As of Sep, 2022, this starter is still far from covering most basic cases found on VTEX. To summarize what we still do not support that is considered basic on the VTEX commerce platform, we prepared the list below. If the feature you want is listed, you can either wait for us to add support to the feature, or fork the repo and implement on your own. Note that, by forking the repo, you will miss new features and improvements we do in this repo and you will need a developer to backport the feature to your store. Finally, this list is a work in progress, so some features may be missing from both base.store starter and this list.
 
 1. Multiple CMS Previews. Only one user is allowed to preview content from the CMS at a time. If two users preview any content from any page at the CMS, the previews are not consistent and one user may see data from the other.
 2. Price Table
-3. Regionalization
-4. Internationalization
-5. Shared Cart (Carrinho compartilhado)
-6. Clear products that are our of stock from cart
-7. GDPR (LGDP)
-8. Shipping simulation
-9. Sitemap
-10. Sku selector on PDP
-11. Promotions via utm
-12. Product specifications
+3. Internationalization
+4. Shared Cart (Carrinho compartilhado)
+5. Clear products that are our of stock from cart
+6. GDPR (LGDP)
+7. Shipping simulation
+8. Sitemap
+9. Promotions via utm
 
 ## 🚀 Quick start
 
@@ -222,14 +219,14 @@ touch src/components/ui/Button/button.scss
 Now, on `button.scss`:
 
 ```css
-[data-store-button] {
+[data-fs-button] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 ```
 
-This `data-store-button` is a CSS data attribute selector. To know which selectors are available, check [FastStore UI docs](https://faststoreui.netlify.app/).
+This `data-fs-button` is a CSS data attribute selector. To know which selectors are available, check [FastStore UI docs](https://faststoreui.netlify.app/).
 
 Now, include the component's CSS into the Store's CSS. Open `src/styles/global/components.scss` and import this CSS with:
 
@@ -259,11 +256,11 @@ export default Button
 and then, on `button.scss`:
 
 ```css
-[data-store-button][data-button-variant='primary'] {
+[data-fs-button][data-button-variant='primary'] {
   background: blue;
 }
 
-[data-store-button][data-button-variant='secondary'] {
+[data-fs-button][data-button-variant='secondary'] {
   background: pink;
 }
 ```
@@ -277,11 +274,11 @@ function Button({ variant, ...props }: Props) {
 ```
 
 ```css
-.primary[data-store-button] {
+.primary[data-fs-button] {
   background: blue;
 }
 
-.secondary[data-store-button] {
+.secondary[data-fs-button] {
   background: pink;
 }
 ```

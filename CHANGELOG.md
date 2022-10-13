@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Components for Accenture Theme ([#105](https://github.com/vtex-sites/accenturebb.store/pull/105))
 - `SkuSelector` for products that only have one option that is not "Cor" ([#103](https://github.com/vtex-sites/accenturebb.store/pull/103))
 ### Changed 
+- `Update NextJS base  Version to 22.39.5 (2022-10-13)` ([#110](https://github.com/vtex-sites/accenturebb.store/pull/110))
+- `Update NextJS base  Version to 22.39.0 (2022-09-29)` ([#104](https://github.com/vtex-sites/accenturebb.store/pull/104))
 - `Update NextJS base  Version to 22.38.1 (2022-09-28)` ([#103](https://github.com/vtex-sites/accenturebb.store/pull/103))
 ## ["2.0.1"] - 09/16/2022
 
@@ -28,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed 
 - `Fix sync cart` ([#86](https://github.com/vtex-sites/accenturebb.store/pull/86))
 - `Fix PDP` ([#85](https://github.com/vtex-sites/accenturebb.store/pull/85))
-    - zoom image
+    - zoom image 
     - shipping and image gallery layout
     - carousel
 - `Fix PLP` layout ([#84](https://github.com/vtex-sites/accenturebb.store/pull/84))
@@ -52,7 +54,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `Update repository` updated version until 22.39.0 (2022-09-29) ([#104](https://github.com/vtex-sites/accenturebb.store/pull/104))
 - `Category buttons` PLP ([#78](https://github.com/vtex-sites/accenturebb.store/pull/78))
 - `Update repository` updated version until 22.39.3 (2022-09-01) ([#77](https://github.com/vtex-sites/accenturebb.store/pull/77))
 - `Category buttons` ([#78](https://github.com/vtex-sites/accenturebb.store/pull/78))
