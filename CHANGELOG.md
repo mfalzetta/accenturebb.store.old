@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed 
 - `Fix sync cart` ([#86](https://github.com/vtex-sites/accenturebb.store/pull/86))
 - `Fix PDP` ([#85](https://github.com/vtex-sites/accenturebb.store/pull/85))
-    - zoom image
+    - zoom image 
     - shipping and image gallery layout
     - carousel
 - `Fix PLP` layout ([#84](https://github.com/vtex-sites/accenturebb.store/pull/84))
