@@ -12,7 +12,7 @@
     padding-left: 0;
   }
 
-  [data-store-badge] {
+  [data-fs-badge] {
     display: none;
   }
 
@@ -58,7 +58,7 @@
     [data-fs-product-details-settings] {
       height: fit-content;
 
-      [data-store-sku-selector] {
+      [data-fs-sku-selector] {
         margin-bottom: var(--fs-spacing-4);
 
         &:last-of-type {
@@ -143,7 +143,7 @@
       display: flex;
       align-items: center;
 
-      [data-store-badge] {
+      [data-fs-badge] {
         position: unset;
         display: block;
         margin-left: 0.5rem;

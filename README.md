@@ -222,14 +222,14 @@ touch src/components/ui/Button/button.scss
 Now, on `button.scss`:
 
 ```css
-[data-store-button] {
+[data-fs-button] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 ```
 
-This `data-store-button` is a CSS data attribute selector. To know which selectors are available, check [FastStore UI docs](https://faststoreui.netlify.app/).
+This `data-fs-button` is a CSS data attribute selector. To know which selectors are available, check [FastStore UI docs](https://faststoreui.netlify.app/).
 
 Now, include the component's CSS into the Store's CSS. Open `src/styles/global/components.scss` and import this CSS with:
 
@@ -259,11 +259,11 @@ export default Button
 and then, on `button.scss`:
 
 ```css
-[data-store-button][data-button-variant='primary'] {
+[data-fs-button][data-button-variant='primary'] {
   background: blue;
 }
 
-[data-store-button][data-button-variant='secondary'] {
+[data-fs-button][data-button-variant='secondary'] {
   background: pink;
 }
 ```
@@ -277,11 +277,11 @@ function Button({ variant, ...props }: Props) {
 ```
 
 ```css
-.primary[data-store-button] {
+.primary[data-fs-button] {
   background: blue;
 }
 
-.secondary[data-store-button] {
+.secondary[data-fs-button] {
   background: pink;
 }
 ```

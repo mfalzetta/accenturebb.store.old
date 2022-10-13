@@ -81,7 +81,7 @@ function Footer() {
             <p className="text__title-mini footer__titles footer__titles--social">
               Siga nas redes sociais
             </p>
-            <UIList data-store-social-icon>
+            <UIList data-fs-social-icon>
               <li>
                 <Link
                   as="a"
