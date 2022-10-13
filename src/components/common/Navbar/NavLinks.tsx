@@ -22,7 +22,7 @@ function NavLinks({ classes = '' }: NavLinksProps) {
       style={{ height: '48px' }}
     >
       <RegionalizationBar
-        data-store-nav-regionalization
+        data-fs-nav-regionalization
         classes="region hidden-mobile"
       />
       <UIList data-fs-navlinks-list>

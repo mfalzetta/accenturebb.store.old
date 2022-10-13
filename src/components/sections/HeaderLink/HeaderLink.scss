@@ -17,7 +17,7 @@
   .link {
     display: flex;
 
-    [data-store-link="true"] {
+    [data-fs-link="true"] {
       width: max-content;
       font-family: var(--fs-text-face-body);
       font-size: 14px;
@@ -27,7 +27,7 @@
     }
   }
 
-  [data-fs-regionalization-bar] [data-store-button="true"] {
+  [data-fs-regionalization-bar] [data-fs-button="true"] {
     font-family: var(--fs-text-face-body);
     font-size: 14px;
     font-weight: var(--fs-text-weight-regular);

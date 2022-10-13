@@ -71,7 +71,7 @@
           margin-left: 0;
         }
 
-        [data-store-product-card] {
+        [data-fs-product-card] {
           box-sizing: border-box;
           display: flex;
           align-items: center;
@@ -96,7 +96,7 @@
         li {
           flex: 1 0 100%;
 
-          [data-store-product-card] {
+          [data-fs-product-card] {
             max-width: 328px;
             margin: auto;
           }

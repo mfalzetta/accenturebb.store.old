@@ -78,7 +78,7 @@ const MenuDesktop = ({ depart, stateChanger, isOpen }: MenuDesktopProps) => {
                         onClick={() => stateChanger(false)}
                         key={`subSubCategory--${i}`}
                         href={item}
-                        data-store-subcategory
+                        data-fs-subcategory
                       >
                         {name}
                       </Link>

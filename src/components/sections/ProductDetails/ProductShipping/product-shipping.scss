@@ -47,7 +47,7 @@
       box-shadow: 0 0 0 30px white inset;
     }
 
-    [data-store-button] {
+    [data-fs-button] {
       background-color: var(--fs-color-theme-2);
 
       &::before {
@@ -99,7 +99,7 @@
     border: 1px solid var(--fs-color-theme-0);
     border-radius: 0.5rem;
 
-    [data-store-radio-option] {
+    [data-fs-radio-option] {
       display: flex;
       width: 100%;
 
