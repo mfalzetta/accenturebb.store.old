@@ -3,6 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import Icon from 'src/components/ui/Icon'
 import InputText from 'src/components/ui/InputText'
+import Price from 'src/components/ui/Price'
+import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
 import { sessionStore, useSession } from 'src/sdk/session'
 
 import useShippingQuery from './useShippingQuery'
@@ -162,7 +164,10 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
                   Chega até {estimatedDate?.weekDay}, {estimatedDate?.day} de{' '}
                   {estimatedDate?.month}
                   {shippingQuery?.price / 100 > 0
-                    ? ` por R$ ${(shippingQuery?.price / 100).toFixed(2)}`
+                    ? ` por R$ ${(shippingQuery?.price / 100)
+                        .toFixed(2)
+                        .toString()
+                        .replace('.', ',')}`
                     : ' Gratis'}
                 </span>
                 <button onClick={() => setShowMore(!showMore)}>
@@ -200,7 +205,15 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
                             {estimated} {estimated > 1 ? 'dias' : 'dia'}
                           </span>
                           <span className="shipping-price">
-                            {price > 0 ? price.toFixed(2) : 'Gratis'}
+                            {price > 0 ? (
+                              <Price
+                                value={price}
+                                formatter={useFormattedPrice}
+                                SRText=""
+                              />
+                            ) : (
+                              'Gratis'
+                            )}
                           </span>
                         </div>
                       </RadioOption>
