@@ -1,13 +1,13 @@
 import { useCallback, useState } from 'react'
 import ImageViewer from 'react-simple-image-viewer'
 import type { HTMLAttributes } from 'react'
+import Image from 'next/image'
 
 import WishListPdpButton from 'src/components/Wishlist/WishListPdpButton'
+import useIsMobile from 'src/data/hook/useIsMobile'
 
 import { ImageGallerySelector, ImageZoom } from '.'
 import styles from './image-gallery.module.scss'
-import useIsMobile from 'src/data/hook/useIsMobile'
-import Image from 'next/image'
 
 export interface ImageElementData {
   url: string
@@ -90,7 +90,6 @@ function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
     >
       <ImageZoom>
         <div data-fs-pdp-image-with-wishlist>
-          <WishListPdpButton productId={productId} />
           <Image
             src={currentImage.url}
             alt={currentImage.alternateName}
@@ -103,6 +102,7 @@ function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
             onClick={() => openImageViewer(currentImageZoom)}
             objectFit="cover"
           />
+          <WishListPdpButton productId={productId} />
         </div>
       </ImageZoom>
       {hasSelector && (
