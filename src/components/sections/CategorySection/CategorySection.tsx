@@ -1,6 +1,6 @@
 import InfoCard from 'src/components/custom-components/home/InfoCard'
-import KeenSlider from 'src/components/custom-components/KeenSlider/KeenSlider'
 import Section from 'src/components/sections/Section'
+import useIsMobile from 'src/data/hook/useIsMobile'
 
 export interface CategorySectionAllItems {
   allItems: CategorySectionProps[]
@@ -15,31 +15,32 @@ export interface CategorySectionProps {
 }
 
 const CategorySection = ({ allItems }: CategorySectionAllItems) => {
+  const isMobile = useIsMobile()
+
   return (
     <Section
       style={{
-        height: `${Number(allItems[0]?.height) + 80}px`,
+        height: 'auto',
       }}
     >
-      <div className="layout__content classSection__container category-session">
-        <KeenSlider dots breakpoints={{ desktop: 5, tablet: 3, phone: 1 }}>
-          {allItems.map((card: CategorySectionProps, index: number) => (
-            <div
-              className={`keen-slider__slide number-slide${index}`}
-              style={{ textAlign: '-webkit-center' }}
-              key={index}
-            >
-              <InfoCard
-                href={card.href}
-                src={card.src}
-                alt={card.alt ?? `${card.text} image`}
-                width={card.width}
-                height={card.height}
-                text={card.text}
-              />
-            </div>
-          ))}
-        </KeenSlider>
+      <div
+        className="layout__content classSection__container category-session"
+        data-fs-category-section
+        style={{
+          ['--mobile' as any]: `${!isMobile ? 'space-between' : 'center'}`,
+        }}
+      >
+        {allItems.map((card: CategorySectionProps, index: number) => (
+          <InfoCard
+            key={index}
+            href={card.href}
+            src={card.src}
+            alt={card.alt ?? `${card.text} image`}
+            width={card.width}
+            height={card.height}
+            text={card.text}
+          />
+        ))}
       </div>
     </Section>
   )

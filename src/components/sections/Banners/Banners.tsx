@@ -61,6 +61,7 @@ function Banners({ banners }: BannersProps) {
                         ? banner.color
                         : '#FFFFFF'
                     }`,
+                    height: `${banner.height}px`,
                   }}
                 >
                   {banner.title && (
