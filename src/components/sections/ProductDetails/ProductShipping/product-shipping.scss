@@ -105,9 +105,11 @@
 
     [data-fs-radio-option] {
       display: flex;
+      align-items: center;
       width: 100%;
 
       input {
+        height: 14px;
         margin-right: 0.25rem;
         accent-color: var(--fs-color-theme-1);
       }
