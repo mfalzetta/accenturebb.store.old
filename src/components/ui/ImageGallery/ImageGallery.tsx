@@ -94,7 +94,7 @@ function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
             alt={currentImage.alternateName}
             sizes="(max-width: 804px) 25vw, 30vw"
             width={804}
-            height={804 * (3 / 4)}
+            height={804 * (5 / 4)}
             loading="eager"
             fetchPriority="high"
             onClick={() => openImageViewer(currentImageZoom)}
