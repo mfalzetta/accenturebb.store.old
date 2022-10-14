@@ -2,11 +2,12 @@ import { useCallback, useState } from 'react'
 import ImageViewer from 'react-simple-image-viewer'
 import type { HTMLAttributes } from 'react'
 
-import { Image } from 'src/components/ui/Image'
 import WishListPdpButton from 'src/components/Wishlist/WishListPdpButton'
 
 import { ImageGallerySelector, ImageZoom } from '.'
 import styles from './image-gallery.module.scss'
+import useIsMobile from 'src/data/hook/useIsMobile'
+import Image from 'next/image'
 
 export interface ImageElementData {
   url: string
@@ -62,6 +63,7 @@ function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
   const [currentImageZoom, setCurrentImageZoom] = useState(0)
   const [isViewerOpen, setIsViewerOpen] = useState(false)
 
+  const isMobile = useIsMobile()
   const openImageViewer = useCallback((index: number) => {
     setCurrentImageZoom(index)
     setIsViewerOpen(true)
@@ -92,12 +94,14 @@ function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
           <Image
             src={currentImage.url}
             alt={currentImage.alternateName}
-            sizes="(max-width: 804px) 25vw, 30vw"
+            sizes="(max-width: 650px) 25vw, 30vw"
             width={804}
-            height={804 * (5 / 4)}
+            height={isMobile ? 804 * (5 / 4) : 804 * (3 / 4)}
             loading="eager"
-            fetchPriority="high"
+            layout="responsive"
+            priority
             onClick={() => openImageViewer(currentImageZoom)}
+            objectFit="cover"
           />
         </div>
       </ImageZoom>
