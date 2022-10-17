@@ -96,6 +96,7 @@ function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
               ? {
                   width: '100%',
                   height: `${isMobile ? 804 * (5 / 4) : 804 * (3 / 4)}px`,
+                  minWidth: '675px',
                 }
               : {}
           }

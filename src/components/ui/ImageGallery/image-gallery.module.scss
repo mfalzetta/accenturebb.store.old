@@ -64,13 +64,6 @@
     max-width: 1675px;
     margin: auto;
 
-    span {
-      @include media(">=notebook") {
-        min-height: 33.125rem;
-        max-height: 33.125rem;
-      }
-    }
-
     @include media("<=tablet") {
       height: var(--fs-image-gallery-current-height);
     }
