@@ -89,39 +89,29 @@ function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
       {...otherProps}
     >
       <ImageZoom>
-        <div
-          data-fs-pdp-image-with-wishlist
-          style={
-            !isMobile
-              ? {
-                  width: '804px',
-                  height: `${isMobile ? 804 * (5 / 4) : 804 * (3 / 4)}px`,
-                }
-              : {}
-          }
-        >
+        <div data-fs-pdp-image-with-wishlist>
           <Image
             src={currentImage.url}
             alt={currentImage.alternateName}
-            sizes="(max-width: 804px) 25vw, 30vw"
-            width={804}
-            height={isMobile ? 804 * (5 / 4) : 804 * (3 / 4)}
             loading="eager"
-            layout="responsive"
             priority
             onClick={() => openImageViewer(currentImageZoom)}
-            objectFit="cover"
+            layout="responsive"
+            objectFit="contain"
+            width={804}
+            height={isMobile ? 804 * (5 / 4) : 804 * (3 / 4)}
+            sizes="(max-width: 804px) 25vw, 30vw"
           />
           <WishListPdpButton productId={productId} />
         </div>
       </ImageZoom>
-      {hasSelector && (
-        <ImageGallerySelector
-          images={images}
-          currentImageIdx={selectedImageIdx}
-          onSelect={setSelectedImageIdx}
-        />
-      )}
+
+      <ImageGallerySelector
+        images={images}
+        currentImageIdx={selectedImageIdx}
+        onSelect={setSelectedImageIdx}
+      />
+
       {isViewerOpen && (
         <ImageViewer
           src={photos}
