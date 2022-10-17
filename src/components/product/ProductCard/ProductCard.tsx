@@ -5,7 +5,7 @@ import {
   ProductCardImage as UIProductCardImage,
 } from '@faststore/ui'
 import { gql } from '@faststore/graphql-utils'
-import { memo, useEffect, useState } from 'react'
+import { memo } from 'react'
 import type { ReactNode } from 'react'
 
 import Link from 'src/components/ui/Link'

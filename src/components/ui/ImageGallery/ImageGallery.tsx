@@ -94,7 +94,7 @@ function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
           style={
             !isMobile
               ? {
-                  width: '804px',
+                  width: '100%',
                   height: `${isMobile ? 804 * (5 / 4) : 804 * (3 / 4)}px`,
                 }
               : {}
