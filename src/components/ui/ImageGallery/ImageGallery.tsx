@@ -97,9 +97,9 @@ function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
             priority
             onClick={() => openImageViewer(currentImageZoom)}
             layout="responsive"
-            objectFit="contain"
+            objectFit="cover"
             width={804}
-            height={isMobile ? 804 * (5 / 4) : 804 * (3 / 4)}
+            height={804}
             sizes="(max-width: 804px) 25vw, 30vw"
           />
           <WishListPdpButton productId={productId} />
