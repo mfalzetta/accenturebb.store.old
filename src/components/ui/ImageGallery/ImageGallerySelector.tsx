@@ -2,11 +2,11 @@ import { useRef } from 'react'
 import { Button, IconButton } from '@faststore/ui'
 import { useInView } from 'react-intersection-observer'
 
-import Icon from 'src/components/ui/Icon'
 import { Image } from 'src/components/ui/Image'
 
 import type { ImageElementData } from './ImageGallery'
 import styles from './image-gallery-selector.module.scss'
+import { SliderArrowLeft } from 'src/images/Slider'
 
 interface Props {
   images: ImageElementData[]
@@ -65,7 +65,7 @@ function ImageGallerySelector({ images, onSelect, currentImageIdx }: Props) {
         <IconButton
           data-fs-image-gallery-selector-control-button
           aria-label="backward slide image selector"
-          icon={<Icon name="ArrowLeft" width={24} height={24} />}
+          icon={<SliderArrowLeft className="arrow" />}
           onClick={() => moveScroll(elementsRef.current, -SCROLL_MARGIN_VALUE)}
         />
       )}
@@ -106,7 +106,7 @@ function ImageGallerySelector({ images, onSelect, currentImageIdx }: Props) {
         <IconButton
           data-fs-image-gallery-selector-control-button
           aria-label="forward slide image selector"
-          icon={<Icon name="ArrowLeft" width={24} height={24} />}
+          icon={<SliderArrowLeft className="arrow" />}
           onClick={() => moveScroll(elementsRef.current, +SCROLL_MARGIN_VALUE)}
         />
       )}

@@ -1,9 +1,10 @@
 import { useCallback, useState } from 'react'
 import ImageViewer from 'react-simple-image-viewer'
 import type { HTMLAttributes } from 'react'
+import Image from 'next/image'
 
-import { Image } from 'src/components/ui/Image'
 import WishListPdpButton from 'src/components/Wishlist/WishListPdpButton'
+import useIsMobile from 'src/data/hook/useIsMobile'
 
 import { ImageGallerySelector, ImageZoom } from '.'
 import styles from './image-gallery.module.scss'
@@ -62,6 +63,7 @@ function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
   const [currentImageZoom, setCurrentImageZoom] = useState(0)
   const [isViewerOpen, setIsViewerOpen] = useState(false)
 
+  const isMobile = useIsMobile()
   const openImageViewer = useCallback((index: number) => {
     setCurrentImageZoom(index)
     setIsViewerOpen(true)
@@ -88,26 +90,28 @@ function ImageGallery({ images, productId, ...otherProps }: ImageGalleryProps) {
     >
       <ImageZoom>
         <div data-fs-pdp-image-with-wishlist>
-          <WishListPdpButton productId={productId} />
           <Image
             src={currentImage.url}
             alt={currentImage.alternateName}
-            sizes="(max-width: 804px) 25vw, 30vw"
-            width={804}
-            height={804 * (3 / 4)}
             loading="eager"
-            fetchPriority="high"
+            priority
             onClick={() => openImageViewer(currentImageZoom)}
+            layout="responsive"
+            objectFit="cover"
+            width={804}
+            height={804}
+            sizes="(max-width: 804px) 25vw, 30vw"
           />
+          <WishListPdpButton productId={productId} />
         </div>
       </ImageZoom>
-      {hasSelector && (
-        <ImageGallerySelector
-          images={images}
-          currentImageIdx={selectedImageIdx}
-          onSelect={setSelectedImageIdx}
-        />
-      )}
+
+      <ImageGallerySelector
+        images={images}
+        currentImageIdx={selectedImageIdx}
+        onSelect={setSelectedImageIdx}
+      />
+
       {isViewerOpen && (
         <ImageViewer
           src={photos}

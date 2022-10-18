@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - New slider for all Components ([#105](https://github.com/vtex-sites/accenturebb.store/pull/105))
 ### Fixed 
+- `Fixed PDP on Iphone` and pqp Image ([#113](https://github.com/vtex-sites/accenturebb.store/pull/113))
 - `Price PDP` ([#112](https://github.com/vtex-sites/accenturebb.store/pull/112))
 - `Navbar` mobile layout ([#108](https://github.com/vtex-sites/accenturebb.store/pull/108))
 - Components for Accenture Theme ([#105](https://github.com/vtex-sites/accenturebb.store/pull/105))

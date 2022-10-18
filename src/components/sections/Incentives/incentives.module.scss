@@ -69,7 +69,6 @@
 
     @include media(">=notebook") {
       [data-fs-incentive-content] {
-        margin-left: var(--fs-spacing-2);
         text-align: left;
       }
     }

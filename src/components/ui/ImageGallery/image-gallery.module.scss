@@ -60,12 +60,8 @@
 
   [data-fs-pdp-image-with-wishlist] {
     position: relative;
+    display: block;
     width: 100%;
-    max-width: 1675px;
-    margin: auto;
-
-    @include media("<=tablet") {
-      height: var(--fs-image-gallery-current-height);
-    }
+    height: 100%;
   }
 }
