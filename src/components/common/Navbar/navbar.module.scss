@@ -172,7 +172,7 @@
         }
       }
 
-      [data-fs-button-icon] {
+      [data-fs-button-icon="true"] {
         margin-right: var(--fs-navbar-search-expanded-button-icon-margin-right);
         transition:
           margin var(--fs-navbar-transition-timing)
