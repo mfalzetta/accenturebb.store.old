@@ -14,3 +14,9 @@
 
   @include media(">=notebook") { padding-top: var(--fs-spacing-9); }
 }
+
+[data-fs-category-buttons-type-image] {
+  .section {
+    padding: 0;
+  }
+}

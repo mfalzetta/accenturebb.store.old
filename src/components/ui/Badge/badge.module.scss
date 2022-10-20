@@ -104,6 +104,7 @@
     &:hover + [data-fs-badge-wrapper]::after {
       filter: brightness(0.95);
     }
+    > span { display: flex; }
   }
 
   // --------------------------------------------------------
@@ -203,6 +204,32 @@
 
       &::after {
         background-color: var(--fs-badge-info-bkg-color);
+      }
+    }
+  }
+
+  &[data-fs-badge-variant="warning"] {
+    color: var(--fs-badge-warning-text-color);
+
+    [data-fs-badge-wrapper] {
+      background-color: var(--fs-badge-warning-bkg-color);
+      border-color: var(--fs-badge-warning-border-color);
+
+      &::after {
+        background-color: var(--fs-badge-warning-bkg-color);
+      }
+    }
+  }
+
+  &[data-fs-badge-variant="danger"] {
+    color: var(--fs-badge-danger-text-color);
+
+    [data-fs-badge-wrapper] {
+      background-color: var(--fs-badge-danger-bkg-color);
+      border-color: var(--fs-badge-danger-border-color);
+
+      &::after {
+        background-color: var(--fs-badge-danger-bkg-color);
       }
     }
   }
