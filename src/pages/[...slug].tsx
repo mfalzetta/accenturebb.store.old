@@ -23,7 +23,7 @@ import type {
   ServerCollectionPageQueryQuery,
   ServerCollectionPageQueryQueryVariables,
 } from '@generated/graphql'
-import { clientCMS } from 'src/server/cms'
+import { getPageSections } from 'src/server/cms'
 import SectionTitle from 'src/components/custom-components/home/SectionTitle'
 
 import storeConfig from '../../store.config'
@@ -157,9 +157,8 @@ export const getStaticProps: GetStaticProps<
   })
 
   const notFound = errors.find(isNotFoundError)
-  const cmsCategoryImage = await clientCMS
-    .getCMSPagesByContentType('categoryImage')
-    .then((pages) => pages.data[0])
+  const sections = await getPageSections('categoryImage')
+  const cmsCategoryImage = { sections }
 
   if (notFound) {
     return {
