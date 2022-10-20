@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Components for Accenture Theme ([#105](https://github.com/vtex-sites/accenturebb.store/pull/105))
 - `SkuSelector` for products that only have one option that is not "Cor" ([#103](https://github.com/vtex-sites/accenturebb.store/pull/103))
 ### Changed
+- `Update NextJS base  Version to 22.42.2 (2022-10-20)` ([#118](https://github.com/vtex-sites/accenturebb.store/pull/118))
 - `Update NextJS base  Version to 22.40.2 (2022-10-17)` ([#114](https://github.com/vtex-sites/accenturebb.store/pull/114))
 - `Update NextJS base  Version to 22.39.5 (2022-10-13)` ([#110](https://github.com/vtex-sites/accenturebb.store/pull/110))
 - `Update NextJS base  Version to 22.39.0 (2022-09-29)` ([#104](https://github.com/vtex-sites/accenturebb.store/pull/104))
