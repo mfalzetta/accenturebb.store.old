@@ -12,7 +12,8 @@ import type {
   ServerProductPageQueryQuery,
   ServerProductPageQueryQueryVariables,
 } from '@generated/graphql'
-import { getPageSections } from 'src/server/cms'
+import type { PageContentType } from 'src/server/cms'
+import { getPage } from 'src/server/cms'
 import RenderPageSections from 'src/components/cms/RenderPageSections'
 
 import storeConfig from '../../../store.config'
@@ -177,8 +178,11 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({
   })
 
   const notFound = errors.find(isNotFoundError)
-  const sections = await getPageSections('pdp')
-  const cmsPdp = { sections }
+  const sections = await getPage<PageContentType>({
+    contentType: 'pdp',
+  })
+
+  const cmsPdp = sections
 
   if (notFound) {
     return {

@@ -17,6 +17,7 @@ import BrandSection from '../sections/BrandSection/BrandSection'
 import Banners from '../sections/Banners'
 import CategoryImage from '../sections/CategoryImage'
 import SectionBoundary from './SectionBoundary'
+import Newsletter from '../sections/Newsletter'
 
 /**
  * Sections: Components imported from '../components/sections' only.
@@ -37,6 +38,7 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   BrandSection,
   Banners,
   CategoryImage,
+  Newsletter,
 }
 
 interface Props {
