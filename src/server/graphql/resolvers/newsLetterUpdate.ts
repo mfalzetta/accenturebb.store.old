@@ -26,8 +26,8 @@ async function newsLetterUpdate(_: unknown, { email, id }: NewsLetterVariable) {
       {
         headers: {
           'content-type': 'application/json',
-          'X-VTEX-API-APPTOKEN': process.env.API_TOKEN ?? secrets.API_TOKEN,
-          'X-VTEX-API-APPKEY': process.env.API_KEY ?? secrets.API_TOKEN,
+          'X-VTEX-API-AppKey': process.env.API_KEY ?? secrets.API_KEY,
+          'X-VTEX-API-AppToken': process.env.API_TOKEN ?? secrets.API_TOKEN,
         },
       }
     )
