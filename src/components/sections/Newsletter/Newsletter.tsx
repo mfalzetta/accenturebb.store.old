@@ -85,8 +85,8 @@ const Newsletter = forwardRef<HTMLFormElement, NewsletterProps>(
         updateUser({ email, id })
           .then(() => {
             pushToast({
-              title: 'Hooray!',
-              message: 'Thank for your subscription.',
+              title: 'Eba!',
+              message: 'Obrigado por se inscrever!',
               status: 'INFO',
               icon: 'CircleWavyCheck',
             })
@@ -94,7 +94,7 @@ const Newsletter = forwardRef<HTMLFormElement, NewsletterProps>(
           .catch(() => {
             pushToast({
               title: 'Oops.',
-              message: 'Something went wrong. Please Try again.',
+              message: 'Ocorreu algo de errado. Tente denovo!',
               status: 'ERROR',
               icon: 'CircleWavyWarning',
             })
