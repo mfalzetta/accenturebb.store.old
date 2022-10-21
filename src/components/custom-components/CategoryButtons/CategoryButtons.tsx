@@ -189,7 +189,9 @@ const CategoryButtons = ({
     <div className={styles.fsCategoryButtons}>
       <div className="layout__content" data-fs-category-buttons-content>
         {departButtons !== undefined && departButtons.length > 0 ? (
-          <RenderPageSections sections={departButtons} />
+          <div data-fs-category-buttons-type-image>
+            <RenderPageSections sections={departButtons} />
+          </div>
         ) : (
           <div data-fs-category-buttons-type-text>
             {otherButtons?.map(({ item, name }: OtherButtonsProps, index) => (
