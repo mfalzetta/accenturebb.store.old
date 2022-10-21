@@ -33,7 +33,6 @@ async function newsLetterUpdate(_: unknown, { email, id }: NewsLetterVariable) {
     )
   } catch (error) {
     console.error(error)
-    throw error
 
     return new GraphQLError(`Error newsletter: ${error}`)
   }
