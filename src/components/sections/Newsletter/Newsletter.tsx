@@ -1,14 +1,14 @@
 import type { ComponentPropsWithRef, FormEvent, ReactNode } from 'react'
-import { forwardRef, useRef } from 'react'
+import { useState, forwardRef, useRef } from 'react'
 import { Form } from '@faststore/ui'
 
 import { useUI } from 'src/sdk/ui/Provider'
-import Icon from 'src/components/ui/Icon'
 import Button from 'src/components/ui/Button'
 import Link from 'src/components/ui/Link'
 import InputText from 'src/components/ui/InputText'
-import { useNewsletter } from 'src/sdk/newsletter/useNewsletter'
 
+// import { useNewsletter } from 'src/sdk/newsletter/useNewsletter'
+import { useNewsletterQuery, useNewsletterQueryUpdate } from './NewsLetterQuery'
 import Section from '../Section'
 import styles from './newsletter.module.scss'
 
@@ -37,7 +37,11 @@ const Newsletter = forwardRef<HTMLFormElement, NewsletterProps>(
     { title, description, card = false, lite = false, ...otherProps },
     ref
   ) {
-    const { subscribeUser, loading, data } = useNewsletter()
+    const { subscribeUser, loading, data } = useNewsletterQuery()
+    const { updateUser } = useNewsletterQueryUpdate()
+    const [update, setUpdate] = useState(false)
+    const [email, setEmail] = useState('')
+
     const nameInputRef = useRef<HTMLInputElement>(null)
     const emailInputRef = useRef<HTMLInputElement>(null)
 
@@ -45,27 +49,27 @@ const Newsletter = forwardRef<HTMLFormElement, NewsletterProps>(
 
     const handleSubmit = (event: FormEvent) => {
       event.preventDefault()
-      subscribeUser({
-        data: {
-          name: nameInputRef.current?.value ?? '',
-          email: emailInputRef.current?.value ?? '',
-        },
-      })
 
-      if (data?.subscribeToNewsletter?.id) {
-        pushToast({
-          title: 'Hooray!',
-          message: 'Thank for your subscription.',
-          status: 'INFO',
-          icon: 'CircleWavyCheck',
-        })
-      } else {
-        pushToast({
-          title: 'Oops.',
-          message: 'Something went wrong. Please Try again.',
-          status: 'ERROR',
-          icon: 'CircleWavyWarning',
-        })
+      if (emailInputRef.current?.value) {
+        setEmail(emailInputRef.current?.value ?? '')
+        subscribeUser({ email: emailInputRef.current?.value })
+          .then(() => {
+            setUpdate(true)
+            pushToast({
+              title: 'Eba!',
+              message: 'Obrigado por se inscrever!',
+              status: 'INFO',
+              icon: 'CircleWavyCheck',
+            })
+          })
+          .catch(() => {
+            pushToast({
+              title: 'Oops.',
+              message: 'Ocorreu algo de errado. Tente denovo!',
+              status: 'ERROR',
+              icon: 'CircleWavyWarning',
+            })
+          })
       }
 
       const formElement = event.currentTarget as HTMLFormElement
@@ -73,10 +77,37 @@ const Newsletter = forwardRef<HTMLFormElement, NewsletterProps>(
       formElement.reset()
     }
 
+    if (update === true) {
+      const id = data?.newsLetter?.id ?? ''
+
+      setUpdate(false)
+      if (email) {
+        updateUser({ email, id })
+          .then(() => {
+            pushToast({
+              title: 'Eba!',
+              message: 'Obrigado por se inscrever!',
+              status: 'INFO',
+              icon: 'CircleWavyCheck',
+            })
+          })
+          .catch(() => {
+            pushToast({
+              title: 'Oops.',
+              message: 'Ocorreu algo de errado. Tente denovo!',
+              status: 'ERROR',
+              icon: 'CircleWavyWarning',
+            })
+          })
+      }
+
+      setEmail('')
+    }
+
     return (
       <Section
         data-fs-newsletter={card ? 'card' : ''}
-        className={`layout__section ${styles.fsNewsletter}`}
+        className={`layout__section--full ${styles.fsNewsletter}`}
       >
         <Form
           data-fs-newsletter-form
@@ -86,10 +117,7 @@ const Newsletter = forwardRef<HTMLFormElement, NewsletterProps>(
           className="layout__content"
         >
           <header data-fs-newsletter-header>
-            <h3>
-              <Icon name="Envelop" width={32} height={32} />
-              {title}
-            </h3>
+            <h3>{title}</h3>
             {description && <span> {description}</span>}
           </header>
 
@@ -99,21 +127,15 @@ const Newsletter = forwardRef<HTMLFormElement, NewsletterProps>(
                 <InputText
                   inputRef={emailInputRef}
                   id="newsletter-email"
-                  label="Your Email"
+                  label="Email"
                   type="email"
                   required
                   actionable
                   onSubmit={() => undefined}
                   onClear={() => undefined}
-                  buttonActionText="Subscribe"
+                  buttonActionText="Enviar"
                   displayClearButton={false}
                 />
-                <span data-fs-newsletter-addendum>
-                  By subscribing to our newsletter you agree to to our{' '}
-                  <Link href="/" inverse variant="inline">
-                    Privacy Policy.
-                  </Link>
-                </span>
               </>
             ) : (
               <>
@@ -131,13 +153,13 @@ const Newsletter = forwardRef<HTMLFormElement, NewsletterProps>(
                   required
                 />
                 <span data-fs-newsletter-addendum>
-                  By subscribing to our newsletter you agree to to our{' '}
+                  Ao subscrever a nossa newsletter está a concordar com a nossa{' '}
                   <Link href="/" inverse variant="inline">
-                    Privacy Policy.
+                    Política de Privacidade.
                   </Link>
                 </span>
                 <Button variant="secondary" inverse type="submit">
-                  {loading ? 'Loading...' : 'Subscribe'}
+                  {loading ? 'Loading...' : 'Enviar'}
                 </Button>
               </>
             )}

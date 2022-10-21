@@ -5,6 +5,7 @@ import {
 } from '@faststore/ui'
 import Image from 'next/image'
 
+import Newsletter from 'src/components/sections/Newsletter'
 import Button from 'src/components/ui/Button'
 import Link from 'src/components/ui/Link'
 import SROnly from 'src/components/ui/SROnly'
@@ -25,116 +26,120 @@ import FooterLinks from './FooterLinksLean'
 
 function Footer() {
   return (
-    <footer className="footer layout__content-full">
-      <div className="footer__section layout__content">
-        <FooterLinks />
-        <section className="footer__contacts hidden-mobile">
-          <p className="text__title-mini footer__titles">Contatos</p>
-          <div className="contactContainer">
-            <Button
-              className="btn btnLigar"
-              iconPosition="left"
-              icon={<Ligar />}
-            >
-              {' '}
-              Ligar{' '}
-            </Button>
-            <Button
-              className="btn btnMsg"
-              iconPosition="left"
-              icon={<Enviar />}
-            >
-              {' '}
-              Envie uma Mensagem{' '}
-            </Button>
-            <p>
-              <Link href="/">Clique Aqui</Link> para ver as nossas horas de
-            </p>
-            <p> funcionamento</p>
-          </div>
-        </section>
-        <section className="footer__social">
-          <div className="footer__container--column">
-            <UIPaymentMethods>
-              <p className="text__title-mini footer__titles footer__titles--payment">
-                Pague com os cartões
+    <>
+      <Newsletter lite title="Receba notícias e ofertas especiais!" />
+
+      <footer className="footer layout__content-full">
+        <div className="footer__section layout__content">
+          <FooterLinks />
+          <section className="footer__contacts hidden-mobile">
+            <p className="text__title-mini footer__titles">Contatos</p>
+            <div className="contactContainer">
+              <Button
+                className="btn btnLigar"
+                iconPosition="left"
+                icon={<Ligar />}
+              >
+                {' '}
+                Ligar{' '}
+              </Button>
+              <Button
+                className="btn btnMsg"
+                iconPosition="left"
+                icon={<Enviar />}
+              >
+                {' '}
+                Envie uma Mensagem{' '}
+              </Button>
+              <p>
+                <Link href="/">Clique Aqui</Link> para ver as nossas horas de
               </p>
-              <UIList className="footer__paymentMethod--ul">
+              <p> funcionamento</p>
+            </div>
+          </section>
+          <section className="footer__social">
+            <div className="footer__container--column">
+              <UIPaymentMethods>
+                <p className="text__title-mini footer__titles footer__titles--payment">
+                  Pague com os cartões
+                </p>
+                <UIList className="footer__paymentMethod--ul">
+                  <li>
+                    <UIIcon component={<Visa />} />
+                    <SROnly text="Visa" />
+                  </li>
+                  <li>
+                    <UIIcon component={<Dinners />} />
+                    <SROnly text="Diners Club" />
+                  </li>
+                  <li>
+                    <UIIcon component={<Master />} />
+                    <SROnly text="Mastercard" />
+                  </li>
+                  <li>
+                    <UIIcon component={<Amex />} />
+                    <SROnly text="Amex" />
+                  </li>
+                </UIList>
+              </UIPaymentMethods>
+              <p className="text__title-mini footer__titles footer__titles--social">
+                Siga nas redes sociais
+              </p>
+              <UIList data-fs-social-icon>
                 <li>
-                  <UIIcon component={<Visa />} />
-                  <SROnly text="Visa" />
+                  <Link
+                    as="a"
+                    href="https://www.facebook.com/"
+                    title="Facebook"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <UIIcon component={<Facebook />} />
+                  </Link>
                 </li>
                 <li>
-                  <UIIcon component={<Dinners />} />
-                  <SROnly text="Diners Club" />
+                  <Link
+                    as="a"
+                    href="https://www.instagram.com/"
+                    title="Instagram"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <UIIcon component={<Instagram />} />
+                  </Link>
                 </li>
                 <li>
-                  <UIIcon component={<Master />} />
-                  <SROnly text="Mastercard" />
-                </li>
-                <li>
-                  <UIIcon component={<Amex />} />
-                  <SROnly text="Amex" />
+                  <Link
+                    as="a"
+                    href="https://www.twitter.com/"
+                    title="Twitter"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <UIIcon component={<Twitter />} />
+                  </Link>
                 </li>
               </UIList>
-            </UIPaymentMethods>
-            <p className="text__title-mini footer__titles footer__titles--social">
-              Siga nas redes sociais
-            </p>
-            <UIList data-fs-social-icon>
-              <li>
-                <Link
-                  as="a"
-                  href="https://www.facebook.com/"
-                  title="Facebook"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <UIIcon component={<Facebook />} />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  as="a"
-                  href="https://www.instagram.com/"
-                  title="Instagram"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <UIIcon component={<Instagram />} />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  as="a"
-                  href="https://www.twitter.com/"
-                  title="Twitter"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <UIIcon component={<Twitter />} />
-                </Link>
-              </li>
-            </UIList>
+            </div>
+          </section>
+        </div>
+        <div className="display-mobile">
+          <div className="layout__content footer__note--mob--content">
+            <FooterTitle />
+            <FooterText />
+            <FooterLogo />
           </div>
-        </section>
-      </div>
-      <div className="display-mobile">
-        <div className="layout__content footer__note--mob--content">
-          <FooterTitle />
-          <FooterText />
-          <FooterLogo />
         </div>
-      </div>
-      <div className="hidden-mobile ">
-        <div className="layout__content footer__note--desk--content">
-          <FooterLogo /> <FooterTitle />
+        <div className="hidden-mobile ">
+          <div className="layout__content footer__note--desk--content">
+            <FooterLogo /> <FooterTitle />
+          </div>
+          <div className="layout__content">
+            <FooterText />
+          </div>
         </div>
-        <div className="layout__content">
-          <FooterText />
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   )
 }
 
