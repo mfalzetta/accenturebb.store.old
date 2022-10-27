@@ -35,4 +35,6 @@ jobs:
         run: yarn
 
       - name: Release
-        run: yarn release
+        run: npm run release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

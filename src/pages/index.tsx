@@ -1,13 +1,43 @@
 import { NextSeo, SiteLinksSearchBoxJsonLd } from 'next-seo'
 import type { GetStaticProps } from 'next'
 import type { Locator } from '@vtex/client-cms'
+import type { ComponentType } from 'react'
 
-import RenderPageSections from 'src/components/cms/RenderPageSections'
-import type { PageContentType } from 'src/server/cms'
-import { getPage } from 'src/server/cms'
 import { mark } from 'src/sdk/tests/mark'
+import { getPage } from 'src/server/cms'
+import type { PageContentType } from 'src/server/cms'
+import RenderPageSections from 'src/components/cms/RenderPageSections'
+import Hero from 'src/components/sections/Hero'
+import BannerText from 'src/components/sections/BannerText'
+import IncentivesHeader from 'src/components/sections/Incentives/IncentivesHeader'
+import ProductShelf from 'src/components/sections/ProductShelf'
+import ProductTiles from 'src/components/sections/ProductTiles'
+import Banners from 'src/components/sections/Banners'
+import Title from 'src/components/sections/Title/Title'
+import CategorySection from 'src/components/sections/CategorySection'
+import BrandSection from 'src/components/sections/BrandSection'
+import BlogSection from 'src/components/sections/BlogSection'
+import PromotionBanner from 'src/components/sections/PromotionBanner'
+import Incentives from 'src/components/sections/Incentives'
+import ImageBanner from 'src/components/sections/ImageBanner'
 
 import storeConfig from '../../store.config'
+
+const COMPONENTS: Record<string, ComponentType<any>> = {
+  Hero,
+  BannerText,
+  IncentivesHeader,
+  ProductShelf,
+  ProductTiles,
+  Banners,
+  Title,
+  CategorySection,
+  BrandSection,
+  BlogSection,
+  PromotionBanner,
+  Incentives,
+  ImageBanner,
+}
 
 type Props = PageContentType
 
@@ -48,7 +78,7 @@ function Page({ sections, settings }: Props) {
         If needed, wrap your component in a <Section /> component
         (not the HTML tag) before rendering it here.
       */}
-      <RenderPageSections sections={sections} />
+      <RenderPageSections sections={sections} components={COMPONENTS} />
     </>
   )
 }
@@ -59,7 +89,9 @@ export const getStaticProps: GetStaticProps<
   Locator
 > = async (context) => {
   const page = await getPage<PageContentType>({
-    ...(context.previewData ?? { filters: { 'settings.seo.slug': '/' } }),
+    ...(context.previewData?.contentType === 'page'
+      ? context.previewData
+      : { filters: { 'settings.seo.slug': '/' } }),
     contentType: 'home',
   })
 

@@ -1,4 +1,5 @@
 import type { ContentData } from '@vtex/client-cms'
+import type { ComponentType } from 'react'
 import { useEffect, useState } from 'react'
 
 import type { MenuCategoryQueryQuery } from '@generated/graphql'
@@ -9,6 +10,7 @@ import type {
 } from 'src/components/sections/CategoryImage/CategoryImage'
 import Link from 'src/components/ui/Link'
 import useCategories from 'src/data/hook/useCategories'
+import CategoryImage from 'src/components/sections/CategoryImage/CategoryImage'
 
 import styles from './category-buttons.module.scss'
 
@@ -37,6 +39,10 @@ interface NoImageProps {
   name: string
   item: string
   position: number
+}
+
+const COMPONENTS: Record<string, ComponentType<any>> = {
+  CategoryImage,
 }
 
 const getCategory = ({
@@ -190,7 +196,10 @@ const CategoryButtons = ({
       <div className="layout__content" data-fs-category-buttons-content>
         {departButtons !== undefined && departButtons.length > 0 ? (
           <div data-fs-category-buttons-type-image>
-            <RenderPageSections sections={departButtons} />
+            <RenderPageSections
+              sections={departButtons}
+              components={COMPONENTS}
+            />
           </div>
         ) : (
           <div data-fs-category-buttons-type-text>
