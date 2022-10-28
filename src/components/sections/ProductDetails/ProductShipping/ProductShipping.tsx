@@ -5,7 +5,7 @@ import Icon from 'src/components/ui/Icon'
 import InputText from 'src/components/ui/InputText'
 import Price from 'src/components/ui/Price'
 import { useFormattedPrice } from 'src/sdk/product/useFormattedPrice'
-import { sessionStore, useSession } from 'src/sdk/session'
+import { sessionStore, useSession, validateSession } from 'src/sdk/session'
 
 import useShippingQuery from './useShippingQuery'
 
@@ -31,6 +31,7 @@ type SlaT = {
 const ProductShipping = ({ items }: ShippingItemsProps) => {
   const { isValidating, ...session } = useSession()
   const [errorMessage, setErrorMessage] = useState<string>('')
+  const [postalCode, setPostalCode] = useState<string>('')
   const [shippingQuery, setShippingQuery] = useState<SlaT | any>(null)
 
   const [showMore, setShowMore] = useState(false)
@@ -89,27 +90,32 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
     }
   }, [shippingQuery, getDate])
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    if (session.postalCode) {
+      setPostalCode(session.postalCode)
+    }
+  }, [session.postalCode])
+
+  const handleSubmit = async () => {
     const value = inputRef?.current?.value
 
     if (typeof value !== 'string') {
       return
     }
 
-    // getShippingEstimate({
-    //   country: 'BRA',
-    //   items: [items],
-    //   postalCode: value,
-    // })
-
     setErrorMessage('')
 
     try {
-      if (value) {
-        sessionStore.set({ ...session, postalCode: value })
+      const newSession = {
+        ...session,
+        postalCode: value,
       }
+
+      const validatedSession = await validateSession(newSession)
+
+      sessionStore.set(validatedSession ?? newSession)
     } catch (error) {
-      setErrorMessage('CEP inválido')
+      setErrorMessage('You entered an invalid Postal Code')
     }
   }
 
@@ -138,6 +144,8 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
             onClear={() => {}}
             defaultValue={session.postalCode ?? ''}
             data-fs-shipping-input-text
+            value={postalCode}
+            onChange={(e) => setPostalCode(e.target.value)}
           />
         </div>
       </div>
