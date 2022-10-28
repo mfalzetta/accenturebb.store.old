@@ -116,6 +116,10 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
       sessionStore.set(validatedSession ?? newSession)
     } catch (error) {
       setErrorMessage('CEP inválido')
+      setTimeout(() => {
+        setErrorMessage('')
+      }, 1500)
+      setShippingQuery(null)
     }
   }
 
@@ -124,6 +128,7 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
     setTimeout(() => {
       setErrorMessage('')
     }, 1500)
+    setShippingQuery(null)
   }, [queryError])
 
   const slas = data?.shipping?.logisticsInfo?.[0]?.slas
