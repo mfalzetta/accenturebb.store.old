@@ -115,7 +115,7 @@ const ProductShipping = ({ items }: ShippingItemsProps) => {
 
       sessionStore.set(validatedSession ?? newSession)
     } catch (error) {
-      setErrorMessage('You entered an invalid Postal Code')
+      setErrorMessage('CEP inválido')
     }
   }
 
