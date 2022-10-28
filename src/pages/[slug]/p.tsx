@@ -2,9 +2,12 @@ import { isNotFoundError } from '@faststore/api'
 import { gql } from '@faststore/graphql-utils'
 import { BreadcrumbJsonLd, NextSeo, ProductJsonLd } from 'next-seo'
 import type { GetStaticPaths, GetStaticProps } from 'next'
-import type { ContentData } from '@vtex/client-cms'
+import type { ComponentType } from 'react'
+import type { Locator } from '@vtex/client-cms'
 
 import ProductDetails from 'src/components/sections/ProductDetails'
+import ProductShelf from 'src/components/sections/ProductShelf'
+import Title from 'src/components/sections/Title/Title'
 import { useSession } from 'src/sdk/session'
 import { mark } from 'src/sdk/tests/mark'
 import { execute } from 'src/server'
@@ -12,27 +15,26 @@ import type {
   ServerProductPageQueryQuery,
   ServerProductPageQueryQueryVariables,
 } from '@generated/graphql'
-import type { PageContentType } from 'src/server/cms'
 import { getPage } from 'src/server/cms'
 import RenderPageSections from 'src/components/cms/RenderPageSections'
+import type { PDPContentType } from 'src/server/cms'
 
 import storeConfig from '../../../store.config'
 
-type Props = {
-  data: ServerProductPageQueryQuery
-  cmsPdp: ContentData
+const COMPONENTS: Record<string, ComponentType<any>> = {
+  ProductDetails,
+  ProductShelf,
+  Title,
 }
 
-function Page({ data, cmsPdp }: Props) {
+/**
+ * Sections: Components imported from '../components/sections' only.
+ * Do not import or render components from any other folder in here.
+ */
+type Props = ServerProductPageQueryQuery & PDPContentType
+
+function Page({ product, sections }: Props) {
   const { currency } = useSession()
-
-  // No data was found
-  if (data === undefined) {
-    return null
-  }
-
-  const { product } = data
-
   const { seo } = product
   const title = seo.title || storeConfig.seo.title
   const description = seo.description || storeConfig.seo.description
@@ -97,10 +99,14 @@ function Page({ data, cmsPdp }: Props) {
         (not the HTML tag) before rendering it here.
       */}
 
-      <ProductDetails product={product} />
+      {/* <ProductDetails context={product} /> */}
 
       <div className="cms-pdp">
-        <RenderPageSections sections={cmsPdp?.sections} />
+        <RenderPageSections
+          context={product}
+          sections={sections}
+          components={COMPONENTS}
+        />
       </div>
     </>
   )
@@ -164,25 +170,28 @@ const query = gql`
     }
   }
 `
-// TODO TYPE THIS
 
-export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({
-  params,
-}) => {
-  const { data, errors = [] } = await execute<
-    ServerProductPageQueryQueryVariables,
-    ServerProductPageQueryQuery
-  >({
-    variables: { slug: params?.slug ?? '' },
-    operationName: query,
-  })
+// TODO TYPE THIS
+export const getStaticProps: GetStaticProps<
+  Props,
+  { slug: string },
+  Locator
+> = async ({ params, previewData }) => {
+  const slug = params?.slug ?? ''
+  const [cmsPage, searchResult] = await Promise.all([
+    getPage<PDPContentType>({
+      ...(previewData?.contentType === 'pdp' ? previewData : null),
+      contentType: 'pdp',
+    }),
+    execute<ServerProductPageQueryQueryVariables, ServerProductPageQueryQuery>({
+      variables: { slug },
+      operationName: query,
+    }),
+  ])
+
+  const { data, errors = [] } = searchResult
 
   const notFound = errors.find(isNotFoundError)
-  const sections = await getPage<PageContentType>({
-    contentType: 'pdp',
-  })
-
-  const cmsPdp = sections
 
   if (notFound) {
     return {
@@ -193,12 +202,12 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({
   if (errors.length > 0) {
     throw errors[0]
   }
-  // const { product } = data
-
-  const dataFinal = { data, cmsPdp }
 
   return {
-    props: dataFinal,
+    props: {
+      ...data,
+      ...cmsPage,
+    },
   }
 }
 
