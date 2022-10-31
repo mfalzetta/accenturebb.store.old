@@ -6,10 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+### Fixed 
+- `Regionalization and CEP on PDP` ([#121](https://github.com/vtex-sites/accenturebb.store/pull/121))
 ## ["2.27.0"] - 10/27/2022
 ### Added
-- New slider for all Components ([#105](https://github.com/vtex-sites/accenturebb.store/pull/105))
+- `New slider for all Components` ([#105](https://github.com/vtex-sites/accenturebb.store/pull/105))
 ### Fixed 
 - `Lean Newsletter` ([#117](https://github.com/vtex-sites/accenturebb.store/pull/117))
 - `Fixed PDP on Iphone` and pqp Image ([#113](https://github.com/vtex-sites/accenturebb.store/pull/113))
