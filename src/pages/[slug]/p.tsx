@@ -18,6 +18,7 @@ import type {
 import { getPage } from 'src/server/cms'
 import RenderPageSections from 'src/components/cms/RenderPageSections'
 import type { PDPContentType } from 'src/server/cms'
+import CUSTOM_SECTIONS from 'src/customizations'
 
 import storeConfig from '../../../store.config'
 
@@ -25,10 +26,11 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   ProductDetails,
   ProductShelf,
   Title,
+  ...CUSTOM_SECTIONS,
 }
 
 /**
- * Sections: Components imported from '../components/sections' only.
+ * Sections: Components imported from each store's custom components and '../components/sections' only.
  * Do not import or render components from any other folder in here.
  */
 type Props = ServerProductPageQueryQuery & PDPContentType
