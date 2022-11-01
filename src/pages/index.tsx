@@ -3,6 +3,7 @@ import type { GetStaticProps } from 'next'
 import type { Locator } from '@vtex/client-cms'
 import type { ComponentType } from 'react'
 
+import CUSTOM_SECTIONS from 'src/customizations'
 import { mark } from 'src/sdk/tests/mark'
 import { getPage } from 'src/server/cms'
 import type { PageContentType } from 'src/server/cms'
@@ -23,6 +24,12 @@ import ImageBanner from 'src/components/sections/ImageBanner'
 
 import storeConfig from '../../store.config'
 
+/**
+ * Sections: Components imported from '../components/sections' only.
+ * Sections: Components imported from each store's custom components and '../components/sections'.
+ * Do not import or render components from any other folder in here.
+ */
+
 const COMPONENTS: Record<string, ComponentType<any>> = {
   Hero,
   BannerText,
@@ -37,6 +44,7 @@ const COMPONENTS: Record<string, ComponentType<any>> = {
   PromotionBanner,
   Incentives,
   ImageBanner,
+  ...CUSTOM_SECTIONS,
 }
 
 type Props = PageContentType

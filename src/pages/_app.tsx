@@ -5,7 +5,7 @@ import '../styles/global/layout.scss'
 import '../styles/global/components.scss'
 
 // Replace this with your theme style file
-import '../styles/themes/custom-theme.scss'
+import '../customizations/themes/index.scss'
 
 import NextNProgress from 'nextjs-progressbar'
 import type { AppProps } from 'next/app'
