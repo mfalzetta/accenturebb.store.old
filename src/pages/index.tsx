@@ -103,6 +103,12 @@ export const getStaticProps: GetStaticProps<
     contentType: 'home',
   })
 
+  if (!page) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: page,
   }

@@ -21,8 +21,8 @@ const nextConfig = {
     domains: ['accenturebb.vtexassets.com'],
   },
   i18n: {
-    locales: ['en-US'],
-    defaultLocale: 'en-US',
+    locales: ['pt-BR'],
+    defaultLocale: 'pt-BR',
   },
   webpack: (config, { isServer, dev }) => {
     // https://github.com/vercel/next.js/discussions/11267#discussioncomment-2479112
